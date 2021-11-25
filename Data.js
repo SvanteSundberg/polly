@@ -73,11 +73,11 @@ Data.prototype.getAnswers = function(pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
     const answers = poll.answers[poll.currentQuestion];
-    return {q: poll.questions[poll.currentQuestion].q, a: answers};
+    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
+      return {q: poll.questions[poll.currentQuestion].q, a: answers};
+    }
   }
-  else {
-    return {}
-  }
+  return {}
 }
 module.exports = Data;
 
