@@ -33,7 +33,6 @@
 <script>
 import io from 'socket.io-client';
 const socket = io();
-console.log('hejhej');
 export default {
   name: 'Create',
   data: function () {
