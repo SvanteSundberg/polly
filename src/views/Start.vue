@@ -1,7 +1,9 @@
 <template>
 
+<body>
   <header>
   <h1> {{uiLabels.welcome}}</h1>
+  <h3> {{uiLabels.welcomequestion}}</h3>
   </header>
 
   <div id="nav">
@@ -25,6 +27,8 @@
     <input type="text" v-model="id">
   </label>
   </div>
+
+</body>
 </template>
 
 <script>
