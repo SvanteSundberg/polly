@@ -1,20 +1,24 @@
 <template>
   <div id="nav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+
+    <div id="startButtons">
     <router-link v-bind:to="'/create/'+lang">
       <button id='createButton'>
         {{uiLabels.createPoll}}
         </button>
     </router-link>
-    <label>
-      Write poll id:
-      <input type="text" v-model="id">
-    </label>
     <router-link v-bind:to="'/poll/'+id" tag="button">
       <button id="participateButton">
       {{uiLabels.participatePoll}}
     </button>
     </router-link>
+  </div>
+
+  <label>
+    Write poll id:
+    <input type="text" v-model="id">
+  </label>
   </div>
 </template>
 
@@ -47,3 +51,11 @@ export default {
   }
 }
 </script>
+
+<style>
+#startButtons{
+  display:grid;
+  grid-gap: 10px;
+  grid-template-columns: 500px 500px;
+}
+</style>
