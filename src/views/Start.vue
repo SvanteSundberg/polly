@@ -1,9 +1,7 @@
 <template>
 
-<body>
   <header>
-  <h1> {{uiLabels.welcome}}</h1>
-  <h3> {{uiLabels.welcomequestion}}</h3>
+  <h1> hej {{uiLabels.welcome}}</h1>
   </header>
 
   <div id="nav">
@@ -27,11 +25,9 @@
     <input type="text" v-model="id">
   </label>
   </div>
-
-</body>
 </template>
 
-<script>
+<script>o
 import io from 'socket.io-client';
 const socket = io();
 
@@ -72,16 +68,5 @@ body {
   display:grid;
   grid-gap: 10px;
   grid-template-columns: 500px 500px;
-  margin: 5em;
-}
-
-button{
-  font-family: Average, sans-serif;
-
-}
-
-#startButtons button{
-  font-size: 18pt;
-  padding:1em;
 }
 </style>
