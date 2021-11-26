@@ -3,10 +3,14 @@
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
     <label>
-      Write poll id: 
+      Write poll id:
       <input type="text" v-model="id">
     </label>
-    <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link>
+    <router-link v-bind:to="'/poll/'+id" tag="button">
+      <button id="participateButton">
+      {{uiLabels.participatePoll}}
+    </button>
+    </router-link>
   </div>
 </template>
 
