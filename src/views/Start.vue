@@ -72,5 +72,16 @@ body {
   display:grid;
   grid-gap: 10px;
   grid-template-columns: 500px 500px;
+  margin: 5em;
+}
+
+button{
+  font-family: Average, sans-serif;
+
+}
+
+#startButtons button{
+  font-size: 18pt;
+  padding:1em;
 }
 </style>
