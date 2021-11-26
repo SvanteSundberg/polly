@@ -1,4 +1,9 @@
 <template>
+
+  <header>
+  <h1> {{uiLabels.welcome}}</h1>
+  </header>
+
   <div id="nav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
@@ -53,6 +58,12 @@ export default {
 </script>
 
 <style>
+@import 'https://fonts.googleapis.com/css?family=Average';
+body {
+   font-family: Average, sans-serif;
+   font-size: 14pt;
+}
+
 #startButtons{
   display:grid;
   grid-gap: 10px;
