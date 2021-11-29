@@ -35,11 +35,11 @@ const routes = [
   },
 
   {
-    path: '/selectTheme',
+    path: '/:id/selectTheme',
     name: 'SelectTheme',
     component: () => import(/* webpackChunkName: "about" */ '../views/SelectTheme.vue')
   },
-  
+
 ]
 
 const router = createRouter({

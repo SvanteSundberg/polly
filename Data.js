@@ -22,7 +22,6 @@ Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
     poll.lang = lang;
-    poll.theme = "school";
     poll.questions = [];
     poll.answers = [];
     poll.currentQuestion = 0;
@@ -30,6 +29,11 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     console.log("poll created", pollId, poll);
   }
   return this.polls[pollId];
+}
+
+Data.prototype.chooseTheme = function (pollId, theme) {
+  this.polls[pollId].theme=theme;
+  console.log("tema satt");
 }
 
 Data.prototype.addQuestion = function(pollId, q) {

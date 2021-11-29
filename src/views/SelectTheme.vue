@@ -6,6 +6,8 @@
 <button v-on:click="setTheme('school')">school</button>
 <button v-on:click="setTheme('work')">work</button>
 
+<button v-on:click="chooseTheme()">Välj det här temat</button>
+
 </div>
 
 </template>
@@ -20,7 +22,7 @@ export default {
     return {
       uiLabels: {},
       theme: "start",
-      //id: "",
+      id: "",
       //lang: "en"
     }
   },
@@ -34,6 +36,12 @@ export default {
     setTheme: function (theme) {
       this.theme=theme;
       console.log(this.theme);
+    },
+
+    chooseTheme: function(){
+      this.id=this.$route.params.id;
+      console.log(this.id);
+      socket.emit("chooseTheme", {pollId: this.id, theme: this.theme})
     }
 
   }
