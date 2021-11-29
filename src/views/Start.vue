@@ -1,7 +1,7 @@
 <template>
 
   <header>
-  <h1> hej {{uiLabels.welcome}}</h1>
+  <h1> {{uiLabels.welcome}}</h1>
   </header>
 
   <div id="nav">
@@ -9,7 +9,7 @@
 
     <div id="startButtons">
     <router-link v-bind:to="'/create/'+lang">
-      <button id='createButton'>
+      <button id="createButton">
         {{uiLabels.createPoll}}
         </button>
     </router-link>
@@ -21,7 +21,7 @@
   </div>
 
   <label>
-    Write poll id:
+    {{uiLabels.writePollID}}
     <input type="text" v-model="id">
   </label>
   </div>
@@ -67,6 +67,15 @@ body {
 #startButtons{
   display:grid;
   grid-gap: 10px;
-  grid-template-columns: 500px 500px;
+  grid-template-columns: 100px 100px;
+  align-items: center;
+}
+
+#createButton{
+  padding: 20px;
+}
+
+#participateButton{
+  padding: 20px;
 }
 </style>
