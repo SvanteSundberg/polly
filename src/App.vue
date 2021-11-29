@@ -31,4 +31,12 @@
   background-color: blue;
   color: white;
 }
+
+.party button {
+  background-color: red;
+}
+
+.school button {
+  background-color: blue;
+}
 </style>

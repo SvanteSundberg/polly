@@ -1,5 +1,5 @@
 <template>
-  <body>
+  <div v-bind:class="theme">
 
   <header>
   <h1> {{uiLabels.welcome}}</h1>
@@ -21,10 +21,8 @@
     </button>
     </router-link>
   </div>
-
-  
   </div>
-</body>
+</div>
 </template>
 
 <script>
@@ -37,7 +35,8 @@ export default {
     return {
       uiLabels: {},
       id: "",
-      lang: "en"
+      lang: "en",
+      theme: "school"
     }
   },
   created: function () {
@@ -52,8 +51,9 @@ export default {
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
-    }
+    },
   }
+
 }
 </script>
 
