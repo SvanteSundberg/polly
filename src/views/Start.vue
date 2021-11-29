@@ -7,7 +7,7 @@
   </header>
 
   <div id="nav">
-    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+    <button id="languageButton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
     <div id="startButtons">
     <router-link v-bind:to="'/create/'+lang">
@@ -74,6 +74,12 @@ button{
 #startButtons button{
   font-size: 18pt;
 }
+#createButton:hover{
+background-color:darkgreen;
+}
+#participateButton:hover{
+background-color:darkblue;
+}
 
 #startButtons{
   padding-left: 20em;
@@ -85,10 +91,17 @@ button{
 }
 
 #createButton{
-  padding: 20px;
+  height: 5em;
+  width:7em;
+  background-color:green;
 }
 
 #participateButton{
-  padding: 20px;
+  height: 5em;
+  width:7em;
+  background-color: blue;
+}
+#languageButton{
+  align-items: center;
 }
 </style>
