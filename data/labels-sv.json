@@ -7,6 +7,7 @@
 	"changeLanguage": "Change to English",
 	"welcome": "Välkommen quizzer!",
 	"welcomequestion": "Vad kul att just du är här! Vad vill du göra idag?",
-	"writePollID": "Skriv röstningsID:"
+	"writePollID": "Skriv röstningsID:",
+	"Done":"Klar"
 
 }

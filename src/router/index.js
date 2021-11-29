@@ -7,6 +7,11 @@ const routes = [
     name: 'Start',
     component: Start
   },
+  {
+  path: '/pollID',
+  name: 'PollID',
+  component: () => import(/* webpackChunkName: "about" */ '../views/pollID.vue')
+},
     {
     path: '/poll/:id',
     name: 'Poll',

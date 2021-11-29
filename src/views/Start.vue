@@ -15,17 +15,14 @@
         {{uiLabels.createPoll}}
         </button>
     </router-link>
-    <router-link v-bind:to="'/poll/'+id" tag="button">
+    <router-link v-bind:to="'/pollID'" tag="button">
       <button id="participateButton">
       {{uiLabels.participatePoll}}
     </button>
     </router-link>
   </div>
 
-  <label>
-    {{uiLabels.writePollID}}
-    <input type="text" v-model="id">
-  </label>
+  
   </div>
 </body>
 </template>
