@@ -67,9 +67,19 @@ body {
    font-size: 14pt;
 }
 
+button{
+  font-family: Average, sans-serif;
+}
+
+#startButtons button{
+  font-size: 18pt;
+}
+
 #startButtons{
+  padding-left: 20em;
+  margin: 2em;
   display:grid;
-  grid-gap: 10px;
+  grid-gap: 150px;
   grid-template-columns: 100px 100px;
   align-items: center;
 }
