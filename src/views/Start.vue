@@ -61,15 +61,6 @@ export default {
 </script>
 
 <style>
-@import 'https://fonts.googleapis.com/css?family=Average';
-body {
-   font-family: Average, sans-serif;
-   font-size: 14pt;
-}
-
-button{
-  font-family: Average, sans-serif;
-}
 
 #startButtons button{
   font-size: 18pt;
