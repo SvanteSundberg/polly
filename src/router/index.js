@@ -33,6 +33,13 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Result.vue')
   },
+
+  {
+    path: '/selectTheme',
+    name: 'SelectTheme',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SelectTheme.vue')
+  },
+  
 ]
 
 const router = createRouter({

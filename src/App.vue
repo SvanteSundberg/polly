@@ -32,11 +32,15 @@
   color: white;
 }
 
-.party button {
+.party {
   background-color: red;
 }
 
-.school button {
+.school {
   background-color: blue;
+}
+
+.work{
+  background-color:green;
 }
 </style>

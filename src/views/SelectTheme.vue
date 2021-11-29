@@ -1,6 +1,12 @@
 <template>
-  {{Välj ditt tema}}
-<button v-on:click="setTheme("party")">party</button>
+<div v-bind:class="theme">
+
+  {{"Välj ditt tema"}}
+<button v-on:click="setTheme('party')">party</button>
+<button v-on:click="setTheme('school')">school</button>
+<button v-on:click="setTheme('work')">work</button>
+
+</div>
 
 </template>
 
