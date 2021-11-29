@@ -1,12 +1,29 @@
 <template>
+
+  <header>
+  <h1> {{uiLabels.welcome}}</h1>
+  </header>
+
   <div id="nav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
-    <label>
-      Write poll id: 
-      <input type="text" v-model="id">
-    </label>
-    <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link>
+
+    <div id="startButtons">
+    <router-link v-bind:to="'/create/'+lang">
+      <button id="createButton">
+        {{uiLabels.createPoll}}
+        </button>
+    </router-link>
+    <router-link v-bind:to="'/poll/'+id" tag="button">
+      <button id="participateButton">
+      {{uiLabels.participatePoll}}
+    </button>
+    </router-link>
+  </div>
+
+  <label>
+    {{uiLabels.writePollID}}
+    <input type="text" v-model="id">
+  </label>
   </div>
 </template>
 
@@ -39,3 +56,26 @@ export default {
   }
 }
 </script>
+
+<style>
+@import 'https://fonts.googleapis.com/css?family=Average';
+body {
+   font-family: Average, sans-serif;
+   font-size: 14pt;
+}
+
+#startButtons{
+  display:grid;
+  grid-gap: 10px;
+  grid-template-columns: 100px 100px;
+  align-items: center;
+}
+
+#createButton{
+  padding: 20px;
+}
+
+#participateButton{
+  padding: 20px;
+}
+</style>
