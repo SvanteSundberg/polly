@@ -1,10 +1,7 @@
 <template>
   <div v-bind:class='data.theme'>
-    Poll link:
-    <input type="text" v-model="pollId">
-    <button v-on:click="createPoll">
-      Create poll
-    </button>
+    Poll ID: {{this.pollId}}
+
     <div>
       {{uiLabels.question}}:
       <input type="text" v-model="question">
