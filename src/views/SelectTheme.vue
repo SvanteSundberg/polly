@@ -24,10 +24,12 @@ export default {
       uiLabels: {},
       theme: "start",
       id: "",
-      //lang: "en"
+      lang: ""
     }
   },
   created: function () {
+    this.lang = this.$route.params.lang;
+    socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
