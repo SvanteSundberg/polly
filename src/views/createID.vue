@@ -39,7 +39,6 @@ export default {
       createPoll: function () {
         socket.emit("createPoll", {pollId: this.pollId, lang: this.lang });
 
-
       },
     },
   }
