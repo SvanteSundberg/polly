@@ -5,7 +5,7 @@
   Create poll
 </button>
 </router-link>
-{{data}}
+{{this.pollId}}
 
 </template>
 
@@ -37,7 +37,9 @@ export default {
     )},
     methods: {
       createPoll: function () {
-        socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+        socket.emit("createPoll", {pollId: this.pollId, lang: this.lang });
+
+
       },
     },
   }

@@ -10,6 +10,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('createPoll', function(d) {
+    console.log('pollid:'+d.pollId);
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
 
