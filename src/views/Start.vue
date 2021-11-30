@@ -8,7 +8,7 @@
     <button id="languageButton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
     <div id="startButtons">
-    <router-link v-bind:to="'/create/'+lang">
+    <router-link v-bind:to="'/createID/'+lang">
       <button id="createButton">
         {{uiLabels.createPoll}}
         </button>

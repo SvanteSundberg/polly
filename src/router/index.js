@@ -7,6 +7,12 @@ const routes = [
     name: 'Start',
     component: Start
   },
+
+  {
+    path: '/createID/:lang',
+    name: 'createID',
+    component: () => import(/* webpackChunkName: "about" */ '../views/createID.vue')
+  },
   {
   path: '/pollID',
   name: 'PollID',
