@@ -21,7 +21,7 @@ function sockets(io, socket, data) {
   socket.on('chooseTheme', function(d) {
     console.log(d.pollId);
     console.log(d.theme);
-    socket.emit('themeChanged', data.chooseTheme(d.pollId, d.theme));
+    data.chooseTheme(d.pollId, d.theme);
   });
 
 
