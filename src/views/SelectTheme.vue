@@ -5,7 +5,7 @@
 <button v-on:click="setTheme('party')">party</button>
 <button v-on:click="setTheme('school')">school</button>
 <button v-on:click="setTheme('work')">work</button>
-<router-link v-bind:to="'/create/'+lang">
+<router-link v-bind:to="'/create/'+id+'/'+lang">
 
 <button v-on:click="chooseTheme()">Välj det här temat</button>
 </router-link>
