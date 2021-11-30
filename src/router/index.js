@@ -41,7 +41,7 @@ const routes = [
   },
 
   {
-    path: '/createID/:id/selectTheme/:lang',
+    path: '/selectTheme/:id/:lang',
     name: 'SelectTheme',
     component: () => import(/* webpackChunkName: "about" */ '../views/SelectTheme.vue')
   },

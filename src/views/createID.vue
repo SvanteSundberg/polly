@@ -1,6 +1,6 @@
 <template>
 <input type="text" v-model="pollId">
-<router-link v-bind:to="pollId +'/selectTheme/'+lang">
+<router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
 <button v-on:click="createPoll">
   Create poll
 </button>
