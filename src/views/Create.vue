@@ -53,6 +53,13 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
+
+    socket.emit("loadData",this.pollId);
+
+    socket.on("initial", (data) => {
+      this.data = data
+    })
+
     socket.on("dataUpdate", (data) =>
       this.data = data
     )

@@ -18,6 +18,10 @@ Data.prototype.getUILabels = function (lang = "en") {
   return ui;
 }
 
+Data.prototype.getData=function(pollId) {
+  return this.polls[pollId]
+}
+
 Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
