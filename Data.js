@@ -33,7 +33,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
 
 Data.prototype.chooseTheme = function (pollId, theme) {
   this.polls[pollId].theme=theme;
-  console.log("tema satt");
+  console.log(this.polls[pollId].theme);
 }
 
 Data.prototype.addQuestion = function(pollId, q) {
