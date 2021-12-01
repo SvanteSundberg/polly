@@ -18,8 +18,8 @@ Data.prototype.getUILabels = function (lang = "en") {
   return ui;
 }
 
-Data.prototype.getData=function(pollId) {
-  return this.polls[pollId]
+Data.prototype.getTheme=function(pollId) {
+  return this.polls[pollId].theme
 }
 
 Data.prototype.createPoll = function(pollId, lang="en") {

@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class='data.theme'>
+  <div v-bind:class='theme'>
     Poll ID: {{this.pollId}}
 
     <div>
@@ -40,7 +40,8 @@ export default {
       answers: ["", ""],
       questionNumber: 0,
       data: {},
-      uiLabels: {}
+      uiLabels: {},
+      theme: ""
     }
   },
   created: function () {
@@ -51,10 +52,10 @@ export default {
       this.uiLabels = labels
     })
 
-    socket.emit("loadData",this.pollId);
+    socket.emit("loadTheme",this.pollId);
 
-    socket.on("initial", (data) => {
-      this.data = data
+    socket.on("initial", (theme) => {
+      this.theme = theme
     })
 
     socket.on("dataUpdate", (data) =>
