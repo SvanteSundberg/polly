@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class='data.theme'>
+  <div v-bind:class='theme'>
     {{question}}
   </div>
   <Bars v-bind:data="data"/>
@@ -19,8 +19,8 @@ export default {
   data: function () {
     return {
       question: "",
-      data: {
-      }
+      data: {},
+      theme:""
     }
   },
   created: function () {
@@ -33,7 +33,12 @@ export default {
     socket.on("newQuestion", update => {
       this.question = update.q;
       this.data = {};
-    })
+    });
+    socket.emit("loadTheme",this.pollId);
+
+    socket.on("initial", (theme) => {
+      this.theme = theme
+    });
   }
 }
 </script>

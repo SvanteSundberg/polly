@@ -50,17 +50,17 @@ export default {
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
-    })
+    });
 
     socket.emit("loadTheme",this.pollId);
 
     socket.on("initial", (theme) => {
       this.theme = theme
-    })
+    });
 
     socket.on("dataUpdate", (data) =>
       this.data = data
-    )
+    );
     socket.on("pollCreated", (data) =>
       this.data = data)
   },
