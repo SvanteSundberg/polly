@@ -23,7 +23,8 @@ export default {
         q: "",
         a: []
       },
-      pollId: "inactive poll"
+      pollId: "inactive poll",
+      data:{}
     }
   },
   created: function () {
@@ -32,6 +33,11 @@ export default {
     socket.on("newQuestion", q =>
       this.question = q
     )
+    socket.emit("loadData",this.pollId);
+
+    socket.on("initial", (data) => {
+      this.data = data
+    })
   },
   methods: {
     submitAnswer: function (answer) {

@@ -28,7 +28,5 @@ export default {
       this.uiLabels = labels
     })
   },
-  methods: {
-  }
 }
 </script>
