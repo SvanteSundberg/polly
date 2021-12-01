@@ -17,12 +17,7 @@ export default {
   data: function () {
     return {
       lang: "",
-      theme: "",
       pollId: "",
-      question: "",
-      answers: ["", ""],
-      questionNumber: 0,
-      data: {},
       uiLabels: {}
     }
   },
@@ -32,9 +27,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
-    socket.on("dataUpdate", (data) =>
-      this.data = data
-    )},
+    },
     methods: {
       createPoll: function () {
         socket.emit("createPoll", {pollId: this.pollId, lang: this.lang });
