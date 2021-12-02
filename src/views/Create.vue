@@ -18,12 +18,19 @@
     <button v-on:click="addQuestion">
       Add question
     </button>
+    <button v-on:click="saveQuestion">
+      Save Changes
+    </button>
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
       Run question
     </button>
-    {{data}}
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
+    <button v-for="(_, i) in this.allQuestions"
+            v-bind:key="i"
+            v-on:click="goToQuestion(i)">
+    Question {{i+1}}
+    </button>
   </div>
 </template>
 
@@ -42,7 +49,8 @@ export default {
       allQuestions:[],
       data: {},
       uiLabels: {},
-      theme: ""
+      theme: "",
+      currentIndex: 0,
     }
   },
   created: function () {
@@ -83,6 +91,16 @@ export default {
     },
     runQuestion: function () {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+    },
+    goToQuestion: function(questionIndex){
+      this.question=this.allQuestions[questionIndex].q;
+      this.answers=this.allQuestions[questionIndex].a;
+      this.currentIndex=questionIndex;
+    },
+
+    saveQuestion: function(){
+      console.log(this.allQuestions);
+      socket.emit("changeQuestion", {pollId:this.pollId, q:this.question, a: this.answers, questionNumber:this.currentIndex});
     }
   }
 }

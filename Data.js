@@ -82,6 +82,13 @@ Data.prototype.submitAnswer = function(pollId, answer) {
   }
 }
 
+Data.prototype.updateQuestion = function(d){
+  const poll = this.polls[d.pollId];
+  poll.currentQuestion=d.questionNumber;
+  poll.questions[poll.currentQuestion].q=d.q;
+  poll.questions[poll.currentQuestion].a=d.a;
+}
+
 Data.prototype.getAnswers = function(pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
