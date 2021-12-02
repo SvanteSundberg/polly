@@ -22,6 +22,10 @@ Data.prototype.getTheme=function(pollId) {
   return this.polls[pollId].theme
 }
 
+Data.prototype.getAllQuestions=function(pollId){
+  return this.polls[pollId].questions
+}
+
 Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};

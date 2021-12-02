@@ -39,6 +39,7 @@ export default {
       question: "",
       answers: ["", ""],
       questionNumber: 0,
+      allQuestions:[],
       data: {},
       uiLabels: {},
       theme: ""
@@ -62,7 +63,11 @@ export default {
       this.data = data
     );
     socket.on("pollCreated", (data) =>
-      this.data = data)
+      this.data = data);
+
+    socket.on("getQuestions",(questions)=>
+      this.allQuestions = questions);
+
   },
   methods: {
     createPoll: function () {
