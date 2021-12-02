@@ -26,11 +26,18 @@
       Run question
     </button>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
+
+    <div id="questionWrap">
     <button v-for="(_, i) in this.allQuestions"
             v-bind:key="i"
-            v-on:click="goToQuestion(i)">
+            v-on:click="goToQuestion(i)"
+            class="sideQuestion">
+
     Question {{i+1}}
+
+
     </button>
+  </div>
   </div>
 </template>
 
@@ -105,3 +112,17 @@ export default {
   }
 }
 </script>
+<style>
+
+#questionWrap{
+  display: flex;
+  flex-direction: column;
+  float:right;
+}
+.sideQuestion{
+  background-color: lightgreen;
+  margin:10px;
+  border-radius: 20px;
+}
+
+</style>
