@@ -5,7 +5,12 @@
     <div>
       {{uiLabels.question}}:
       <input type="text" v-model="question">
-      <div>
+      <div class="wrapper">
+        <div class="box a"> answers[0] </div>
+        <div class="box b"> answer[1]</div>
+        <div class="box c"> answer[2]</div>
+        <div class="box d"> answer[3]</div>
+      </div>
         Answers:
         <input v-for="(_, i) in answers"
                v-model="answers[i]"
@@ -31,14 +36,14 @@
     <button v-for="(_, i) in this.allQuestions"
             v-bind:key="i"
             v-on:click="goToQuestion(i)"
-            class="sideQuestion">
+            v-bind:class="['sideQuestion',{activeQuestion:i === currentQuestion}]">
 
     Question {{i+1}}
 
 
     </button>
   </div>
-  </div>
+
 </template>
 
 <script>
@@ -124,5 +129,18 @@ export default {
   margin:10px;
   border-radius: 20px;
 }
+
+.sideQuestion:active{
+  background-color: yellow;
+}
+
+.allAnswers{
+display:grid;
+grid-template-columns: 2em 2em;
+grid-template-rows: 2em 2em;
+}
+
+
+
 
 </style>
