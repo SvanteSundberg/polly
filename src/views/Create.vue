@@ -4,12 +4,13 @@
 
     <div>
       {{uiLabels.question}}:
-      <input type="text" v-model="question">
-      <div class="wrapper">
-        <div class="box a"> answers[0] </div>
-        <div class="box b"> answer[1]</div>
-        <div class="box c"> answer[2]</div>
-        <div class="box d"> answer[3]</div>
+      <input type="text" v-model="question" v-on:change="saveQuestion">
+
+      <div class="allAnswers">
+        <div class="answer a"> answers[0] </div>
+        <div class="answer b"> answer[1]</div>
+        <div class="answer c"> answer[2]</div>
+        <div class="answer d"> answer[3]</div>
       </div>
         Answers:
         <input v-for="(_, i) in answers"
@@ -23,9 +24,10 @@
     <button v-on:click="addQuestion">
       Add question
     </button>
+    <!--
     <button v-on:click="saveQuestion">
       Save Changes
-    </button>
+    </button>-->
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
       Run question
@@ -36,10 +38,12 @@
     <button v-for="(_, i) in this.allQuestions"
             v-bind:key="i"
             v-on:click="goToQuestion(i)"
-            v-bind:class="['sideQuestion',{activeQuestion:i === currentQuestion}]">
+            v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]">
+
+
 
     Question {{i+1}}
-
+<!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
 
     </button>
   </div>
@@ -123,6 +127,7 @@ export default {
   display: flex;
   flex-direction: column;
   float:right;
+
 }
 .sideQuestion{
   background-color: lightgreen;
@@ -136,9 +141,39 @@ export default {
 
 .allAnswers{
 display:grid;
-grid-template-columns: 2em 2em;
-grid-template-rows: 2em 2em;
+margin:auto;
+padding:auto;
+width:300px;
+grid-template-columns: 10em 10em;
+grid-template-rows: 5em 5em;
 }
+
+.answer {
+     background-color: #444;
+     color: #fff;
+     border-radius: 5px;
+     padding: 20px;
+     font-size: auto;
+ }
+
+ .a {
+     grid-column: 1 ;
+     grid-row: 1;
+ }
+ .b {
+     grid-column: 1 ;
+     grid-row: 2;
+ }
+ .c {
+     grid-column: 2 ;
+     grid-row: 1;
+ }
+ .d {
+     grid-column: 2 ;
+     grid-row: 2 ;
+ }
+
+
 
 
 
