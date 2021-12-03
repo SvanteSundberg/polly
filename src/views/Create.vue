@@ -12,7 +12,7 @@
                </textarea>
       <button v-for="(_,i) in answers" v-bind:key="'answer'+i" v-on:click="removeAnswer(i)" v-bind:class="'answer'+i">
       </button>
-      <button v-if="this.answers.length<4" v-on:click="addAnswer">
+      <button v-if="this.answers.length<4" v-on:click="addAnswer" id="addButton">
         Lägg till svar
       </button>
 
@@ -202,5 +202,13 @@ export default {
   background-color: red;
   height: 0.5em;
   width: 1em;
+}
+
+#addButton{
+  background-color:lightgrey;
+  border: dotted;
+  height: 5em;
+  width: 10em;
+  opacity: 0.5;
 }
 </style>

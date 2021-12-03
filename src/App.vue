@@ -34,13 +34,16 @@
 
 .party {
   background-image:url("https://i.pinimg.com/736x/e9/67/19/e96719135721c06dbab7f1b34e65da26.jpg");
+  overflow:hidden;
 }
 
 .school {
     background-image:url("https://png.pngtree.com/thumb_back/fh260/background/20200809/pngtree-doodles-on-green-chalkboard-background-back-to-school-background-image_389839.jpg");
+    overflow:hidden;
 }
 
 .work{
   background-color:green;
+  overflow:hidden;
 }
 </style>
