@@ -7,19 +7,27 @@
       <input type="text" v-model="question" v-on:change="saveQuestion">
 
 
+
         <!--<div class="answer a"> answers[0] </div>
         <div class="answer b"> answer[1]</div>
         <div class="answer c"> answer[2]</div>
         <div class="answer d"> answer[3]</div>-->
-
-      <div class="allAnswers">
         Answers:
-        <input v-for="(_, i) in answers"
+      <div class="allAnswers">
+        <textarea v-for="(_, i) in answers"
                v-model="answers[i]"
                v-bind:key="'answer'+i"
                v-on:change="saveQuestion"
-               v-bind:id="'answer'+i">
-               </div>
+               v-bind:id="'answer'+i"
+               placeholder="Type answer"
+               maxlength="50">
+               </textarea>
+        <button v-for="(_,i) in answers"
+                v-bind:key="'answer'+i"
+                v-on:click="removeAnswer">
+              </button>
+
+              </div>
         <button v-on:click="addAnswer">
           Add answer alternative
         </button>
@@ -109,6 +117,10 @@ export default {
     addAnswer: function () {
       this.answers.push("");
     },
+
+    removeAnswer:function(){
+      this.answers.splice(1,1)
+    },
     runQuestion: function () {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
     },
@@ -156,13 +168,6 @@ grid-template-columns: 10em 10em;
 grid-template-rows: 5em 5em;
 }
 
-.answer {
-     background-color: #444;
-     color: #fff;
-     border-radius: 5px;
-     padding: 20px;
-     font-size: auto;
- }
 
  #answer0 {
      grid-column: 1 ;
@@ -179,6 +184,20 @@ grid-template-rows: 5em 5em;
  #answer3 {
      grid-column: 2 ;
      grid-row: 2 ;
+ }
+
+ .allAnswers textarea {
+   height:5em;
+   width:10em;
+   resize: none;
+ }
+ .allAnswers button{
+   float:right;
+   position: absolute;
+
+   background-color: red;
+   height:0.5em;
+   width:1em;
  }
 
 
