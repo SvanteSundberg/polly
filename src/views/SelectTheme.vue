@@ -22,7 +22,7 @@ export default {
   data: function () {
     return {
       uiLabels: {},
-      theme: "start",
+      theme: "standard",
       id: "",
       lang: ""
     }

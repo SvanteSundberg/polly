@@ -18,7 +18,6 @@
 
     </div>
 </div>
-</div>
 <button v-on:click="addQuestion">
   Add question
 </button>
@@ -35,12 +34,11 @@
 <div id="questionWrap">
   <button v-for="(_, i) in this.allQuestions" v-bind:key="i" v-on:click="goToQuestion(i);activateButton()" v-bind:class="['sideQuestion',{activeQuestion:this.buttonActive === true}]">
 
-
-
     Question {{i+1}}
     <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
 
   </button>
+</div>
 </div>
 </template>
 
