@@ -14,10 +14,15 @@
       </button>
 
     </div>
-    <button v-on:click="addAnswer">
+
+    <div v-for="(value, i) in answers" v-bind:key="'answer'+i">
+    <span v-if="value===null">
+      <button  v-on:click="addAnswer">
       Add answer alternative
-    </button>
+    </button> </span>
+    
   </div>
+</div>
 </div>
 <button v-on:click="addQuestion">
   Add question
@@ -109,7 +114,9 @@ export default {
     },
 
     removeAnswer: function(i) {
-      this.answers.splice(i, 1, null)
+      this.answers.splice(i, 1);
+      this.answers.push(null);
+
     },
     runQuestion: function() {
       socket.emit("runQuestion", {
