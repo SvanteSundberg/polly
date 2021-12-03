@@ -24,7 +24,8 @@
                </textarea>
         <button v-for="(_,i) in answers"
                 v-bind:key="'answer'+i"
-                v-on:click="removeAnswer">
+                v-on:click="removeAnswer(i)"
+                v-bind:id="'removeBtn'+i">
               </button>
 
               </div>
@@ -115,11 +116,12 @@ export default {
       this.answers= ["", "","",""];
     },
     addAnswer: function () {
-      this.answers.push("");
+      if(this.answers.length<4){
+      this.answers.push("");}
     },
 
-    removeAnswer:function(){
-      this.answers.splice(1,1)
+    removeAnswer:function(i){
+      this.answers.splice(i,1)
     },
     runQuestion: function () {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
@@ -185,6 +187,22 @@ grid-template-rows: 5em 5em;
      grid-column: 2 ;
      grid-row: 2 ;
  }
+ #removeBtn0 {
+     grid-column: 1 ;
+     grid-row: 1;
+ }
+ #removeBtn1 {
+     grid-column: 1 ;
+     grid-row: 2;
+ }
+ #removeBtn2 {
+     grid-column: 2 ;
+     grid-row: 1;
+ }
+ #removeBtn3 {
+     grid-column: 2 ;
+     grid-row: 2 ;
+ }
 
  .allAnswers textarea {
    height:5em;
@@ -193,7 +211,7 @@ grid-template-rows: 5em 5em;
  }
  .allAnswers button{
    float:right;
-   position: absolute;
+   /*position: absolute;*/
 
    background-color: red;
    height:0.5em;
