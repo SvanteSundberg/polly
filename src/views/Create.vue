@@ -93,7 +93,7 @@ export default {
     socket.on("getQuestions",(questions)=>
       this.allQuestions = questions);
 
-    socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""] } );
+    socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""], first:true } );
 
   },
   methods: {
@@ -101,7 +101,7 @@ export default {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
     },
     addQuestion: function () {
-      socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""] } );
+      socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""], first:false } );
       this.question= "";
       this.answers= ["", ""];
     },

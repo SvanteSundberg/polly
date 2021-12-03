@@ -44,11 +44,13 @@ Data.prototype.chooseTheme = function (pollId, theme) {
   console.log(this.polls[pollId].theme);
 }
 
-Data.prototype.addQuestion = function(pollId, q) {
+Data.prototype.addQuestion = function(pollId, q, first) {
   const poll = this.polls[pollId];
-  console.log("question added to", pollId, q);
   if (typeof poll !== 'undefined') {
-    poll.questions.push(q);
+    if ((first && poll.questions.length<1) || (!first)){
+      poll.questions.push(q);
+      console.log("question added to", pollId, q);
+    }
   }
 }
 
