@@ -38,8 +38,8 @@
     <div id="questionWrap">
     <button v-for="(_, i) in this.allQuestions"
             v-bind:key="i"
-            v-on:click="goToQuestion(i)"
-            v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]">
+            v-on:click="goToQuestion(i);activateButton()"
+            v-bind:class="['sideQuestion',{activeQuestion:this.buttonActive === true}]">
 
 
 
@@ -68,6 +68,7 @@ export default {
       uiLabels: {},
       theme: "",
       currentIndex: 0,
+      activeButton: false
     }
   },
   created: function () {
@@ -116,7 +117,12 @@ export default {
 
     saveQuestion: function(){
       socket.emit("changeQuestion", {pollId:this.pollId, q:this.question, a: this.answers, questionNumber:this.currentIndex});
+    },
+
+    activateButton:function(){
+      this.buttonActive=!this.buttonActive;
     }
+
   }
 }
 </script>
@@ -134,7 +140,7 @@ export default {
   border-radius: 20px;
 }
 
-.sideQuestion:active{
+.activeQuestion{
   background-color: yellow;
 }
 
