@@ -208,7 +208,7 @@ export default {
   background-color:lightgrey;
   border: dotted;
   height: 5em;
-  width: 10em;
+  width: 9.5em;
   opacity: 0.5;
 }
 </style>
