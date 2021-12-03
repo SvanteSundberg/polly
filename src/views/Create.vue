@@ -12,16 +12,11 @@
                </textarea>
       <button v-for="(_,i) in answers" v-bind:key="'answer'+i" v-on:click="removeAnswer(i)" v-bind:id="'removeBtn'+i">
       </button>
+      <button v-if="this.answers.length<4" v-on:click="addAnswer">
+        Lägg till svar
+      </button>
 
     </div>
-
-    <div v-for="(value, i) in answers" v-bind:key="'answer'+i">
-    <span v-if="value===null">
-      <button  v-on:click="addAnswer">
-      Add answer alternative
-    </button> </span>
-    
-  </div>
 </div>
 </div>
 <button v-on:click="addQuestion">
@@ -115,7 +110,6 @@ export default {
 
     removeAnswer: function(i) {
       this.answers.splice(i, 1);
-      this.answers.push(null);
 
     },
     runQuestion: function() {
