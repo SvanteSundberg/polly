@@ -1,5 +1,5 @@
 <template>
-<div v-bind:class='theme'>
+<div v-bind:class='theme' style="height:100vh">
   Poll ID: {{this.pollId}}
 
   <div>
@@ -32,7 +32,10 @@
 <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
 
 <div id="questionWrap">
-  <button v-for="(_, i) in this.allQuestions" v-bind:key="i" v-on:click="goToQuestion(i);activateButton()" v-bind:class="['sideQuestion',{activeQuestion:this.buttonActive === true}]">
+  <button v-for="(_, i) in this.allQuestions"
+          v-bind:key="i"
+          v-on:click="goToQuestion(i)"
+          v-bind:class="['sideQuestion',{activeQuestion:this.currentIndex === i}]">
 
     Question {{i+1}}
     <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
@@ -59,7 +62,6 @@ export default {
       uiLabels: {},
       theme: "",
       currentIndex: 0,
-      activeButton: false
     }
   },
   created: function() {
@@ -130,10 +132,6 @@ export default {
         questionNumber: this.currentIndex
       });
     },
-
-    activateButton: function() {
-      this.buttonActive = !this.buttonActive;
-    }
 
   }
 }
