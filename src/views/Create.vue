@@ -8,9 +8,9 @@
 
     Answers:
     <div class="allAnswers">
-      <textarea v-for="(_, i) in answers" v-model="answers[i]" v-bind:key="'answer'+i" v-on:change="saveQuestion" v-bind:id="'answer'+i" placeholder="Type answer" maxlength="50">
+      <textarea v-for="(_, i) in answers" v-model="answers[i]" v-bind:key="'answer'+i" v-on:change="saveQuestion" v-bind:class="'answer'+i" placeholder="Type answer" maxlength="50">
                </textarea>
-      <button v-for="(_,i) in answers" v-bind:key="'answer'+i" v-on:click="removeAnswer(i)" v-bind:id="'removeBtn'+i">
+      <button v-for="(_,i) in answers" v-bind:key="'answer'+i" v-on:click="removeAnswer(i)" v-bind:class="'answer'+i">
       </button>
       <button v-if="this.answers.length<4" v-on:click="addAnswer">
         Lägg till svar
@@ -168,45 +168,26 @@ export default {
 }
 
 
-#answer0 {
+.answer0 {
   grid-column: 1;
   grid-row: 1;
 }
 
-#answer1 {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-#answer2 {
+.answer1 {
   grid-column: 2;
   grid-row: 1;
 }
 
-#answer3 {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-#removeBtn0 {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-#removeBtn1 {
+.answer2 {
   grid-column: 1;
   grid-row: 2;
 }
 
-#removeBtn2 {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-#removeBtn3 {
+.answer3 {
   grid-column: 2;
   grid-row: 2;
 }
+
 
 .allAnswers textarea {
   height: 5em;
