@@ -101,6 +101,8 @@ export default {
       });
       this.question = "";
       this.answers = ["", "", "", ""];
+      console.log(this.allQuestions.length);
+      this.currentIndex=this.allQuestions.length;
     },
     addAnswer: function() {
       if (this.answers.length < 4) {
