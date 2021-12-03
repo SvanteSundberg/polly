@@ -15,7 +15,8 @@
         Answers:
         <input v-for="(_, i) in answers"
                v-model="answers[i]"
-               v-bind:key="'answer'+i">
+               v-bind:key="'answer'+i"
+               v-on:change="saveQuestion">
         <button v-on:click="addAnswer">
           Add answer alternative
         </button>
@@ -92,13 +93,15 @@ export default {
     socket.on("getQuestions",(questions)=>
       this.allQuestions = questions);
 
+    socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""] } );
+
   },
   methods: {
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
     },
     addQuestion: function () {
-      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } );
+      socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""] } );
       this.question= "";
       this.answers= ["", ""];
     },
@@ -115,7 +118,6 @@ export default {
     },
 
     saveQuestion: function(){
-      console.log(this.allQuestions);
       socket.emit("changeQuestion", {pollId:this.pollId, q:this.question, a: this.answers, questionNumber:this.currentIndex});
     }
   }
