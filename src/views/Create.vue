@@ -143,6 +143,9 @@ export default {
   display: flex;
   flex-direction: column;
   float: right;
+  position:absolute;
+  top: 50px;
+  right: 20px;
 
 }
 
