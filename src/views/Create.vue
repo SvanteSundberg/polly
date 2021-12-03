@@ -97,12 +97,12 @@ export default {
     socket.on("getQuestions",(questions)=>
       this.allQuestions = questions);
 
-    socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""], first:true } );
+    socket.emit("addQuestion", {pollId: this.pollId,  first:true } );
 
   },
   methods: {
     addQuestion: function () {
-      socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""], first:false } );
+      socket.emit("addQuestion", {pollId: this.pollId,  first:false } );
       this.question= "";
       this.answers= ["", "","",""];
     },
