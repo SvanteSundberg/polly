@@ -6,17 +6,20 @@
       {{uiLabels.question}}:
       <input type="text" v-model="question" v-on:change="saveQuestion">
 
-      <div class="allAnswers">
-        <div class="answer a"> answers[0] </div>
+
+        <!--<div class="answer a"> answers[0] </div>
         <div class="answer b"> answer[1]</div>
         <div class="answer c"> answer[2]</div>
-        <div class="answer d"> answer[3]</div>
-      </div>
+        <div class="answer d"> answer[3]</div>-->
+
+      <div class="allAnswers">
         Answers:
         <input v-for="(_, i) in answers"
                v-model="answers[i]"
                v-bind:key="'answer'+i"
-               v-on:change="saveQuestion">
+               v-on:change="saveQuestion"
+               v-bind:id="'answer'+i">
+               </div>
         <button v-on:click="addAnswer">
           Add answer alternative
         </button>
@@ -61,7 +64,7 @@ export default {
       lang: "",
       pollId: "",
       question: "",
-      answers: ["", ""],
+      answers: ["", "","",""],
       questionNumber: 0,
       allQuestions:[],
       data: {},
@@ -101,7 +104,7 @@ export default {
     addQuestion: function () {
       socket.emit("addQuestion", {pollId: this.pollId, q: "", a: ["",""], first:false } );
       this.question= "";
-      this.answers= ["", ""];
+      this.answers= ["", "","",""];
     },
     addAnswer: function () {
       this.answers.push("");
@@ -161,19 +164,19 @@ grid-template-rows: 5em 5em;
      font-size: auto;
  }
 
- .a {
+ #answer0 {
      grid-column: 1 ;
      grid-row: 1;
  }
- .b {
+ #answer1 {
      grid-column: 1 ;
      grid-row: 2;
  }
- .c {
+ #answer2 {
      grid-column: 2 ;
      grid-row: 1;
  }
- .d {
+ #answer3 {
      grid-column: 2 ;
      grid-row: 2 ;
  }
