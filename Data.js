@@ -33,6 +33,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.questions = [];
     poll.answers = [];
     poll.currentQuestion = 0;
+    poll.theme ='standard';
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }

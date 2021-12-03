@@ -52,7 +52,7 @@ button{
 }
 
 .standard{
-  background-color:green;
+  background-color:#98B4D4;
   height:100vh;
 }
 </style>

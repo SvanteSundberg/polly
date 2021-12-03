@@ -1,4 +1,5 @@
 <template>
+  <div class='standard'>
 <input type="text" v-model="pollId">
 <router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
 <button v-on:click="createPoll">
@@ -6,6 +7,7 @@
 </button>
 </router-link>
 {{this.pollId}}
+</div>
 
 </template>
 

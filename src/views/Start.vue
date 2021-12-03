@@ -1,4 +1,5 @@
 <template>
+  <div class='standard'>
   <header>
   <h1> {{uiLabels.welcome}}</h1>
   <h3> {{uiLabels.welcomequestion}}</h3>
@@ -20,6 +21,7 @@
     </router-link>
   </div>
   </div>
+</div>
 
 </template>
 
