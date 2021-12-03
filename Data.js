@@ -44,8 +44,9 @@ Data.prototype.chooseTheme = function (pollId, theme) {
   console.log(this.polls[pollId].theme);
 }
 
-Data.prototype.addQuestion = function(pollId, q, first) {
+Data.prototype.addQuestion = function(pollId, first) {
   const poll = this.polls[pollId];
+  let q= {q: "", a: ["","","",""]};
   if (typeof poll !== 'undefined') {
     if ((first && poll.questions.length<1) || (!first)){
       poll.questions.push(q);
