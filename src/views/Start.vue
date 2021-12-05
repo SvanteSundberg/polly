@@ -92,4 +92,10 @@ background-color:darkblue;
 #languageButton{
   align-items: center;
 }
+
+h1{
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-top:1em;
+}
 </style>

@@ -13,12 +13,12 @@
   font-size: 14pt;
 }
 
-button{
+#app button{
   font-family: Average, Helvetica, Arial, sans-serif;
   font-size: 11pt;
 }
 
-::placeholder{
+#app ::placeholder{
   font-family: Average, Helvetica, Arial, sans-serif;
   font-size: 11pt;
 }
@@ -54,5 +54,10 @@ button{
 .standard{
   background-color:#98B4D4;
   height:100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 </style>

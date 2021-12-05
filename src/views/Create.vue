@@ -1,5 +1,5 @@
 <template>
-<div v-bind:class='theme' style="height:100vh">
+<div v-bind:class='theme'>
   Poll ID: {{this.pollId}}
 
   <div>
