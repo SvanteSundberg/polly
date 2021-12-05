@@ -57,10 +57,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 #startButtons button{
   font-size: 18pt;
+  height: 5em;
+  width:7em;
 }
 #createButton:hover{
 background-color:darkgreen;
@@ -79,14 +81,10 @@ background-color:darkblue;
 }
 
 #createButton{
-  height: 5em;
-  width:7em;
   background-color:green;
 }
 
 #participateButton{
-  height: 5em;
-  width:7em;
   background-color: blue;
 }
 #languageButton{
@@ -94,8 +92,6 @@ background-color:darkblue;
 }
 
 h1{
-  margin-block-start: 0;
-  margin-block-end: 0;
   padding-top:1em;
 }
 </style>

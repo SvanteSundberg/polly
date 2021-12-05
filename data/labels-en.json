@@ -8,5 +8,6 @@
 	"welcome": "Welcome quizzer!",
 	"welcomequestion": "Good to see you here! What are you in the mood for today?",
 	"writePollID":"Write poll ID:",
-	"Done":"Done"
+	"Done":"Done",
+	"theme":"Select Theme"
 }

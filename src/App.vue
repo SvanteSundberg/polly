@@ -15,7 +15,6 @@
 
 #app button{
   font-family: Average, Helvetica, Arial, sans-serif;
-  font-size: 11pt;
 }
 
 #app ::placeholder{
@@ -59,5 +58,10 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+h1{
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 </style>

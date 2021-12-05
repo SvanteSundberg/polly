@@ -1,13 +1,17 @@
 <template>
 <div v-bind:class="theme">
 
-  {{"Välj ditt tema"}}
+<h1> {{uiLabels.theme}} </h1>
+
+<div class="themeButtons">
 <button v-on:click="setTheme('party')">party</button>
 <button v-on:click="setTheme('school')">school</button>
 <button v-on:click="setTheme('standard')">standard</button>
+</div>
 <router-link v-bind:to="'/create/'+id+'/'+lang">
 
-<button v-on:click="chooseTheme()">Välj det här temat</button>
+
+<button id="themeDone" v-on:click="chooseTheme()">{{uiLabels.Done}}</button>
 </router-link>
 </div>
 
@@ -50,3 +54,34 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+#themeDone{
+  font-size: 16pt;
+  float: right;
+  margin-right:12em;
+  margin-top:3em;
+}
+
+.themeButtons button {
+  font-size: 18pt;
+  margin: 2em;
+  height: 5em;
+  width:7em;
+}
+
+.themeButtons button:hover{
+  background-color: lightgrey;
+}
+
+#themeDone:hover{
+  background-color: green;
+}
+
+h1{
+  padding-top: 1.5em;
+  padding-bottom:1em;
+}
+
+</style>
