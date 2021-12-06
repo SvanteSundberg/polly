@@ -31,6 +31,12 @@
 </button>
 <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
 
+<router-link v-bind:to="'/selectQuestions/'+pollId">
+<button >
+  select questions
+</button>
+</router-link>
+
 <div id="questionWrap">
   <button v-for="(_, i) in this.allQuestions"
           v-bind:key="i"
