@@ -1,9 +1,12 @@
 <template>
   <div class='standard'>
-<input type="text" v-model="pollId">
+<label>
+  {{uiLabels.writePollID}}
+  <input type="text" v-model="pollId">
+</label>
 <router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
 <button v-on:click="createPoll">
-  Create poll
+  {{uiLabels.Done}}
 </button>
 </router-link>
 {{this.pollId}}
