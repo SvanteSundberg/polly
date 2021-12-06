@@ -36,10 +36,10 @@ function sockets(io, socket, data) {
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
-  socket.on('joinPoll', function(pollId) {
-    socket.join(pollId);
-    socket.emit('newQuestion', data.getQuestion(pollId))
-    socket.emit('dataUpdate', data.getAnswers(pollId));
+  socket.on('joinPoll', function(d) {
+    socket.join(d.pollId);
+    socket.emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
+    socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
   socket.on('runQuestion', function(d) {
