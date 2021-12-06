@@ -5,11 +5,17 @@ Välj frågor
 <form v-for="(value,i) in this.questions"
 v-bind:key="i">
 
-<input type="checkbox" checked
+<input type="checkbox"
        v-model="selectedQuestions"
        v-bind:value="i">
 <label for="i"> {{value.q}}</label>
 </form>
+
+<router-link v-bind:to="'/result/'+id">
+<button v-on:click="sendQuestions">
+  Play Quiz
+</button>
+</router-link>
 </template>
 <script>
 
@@ -21,7 +27,8 @@ export default {
     return {
       uiLabels: {},
       id: "",
-      questions:""
+      questions:"",
+      selectedQuestions: []
       //lang: "en"
     }
   },
@@ -34,6 +41,15 @@ export default {
     socket.on("getQuestions", (questions) =>
     this.questions = questions);
 
+  },
+
+  methods: {
+    sendQuestions: function () {
+      socket.emit("pollQuestions",{pollId: this.id,
+                                    selectQ:this.selectedQuestions
+                                  });
+      console.log("steg 1")
+    },
   },
 }
 </script>

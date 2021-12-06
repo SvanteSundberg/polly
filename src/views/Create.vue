@@ -25,11 +25,6 @@
     <button v-on:click="saveQuestion">
       Save Changes
     </button>-->
-<input type="number" v-model="questionNumber">
-<button v-on:click="runQuestion">
-  Run question
-</button>
-<router-link v-bind:to="'/result/'+pollId">Check result</router-link>
 
 <router-link v-bind:to="'/selectQuestions/'+pollId">
 <button >
@@ -119,12 +114,6 @@ export default {
     removeAnswer: function(i) {
       this.answers.splice(i, 1);
 
-    },
-    runQuestion: function() {
-      socket.emit("runQuestion", {
-        pollId: this.pollId,
-        questionNumber: this.questionNumber
-      })
     },
     goToQuestion: function(questionIndex) {
       this.question = this.allQuestions[questionIndex].q;

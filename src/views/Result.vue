@@ -1,8 +1,15 @@
 <template>
   <div v-bind:class='theme'>
-    {{question}}
+    {{this.question}}
+
+    <Bars v-bind:data="data"/>
+
+    <button v-on:click="runQuestion">
+      Run question
+    </button>
+    {{this.pollQuestions}}
   </div>
-  <Bars v-bind:data="data"/>
+
 </template>
 
 <script>
@@ -20,7 +27,10 @@ export default {
     return {
       question: "",
       data: {},
-      theme:""
+      theme:"",
+      pollId:"",
+      pollQuestions:[],
+      questionIndex: 0
     }
   },
   created: function () {
@@ -39,6 +49,25 @@ export default {
     socket.on("initial", (theme) => {
       this.theme = theme
     });
-  }
+
+    socket.emit("loadSelectedQuestions", this.pollId);
+
+    socket.on("selectedQuestions",(pollQuestions) => {
+      this.pollQuestions=pollQuestions;
+      console.log("steg  3");
+    });
+  },
+
+methods: {
+  runQuestion: function() {
+    let questionNmr=this.pollQuestions[this.questionIndex];
+    this.questionIndex++;
+    socket.emit("runQuestion", {
+      pollId: this.pollId,
+      questionNumber: questionNmr
+    })
+  },
+}
+
 }
 </script>

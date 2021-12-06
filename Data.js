@@ -22,6 +22,14 @@ Data.prototype.getTheme=function(pollId) {
   return this.polls[pollId].theme
 }
 
+Data.prototype.getSelectedQuestions=function(pollId) {
+  return this.polls[pollId].selectedQuestions
+}
+
+Data.prototype.setQuestions=function(pollId,questions){
+  this.polls[pollId].selectedQuestions=questions;
+}
+
 Data.prototype.getAllQuestions=function(pollId){
   return this.polls[pollId].questions
 }
@@ -34,6 +42,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.answers = [];
     poll.currentQuestion = 0;
     poll.theme ='standard';
+    poll.selectedQuestions=[];
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }

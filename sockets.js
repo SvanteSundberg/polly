@@ -60,7 +60,17 @@ function sockets(io, socket, data) {
   socket.on("recieveQuestions", function(pollId){
     console.log('hej')
     socket.emit('getQuestions',data.getAllQuestions(pollId));
-  })
+  });
+
+  socket.on("pollQuestions", function(d){
+    console.log("steg 2")
+    socket.emit('selectedQuestions',data.setQuestions(d.pollId,d.selectQ));
+  });
+
+  socket.on("loadSelectedQuestions", function(pollId){
+    socket.emit("selectedQuestions",data.getSelectedQuestions(pollId))
+  });
+
 
 }
 
