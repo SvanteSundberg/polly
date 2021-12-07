@@ -67,7 +67,7 @@ methods: {
     socket.emit("runQuestion", {
       pollId: this.pollId,
       questionNumber: this.questionIndex
-    })
+    });
   },
 }
 

@@ -48,6 +48,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('submitAnswer', function(d) {
+    console.log(d.answer);
     data.submitAnswer(d.pollId, d.answer);
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
@@ -69,9 +70,9 @@ function sockets(io, socket, data) {
     socket.emit("selectedQuestions",data.getSelectedQuestions(pollId))
   });
 
-  //socket.on("setAnswers",function(pollId){
-  //  data.setAnswersZero(pollId);
-  //});
+  socket.on("setAnswers",function(pollId){
+    data.setAnswersZero(pollId);
+  });
 
 }
 

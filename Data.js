@@ -76,7 +76,7 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
         poll.currentQuestion = poll.selectedQuestions[poll.currentIndex];
     }
     else if (poll.currentIndex===0){
-      poll.currentQuestion = poll.selectedQuestions[poll.currentIndex]
+      poll.currentQuestion = poll.selectedQuestions[poll.currentIndex];
       poll.currentIndex++;
     }
     return poll.questions[poll.currentQuestion];
@@ -120,6 +120,22 @@ Data.prototype.getAnswers = function(pollId) {
     }
   }
   return {}
+}
+
+Data.prototype.setAnswersZero=function(pollId){
+  const poll = this.polls[pollId];
+  if (typeof poll !== 'undefined') {
+    let answers = poll.answers[poll.currentQuestion];
+    const pollAnswers = poll.questions[poll.currentQuestion].a;
+    console.log(poll.questions[poll.currentQuestion].a);
+    for (const question in poll.questions[poll.currentQuestion].q){
+      answers = {};
+      poll.answers.push(answers);
+      for (let i = 0; i < pollAnswers.length; i++){
+        answers[pollAnswers[i]]=0
+      }
+    }
+  }
 }
 
 module.exports = Data;

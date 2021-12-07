@@ -48,7 +48,7 @@ export default {
       socket.emit("pollQuestions",{pollId: this.id,
                                     selectQ:this.selectedQuestions.sort()
                                   });
-      //socket.emit("setAnswers",this.id);
+      socket.emit("setAnswers", this.id);
     },
   },
 }
