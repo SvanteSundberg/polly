@@ -29,7 +29,8 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id
-    socket.emit('joinPoll', this.pollId)
+    socket.emit('joinPoll', {pollId: this.pollId,
+                            questionNumber: null})
     socket.on("newQuestion", q =>
       this.question = q
     )
