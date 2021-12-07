@@ -4,10 +4,11 @@
 
     <Bars v-bind:data="data"/>
 
+<router-link v-bind:to="'/creatorPoll/'+pollId">
     <button v-on:click="runQuestion">
-      Run question
+      Run next question
     </button>
-    {{this.pollQuestions}}
+  </router-link>
   </div>
 
 </template>
@@ -30,14 +31,14 @@ export default {
       theme:"",
       pollId:"",
       pollQuestions:[],
-      questionIndex: 1
+      questionIndex: 0
     }
   },
   created: function () {
     this.pollId = this.$route.params.id;
-    socket.emit('joinPoll', {pollId:this.pollId,
-                              questionNumber: -1
-                            });
+    socket.emit('joinPoll', {pollId: this.pollId,
+                            questionNumber: null})
+
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
       this.question = update.q;
@@ -55,18 +56,17 @@ export default {
     socket.emit("loadSelectedQuestions", this.pollId);
 
     socket.on("selectedQuestions",(pollQuestions) => {
-      this.pollQuestions=pollQuestions;
+      this.pollQuestions=pollQuestions.selectQ;
+      this.questionIndex=pollQuestions.currentI;
       console.log("steg  3");
     });
   },
 
 methods: {
   runQuestion: function() {
-    let questionNmr=this.pollQuestions[this.questionIndex];
-    this.questionIndex++;
     socket.emit("runQuestion", {
       pollId: this.pollId,
-      questionNumber: questionNmr
+      questionNumber: this.questionIndex
     })
   },
 }

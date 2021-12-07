@@ -23,7 +23,8 @@ Data.prototype.getTheme=function(pollId) {
 }
 
 Data.prototype.getSelectedQuestions=function(pollId) {
-  return this.polls[pollId].selectedQuestions
+  return {selectedQ: this.polls[pollId].selectedQuestions,
+          currentI:this.polls[pollId].currentIndex}
 }
 
 Data.prototype.setQuestions=function(pollId,questions){
@@ -43,6 +44,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.currentQuestion = 0;
     poll.theme ='standard';
     poll.selectedQuestions=[];
+    poll.currentIndex = 0;
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -70,12 +72,12 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   console.log("question requested for ", pollId, qId);
   if (typeof poll !== 'undefined') {
     if (qId !== null) {
-      if(qId <0){
-        poll.currentQuestion = poll.selectedQuestions[0];
-      }
-      else{
-        poll.currentQuestion = qId;
-      }
+        poll.currentIndex = qId;
+        poll.currentQuestion = poll.selectedQuestions[poll.currentIndex];
+    }
+    else if (poll.currentIndex===0){
+      poll.currentQuestion = poll.selectedQuestions[poll.currentIndex]
+      poll.currentIndex++;
     }
     return poll.questions[poll.currentQuestion];
   }
@@ -85,6 +87,7 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
 Data.prototype.submitAnswer = function(pollId, answer) {
   const poll = this.polls[pollId];
   console.log("answer submitted for ", pollId, answer);
+  console.log(poll);
   if (typeof poll !== 'undefined') {
     let answers = poll.answers[poll.currentQuestion];
     if (typeof answers !== 'object') {
@@ -97,6 +100,7 @@ Data.prototype.submitAnswer = function(pollId, answer) {
     else
       answers[answer] += 1
     console.log("answers looks like ", answers, typeof answers);
+    console.log(poll);
   }
 }
 
@@ -117,4 +121,5 @@ Data.prototype.getAnswers = function(pollId) {
   }
   return {}
 }
+
 module.exports = Data;

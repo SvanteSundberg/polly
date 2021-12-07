@@ -11,7 +11,7 @@ v-bind:key="i">
 <label for="i"> {{value.q}}</label>
 </form>
 
-<router-link v-bind:to="'/result/'+id">
+<router-link v-bind:to="'/creatorPoll/'+id">
 <button v-on:click="sendQuestions">
   Play Quiz
 </button>
@@ -46,9 +46,9 @@ export default {
   methods: {
     sendQuestions: function () {
       socket.emit("pollQuestions",{pollId: this.id,
-                                    selectQ:this.selectedQuestions
+                                    selectQ:this.selectedQuestions.sort()
                                   });
-      console.log("steg 1")
+      //socket.emit("setAnswers",this.id);
     },
   },
 }
