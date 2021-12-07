@@ -38,6 +38,7 @@ function sockets(io, socket, data) {
 
   socket.on('joinPoll', function(d) {
     socket.join(d.pollId);
+    console.log(d.questionNumber);
     socket.emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });

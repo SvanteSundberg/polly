@@ -30,13 +30,13 @@ export default {
       theme:"",
       pollId:"",
       pollQuestions:[],
-      questionIndex: 0
+      questionIndex: 1
     }
   },
   created: function () {
-    this.pollId = this.$route.params.id
+    this.pollId = this.$route.params.id;
     socket.emit('joinPoll', {pollId:this.pollId,
-                              questionNumber: this.pollQuestions[this.questionIndex]
+                              questionNumber: -1
                             });
     socket.on("dataUpdate", (update) => {
       this.data = update.a;

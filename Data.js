@@ -70,7 +70,12 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   console.log("question requested for ", pollId, qId);
   if (typeof poll !== 'undefined') {
     if (qId !== null) {
-      poll.currentQuestion = qId;
+      if(qId <0){
+        poll.currentQuestion = poll.selectedQuestions[0];
+      }
+      else{
+        poll.currentQuestion = qId;
+      }
     }
     return poll.questions[poll.currentQuestion];
   }
