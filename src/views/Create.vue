@@ -133,7 +133,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 #questionWrap {
   display: flex;
   flex-direction: column;

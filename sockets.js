@@ -38,8 +38,7 @@ function sockets(io, socket, data) {
 
   socket.on('joinPoll', function(d) {
     socket.join(d.pollId);
-    console.log(d.questionNumber);
-    socket.emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
+    socket.emit('newQuestion', data.getQuestion(d.pollId));
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
@@ -59,12 +58,10 @@ function sockets(io, socket, data) {
   });
 
   socket.on("recieveQuestions", function(pollId){
-    console.log('hej')
     socket.emit('getQuestions',data.getAllQuestions(pollId));
   });
 
   socket.on("pollQuestions", function(d){
-    console.log("steg 2")
     socket.emit('selectedQuestions',data.setQuestions(d.pollId,d.selectQ));
   });
 
@@ -72,6 +69,9 @@ function sockets(io, socket, data) {
     socket.emit("selectedQuestions",data.getSelectedQuestions(pollId))
   });
 
+  //socket.on("setAnswers",function(pollId){
+  //  data.setAnswersZero(pollId);
+  //});
 
 }
 
