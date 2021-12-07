@@ -22,7 +22,7 @@ v-bind:key="i">
 import io from 'socket.io-client';
 const socket = io();
 export default {
-  name: 'selectQuestions',
+  name: 'SelectQuestions',
   data: function () {
     return {
       uiLabels: {},
