@@ -48,7 +48,7 @@ const routes = [
   {
     path: '/selectQuestions/:id',
     name: 'SelectQuestions',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SelectQuestions.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/selectQuestions.vue')
   },
 
 ]
