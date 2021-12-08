@@ -42,9 +42,11 @@ function sockets(io, socket, data) {
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
-  socket.on('runQuestion', function(d) {
-    io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
-    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
+  socket.on('runQuestion', function(pollId) {
+    data.addIndex(pollId);
+    data.setAnswersZero(pollId);
+    io.to(pollId).emit('newQuestion', data.getQuestion(pollId));
+    io.to(pollId).emit('dataUpdate', data.getAnswers(pollId));
   });
 
   socket.on('submitAnswer', function(d) {
@@ -72,6 +74,11 @@ function sockets(io, socket, data) {
 
   socket.on("setAnswers",function(pollId){
     data.setAnswersZero(pollId);
+  });
+
+  socket.on("removeAnswer", function(d){
+    data.removeAnswerOption(d);
+    socket.emit('getQuestions',data.getAllQuestions(d.pollId));
   });
 
 }

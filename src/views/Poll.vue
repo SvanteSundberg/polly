@@ -2,7 +2,7 @@
   <div v-bind:class='theme'>
     {{pollId}}
     <Question v-bind:question="question"
-              v-on:answer="submitAnswer;showPopup()"/>
+              v-on:answer="submitAnswer"/>
     <pollPopup v-show="this.pollPopupVisable" v-on:click="closePopup"/>
   </div>
 </template>
@@ -59,4 +59,5 @@ export default {
       }
   }
 }
+//;showPopup()
 </script>

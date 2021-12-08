@@ -28,7 +28,10 @@ Data.prototype.getSelectedQuestions=function(pollId) {
 }
 
 Data.prototype.setQuestions=function(pollId,questions){
-  this.polls[pollId].selectedQuestions=questions;
+  const poll = this.polls[pollId];
+  poll.selectedQuestions=questions;
+  poll.currentQuestion=poll.selectedQuestions[poll.currentIndex];
+
 }
 
 Data.prototype.getAllQuestions=function(pollId){
@@ -75,9 +78,8 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
         poll.currentIndex = qId;
         poll.currentQuestion = poll.selectedQuestions[poll.currentIndex];
     }
-    else if (poll.currentIndex===0){
+    else {
       poll.currentQuestion = poll.selectedQuestions[poll.currentIndex];
-      poll.currentIndex++;
     }
     return poll.questions[poll.currentQuestion];
   }
@@ -126,16 +128,26 @@ Data.prototype.setAnswersZero=function(pollId){
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
     let answers = poll.answers[poll.currentQuestion];
-    const pollAnswers = poll.questions[poll.currentQuestion].a;
-    console.log(poll.questions[poll.currentQuestion].a);
-    for (const question in poll.questions[poll.currentQuestion].q){
-      answers = {};
-      poll.answers.push(answers);
-      for (let i = 0; i < pollAnswers.length; i++){
-        answers[pollAnswers[i]]=0
-      }
+    console.log(poll.currentQuestion);
+    console.log(answers);
+    let pollAnswers = poll.questions[poll.currentQuestion].a;
+    answers = {};
+    for (let i = 0; i < pollAnswers.length; i++){
+        answers[pollAnswers[i]] = 0;
     }
-  }
+    poll.answers.push(answers);
+}
+}
+
+Data.prototype.removeAnswerOption=function(d){
+  const poll = this.polls[d.pollId];
+  poll.questions[d.questionNumber].a.splice(d.answerIndex, 1);
+}
+
+Data.prototype.addIndex=function(pollId){
+  const poll = this.polls[pollId];
+  poll.currentIndex++;
+  poll.currentQuestion=poll.selectedQuestions[poll.currentIndex];
 }
 
 module.exports = Data;

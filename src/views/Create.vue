@@ -117,12 +117,12 @@ export default {
 
     removeAnswer: function(i) {
       this.answers.splice(i, 1);
-      socket.emit("changeQuestion", {
+      socket.emit("removeAnswer", {
         pollId: this.pollId,
-        q: this.question,
-        a: this.answers,
-        questionNumber: this.currentIndex
-    });
+        questionNumber: this.currentIndex,
+        answerIndex:i
+      });
+
   },
 
     goToQuestion: function(questionIndex) {
@@ -131,10 +131,10 @@ export default {
       this.currentIndex = questionIndex;
     },
 
-    removeQuestion: function(i){
-    this.question.splice(i)
+//    removeQuestion: function(i){
+//    this.question.splice(i)
     //LÄGG TILL SOCKET NÄR JAG FÅR KOMMA IN
-},
+//},
 
     saveQuestion: function() {
       socket.emit("changeQuestion", {

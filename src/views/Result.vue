@@ -64,10 +64,7 @@ export default {
 
 methods: {
   runQuestion: function() {
-    socket.emit("runQuestion", {
-      pollId: this.pollId,
-      questionNumber: this.questionIndex
-    });
+    socket.emit("runQuestion", this.pollId);
   },
 }
 
