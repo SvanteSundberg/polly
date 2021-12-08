@@ -24,6 +24,13 @@ function sockets(io, socket, data) {
     data.chooseTheme(d.pollId, d.theme);
   });
 
+  socket.on('deleteQuestion',function(d){
+   console.log(d.questionNumber);
+   data.deleteQuestion(d.pollId,d.questionNumber);
+   socket.emit('getQuestions', data.getAllQuestions(d.pollId));
+ });
+
+
   socket.on('changeQuestion', function(d){
     data.updateQuestion(d);
     socket.emit('getQuestions', data.getAllQuestions(d.pollId));

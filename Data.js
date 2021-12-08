@@ -22,6 +22,13 @@ Data.prototype.getTheme=function(pollId) {
   return this.polls[pollId].theme
 }
 
+Data.prototype.deleteQuestion=function(pollId,currentIndex){
+  this.polls[pollId].questions.splice(currentIndex, 1);
+  this.polls[pollId].answers.splice(currentIndex, 1);
+  this.polls[pollId].currentQuestion=currentIndex--;
+}
+
+
 Data.prototype.getSelectedQuestions=function(pollId) {
   return {selectedQ: this.polls[pollId].selectedQuestions,
           currentI:this.polls[pollId].currentIndex}

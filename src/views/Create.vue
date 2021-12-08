@@ -31,6 +31,11 @@
   {{uiLabels.selectQuestions}}
 </button>
 </router-link>
+<br>
+<button v-bind:class="remove"
+v-on:click="removeQuestion">
+REMOVE X
+</button>
 
 <div id="questionWrap">
   <button v-for="(_, i) in this.allQuestions"
@@ -40,11 +45,6 @@
 
     Question {{i+1}}
     <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
-  </button>
-  <button v-for="(_, i) in this.allQuestions"
-  v-bind:key="i"
-  v-on:click="removeQuestion(i)"
-  v-bind:class="removeSideQuestion">
   </button>
 </div>
 </div>
@@ -124,6 +124,15 @@ export default {
       });
 
   },
+  removeQuestion: function(){
+      console.log(this.currentIndex)
+      if(this.allQuestions.length>1){
+      socket.emit("deleteQuestion", {
+        pollId: this.pollId,
+        questionNumber: this.currentIndex
+    })
+    this.goToQuestion(this.questionNumber);
+}},
 
     goToQuestion: function(questionIndex) {
       this.question = this.allQuestions[questionIndex].q;
@@ -131,10 +140,6 @@ export default {
       this.currentIndex = questionIndex;
     },
 
-//    removeQuestion: function(i){
-//    this.question.splice(i)
-    //LÄGG TILL SOCKET NÄR JAG FÅR KOMMA IN
-//},
 
     saveQuestion: function() {
       socket.emit("changeQuestion", {
@@ -169,12 +174,11 @@ export default {
   background-color: yellow;
 }
 
-.removeSideQuestion{
-  float: right;
-  background-color: red;
-  height: 0.5em;
-  width: 1em;
 
+
+.remove button{
+  
+  background-color: red;
 }
 
 
