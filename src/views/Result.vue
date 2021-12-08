@@ -1,6 +1,7 @@
 <template>
   <div v-bind:class='theme'>
     {{this.question}}
+    {{this.finished}}
 
     <Bars v-bind:data="data"/>
 
@@ -30,8 +31,7 @@ export default {
       data: {},
       theme:"",
       pollId:"",
-      pollQuestions:[],
-      questionIndex: 0
+      finished: false
     }
   },
   created: function () {
@@ -53,12 +53,9 @@ export default {
       this.theme = theme
     });
 
-    socket.emit("loadSelectedQuestions", this.pollId);
-
-    socket.on("selectedQuestions",(pollQuestions) => {
-      this.pollQuestions=pollQuestions.selectQ;
-      this.questionIndex=pollQuestions.currentI;
-      console.log("steg  3");
+    socket.emit("checkLastQuestion", this.pollId);
+    socket.on("isLastQuestion", (isFinished) => {
+      this.finished = isFinished;
     });
   },
 

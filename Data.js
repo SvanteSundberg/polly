@@ -28,12 +28,6 @@ Data.prototype.deleteQuestion=function(pollId,currentIndex){
   this.polls[pollId].currentQuestion=currentIndex--;
 }
 
-
-Data.prototype.getSelectedQuestions=function(pollId) {
-  return {selectedQ: this.polls[pollId].selectedQuestions,
-          currentI:this.polls[pollId].currentIndex}
-}
-
 Data.prototype.setQuestions=function(pollId,questions){
   const poll = this.polls[pollId];
   poll.selectedQuestions=questions;
@@ -135,8 +129,6 @@ Data.prototype.setAnswersZero=function(pollId){
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
     let answers = poll.answers[poll.currentQuestion];
-    console.log(poll.currentQuestion);
-    console.log(answers);
     let pollAnswers = poll.questions[poll.currentQuestion].a;
     answers = {};
     for (let i = 0; i < pollAnswers.length; i++){
@@ -155,6 +147,16 @@ Data.prototype.addIndex=function(pollId){
   const poll = this.polls[pollId];
   poll.currentIndex++;
   poll.currentQuestion=poll.selectedQuestions[poll.currentIndex];
+}
+
+Data.prototype.checkIfFinished=function(pollId){
+  const poll = this.polls[pollId];
+  console.log((poll.currentIndex));
+  if (poll.selectedQuestions.length===(poll.currentIndex+1)){
+    console.log("nu är jag sann");
+    return true
+  }
+  return false
 }
 
 module.exports = Data;

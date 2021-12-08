@@ -75,10 +75,6 @@ function sockets(io, socket, data) {
     socket.emit('selectedQuestions',data.setQuestions(d.pollId,d.selectQ));
   });
 
-  socket.on("loadSelectedQuestions", function(pollId){
-    socket.emit("selectedQuestions",data.getSelectedQuestions(pollId))
-  });
-
   socket.on("setAnswers",function(pollId){
     data.setAnswersZero(pollId);
   });
@@ -86,6 +82,10 @@ function sockets(io, socket, data) {
   socket.on("removeAnswer", function(d){
     data.removeAnswerOption(d);
     socket.emit('getQuestions',data.getAllQuestions(d.pollId));
+  });
+
+  socket.on("checkLastQuestion", function(pollId){
+    socket.emit("isLastQuestion", data.checkIfFinished(pollId));
   });
 
 }

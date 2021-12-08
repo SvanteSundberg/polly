@@ -30,7 +30,6 @@ export default {
       question: "",
       theme:"",
       pollId:"",
-      pollQuestions:[],
     }
   },
   created: function () {
@@ -49,11 +48,6 @@ export default {
       this.theme = theme
     });
 
-    socket.emit("loadSelectedQuestions", this.pollId);
-
-    socket.on("selectedQuestions",(pollQuestions) => {
-      this.pollQuestions=pollQuestions.selectQ;
-    });
   },
 
 }
