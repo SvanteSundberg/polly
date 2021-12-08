@@ -14,12 +14,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/createID.vue')
   },
   {
-  path: '/pollID',
+  path: '/pollID/:lang',
   name: 'PollID',
   component: () => import(/* webpackChunkName: "about" */ '../views/pollID.vue')
 },
     {
-    path: '/poll/:id',
+    path: '/poll/:id/:lang',
     name: 'Poll',
     component: () => import(/* webpackChunkName: "about" */ '../views/Poll.vue')
   },
@@ -32,7 +32,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Create.vue')
   },
   {
-    path: '/result/:id',
+    path: '/result/:id:/:lang',
     name: 'Result',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -46,12 +46,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/SelectTheme.vue')
   },
   {
-    path: '/selectQuestions/:id',
+    path: '/selectQuestions/:id/:lang',
     name: 'SelectQuestions',
     component: () => import(/* webpackChunkName: "about" */ '../views/selectQuestions.vue')
   },
   {
-    path: '/creatorPoll/:id',
+    path: '/creatorPoll/:id/:lang',
     name: 'CreatorPoll',
     component: () => import(/* webpackChunkName: "about" */ '../views/CreatorPoll.vue')
   },

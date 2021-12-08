@@ -28,21 +28,27 @@ export default {
       },
       pollId: "inactive poll",
       theme:"",
-      pollPopupVisable:false
+      pollPopupVisable:false,
+      lang:""
     }
   },
   created: function () {
-    this.pollId = this.$route.params.id
+    this.pollId = this.$route.params.id;
+    this.lang = this.$route.params.lang;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    });
     socket.emit('joinPoll', {pollId: this.pollId,
-                            questionNumber: null})
+                            questionNumber: null});
     socket.on("newQuestion", q =>
       this.question = q
-    )
+    );
     socket.emit("loadTheme",this.pollId);
 
     socket.on("initial", (theme) => {
       this.theme = theme
-    })
+    });
   },
   methods: {
     submitAnswer: function (answer) {

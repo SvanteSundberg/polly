@@ -1,13 +1,15 @@
 <template>
+  <div class='standard'>
   <label>
     {{uiLabels.writePollID}}
     <input type="text" v-model="id">
   </label>
-  <router-link v-bind:to="'/poll/'+id" tag="button">
+  <router-link v-bind:to="'/poll/'+id+'/'+lang" tag="button">
     <button id="createID">
     {{uiLabels.Done}}
   </button>
   </router-link>
+  </div>
 </template>
 
 <script>
@@ -20,13 +22,15 @@ export default {
     return {
       uiLabels: {},
       id: "",
-      //lang: "en"
+      lang: ""
     }
   },
   created: function () {
+    this.lang = this.$route.params.lang;
+    socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
-    })
+    });
   },
 }
 </script>

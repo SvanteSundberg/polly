@@ -1,12 +1,21 @@
 <template>
 <div v-bind:class='theme'>
-  Poll ID: {{this.pollId}}
+  <header>
+  <h3>You are now editing the poll <span class="cursive">{{this.pollId}} </span></h3>
+</header>
+  <hr>
 
-  <div>
-    {{uiLabels.question}}:
-    <input type="text" v-model="question" v-on:change="saveQuestion">
+  <p> Question number {{this.currentIndex+1}} <span> <button id="remove"
+  v-on:click="removeQuestion">
+  {{uiLabels.removeQuestion}}
+</button> </span> </p>
 
-    {{uiLabels.answers}}:
+  <div class="question">
+    <p> {{uiLabels.question}}: </p>
+    <input type="text" v-model="question" v-on:change="saveQuestion" placeholder="Type question">
+    <br>
+    <p> {{uiLabels.answers}}:</p>
+
     <div class="allAnswers">
       <textarea v-for="(_, i) in answers" v-model="answers[i]" v-bind:key="'answer'+i" v-on:change="saveQuestion" v-bind:class="'answer'+i" placeholder="Type answer" maxlength="50">
                </textarea>
@@ -21,23 +30,16 @@
 <button v-on:click="addQuestion">
   {{uiLabels.addQuestion}}
 </button>
-<!--
-    <button v-on:click="saveQuestion">
-      Save Changes
-    </button>-->
 
-<router-link v-bind:to="'/selectQuestions/'+pollId">
+<router-link v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
 <button >
   {{uiLabels.selectQuestions}}
 </button>
 </router-link>
-<br>
-<button v-bind:class="remove"
-v-on:click="removeQuestion">
-{{uiLabels.removeQuestion}}
-</button>
 
-<div id="questionWrap">
+<div class="scroll">
+  <div id="questionWrap">
+    Overview
   <button v-for="(_, i) in this.allQuestions"
           v-bind:key="i"
           v-on:click="goToQuestion(i)"
@@ -46,6 +48,7 @@ v-on:click="removeQuestion">
     Question {{i+1}}
     <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
   </button>
+</div>
 </div>
 </div>
 </template>
@@ -157,12 +160,20 @@ export default {
 #questionWrap {
   display: flex;
   flex-direction: column;
-  float: right;
   position:absolute;
-  top: 50px;
-  right: 20px;
-
+  top: 0;
+  right: 0;
+  padding:1em;
+  background-color:white;
 }
+
+.scroll{
+  height:100vh;
+  overflow-y:scroll;
+  position:relative;
+}
+/*ändra till position inte relativ för att få de högst upp
+, dock följer scrollern ej med då*/
 
 .sideQuestion {
   background-color: lightgreen;
@@ -174,11 +185,9 @@ export default {
   background-color: yellow;
 }
 
-
-
-.remove button{
-
+#remove{
   background-color: red;
+  margin-left: 1em;
 }
 
 
@@ -235,4 +244,15 @@ export default {
   width: 9.5em;
   opacity: 0.5;
 }
+
+.question{
+  border-style:double;
+  margin-left:20em;
+  margin-right:20em;
+}
+
+header{
+  padding:1em;
+}
+
 </style>

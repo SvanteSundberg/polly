@@ -2,7 +2,7 @@
   <div class='standard'>
 <label>
   {{uiLabels.writePollID}}
-  <input type="text" v-model="pollId">
+  <input type="text" v-model="pollId" placeholder="Type name of the poll">
 </label>
 <router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
 <button v-on:click="createPoll">

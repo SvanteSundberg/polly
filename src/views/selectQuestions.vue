@@ -11,7 +11,7 @@ v-bind:key="i">
 <label for="i"> {{value.q}}</label>
 </form>
 
-<router-link v-bind:to="'/creatorPoll/'+id">
+<router-link v-bind:to="'/creatorPoll/'+id+'/'+lang">
 <button v-on:click="sendQuestions">
   Play Quiz
 </button>
@@ -28,12 +28,14 @@ export default {
       uiLabels: {},
       id: "",
       questions:"",
-      selectedQuestions: []
-      //lang: "en"
+      selectedQuestions: [],
+      lang: ""
     }
   },
   created: function () {
     this.id=this.$route.params.id;
+    this.lang = this.$route.params.lang;
+    socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });

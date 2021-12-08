@@ -7,7 +7,7 @@
       {{ a }}
     </div>
 
-    <router-link v-bind:to="'/result/'+pollId">
+    <router-link v-bind:to="'/result/'+pollId+'/'+lang">
     <button>
       Se resultat
     </button>
@@ -30,10 +30,17 @@ export default {
       question: "",
       theme:"",
       pollId:"",
+      lang:"",
+      uiLabels:{}
     }
   },
   created: function () {
     this.pollId = this.$route.params.id;
+    this.lang = this.$route.params.lang;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    });
     socket.emit('joinPoll', {pollId:this.pollId,
                             questionNumber: null
                             });

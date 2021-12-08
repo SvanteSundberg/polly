@@ -14,7 +14,7 @@
         {{uiLabels.createPoll}}
         </button>
     </router-link>
-    <router-link v-bind:to="'/pollID'" tag="button">
+    <router-link v-bind:to="'/pollID/'+lang" tag="button">
       <button id="participateButton">
       {{uiLabels.participatePoll}}
     </button>

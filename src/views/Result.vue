@@ -5,7 +5,7 @@
 
     <Bars v-bind:data="data"/>
 
-<router-link v-bind:to="'/creatorPoll/'+pollId">
+<router-link v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
     <button v-on:click="runQuestion">
       Run next question
     </button>
@@ -31,11 +31,17 @@ export default {
       data: {},
       theme:"",
       pollId:"",
-      finished: false
+      finished: false,
+      lang:""
     }
   },
   created: function () {
     this.pollId = this.$route.params.id;
+    this.lang = this.$route.params.lang;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    });
     socket.emit('joinPoll', {pollId: this.pollId,
                             questionNumber: null})
 

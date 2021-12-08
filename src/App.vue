@@ -10,16 +10,25 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  font-size: 14pt;
+  font-size: 16pt;
 }
 
 #app button{
   font-family: Average, Helvetica, Arial, sans-serif;
 }
 
+#app input{
+  font-family: Average, Helvetica, Arial, sans-serif;
+  font-size: 12pt;
+}
+
 #app ::placeholder{
   font-family: Average, Helvetica, Arial, sans-serif;
-  font-size: 11pt;
+  font-size: 12pt;
+}
+
+.cursive{
+  font-style: italic;
 }
 
 
@@ -61,6 +70,11 @@ body {
 }
 
 h1{
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+h3{
   margin-block-start: 0;
   margin-block-end: 0;
 }
