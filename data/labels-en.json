@@ -9,5 +9,17 @@
 	"welcomequestion": "Good to see you here! What are you in the mood for today?",
 	"writePollID":"Write poll ID:",
 	"Done":"Done",
-	"theme":"Select Theme"
+	"theme":"Select Theme",
+	"answers":"Answers",
+  "typeAnswer":"Skriv ditt svarsalternativ här",
+	"selectQuestions":"Select Questions",
+	"addQuestion": "Add Question",
+	"party":"Party",
+	"school":"School",
+	"standard":"Standard",
+	"sideQuestion":"Question",
+  "pollID":"pollID",
+	"addAnswer":"Add answer"
+
+
 }

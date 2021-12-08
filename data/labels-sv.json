@@ -9,6 +9,17 @@
 	"welcomequestion": "Vad kul att just du är här! Vad vill du göra idag?",
 	"writePollID": "Skriv röstningsID:",
 	"Done":"Klar",
-	"theme": "Välj tema"
+	"theme": "Välj tema",
+	"answers":"Svar",
+	"typeAnswer":"Skriv ditt svarsalternativ här",
+	"addQuestion":"Lägg till fråga",
+	"selectQuestions": "Välj frågor",
+	"party":"Fest",
+	"school":"Skola",
+	"standard":"Standard",
+	"sideQuestion":"Fråga",
+	"pollID":"RöstningsID",
+  "addAnswer":"Lägg till svar"
+
 
 }

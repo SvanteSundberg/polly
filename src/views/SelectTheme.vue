@@ -4,9 +4,9 @@
 <h1> {{uiLabels.theme}} </h1>
 
 <div class="themeButtons">
-<button v-on:click="setTheme('party')" v-bind:class="[{chosen:this.theme === 'party'}]">party</button>
-<button v-on:click="setTheme('school')" v-bind:class="[{chosen:this.theme === 'school'}]">school</button>
-<button v-on:click="setTheme('standard')" v-bind:class="[{chosen:this.theme === 'standard'}]">standard</button>
+<button v-on:click="setTheme('party')" v-bind:class="[{chosen:this.theme === 'party'}]">{{uiLabels.party}}</button>
+<button v-on:click="setTheme('school')" v-bind:class="[{chosen:this.theme === 'school'}]">{{uiLabels.school}}</button>
+<button v-on:click="setTheme('standard')" v-bind:class="[{chosen:this.theme === 'standard'}]">{{uiLabels.standard}}</button>
 </div>
 
 <router-link v-bind:to="'/create/'+id+'/'+lang">

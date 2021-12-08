@@ -6,20 +6,20 @@
     {{uiLabels.question}}:
     <input type="text" v-model="question" v-on:change="saveQuestion">
 
-    Answers:
+    {{uiLabels.answers}}:
     <div class="allAnswers">
       <textarea v-for="(_, i) in answers" v-model="answers[i]" v-bind:key="'answer'+i" v-on:change="saveQuestion" v-bind:class="'answer'+i" placeholder="Type answer" maxlength="50">
                </textarea>
       <button v-for="(_,i) in answers" v-bind:key="'answer'+i" v-on:click="removeAnswer(i)" v-bind:class="'answer'+i">
       </button>
       <button v-if="this.answers.length<4" v-on:click="addAnswer" id="addButton">
-        Lägg till svar
+        {{uiLabels.addAnswer}}
       </button>
 
     </div>
 </div>
 <button v-on:click="addQuestion">
-  Add question
+  {{uiLabels.addQuestion}}
 </button>
 <!--
     <button v-on:click="saveQuestion">
@@ -28,7 +28,7 @@
 
 <router-link v-bind:to="'/selectQuestions/'+pollId">
 <button >
-  select questions
+  {{uiLabels.selectQuestions}}
 </button>
 </router-link>
 
@@ -40,7 +40,11 @@
 
     Question {{i+1}}
     <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
-
+  </button>
+  <button v-for="(_, i) in this.allQuestions"
+  v-bind:key="i"
+  v-on:click="removeQuestion(i)"
+  v-bind:class="removeSideQuestion">
   </button>
 </div>
 </div>
@@ -113,13 +117,24 @@ export default {
 
     removeAnswer: function(i) {
       this.answers.splice(i, 1);
+      socket.emit("changeQuestion", {
+        pollId: this.pollId,
+        q: this.question,
+        a: this.answers,
+        questionNumber: this.currentIndex
+    });
+  },
 
-    },
     goToQuestion: function(questionIndex) {
       this.question = this.allQuestions[questionIndex].q;
       this.answers = this.allQuestions[questionIndex].a;
       this.currentIndex = questionIndex;
     },
+
+    removeQuestion: function(i){
+    this.question.splice(i)
+    //LÄGG TILL SOCKET NÄR JAG FÅR KOMMA IN
+},
 
     saveQuestion: function() {
       socket.emit("changeQuestion", {
@@ -153,6 +168,15 @@ export default {
 .activeQuestion {
   background-color: yellow;
 }
+
+.removeSideQuestion{
+  float: right;
+  background-color: red;
+  height: 0.5em;
+  width: 1em;
+
+}
+
 
 .allAnswers {
   display: grid;
