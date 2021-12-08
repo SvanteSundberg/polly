@@ -19,7 +19,8 @@
 	"standard":"Standard",
 	"sideQuestion":"Fråga",
 	"pollID":"RöstningsID",
-  "addAnswer":"Lägg till svar"
+  "addAnswer":"Lägg till svar",
+	"removeQuestion":"Radera fråga"
 
 
 }

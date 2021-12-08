@@ -34,7 +34,7 @@
 <br>
 <button v-bind:class="remove"
 v-on:click="removeQuestion">
-REMOVE X
+{{uiLabels.removeQuestion}}
 </button>
 
 <div id="questionWrap">
@@ -177,7 +177,7 @@ export default {
 
 
 .remove button{
-  
+
   background-color: red;
 }
 

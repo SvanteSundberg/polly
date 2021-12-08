@@ -19,7 +19,8 @@
 	"standard":"Standard",
 	"sideQuestion":"Question",
   "pollID":"pollID",
-	"addAnswer":"Add answer"
+	"addAnswer":"Add answer",
+	"removeQuestion":"Delete Question"
 
 
 }
