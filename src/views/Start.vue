@@ -8,7 +8,7 @@
   <div id="nav">
     <div id="languageDiv">
     <button id="languageButton" v-on:click="switchLanguage">
-      <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ffreeicons.io%2Fsummer-icons%2Flanguages-chat-icon-1245&psig=AOvVaw1XzVH0bJwhLjs51eRQeeqB&ust=1639150943784000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOjBsaCH1_QCFQAAAAAdAAAAABAD" style= "width: 5px;">
+      <img id="languageLogo" src="https://www.pngitem.com/pimgs/m/31-311919_languages-icon-png-free-transparent-png.png">
       {{uiLabels.changeLanguage}}</button>
   </div>
     <div id="startButtons">
@@ -136,6 +136,12 @@ transition-duration: 0.5s;
   margin-bottom: 50px;
   justify-content: center;
 
+}
+
+#languageLogo{
+  float:right;
+  width: 15px;
+  padding-left: 5px;
 }
 
 h1{
