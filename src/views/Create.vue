@@ -2,13 +2,15 @@
 <div v-bind:class='theme'>
   <header>
   <h3>You are now editing the poll <span class="cursive">{{this.pollId}} </span></h3>
-</header>
+  <br>
   <hr>
+</header>
 
-  <p> Question number {{this.currentIndex+1}} <span> <button id="remove"
+<div class="split left">
+  <p> Question number {{this.currentIndex+1}} <button id="remove"
   v-on:click="removeQuestion">
   {{uiLabels.removeQuestion}}
-</button> </span> </p>
+</button> </p>
 
   <div class="question">
     <p> {{uiLabels.question}}: </p>
@@ -36,7 +38,9 @@
   {{uiLabels.selectQuestions}}
 </button>
 </router-link>
+</div>
 
+<div class="split right">
 <div class="scroll">
   <div id="questionWrap">
     Overview
@@ -48,6 +52,7 @@
     Question {{i+1}}
     <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
   </button>
+</div>
 </div>
 </div>
 </div>
@@ -168,7 +173,7 @@ export default {
 }
 
 .scroll{
-  height:100vh;
+  height:87.5vh;
   overflow-y:scroll;
   position:relative;
 }
@@ -247,12 +252,34 @@ export default {
 
 .question{
   border-style:double;
-  margin-left:20em;
-  margin-right:20em;
+  margin-left:15em;
+  margin-right:15em;
+  margin-bottom:1em;
 }
 
 header{
   padding:1em;
+  padding-bottom:0;
+  height:10vh;
+}
+
+.split {
+  height: 100%;
+  top: 0;
+  overflow-x: hidden;
+}
+
+.left {
+  width: 85%;
+  left: 0;
+  position:relative;
+}
+
+.right {
+  width: 15%;
+  right: 0;
+  position:absolute;
+  padding-top:12.5vh;
 }
 
 </style>
