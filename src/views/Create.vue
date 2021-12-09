@@ -14,15 +14,36 @@
 
   <div class="question">
     <p> {{uiLabels.question}}: </p>
-    <input type="text" v-model="question" v-on:change="saveQuestion" placeholder="Type question">
+    <input type="text"
+          v-model="question"
+          v-on:change="saveQuestion"
+          placeholder="Type question">
     <br>
     <p> {{uiLabels.answers}}:</p>
 
     <div class="allAnswers">
-      <textarea v-for="(_, i) in answers" v-model="answers[i]" v-bind:key="'answer'+i" v-on:change="saveQuestion" v-bind:class="'answer'+i" placeholder="Type answer" maxlength="50">
+      <textarea v-for="(_, i) in answers"
+                v-model="answers[i]"
+                v-bind:key="'answer'+i"
+                v-on:change="saveQuestion"
+                v-bind:class="'answer'+i"
+                placeholder="Type answer"
+                maxlength="50">
                </textarea>
-      <button v-for="(_,i) in answers" v-bind:key="'answer'+i" v-on:click="removeAnswer(i)" v-bind:class="'answer'+i">
+      <button v-for="(_,i) in answers"
+              v-bind:key="'answer'+i"
+              v-on:click="removeAnswer(i)"
+              v-bind:class="['answer'+i, 'removeAnswerButton']">
       </button>
+      <input type="radio"
+              v-model="correctQuestion"
+              v-for="(_,i) in answers"
+              v-bind:key="'answer'+i"
+              v-bind:value="i"
+              v-bind:id="i"
+              v-bind:class="['answer'+i, 'markCorrectButton']"
+              v-on:change="setCorrectAnswer">
+
       <button v-if="this.answers.length<4" v-on:click="addAnswer" id="addButton">
         {{uiLabels.addAnswer}}
       </button>
@@ -43,7 +64,7 @@
 <div class="split right">
 <div class="scroll">
   <div id="questionWrap">
-    Overview
+    <h3> Overview </h3>
   <button v-for="(_, i) in this.allQuestions"
           v-bind:key="i"
           v-on:click="goToQuestion(i)"
@@ -69,12 +90,12 @@ export default {
       pollId: "",
       question: "",
       answers: ["", "", "", ""],
-      questionNumber: 0,
       allQuestions: [],
       data: {},
       uiLabels: {},
       theme: "",
       currentIndex: 0,
+      correctQuestion:null,
     }
   },
   created: function() {
@@ -116,6 +137,7 @@ export default {
       this.answers = ["", "", "", ""];
       console.log(this.allQuestions.length);
       this.currentIndex=this.allQuestions.length;
+      this.correctQuestion=null;
     },
     addAnswer: function() {
       if (this.answers.length < 4) {
@@ -139,13 +161,16 @@ export default {
         pollId: this.pollId,
         questionNumber: this.currentIndex
     })
-    this.goToQuestion(this.questionNumber);
+    console.log(this.questionNumber);
+    this.currentIndex--;
+    this.goToQuestion(this.currentIndex);
 }},
 
     goToQuestion: function(questionIndex) {
       this.question = this.allQuestions[questionIndex].q;
       this.answers = this.allQuestions[questionIndex].a;
       this.currentIndex = questionIndex;
+      this.correctQuestion=this.allQuestions[questionIndex].c;
     },
 
 
@@ -155,6 +180,15 @@ export default {
         q: this.question,
         a: this.answers,
         questionNumber: this.currentIndex
+      });
+    },
+
+    setCorrectAnswer: function(){
+      console.log(this.correctQuestion);
+      socket.emit("setCorrectAnswer", {
+        pollId: this.pollId,
+        questionNumber: this.currentIndex,
+        correctIndex:this.correctQuestion
       });
     },
 
@@ -182,6 +216,8 @@ export default {
   background-color: lightgreen;
   margin: 10px;
   border-radius: 20px;
+  padding:0.5em;
+  font-size:13pt;
 }
 
 .activeQuestion {
@@ -203,7 +239,6 @@ export default {
   grid-template-rows: 5em 5em;
 }
 
-
 .answer0 {
   grid-column: 1;
   grid-row: 1;
@@ -224,28 +259,26 @@ export default {
   grid-row: 2;
 }
 
-
 .allAnswers textarea {
   height: 5em;
   width: 10em;
   resize: none;
 }
 
-.allAnswers button {
-  float: right;
-  /*position: absolute;*/
-
+.removeAnswerButton {
   background-color: red;
-  height: 0.5em;
+  height: 0.75em;
   width: 1em;
+  margin-left:9.3em;
 }
 
 #addButton{
   background-color:lightgrey;
   border: dotted;
-  height: 5em;
-  width: 9.5em;
+  height: 5.5em;
+  width: 10.5em;
   opacity: 0.5;
+  margin:0;
 }
 
 .question{
@@ -278,6 +311,14 @@ header{
   right: 0;
   position:absolute;
   padding-top:12.5vh;
+}
+
+.markCorrectButton{
+  background-color: pink;
+  height: 1em;
+  width: 1em;
+  margin-left:9em;
+  margin-top:1.5em;
 }
 
 </style>
