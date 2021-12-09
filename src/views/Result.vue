@@ -5,11 +5,16 @@
 
     <Bars v-bind:data="data"/>
 
-<router-link v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
+<router-link v-if="finished===false" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
     <button v-on:click="runQuestion">
       Run next question
     </button>
   </router-link>
+  <router-link v-if="finished===true" v-bind:to="'/createID/'+ lang">
+      <button>
+        Back to Start
+      </button>
+    </router-link>
   </div>
 
 </template>
