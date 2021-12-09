@@ -95,7 +95,7 @@ transition-duration: 0.5s;
   justify-content: center;
   display:grid;
   grid-gap: 150px;
-  grid-template-columns: 7em 7em;
+  grid-template-columns: 200px 200px;
   align-items: center;
 }
 
