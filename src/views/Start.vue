@@ -23,17 +23,23 @@
     </button>
     </router-link>
   </div>
+  <languageSelect></languageSelect>
   </div>
+
 </div>
 
 </template>
 
 <script>
 import io from 'socket.io-client';
+import languageSelect from '@/components/languageSelect.vue'
 const socket = io();
 
 export default {
   name: 'Start',
+  components: {
+    languageSelect
+  },
   data: function () {
     return {
       uiLabels: {},
