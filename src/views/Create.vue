@@ -177,8 +177,6 @@ export default {
   overflow-y:scroll;
   position:relative;
 }
-/*ändra till position inte relativ för att få de högst upp
-, dock följer scrollern ej med då*/
 
 .sideQuestion {
   background-color: lightgreen;
@@ -264,7 +262,7 @@ header{
 }
 
 .split {
-  height: 100%;
+  height: 87.5%;
   top: 0;
   overflow-x: hidden;
 }
