@@ -62,7 +62,7 @@ Data.prototype.chooseTheme = function (pollId, theme) {
 
 Data.prototype.addQuestion = function(pollId, first) {
   const poll = this.polls[pollId];
-  let q= {q: "", a: ["","","",""]};
+  let q= {q: "", a: ["","","",""], c:null};
   if (typeof poll !== 'undefined') {
     if ((first && poll.questions.length<1) || (!first)){
       poll.questions.push(q);
@@ -158,5 +158,15 @@ Data.prototype.checkIfFinished=function(pollId){
   }
   return false
 }
+
+Data.prototype.markCorrect=function(pollId, qId,correct){
+  const poll = this.polls[pollId];
+  poll.currentQuestion=qId;
+  console.log(poll.currentQuestion);
+  console.log(poll.questions[poll.currentQuestion].q);
+  poll.questions[poll.currentQuestion].c=correct;
+  console.log("correct index is", poll.questions[poll.currentQuestion].c);
+}
+
 
 module.exports = Data;

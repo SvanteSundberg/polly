@@ -88,6 +88,11 @@ function sockets(io, socket, data) {
     socket.emit("isLastQuestion", data.checkIfFinished(pollId));
   });
 
+  socket.on("setCorrectAnswer",function(d){
+    data.markCorrect(d.pollId, d.questionNumber,d.correctIndex);
+  });
+
+
 }
 
 module.exports = sockets;
