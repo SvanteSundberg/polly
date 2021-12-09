@@ -37,7 +37,7 @@
 }
 
 #nav a {
-  padding:0.4em;
+  /*padding:0.4em;*/
   font-weight: bold;
   color: blue;
 }

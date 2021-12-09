@@ -6,8 +6,11 @@
   </header>
 
   <div id="nav">
-    <button id="languageButton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-
+    <div id="languageDiv">
+    <button id="languageButton" v-on:click="switchLanguage">
+      <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ffreeicons.io%2Fsummer-icons%2Flanguages-chat-icon-1245&psig=AOvVaw1XzVH0bJwhLjs51eRQeeqB&ust=1639150943784000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOjBsaCH1_QCFQAAAAAdAAAAABAD" style= "width: 5px;">
+      {{uiLabels.changeLanguage}}</button>
+  </div>
     <div id="startButtons">
     <router-link v-bind:to="'/createID/'+lang">
       <button id="createButton">
@@ -60,35 +63,79 @@ export default {
 <style scoped>
 
 #startButtons button{
-  font-size: 18pt;
+  /*font-size: 18pt;
   height: 5em;
   width:7em;
+  box-shadow: 10px 10px 10px 10px black;*/
+border-radius: 5px;
+font-size: 20px;
+padding: 14px 20px;
+cursor: pointer;
+color: #fff;
+text-align:  center;
+font-size: 1.5rem;
+font-family: 'Roboto';
+font-weight: 100;
+box-shadow: 2px 2px 20px gray;
+transition-duration: 0.5s;
+-webkit-transition-duration: 0.1s;
+-moz-transition-duration: 0.1s;
 }
 #createButton:hover{
-background-color:darkgreen;
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 20px #AFE9FF;
 }
 #participateButton:hover{
-background-color:darkblue;
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 20px #AFE9FF;
 }
 
 #startButtons{
-  padding-left: 20em;
-  margin: 2em;
+
+  justify-content: center;
   display:grid;
   grid-gap: 150px;
-  grid-template-columns: 100px 100px;
+  grid-template-columns: 7em 7em;
   align-items: center;
 }
 
 #createButton{
-  background-color:green;
+  background-color:#2ECC40;
+  width: 200px;
+  height: 70px;
+  border: 1px solid #2ECC40;
 }
 
 #participateButton{
-  background-color: blue;
+  background-color: #00A6FF;
+  width: 200px;
+  height: 70px;
+  border: 1px solid #00A6FF;
 }
 #languageButton{
   align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  font-size: 11pt;
+  padding: 0.1em 0.2em;
+  cursor: pointer;
+  text-align:  center;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+}
+
+#languageButton:hover{
+  border: 1px solid black;
+
+
+}
+#languageDiv{
+  margin:10px;
+  margin-bottom: 50px;
+  justify-content: center;
+
 }
 
 h1{
