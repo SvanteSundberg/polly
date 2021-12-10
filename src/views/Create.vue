@@ -2,7 +2,6 @@
 <div v-bind:class='theme'>
   <header>
   <h3>You are now editing the poll <span class="cursive">{{this.pollId}} </span></h3>
-  <br>
   <hr>
 </header>
 
@@ -202,12 +201,12 @@ export default {
   position:absolute;
   top: 0;
   right: 0;
-  padding:1em;
-  background-color:white;
+  padding:1.5em;
+  background-color: white;
 }
 
 .scroll{
-  height:87.5vh;
+  height:100%;
   overflow-y:scroll;
   position:relative;
 }
@@ -282,35 +281,38 @@ export default {
 }
 
 .question{
+  position:relative;
   border-style:double;
   margin-left:15em;
   margin-right:15em;
   margin-bottom:1em;
+  padding:1em;
 }
 
 header{
   padding:1em;
   padding-bottom:0;
-  height:10vh;
+  height:10%;
 }
 
 .split {
-  height: 87.5%;
-  top: 0;
+  height: 90%;
   overflow-x: hidden;
 }
 
 .left {
   width: 85%;
   left: 0;
+  top:0;
   position:relative;
 }
 
 .right {
   width: 15%;
   right: 0;
+  top: 10%;
   position:absolute;
-  padding-top:12.5vh;
+  background-color:white;
 }
 
 .markCorrectButton{
@@ -319,6 +321,13 @@ header{
   width: 1em;
   margin-left:9em;
   margin-top:1.5em;
+}
+
+hr{
+  margin-top:1em;
+  margin-bottom:0;
+  padding-bottom:0;
+  margin-bottom:0;
 }
 
 </style>
