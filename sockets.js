@@ -93,6 +93,15 @@ function sockets(io, socket, data) {
     data.markCorrect(d.pollId, d.questionNumber,d.correctIndex);
   });
 
+  socket.on('user',function(d){
+    socket.emit('existingUsers',data.addUser(d.pollId, d.user));
+
+  });
+
+  socket.on('checkPollId', function(pollId){
+    socket.emit('existingPolls',data.allIDs(pollId))
+  })
+
 
 }
 

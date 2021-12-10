@@ -49,6 +49,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.theme ='standard';
     poll.selectedQuestions=[];
     poll.currentIndex = 0;
+    poll.users={};
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -166,6 +167,38 @@ Data.prototype.markCorrect=function(pollId, qId,correct){
   console.log(poll.questions[poll.currentQuestion].q);
   poll.questions[poll.currentQuestion].c=correct;
   console.log("correct index is", poll.questions[poll.currentQuestion].c);
+}
+
+Data.prototype.addUser=function(pollId,user){
+
+  const poll = this.polls[pollId];
+  const u= poll.users;
+  let c=0;
+  let p= { points:c}
+  if(typeof u !== 'undefined'){
+  for (let x in u){
+    console.log(u);
+    if(x===user){
+    return true
+  }
+    }
+  }
+
+  u[user]=p;
+  console.log(u);
+
+  return false
+  }
+
+
+Data.prototype.allIDs=function(pollId){
+  let exist=false;
+for (let p in this.polls){
+  if(p===pollId){
+  return true
+  }
+}
+return false
 }
 
 
