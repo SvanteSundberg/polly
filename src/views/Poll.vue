@@ -3,7 +3,7 @@
     {{pollId}}
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
-    <pollPopup v-show="this.pollPopupVisable" v-on:click="closePopup"/>
+    <pollPopup v-show="this.pollPopupVisable"/>
   </div>
 </template>
 
@@ -49,6 +49,11 @@ export default {
     socket.on("initial", (theme) => {
       this.theme = theme
     });
+
+    socket.on("answered", () =>
+      this.closePopup()
+    );
+
   },
   methods: {
     submitAnswer: function (answer) {

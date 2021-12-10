@@ -17,11 +17,6 @@
 <script>
   export default {
     name: 'pollPopup',
-    methods: {
-      close() {
-        this.$emit('close');
-      },
-    },
   };
 </script>
 
@@ -46,8 +41,6 @@
     flex-direction: column;
   }
 
-
-
   .popupHeader {
     padding: 15px;
     display: flex;
@@ -63,8 +56,6 @@
     border-top: 1px solid #eeeeee;
     flex-direction: column;
     border-bottom: 1px solid #eeeeee;
-
-
   }
 
   .popupFooter {
@@ -76,7 +67,6 @@
   }
 
   .loading{
-
     display:flex;
     margin-left: 10px;
     margin-top: 10px;
