@@ -10,7 +10,7 @@
       Run next question
     </button>
   </router-link>
-  <router-link v-if="finished===true" v-bind:to="'/createID/'+ lang">
+  <router-link v-if="finished===true" v-bind:to="'/'">
       <button>
         Back to Start
       </button>
