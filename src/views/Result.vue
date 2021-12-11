@@ -1,9 +1,8 @@
 <template>
   <div v-bind:class='theme'>
     {{this.question}}
-    {{this.finished}}
 
-    <Bars v-bind:data="data"/>
+    <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'/>
 
 <router-link v-if="finished===false" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
     <button v-on:click="runQuestion">
@@ -34,6 +33,7 @@ export default {
     return {
       question: "",
       data: {},
+      correctAnswer:[],
       theme:"",
       pollId:"",
       finished: false,
@@ -56,6 +56,9 @@ export default {
     });
     socket.on("newQuestion", update => {
       this.question = update.q;
+      for (let i=0;i<update.c.length;i++){
+        this.correctAnswer[i] = update.a[update.c[i]];
+      }
       this.data = {};
     });
     socket.emit("loadTheme",this.pollId);

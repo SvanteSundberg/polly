@@ -63,7 +63,7 @@ Data.prototype.chooseTheme = function (pollId, theme) {
 
 Data.prototype.addQuestion = function(pollId, first) {
   const poll = this.polls[pollId];
-  let q= {q: "", a: ["","","",""], c:null};
+  let q= {q: "", a: ["","","",""], c:[]};
   if (typeof poll !== 'undefined') {
     if ((first && poll.questions.length<1) || (!first)){
       poll.questions.push(q);

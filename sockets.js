@@ -91,6 +91,7 @@ function sockets(io, socket, data) {
 
   socket.on("setCorrectAnswer",function(d){
     data.markCorrect(d.pollId, d.questionNumber,d.correctIndex);
+    socket.emit("getQuestions",data.getAllQuestions(d.pollId));
   });
 
   socket.on('user',function(d){

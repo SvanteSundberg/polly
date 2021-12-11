@@ -7,8 +7,8 @@
     <div v-for="correct in correctAnswer"
          v-bind:key="correct"
          v-bind:style="{height: 4+item*6 + 'px'}">
+         <span class> {{item}} </span>
     </div>
-      <span class> {{item}} </span>
     <div>
       {{key}}
     </div>
