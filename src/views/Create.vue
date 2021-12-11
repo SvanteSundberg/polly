@@ -65,7 +65,10 @@
 </button>
 
 <createPopup v-on:stop="showPopup(false)"
-            v-show="this.popupVisable"/>
+            v-show="this.popupVisable">
+<template v-slot:header> Quizzer </template>
+Please choose right answers to all question before continuing!
+</createPopup>
 
 </div>
 

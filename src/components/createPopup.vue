@@ -2,10 +2,10 @@
   <div class="popupBackground">
       <div class="popup">
         <header class="popupHeader">
-          Quizzer!
+          <slot name="header"></slot>
         </header>
         <section class="popupBody">
-          Please choose right answers to all question before continuing!
+          <slot></slot>
        </section>
       <footer class="popupFooter">
         <button v-on:click="ok">
