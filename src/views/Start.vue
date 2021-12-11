@@ -24,7 +24,8 @@
     </router-link>
   </div>
   <languageSelect v-on:SV="selectSv"
-                  v-on:EN="selectEn">
+                  v-on:EN="selectEn"
+                  v-bind:uiLabels="uiLabels">
   </languageSelect>
   </div>
 </div>

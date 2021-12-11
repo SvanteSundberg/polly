@@ -1,9 +1,11 @@
 <template v-on:click="closeDropdown">
   <div class="dropdown">
-    <button id="languageMenu" v-on:click="showDropdown">
+    <div class="languageMenu">
+    <button  v-on:click="showDropdown" v-bind:class="['notClicked',{clicked:this.dropdownVisable === true}]">
       <img id="langLogo" src="https://www.pngitem.com/pimgs/m/31-311919_languages-icon-png-free-transparent-png.png">
        {{uiLabels.Language}}
      </button>
+   </div>
     <div class="dropdown-content" v-if="dropdownVisable">
     <button v-on:click="selectSv"
             v-bind:class="['selected',{notSelected:this.english === true}]">
@@ -18,24 +20,19 @@
 </template>
 
 <script>
-import io from 'socket.io-client';
-const socket = io();
 export default {
   name: 'languageSelect',
+  props:{
+    uiLabels: Object
+  },
   data: function () {
     return {
-      uiLabels: {},
       lang:"en",
       dropdownVisable:false,
       english:true
     }
   },
-  created: function () {
-    socket.emit("pageLoaded", this.lang);
-    socket.on("init", (labels) => {
-      this.uiLabels = labels
-    });
-  },
+
   methods: {
     selectSv: function () {
       this.english=false;
@@ -59,11 +56,11 @@ export default {
 </script>
 <style>
 
-#languageMenu{
+.languageMenu{
   font-size: 10pt;
   padding:5px;
   border-radius: 5px;
-  border:solid 1px white;
+
 }
 
 .dropdown {
@@ -83,12 +80,12 @@ export default {
 .dropdown-content button{
   background-color: #98B4D4;
   width: 40px;
-  height: 40px;
-  padding:10px;
+  height: 20px;
   margin:5px;
   justify-content: center;
   /*border:solid 1px black;*/
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 10px;
 }
 .dropdown-content button:hover{
   border:solid 1px white;
@@ -97,6 +94,7 @@ export default {
  .dropdown-content {
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
 }
 
 .selected{
@@ -112,7 +110,7 @@ border:solid 1px white;
   width: 15px;
   padding-left: 5px;
 }
-#languageMenu{
+.notClicked{
   align-items: center;
   background-color: #fff;
   border-radius: 10px;
@@ -122,8 +120,21 @@ border:solid 1px white;
   cursor: pointer;
 }
 
-#languageMenu:hover{
+.languageMenu button:hover{
   border: 1px solid #00A6FF;
+}
+.clicked {
+  background-color: lightgray;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  font-size: 11pt;
+  padding: 0.1em 0.2em;
+  cursor: pointer;
+}
+
+#languageMenu::after{
+  background-color: gray;
 }
 
 </style>
