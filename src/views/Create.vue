@@ -34,10 +34,10 @@
               v-on:click="removeAnswer(i)"
               v-bind:class="['answer'+i, 'removeAnswerButton']">
       </button>
-      <input type="radio"
-              v-model="correctQuestion"
-              v-for="(_,i) in answers"
+      <input type="checkbox"
+              v-for="(_, i) in answers"
               v-bind:key="'answer'+i"
+              v-model="correctQuestion"
               v-bind:value="i"
               v-bind:id="i"
               v-bind:class="['answer'+i, 'markCorrectButton']"
@@ -53,17 +53,31 @@
   {{uiLabels.addQuestion}}
 </button>
 
-<router-link v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
-<button >
+<router-link v-if="isAllMarkedCorrect()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
+<button>
   {{uiLabels.selectQuestions}}
 </button>
 </router-link>
+
+<button v-if="!isAllMarkedCorrect()"
+        v-on:click="showPopup(true)">
+  {{uiLabels.selectQuestions}}
+</button>
+
+<createPopup v-on:stop="showPopup(false)"
+            v-show="this.popupVisable"/>
+
 </div>
 
 <div class="split right">
 <div class="scroll">
   <div id="questionWrap">
     <h3> Overview </h3>
+    <router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
+    <button class="sideQuestion">
+      Select theme
+    </button>
+  </router-link>
   <button v-for="(_, i) in this.allQuestions"
           v-bind:key="i"
           v-on:click="goToQuestion(i)"
@@ -79,10 +93,14 @@
 </template>
 
 <script>
+import createPopup from '@/components/createPopup.vue'
 import io from 'socket.io-client';
 const socket = io();
 export default {
   name: 'Create',
+  components: {
+    createPopup
+  },
   data: function() {
     return {
       lang: "",
@@ -94,7 +112,8 @@ export default {
       uiLabels: {},
       theme: "",
       currentIndex: 0,
-      correctQuestion:null,
+      correctQuestion:[],
+      popupVisable:false,
     }
   },
   created: function() {
@@ -117,8 +136,10 @@ export default {
     socket.on("pollCreated", (data) =>
       this.data = data);
 
-    socket.on("getQuestions", (questions) =>
-      this.allQuestions = questions);
+    socket.on("getQuestions", (questions) => {
+      this.allQuestions = questions
+      this.goToQuestion(this.currentIndex);
+    });
 
     socket.emit("addQuestion", {
       pollId: this.pollId,
@@ -136,7 +157,7 @@ export default {
       this.answers = ["", "", "", ""];
       console.log(this.allQuestions.length);
       this.currentIndex=this.allQuestions.length;
-      this.correctQuestion=null;
+      this.correctQuestion=[];
     },
     addAnswer: function() {
       if (this.answers.length < 4) {
@@ -161,14 +182,20 @@ export default {
         questionNumber: this.currentIndex
     })
     console.log(this.questionNumber);
-    this.currentIndex--;
-    this.goToQuestion(this.currentIndex);
+    if (this.currentIndex>0){
+      this.currentIndex--;
+      this.goToQuestion(this.currentIndex);
+    }
+    else{
+      this.goToQuestion(this.currentIndex);
+    }
 }},
 
     goToQuestion: function(questionIndex) {
       this.question = this.allQuestions[questionIndex].q;
       this.answers = this.allQuestions[questionIndex].a;
       this.currentIndex = questionIndex;
+      console.log(this.allQuestions[questionIndex].c);
       this.correctQuestion=this.allQuestions[questionIndex].c;
     },
 
@@ -190,6 +217,23 @@ export default {
         correctIndex:this.correctQuestion
       });
     },
+
+    isAllMarkedCorrect: function(){
+      for (let i=0;i<this.allQuestions.length;i++){
+        if (typeof this.allQuestions[i].c[0]=='undefined'){
+          return false
+        }
+      }
+      return true
+      },
+
+    showPopup:function(value){
+      this.popupVisable=value;
+    },
+
+    showAlert:function(){
+      alert("You need to select correct answer for all your questions");
+    }
 
   }
 }

@@ -1,31 +1,51 @@
 <template>
 <div class="wrapper">
-  <div class="bar" v-for="(item, key) in data" v-bind:key="key">
-    <div v-bind:style="{height: item + 'px'}">
-      <span> {{item}} </span>
+  <div class="bar"
+        v-for="(item, key) in data"
+        v-bind:key="key"
+        v-bind:class="'answers'">
+    <div v-for="correct in correctAnswer"
+         v-bind:key="correct"
+         v-bind:style="{height: 4+item*6 + 'px'}">
     </div>
-    <div> 
+      <span class> {{item}} </span>
+    <div>
       {{key}}
     </div>
-  </div>
+    <div v-for="correct in correctAnswer"
+         v-bind:key="correct"
+         v-bind:class= "[{falseAnswer:correct !== key}]">
+    </div>
+    </div>
+
+<p>Correct answer is
+<span class="cursive" v-for="correct in correctAnswer" v-bind:key="correct">
+   {{correct+' '}}</span>
+   </p>
 </div>
 </template>
+
+<!-- [correct !== key ? opacity:0.1]] -->
 
 <script>
 export default {
   name: 'Bars',
   props: {
-    data: Object
-  }
+    data: Object,
+    correctAnswer:Array
+}
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .bar {
   display: inline-block;
   width: 50px;
   vertical-align: bottom;
+}
+
+.falseAnswer{
+  opacity:0.1;
 }
 
 .bar span {
@@ -44,8 +64,9 @@ export default {
 .bar:nth-child(4) div:nth-child(1) {
   background-color:purple;
 }
-.bar:nth-child(5) div:nth-child(1) {
-  background-color:yellow;
+
+.answers{
+  padding:0.5em;
 }
 
 .wrapper {
