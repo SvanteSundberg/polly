@@ -57,6 +57,10 @@ function sockets(io, socket, data) {
     io.to(pollId).emit('answered');
   });
 
+  socket.on('toPollResult', function(pollId){
+    io.to(pollId).emit('changeView');
+  });
+
   socket.on('submitAnswer', function(d) {
     console.log(d.answer);
     data.submitAnswer(d.pollId, d.answer);
