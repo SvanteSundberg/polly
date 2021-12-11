@@ -8,7 +8,7 @@
     </div>
 
     <router-link v-bind:to="'/result/'+pollId+'/'+lang">
-    <button>
+    <button v-on:click="toPollResult">
       Se resultat
     </button>
   </router-link>
@@ -56,6 +56,11 @@ export default {
     });
 
   },
+  methods: {
+    toPollResult: function(){
+      socket.emit('toPollResult', this.pollId);
+    }
+  }
 
 }
 </script>

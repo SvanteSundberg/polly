@@ -4,7 +4,19 @@
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
     <pollPopup v-show="this.pollPopupVisable"/>
+
+
+    <router-link v-if="changeView" v-bind:to="'/pollResult/'+pollId+'/'+lang">
+      <button>
+        HÄR
+      </button>
+    </router-link>
+    <!-- OBS tillfällig lösning -->
+
+    {{this.userName}}
+
   </div>
+
 </template>
 
 <script>
@@ -26,10 +38,12 @@ export default {
         q: "",
         a: []
       },
-      pollId: "inactive poll",
+      pollId: "",
       theme:"",
       pollPopupVisable:false,
-      lang:""
+      lang:"",
+      changeView:false,
+      userName:""
     }
   },
   created: function () {
@@ -50,8 +64,18 @@ export default {
       this.theme = theme
     });
 
+    socket.on('sendUser', (user) => {
+      console.log("men kom jag verkligen hit??");
+      this.userName = user;
+    });
+
+    socket.on('changeView', () =>{
+      this.changeView=true;
+      this.pollPopupVisable=false;
+    });
+
     socket.on("answered", () =>
-      this.closePopup()
+      this.pollPopupVisable=false
     );
 
   },
@@ -66,9 +90,6 @@ export default {
         this.pollPopupVisable = true;
         console.log(this.pollPopupVisable)
       },
-      closePopup() {
-        this.pollPopupVisable = false;
-      }
   }
 }
 //;showPopup()

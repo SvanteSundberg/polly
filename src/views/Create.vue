@@ -49,17 +49,24 @@
 
     </div>
 </div>
+
+<router-link v-bind:to="'/'">
+<button>
+  Back to start
+</button>
+</router-link>
+
 <button v-on:click="addQuestion">
   {{uiLabels.addQuestion}}
 </button>
 
-<router-link v-if="isAllMarkedCorrect()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
+<router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
 <button>
   {{uiLabels.selectQuestions}}
 </button>
 </router-link>
 
-<button v-if="!isAllMarkedCorrect()"
+<button v-if="!canContinue()"
         v-on:click="showPopup(true)">
   {{uiLabels.selectQuestions}}
 </button>
@@ -67,7 +74,10 @@
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> Quizzer </template>
-Please choose right answers to all question before continuing!
+<span> Please make sure to:
+<li> Choose right answers to all question!</li>
+<li> Type something in all your questions! </li>
+</span>
 </createPopup>
 
 </div>
@@ -221,13 +231,18 @@ export default {
       });
     },
 
-    isAllMarkedCorrect: function(){
+    canContinue: function(){
+      let markedCorrect=true;
+      let isFilledQuestion=true;
       for (let i=0;i<this.allQuestions.length;i++){
         if (typeof this.allQuestions[i].c[0]=='undefined'){
-          return false
+          markedCorrect=false;
+        }
+        if (this.allQuestions[i].q==''){
+          isFilledQuestion=false;
         }
       }
-      return true
+      return (markedCorrect && isFilledQuestion);
       },
 
     showPopup:function(value){

@@ -48,15 +48,19 @@
     flex-direction: column;
   }
 
+  .popup section{
+    padding:15px;
+    padding-left: 30px;
+    padding-right:30px;
+    align-items: left;
+  }
+
   .popupHeader {
     padding: 15px;
     position: relative;
     color: black;
     justify-content: space-between;
-  }
-
-  .popupBody {
-    justify-content: center;
+    border-bottom: 1px solid;
   }
 
   .popupFooter {

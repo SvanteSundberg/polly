@@ -37,26 +37,11 @@ export default {
       this.theme = theme
     });
 
-    socket.on("answered", () =>
-      this.closePopup()
-    );
-
   },
   methods: {
-    submitAnswer: function (answer) {
-      console.log(answer);
-      socket.emit("submitAnswer", {pollId: this.pollId, answer: answer});
-      this.showPopup();
-    },
 
-    showPopup() {
-        this.pollPopupVisable = true;
-        console.log(this.pollPopupVisable)
-      },
-      closePopup() {
-        this.pollPopupVisable = false;
-      }
   }
+
 }
 //;showPopup()
 </script>

@@ -56,6 +56,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/CreatorPoll.vue')
   },
 
+  {
+  path: '/pollResult/:id/:lang',
+  name: 'PollResult',
+  component: () => import(/* webpackChunkName: "about" */ '../views/PollResult.vue')
+  }
 ]
 
 const router = createRouter({
