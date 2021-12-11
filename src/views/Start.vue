@@ -23,11 +23,11 @@
     </button>
     </router-link>
   </div>
-  <languageSelect></languageSelect>
+  <languageSelect v-on:SV="selectSv"
+                  v-on:EN="selectEn">
+  </languageSelect>
   </div>
-
 </div>
-
 </template>
 
 <script>
@@ -61,6 +61,15 @@ export default {
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
     },
+    selectSv:function(){
+      this.lang="sv";
+      socket.emit("switchLanguage", this.lang)
+    },
+
+    selectEn:function(){
+      this.lang="en";
+      socket.emit("switchLanguage", this.lang)
+    }
   }
 
 }

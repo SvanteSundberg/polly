@@ -20,7 +20,8 @@
 	"sideQuestion":"Question",
   "pollID":"pollID",
 	"addAnswer":"Add answer",
-	"removeQuestion":"Delete Question"
+	"removeQuestion":"Delete Question",
+	"Language":"Language"
 
 
 }

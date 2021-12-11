@@ -20,7 +20,8 @@
 	"sideQuestion":"Fråga",
 	"pollID":"RöstningsID",
   "addAnswer":"Lägg till svar",
-	"removeQuestion":"Radera fråga"
+	"removeQuestion":"Radera fråga",
+	"Language":"Språk"
 
 
 }
