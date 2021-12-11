@@ -20,24 +20,19 @@
 </template>
 
 <script>
-import io from 'socket.io-client';
-const socket = io();
 export default {
   name: 'languageSelect',
+  props:{
+    uiLabels: Object
+  },
   data: function () {
     return {
-      uiLabels: {},
       lang:"en",
       dropdownVisable:false,
       english:true
     }
   },
-  created: function () {
-    socket.emit("pageLoaded", this.lang);
-    socket.on("init", (labels) => {
-      this.uiLabels = labels
-    });
-  },
+
   methods: {
     selectSv: function () {
       this.english=false;
