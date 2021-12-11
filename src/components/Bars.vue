@@ -4,9 +4,7 @@
         v-for="(item, key) in data"
         v-bind:key="key"
         v-bind:class="'answers'">
-    <div v-for="correct in correctAnswer"
-         v-bind:key="correct"
-         v-bind:style="{height: 4+item*6 + 'px'}">
+    <div v-bind:style="{height: 4+item*6 + 'px'}">
          <span class> {{item}} </span>
     </div>
     <div>
