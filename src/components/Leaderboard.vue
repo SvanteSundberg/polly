@@ -12,8 +12,8 @@ export default {
   },
 }
 
-</script scoped>
+</script>
 
-<style>
+<style scoped>
 
 </style>
