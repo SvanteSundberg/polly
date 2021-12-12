@@ -68,7 +68,7 @@ export default {
       if (isFinished){
         this.show=true;
         console.log(this.show);
-        this.showPopup=true;
+        setTimeout(() => this.showPopup = true, 3000);
       }
     });
 
