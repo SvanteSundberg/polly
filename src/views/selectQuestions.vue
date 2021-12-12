@@ -15,11 +15,14 @@ v-bind:key="i">
 
 <div class="dropdown">
   <button v-on:click="changeDropdown(i)">
-    <label for="i"> {{i+1}}. {{value.q}}</label>
+    <label> {{i+1}}. {{value.q}}</label>
     </button>
     <div v-bind:class="['dropdown-content',{dropdownShow:this.dropDownVisable[i]}]">
-    <p v-for="value in this.questions[i].a"
-        v-bind:key="value">{{value}}
+    <p v-for="(value,index) in this.questions[i].a"
+        v-bind:key="value">
+        <img v-if="isCorrect(index,i)" class="pic" src="https://cdn.pixabay.com/photo/2013/07/13/10/48/check-157822_1280.png">
+        <img v-else class="pic" src="https://www.seekpng.com/png/detail/332-3324212_incorrect-cliparts-may-5.png">
+        {{value}}
       <span> <hr> </span> </p>
     </div>
 </div>
@@ -96,8 +99,18 @@ export default {
       else{
         this.dropDownVisable[index]=true;
       }
-    }
+    },
+
+    isCorrect: function(indexAnswer, indexQuestion){
+      let correctAnswersIndex=this.questions[indexQuestion].c;
+      for (let i=0;i<correctAnswersIndex.length;i++){
+        if (indexAnswer===correctAnswersIndex[i]){
+          return true
+        }
+      }
+      return false
   },
+}
 }
 </script>
 
@@ -125,28 +138,37 @@ label {
   display: none;
 }
 
+.dropdown-content p{
+  margin:0.25em;
+}
+
 .dropdownShow {
   background-color:white;
   border:1px solid black;
   display:block;
   position:relative;
   min-width: 200px;
-  z-index: 1;
+  border-radius:0;
+  padding:0;
 }
 
 .dropdown hr{
-  border:1px dotted;
+  border-top:1px dotted;
+  margin:0.2em;
 }
 
 button:hover {
    background-color: lightgreen;
-   cursor: pointer;
 }
 
 header{
   padding:1em;
 }
 
+button {
+  font-size: 16pt;
+  margin:0.5em;
+}
 .questions{
   margin-bottom:2em;
 }
@@ -154,5 +176,13 @@ header{
 .myButtons button{
   margin:1em;
 }
+
+.pic{
+  float:right;
+  width: 15px;
+  padding-right:1em;
+  padding-top:0.3em;
+}
+
 
 </style>

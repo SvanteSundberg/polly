@@ -3,16 +3,12 @@
   <div class="bar"
         v-for="(item, key) in data"
         v-bind:key="key"
-        v-bind:class="'answers'">
+        v-bind:class="['answers',{falseAnswer:!isCorrect(key)}]">
     <div v-bind:style="{height: 4+item*6 + 'px'}">
          <span class> {{item}} </span>
     </div>
     <div>
       {{key}}
-    </div>
-    <div v-for="correct in correctAnswer"
-         v-bind:key="correct"
-         v-bind:class= "[{falseAnswer:correct !== key}]">
     </div>
     </div>
 
@@ -23,14 +19,23 @@
 </div>
 </template>
 
-<!-- [correct !== key ? opacity:0.1]] -->
-
 <script>
 export default {
   name: 'Bars',
   props: {
     data: Object,
     correctAnswer:Array
+},
+
+methods: {
+  isCorrect: function(key){
+    for (let i=0;i<this.correctAnswer.length;i++){
+      if (key===this.correctAnswer[i]){
+        return true
+      }
+    }
+    return false
+},
 }
 }
 </script>
@@ -43,7 +48,7 @@ export default {
 }
 
 .falseAnswer{
-  opacity:0.1;
+  opacity:0.4;
 }
 
 .bar span {

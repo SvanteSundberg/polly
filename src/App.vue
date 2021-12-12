@@ -78,4 +78,8 @@ h3{
   margin-block-start: 0;
   margin-block-end: 0;
 }
+
+button:hover {
+  cursor: pointer;
+}
 </style>
