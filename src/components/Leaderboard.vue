@@ -10,8 +10,9 @@ export default {
   props: {
     users: Object
   },
+}
 
-</script>
+</script scoped>
 
 <style>
 
