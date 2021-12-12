@@ -1,13 +1,22 @@
 <template>
   <div v-bind:class='theme'>
-    {{this.userName}}
-    You answered {{this.answer}} which is {{this.correct}}
-    You have {{this.score}} points
+    <div v-if="this.correct">
+    <h3> Keep this going! </h3>
+    <p> You answered {{this.answer}} which is <span class="bold"> correct </span>
+    </p>
+  </div>
+    <div v-else>
+      <h3> You can do better! </h3>
+      <p> You answered {{this.answer}} which is <span class="bold"> wrong </span>
+      </p>
+    </div>
+    <p> You have {{this.score}} points </p>
+    <!-- ha med vilken plats på leaderboard-->
 
     <createPopup v-show="this.showPopup">
     <template v-slot:header> The quiz has come to an end... </template>
     <span>
-    You recieved {{this.score}}
+    You recieved {{this.score}} points
     </span>
     </createPopup>
 

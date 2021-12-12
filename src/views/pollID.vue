@@ -7,7 +7,7 @@
     <br>
     <input type="text" v-model="id" maxlength="15" placeholder="Type ID">
 
-  <button class="done" v-on:click="checkPollId" v-if="this.id.length>1">
+  <button class="done" v-on:click="checkPollId" v-if="this.id.length>0">
     Done
   </button>
 </div>
@@ -19,7 +19,7 @@
       Välj namn
     </h1>
     <input type="text" v-model="userName" maxlength="15">
-    <button class="done" v-on:click="sendUsername" v-if="!ready && this.userName.length>1">
+    <button class="done" v-on:click="sendUsername" v-if="!ready && this.userName.length>0">
     {{uiLabels.Done}}
 
   </button>

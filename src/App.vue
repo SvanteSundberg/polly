@@ -31,6 +31,10 @@
   font-style: italic;
 }
 
+.bold{
+  font-weight: bold;
+}
+
 
 #nav {
   padding: 30px;
