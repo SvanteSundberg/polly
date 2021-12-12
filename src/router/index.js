@@ -19,7 +19,7 @@ const routes = [
   component: () => import(/* webpackChunkName: "about" */ '../views/pollID.vue')
 },
     {
-    path: '/poll/:id/:lang',
+    path: '/poll/:id/:lang/:user',
     name: 'Poll',
     component: () => import(/* webpackChunkName: "about" */ '../views/Poll.vue')
   },
@@ -57,7 +57,7 @@ const routes = [
   },
 
   {
-  path: '/pollResult/:id/:lang',
+  path: '/pollResult/:id/:lang/:user',
   name: 'PollResult',
   component: () => import(/* webpackChunkName: "about" */ '../views/PollResult.vue')
   }

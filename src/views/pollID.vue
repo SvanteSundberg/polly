@@ -14,7 +14,7 @@
 
 
 
-  <div class="write" v-if="done===true && !ready">
+  <div class="write" v-if="done && !ready">
     <h1>
       Välj namn
     </h1>
@@ -30,7 +30,7 @@
     <h1> Get ready!</h1>
     <h2>Your username is: <span style="text-decoration:underline">{{this.userName}}</span></h2>
     <br>
-  <router-link  v-bind:to="'/poll/'+id+'/'+lang" tag="button">
+  <router-link  v-bind:to="'/poll/'+id+'/'+lang + '/'+userName" tag="button">
     <button class="done"> Lets start quizzing</button>
   </router-link>
 </div>
@@ -65,7 +65,7 @@ export default {
       if(!existing){
         alert('Id finns ej')
       }
-    } );
+    });
 
     socket.on('existingUsers', (existing)=>{
       this.uniqueName=existing;

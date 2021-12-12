@@ -88,11 +88,19 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   return []
 }
 
-Data.prototype.submitAnswer = function(pollId, answer) {
+Data.prototype.submitAnswer = function(pollId, answer, userName) {
   const poll = this.polls[pollId];
   console.log("answer submitted for ", pollId, answer);
   console.log(poll);
   if (typeof poll !== 'undefined') {
+    poll.users[userName].votings[poll.currentQuestion]=answer;
+    const correctAnswers=poll.questions[poll.currentQuestion].c;
+    const answerOptions = poll.questions[poll.currentQuestion].a;
+    for (let i=0; i<correctAnswers.length;i++){
+      if (answerOptions[correctAnswers[i]]==answer){
+        poll.users[userName].points+=100;
+      }
+    }
     let answers = poll.answers[poll.currentQuestion];
     if (typeof answers !== 'object') {
       answers = {};
@@ -104,7 +112,8 @@ Data.prototype.submitAnswer = function(pollId, answer) {
     else
       answers[answer] += 1
     console.log("answers looks like ", answers, typeof answers);
-    console.log(poll);
+    console.log(poll.users);
+    console.log(poll.users[userName].points);
   }
 }
 
@@ -173,8 +182,9 @@ Data.prototype.addUser=function(pollId,user){
 
   const poll = this.polls[pollId];
   const u= poll.users;
-  let c=0;
-  let p= { points:c}
+  let thisUser= {};
+  thisUser.points=0;
+  thisUser.votings=[];
   if(typeof u !== 'undefined'){
   for (let x in u){
     console.log(u);
@@ -184,7 +194,7 @@ Data.prototype.addUser=function(pollId,user){
     }
   }
 
-  u[user]=p;
+  u[user]=thisUser;
   console.log(u);
 
   return false
@@ -199,6 +209,24 @@ for (let p in this.polls){
   }
 }
 return false
+}
+
+Data.prototype.userInfo=function(pollId,userName){
+  const poll = this.polls[pollId];
+  const user= poll.users[userName];
+  const answer = user.votings[poll.currentQuestion];
+  let isCorrect=false;
+  const correctAnswers=poll.questions[poll.currentQuestion].c;
+  const answerOptions = poll.questions[poll.currentQuestion].a;
+  for (let i=0; i<correctAnswers.length;i++){
+    if (answerOptions[correctAnswers[i]]==answer){
+      isCorrect=true;
+    }
+  }
+
+  return {answer: poll.users[userName].votings[poll.currentQuestion],
+          correct: isCorrect,
+          score: user.points}
 }
 
 

@@ -1,12 +1,13 @@
 <template>
   <div v-bind:class='theme'>
     {{pollId}}
+    {{this.userName}}
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
     <pollPopup v-show="this.pollPopupVisable"/>
 
 
-    <router-link v-if="changeView" v-bind:to="'/pollResult/'+pollId+'/'+lang">
+    <router-link v-if="changeView" v-bind:to="'/pollResult/'+pollId+'/'+lang+'/'+userName">
       <button>
         HÄR
       </button>
@@ -49,6 +50,7 @@ export default {
   created: function () {
     this.pollId = this.$route.params.id;
     this.lang = this.$route.params.lang;
+    this.userName = this.$route.params.user;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -64,25 +66,18 @@ export default {
       this.theme = theme
     });
 
-    socket.on('sendUser', (user) => {
-      console.log("men kom jag verkligen hit??");
-      this.userName = user;
-    });
-
     socket.on('changeView', () =>{
       this.changeView=true;
       this.pollPopupVisable=false;
     });
 
-    socket.on("answered", () =>
-      this.pollPopupVisable=false
-    );
-
   },
   methods: {
     submitAnswer: function (answer) {
       console.log(answer);
-      socket.emit("submitAnswer", {pollId: this.pollId, answer: answer});
+      socket.emit("submitAnswer", {pollId: this.pollId,
+                                  answer: answer,
+                                  userName:this.userName});
       this.showPopup();
     },
 

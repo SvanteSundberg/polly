@@ -54,7 +54,7 @@ function sockets(io, socket, data) {
     data.setAnswersZero(pollId);
     io.to(pollId).emit('newQuestion', data.getQuestion(pollId));
     io.to(pollId).emit('dataUpdate', data.getAnswers(pollId));
-    io.to(pollId).emit('answered');
+    io.to(pollId).emit('moveOn');
   });
 
   socket.on('toPollResult', function(pollId){
@@ -63,7 +63,7 @@ function sockets(io, socket, data) {
 
   socket.on('submitAnswer', function(d) {
     console.log(d.answer);
-    data.submitAnswer(d.pollId, d.answer);
+    data.submitAnswer(d.pollId, d.answer,d.userName);
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
@@ -105,7 +105,12 @@ function sockets(io, socket, data) {
 
   socket.on('checkPollId', function(pollId){
     socket.emit('existingPolls',data.allIDs(pollId))
-  })
+  });
+
+  socket.on('getUserInfo', function(d){
+    console.log("Kom hit");
+    socket.emit('userInfo', data.userInfo(d.pollId,d.userName));
+  });
 
 
 }

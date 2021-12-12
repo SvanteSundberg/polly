@@ -1,5 +1,14 @@
 <template>
   <div v-bind:class='theme'>
+    {{this.userName}}
+    You answered {{this.answer}} which is {{this.correct}}
+    You have {{this.score}} points
+
+    <router-link v-if="!show" v-bind:to="'/poll/'+pollId+'/'+lang+'/'+userName">
+      <button>
+        HÄR
+      </button>
+    </router-link>
 
   </div>
 </template>
@@ -17,12 +26,18 @@ export default {
     return {
       pollId: "",
       theme:"",
-      lang:""
+      lang:"",
+      userName:"",
+      score:"",
+      answer:"",
+      correct:false,
+      show:true,
     }
   },
   created: function () {
     this.pollId = this.$route.params.id;
     this.lang = this.$route.params.lang;
+    this.userName = this.$route.params.user;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -35,6 +50,18 @@ export default {
     socket.emit("loadTheme",this.pollId);
     socket.on("initial", (theme) => {
       this.theme = theme
+    });
+    socket.emit("getUserInfo", {pollId:this.pollId,
+                               userName:this.userName});
+
+    socket.on("userInfo",(userInfo) => {
+      this.score = userInfo.score;
+      this.correct=userInfo.correct;
+      this.answer=userInfo.answer;
+    });
+
+    socket.on("moveOn",()=> {
+      this.show = false;
     });
 
   },
