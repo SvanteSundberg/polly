@@ -4,12 +4,12 @@
 
     <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'/>
 
-<router-link v-if="finished===false" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
+<router-link v-if="!finished" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
     <button v-on:click="runQuestion">
       Run next question
     </button>
   </router-link>
-  <router-link v-if="finished===true" v-bind:to="'/'">
+  <router-link v-if="finished" v-bind:to="'/'">
       <button>
         Back to Start
       </button>
@@ -66,7 +66,6 @@ export default {
     socket.on("initial", (theme) => {
       this.theme = theme
     });
-
     socket.emit("checkLastQuestion", this.pollId);
     socket.on("isLastQuestion", (isFinished) => {
       this.finished = isFinished;

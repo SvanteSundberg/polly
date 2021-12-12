@@ -4,6 +4,13 @@
     You answered {{this.answer}} which is {{this.correct}}
     You have {{this.score}} points
 
+    <createPopup v-show="this.showPopup">
+    <template v-slot:header> The quiz has come to an end... </template>
+    <span>
+    You recieved {{this.score}}
+    </span>
+    </createPopup>
+
     <router-link v-if="!show" v-bind:to="'/poll/'+pollId+'/'+lang+'/'+userName">
       <button>
         HÄR
@@ -15,12 +22,14 @@
 
 <script>
 // @ is an alias to /src
+import createPopup from '@/components/createPopup.vue';
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
   name: 'PollResult',
   components: {
+    createPopup
   },
   data: function () {
     return {
@@ -31,7 +40,8 @@ export default {
       score:"",
       answer:"",
       correct:false,
-      show:true,
+      show: true,
+      showPopup:false,
     }
   },
   created: function () {
@@ -44,9 +54,15 @@ export default {
     });
     socket.emit('joinPoll', {pollId: this.pollId,
                             questionNumber: null});
-    socket.on("newQuestion", q =>
-      this.question = q
-    );
+    socket.emit("checkLastQuestion", this.pollId);
+    socket.on("isLastQuestion", (isFinished) => {
+      if (isFinished){
+        this.show=true;
+        console.log(this.show);
+        this.showPopup=true;
+      }
+    });
+
     socket.emit("loadTheme",this.pollId);
     socket.on("initial", (theme) => {
       this.theme = theme
@@ -65,9 +81,6 @@ export default {
     });
 
   },
-  methods: {
-
-  }
 
 }
 //;showPopup()

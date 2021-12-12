@@ -12,13 +12,12 @@ v-bind:key="i">
   <input type="checkbox"
          v-model="selectedQuestions"
          v-bind:value="i">
-    <label for="i"> {{i+1}}. {{value.q}}</label>
 
 <div class="dropdown">
-  <button>
-    Show Answers
+  <button v-on:click="changeDropdown(i)">
+    <label for="i"> {{i+1}}. {{value.q}}</label>
     </button>
-    <div class="dropdown-content">
+    <div v-bind:class="['dropdown-content',{dropdownShow:this.dropDownVisable[i]}]">
     <p v-for="value in this.questions[i].a"
         v-bind:key="value">{{value}}
       <span> <hr> </span> </p>
@@ -56,7 +55,7 @@ export default {
       questions:"",
       selectedQuestions: [],
       lang: "",
-      dropDownVisable: false,
+      dropDownVisable: [],
       theme:""
     }
   },
@@ -76,6 +75,10 @@ export default {
       this.theme = theme
     });
 
+    for (let i;i<this.questions.length;i++){
+      this.dropDownVisable[i]=false;
+    }
+
   },
 
   methods: {
@@ -86,12 +89,12 @@ export default {
       socket.emit("setAnswers", this.id);
     },
 
-    changeDropdown: function(){
-      if (this.dropDownVisable){
-        this.dropDownVisable=false;
+    changeDropdown: function(index){
+      if (this.dropDownVisable[index]){
+        this.dropDownVisable[index]=false;
       }
       else{
-        this.dropDownVisable=true;
+        this.dropDownVisable[index]=true;
       }
     }
   },
@@ -122,11 +125,11 @@ label {
   display: none;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdownShow {
   background-color:white;
   border:1px solid black;
-  display: inline-block;
-  position:absolute;
+  display:block;
+  position:relative;
   min-width: 200px;
   z-index: 1;
 }
