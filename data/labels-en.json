@@ -2,7 +2,7 @@
 	"sales-pitch": "Simply. Great. Polling.",
 	"invite": "Invite participants with this link:",
 	"createPoll": "Create poll",
-	"participatePoll": "Join poll",
+	"participatePoll": "Participate in poll",
 	"question": "Write Question",
 	"changeLanguage": "Byt till svenska",
 	"welcome": "Welcome quizzer!",
@@ -11,9 +11,10 @@
 	"Done":"Done",
 	"theme":"Select Theme",
 	"answers":"Write your answers and mark the correct one",
-  "typeAnswer":"Skriv ditt svarsalternativ här",
-	"selectQuestions":"Play Quiz",
+	"typeAnswer":"Type answer",
+	"typeQuestion":"Type question",
 	"addQuestion": "Add new Question",
+	"selectQuestions":"Play Quiz",
 	"party":"Party",
 	"school":"School",
 	"standard":"Standard",
@@ -21,7 +22,14 @@
   "pollID":"pollID",
 	"addAnswer":"Add answer",
 	"removeQuestion":"Delete Question",
-	"Language":"Language"
-
-
+	"Language":"Language",
+	"questionNumber":"Question number",
+	"nowEdit":"You are now editing poll:",
+	"overview":"Overview",
+  "backToStart":"Back to start",
+	"selectTheme":"Select Theme",
+	"typeID":"Type Poll ID",
+	"pleaseMakeSureTo":"Please make sure to:",
+	"chooseRight":"Choose right answers to all question!",
+	"typeSomething":"Type something in all your questions!"
 }
