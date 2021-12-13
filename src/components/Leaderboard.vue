@@ -1,7 +1,9 @@
 <template>
-<div v-for
-{{question.q}}</p>
+<div v-for="user in this.users" v-bind:key ="user">
+  {{user}}
+</div>
 </template>
+
 
 <script>
 

@@ -3,6 +3,7 @@
     {{this.question}}
 
     <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'/>
+    <Leaderboard v-bind:users="this.users"/>
 
 <router-link v-if="!finished" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
     <button v-on:click="runQuestion">
@@ -14,9 +15,6 @@
         Back to Start
       </button>
     </router-link>
-    <div v-for="user in this.users" v-bind:key ="user">
-      {{user}}
-    </div>
   </div>
 
 </template>
