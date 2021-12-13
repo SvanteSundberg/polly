@@ -10,7 +10,7 @@
   </div>
 
   <router-link v-bind:to="'/creatorPoll/'+id+'/'+lang">
-  <button>
+  <button v-on:click="startPoll">
     Let's go
   </button>
   </router-link>
@@ -27,7 +27,7 @@ export default {
       uiLabels: {},
       id: "",
       lang: "",
-      theme:"",
+      theme:""
     }
   },
   created: function () {
@@ -46,6 +46,9 @@ export default {
   },
 
   methods: {
+    startPoll: function(){
+      socket.emit("timeToStart", this.id);
+    }
 
   },
 }

@@ -81,6 +81,10 @@ export default {
       this.pollPopupVisable=false;
     });
 
+    socket.on('timeToStart',()=>{
+      console.log("Waitingroom has spoken");
+    });
+
   },
   methods: {
     submitAnswer: function (answer) {

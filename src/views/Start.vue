@@ -6,11 +6,6 @@
   </header>
 
   <div id="nav">
-    <div id="languageDiv">
-    <button id="languageButton" v-on:click="switchLanguage">
-      <img id="languageLogo" src="https://www.pngitem.com/pimgs/m/31-311919_languages-icon-png-free-transparent-png.png">
-      {{uiLabels.changeLanguage}}</button>
-  </div>
     <div id="startButtons">
     <router-link v-bind:to="'/createID/'+lang">
       <button id="createButton">
@@ -23,7 +18,7 @@
         Edit existing poll
         </button>
     </router-link>
-    
+
     <router-link v-bind:to="'/pollID/'+lang" tag="button">
       <button id="participateButton">
       {{uiLabels.participatePoll}}
@@ -62,13 +57,6 @@ export default {
     })
   },
   methods: {
-    switchLanguage: function() {
-      if (this.lang === "en")
-        this.lang = "sv"
-      else
-        this.lang = "en"
-      socket.emit("switchLanguage", this.lang)
-    },
     selectSv:function(){
       this.lang="sv";
       socket.emit("switchLanguage", this.lang)

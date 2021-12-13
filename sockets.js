@@ -62,7 +62,6 @@ function sockets(io, socket, data) {
   });
 
   socket.on('submitAnswer', function(d) {
-    console.log(d.answer);
     data.submitAnswer(d.pollId, d.answer,d.userName);
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
@@ -111,8 +110,11 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getUserInfo', function(d){
-    console.log("Kom hit");
     socket.emit('userInfo', data.userInfo(d.pollId,d.userName));
+  });
+
+  socket.on('timeToStart',function(pollId){
+    io.to(pollId).emit('timeToStart');
   });
 
 
