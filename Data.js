@@ -158,6 +158,15 @@ Data.prototype.addIndex=function(pollId){
   poll.currentIndex++;
   poll.currentQuestion=poll.selectedQuestions[poll.currentIndex];
 }
+Data.prototype.returnUsers=function(pollId){
+  const poll = this.polls[pollId];
+  let pointsAndUsers = [];
+  for (let a in poll.users){
+    pointsAndUsers.push([a, poll.users[a].points]);
+  }
+  pointsAndUsers.sort(function(a,b){return b[1] - a[1];});
+  return pointsAndUsers
+}
 
 Data.prototype.checkIfFinished=function(pollId){
   const poll = this.polls[pollId];

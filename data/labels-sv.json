@@ -12,6 +12,7 @@
 	"theme": "Välj tema",
 	"answers":"Skriv svaren och klicka i det korrekta:",
 	"typeAnswer":"Skriv ditt svarsalternativ här",
+	"typeQuestion":"Skriv din fråga här",
 	"addQuestion":"Lägg till en ny fråga",
 	"selectQuestions": "Spela Quizet",
 	"party":"Fest",
@@ -21,7 +22,15 @@
 	"pollID":"RöstningsID",
   "addAnswer":"Lägg till svar",
 	"removeQuestion":"Radera fråga",
-	"Language":"Språk"
-
+	"Language":"Språk",
+	"questionNumber":"Fråga nummer",
+	"nowEdit":"Du redigerar nu röstningen:",
+	"overview":"Översikt",
+	"backToStart":"Tillbaka till start",
+	 "selectTheme":"Välj tema",
+	 "typeID":"Skriv röstningsID",
+	 "pleaseMakeSureTo":"Vänligen se till att:",
+	 "chooseRight":"Välja korrekta svar till varje fråga!",
+	 "typeSomething":"Skriv något i varje fråga!"
 
 }

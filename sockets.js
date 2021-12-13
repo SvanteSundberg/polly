@@ -92,6 +92,9 @@ function sockets(io, socket, data) {
   socket.on("checkLastQuestion", function(pollId){
     socket.emit("isLastQuestion", data.checkIfFinished(pollId));
   });
+  socket.on("requestUsers", function(pollId){
+    socket.emit("getUsers", data.returnUsers(pollId));
+  });
 
   socket.on("setCorrectAnswer",function(d){
     data.markCorrect(d.pollId, d.questionNumber,d.correctIndex);

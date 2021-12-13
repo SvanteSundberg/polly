@@ -1,12 +1,12 @@
 <template>
 <div v-bind:class='theme'>
   <header>
-  <h3>You are now editing the poll <span class="cursive">{{this.pollId}} </span></h3>
+   <h3>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h3>
   <hr>
 </header>
 
 <div class="split left">
-  <p> Question number {{this.currentIndex+1}} <button id="remove"
+    <p> {{uiLabels.questionNumber}} {{this.currentIndex+1}} <button id="remove"
   v-on:click="removeQuestion">
   {{uiLabels.removeQuestion}}
 </button> </p>
@@ -16,7 +16,7 @@
     <input type="text"
           v-model="question"
           v-on:change="saveQuestion"
-          placeholder="Type question">
+          :placeholder="uiLabels.typeQuestion">
     <br>
     <p> {{uiLabels.answers}}:</p>
 
@@ -26,7 +26,7 @@
                 v-bind:key="'answer'+i"
                 v-on:change="saveQuestion"
                 v-bind:class="'answer'+i"
-                placeholder="Type answer"
+                :placeholder="uiLabels.typeAnswer"
                 maxlength="50">
                </textarea>
       <button v-for="(_,i) in answers"
@@ -52,7 +52,7 @@
 
 <router-link v-bind:to="'/'">
 <button>
-  Back to start
+  {{uiLabels.backToStart}}
 </button>
 </router-link>
 
@@ -74,9 +74,9 @@
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> Quizzer </template>
-<span> Please make sure to:
-<li> Choose right answers to all question!</li>
-<li> Type something in all your questions! </li>
+<span> {{uiLabels.pleaseMakeSureTo}}
+<li>{{uiLabels.chooseRight}}</li>
+<li> {{uiLabels.typeSomething}} </li>
 </span>
 </createPopup>
 
@@ -85,10 +85,10 @@
 <div class="split right">
 <div class="scroll">
   <div id="questionWrap">
-    <h3> Overview </h3>
+     <h3> {{uiLabels.overview}} </h3>
     <router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
     <button class="sideQuestion">
-      Select theme
+      {{uiLabels.selectTheme}}
     </button>
   </router-link>
   <button v-for="(_, i) in this.allQuestions"
@@ -96,7 +96,7 @@
           v-on:click="goToQuestion(i)"
           v-bind:class="['sideQuestion',{activeQuestion:this.currentIndex === i}]">
 
-    Question {{i+1}}
+    {{uiLabels.sideQuestion}} {{i+1}}
     <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
   </button>
 </div>
