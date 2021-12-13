@@ -13,7 +13,14 @@ export default {
   methods: {
     answer: function (answer) {
       this.$emit("answer", answer);
-    } 
+    }
   }
 }
 </script>
+
+<style scoped>
+p{
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+</style>

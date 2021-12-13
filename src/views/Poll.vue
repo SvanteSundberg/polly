@@ -1,20 +1,18 @@
 <template>
   <div v-bind:class='theme'>
-    {{pollId}}
-    {{this.userName}}
-    <Question v-bind:question="question"
+
+    <Question v-if="!changeView" v-bind:question="question"
               v-on:answer="submitAnswer"/>
     <pollPopup v-show="this.pollPopupVisable"/>
 
+    <UserResults v-on:finished="isFinished" v-bind:userName="this.userName" v-bind:uiLabels="this.uiLabels" v-if="changeView"/>
 
-    <router-link v-if="changeView" v-bind:to="'/pollResult/'+pollId+'/'+lang+'/'+userName">
-      <button>
-        HÄR
-      </button>
-    </router-link>
-    <!-- OBS tillfällig lösning -->
-
-    {{this.userName}}
+    <createPopup v-show="this.showCreatePopup">
+    <template v-slot:header> The quiz has come to an end... </template>
+    <span>
+    You recieved {{this.points}} points
+    </span>
+    </createPopup>
 
   </div>
 
@@ -23,7 +21,9 @@
 <script>
 // @ is an alias to /src
 import Question from '@/components/Question.vue';
-import pollPopup from '@/components/pollPopup.vue'
+import UserResults from '@/components/UserResults.vue';
+import pollPopup from '@/components/pollPopup.vue';
+import createPopup from '@/components/createPopup.vue';
 import io from 'socket.io-client';
 const socket = io();
 
@@ -31,7 +31,9 @@ export default {
   name: 'Poll',
   components: {
     Question,
-    pollPopup
+    pollPopup,
+    UserResults,
+    createPopup
   },
   data: function () {
     return {
@@ -44,7 +46,10 @@ export default {
       pollPopupVisable:false,
       lang:"",
       changeView:false,
-      userName:""
+      userName:"",
+      showCreatePopup:false,
+      uiLabels:{},
+      points:0,
     }
   },
   created: function () {
@@ -67,7 +72,12 @@ export default {
     });
 
     socket.on('changeView', () =>{
-      this.changeView=true;
+      if (this.changeView){
+        this.changeView=false;
+      }
+      else{
+        this.changeView=true;
+      }
       this.pollPopupVisable=false;
     });
 
@@ -81,10 +91,16 @@ export default {
       this.showPopup();
     },
 
-    showPopup() {
+    showPopup: function() {
         this.pollPopupVisable = true;
         console.log(this.pollPopupVisable)
       },
+
+      isFinished: function(points){
+        this.points=points;
+        setTimeout(() => this.showCreatePopup = true, 2800);
+
+      }
   }
 }
 //;showPopup()
