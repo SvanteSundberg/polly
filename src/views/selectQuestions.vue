@@ -36,21 +36,37 @@ v-bind:key="i">
 </button>
 </router-link>
 
-<router-link v-bind:to="'/creatorPoll/'+id+'/'+lang">
+<router-link v-if="this.selectedQuestions.length>0" v-bind:to="'/waitingRoom/'+id+'/'+lang">
 <button v-on:click="sendQuestions">
   Play Quiz
 </button>
 </router-link>
+
+<button v-if="this.selectedQuestions.length===0"
+        v-on:click="showPopup(true)">
+  Play Quiz
+</button>
+
+<createPopup v-on:stop="showPopup(false)"
+            v-show="this.popupVisable">
+<template v-slot:header> Quizzer </template>
+<span> Please choose at least one question before continuing!
+</span>
+</createPopup>
 
 </div>
 </div>
 </template>
 <script>
 
+import createPopup from '@/components/createPopup.vue'
 import io from 'socket.io-client';
 const socket = io();
 export default {
   name: 'SelectQuestions',
+  components: {
+    createPopup
+  },
   data: function () {
     return {
       uiLabels: {},
@@ -59,7 +75,9 @@ export default {
       selectedQuestions: [],
       lang: "",
       dropDownVisable: [],
-      theme:""
+      theme:"",
+      popupVisable:false,
+
     }
   },
   created: function () {
@@ -109,6 +127,10 @@ export default {
         }
       }
       return false
+  },
+
+  showPopup:function(value){
+    this.popupVisable=value;
   },
 }
 }

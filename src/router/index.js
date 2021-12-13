@@ -60,7 +60,20 @@ const routes = [
   path: '/pollResult/:id/:lang/:user',
   name: 'PollResult',
   component: () => import(/* webpackChunkName: "about" */ '../views/PollResult.vue')
+  },
+
+  {
+  path: '/waitingRoom/:id/:lang/',
+  name: 'WaitingRoom',
+  component: () => import(/* webpackChunkName: "about" */ '../views/WaitingRoom.vue')
+  },
+
+  {
+  path: '/editID/:lang/',
+  name: 'EditID',
+  component: () => import(/* webpackChunkName: "about" */ '../views/EditID.vue')
   }
+
 ]
 
 const router = createRouter({
