@@ -30,10 +30,13 @@ Data.prototype.deleteQuestion=function(pollId,currentIndex){
 
 Data.prototype.setQuestions=function(pollId,questions){
   const poll = this.polls[pollId];
+  poll.currentIndex=0;
+  poll.users={};
   poll.selectedQuestions=questions;
   poll.currentQuestion=poll.selectedQuestions[poll.currentIndex];
-
+  poll.answers=[];
 }
+
 
 Data.prototype.getAllQuestions=function(pollId){
   return this.polls[pollId].questions

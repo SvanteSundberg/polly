@@ -18,7 +18,7 @@
 import io from 'socket.io-client';
 const socket = io();
 export default {
-  name: 'Create',
+  name: 'CreateID',
   data: function () {
     return {
       lang: "",
