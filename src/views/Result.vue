@@ -14,6 +14,9 @@
         Back to Start
       </button>
     </router-link>
+    <div v-for="user in this.users" v-bind:key ="user">
+      {{user}}
+    </div>
   </div>
 
 </template>
@@ -37,7 +40,8 @@ export default {
       theme:"",
       pollId:"",
       finished: false,
-      lang:""
+      lang:"",
+      users:""
     }
   },
   created: function () {
@@ -70,6 +74,11 @@ export default {
     socket.on("isLastQuestion", (isFinished) => {
       this.finished = isFinished;
     });
+    socket.emit("requestUsers", this.pollId);
+      socket.on("getUsers",(getUsers) => {
+        this.users = getUsers;
+      });
+
   },
 
 methods: {
