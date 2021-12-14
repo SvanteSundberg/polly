@@ -31,5 +31,6 @@
 	"typeID":"Type Poll ID",
 	"pleaseMakeSureTo":"Please make sure to:",
 	"chooseRight":"Choose right answers to all question!",
-	"typeSomething":"Type something in all your questions!"
+	"typeSomething":"Type something in all your questions!",
+	"editPoll": "Edit existing poll"
 }

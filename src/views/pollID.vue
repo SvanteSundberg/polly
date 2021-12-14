@@ -8,7 +8,7 @@
     <input type="text" v-model="id" maxlength="15" placeholder="Type ID">
 
   <button class="done" v-on:click="checkPollId" v-if="this.id.length>0">
-    Done
+    {{uiLabels.Done}}
   </button>
 </div>
 
