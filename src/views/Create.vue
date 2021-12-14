@@ -13,7 +13,7 @@
           v-on:click="sendTime(i)">
           {{this.timer[i]}}
   </button>
-<button v-on:click="this.timerOn=false"> None</button>
+<button v-on:click="setTimeBooleans"> None</button>
 </div>
 
 <div class="split left">
@@ -139,7 +139,8 @@ export default {
       correctQuestion:[],
       popupVisable:false,
       timerOn:false,
-      timer:[10,30,60]
+      timer:[10,30,60],
+      noTimer:false
     }
   },
   created: function() {
@@ -272,9 +273,18 @@ export default {
     },
 
     sendTime:function(i){
+      if(!this.noTimer){
       console.log(this.timer[i]);
-      socket.emit('timer',this.pollId, this.timer[i]);
+      socket.emit('timer',this.pollId, this.timer[i]);}
+      else {
+      socket.emit('timer',this.pollId, 0);}
+    },
+
+    setTimeBooleans:function(){
+      this.timerOn=false;
+      this.noTimer=true;
     }
+
 
   }
 }

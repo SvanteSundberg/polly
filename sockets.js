@@ -55,6 +55,7 @@ function sockets(io, socket, data) {
     io.to(pollId).emit('newQuestion', data.getQuestion(pollId));
     io.to(pollId).emit('dataUpdate', data.getAnswers(pollId));
     io.to(pollId).emit('changeView');
+    io.to(pollId).emit('timeStarts');
   });
 
   socket.on('toPollResult', function(pollId){

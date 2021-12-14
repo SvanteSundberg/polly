@@ -1,6 +1,5 @@
 <template>
-  <div v-bind:class='theme'>
-    {{this.time}}
+  <div v-bind:class='theme' >
     <p> {{question.q}}
     </p>
     <div class="allAnswers">
@@ -15,17 +14,23 @@
   </router-link>
   </div>
 
+<Timer v-if="this.time>0" v-bind:time="this.time" v-on:start="startTimer(this.time)"/>
+  <div v-if="timesUp===true"> tiden är ute</div>
   </div>
 
 </template>
 
 <script>
 // @ is an alias to /src
+import Timer from '@/components/Timer.vue'
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
   name: 'CreatorPoll',
+  components: {
+    Timer
+  },
   data: function () {
     return {
       question: "",
@@ -33,7 +38,8 @@ export default {
       pollId:"",
       lang:"",
       uiLabels:{},
-      time:0
+      time:0,
+      timesUp:false
     }
   },
   created: function () {
@@ -71,7 +77,22 @@ export default {
   methods: {
     toPollResult: function(){
       socket.emit('toPollResult', this.pollId);
-    }
+    },
+
+   startTimer:function(seconds) {
+     let counter = seconds;
+     const interval = setInterval(() => {
+       if (counter > 0 ) {
+      console.log(counter);
+      counter--;
+      this.time--;
+  }
+  else{clearInterval(interval);
+      console.log('klar')
+      this.timesUp=true;}
+}, 1000);
+}
+
   }
 
 }

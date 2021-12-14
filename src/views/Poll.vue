@@ -14,6 +14,7 @@
     </span>
     </createPopup>
 
+<div v-if="this.timeOn">Tid: {{this.time}}</div>
   </div>
 
 </template>
@@ -24,6 +25,7 @@ import Question from '@/components/Question.vue';
 import UserResults from '@/components/UserResults.vue';
 import pollPopup from '@/components/pollPopup.vue';
 import createPopup from '@/components/createPopup.vue';
+//import startTimer from '@/views/CreatorPoll.vue';
 import io from 'socket.io-client';
 const socket = io();
 
@@ -50,6 +52,8 @@ export default {
       showCreatePopup:false,
       uiLabels:{},
       points:0,
+      time:0,
+      timeOn:false
     }
   },
   created: function () {
@@ -62,9 +66,10 @@ export default {
     });
     socket.emit('joinPoll', {pollId: this.pollId,
                             questionNumber: null});
-    socket.on("newQuestion", q =>
-      this.question = q
-    );
+    socket.on("newQuestion", q =>{
+      this.question = q;
+    });
+
     socket.emit("loadTheme",this.pollId);
 
     socket.on("initial", (theme) => {
@@ -85,6 +90,17 @@ export default {
       console.log("Waitingroom has spoken");
     });
 
+    socket.emit('getTime',this.pollId);
+
+    socket.on("setTime", (time)=>{
+      this.time=time;
+      console.log('här är tiden'+this.time);
+    });
+
+    socket.on('timeStarts',()=>{
+      this.timeOn=true;
+    })
+
   },
   methods: {
     submitAnswer: function (answer) {
@@ -93,6 +109,7 @@ export default {
                                   answer: answer,
                                   userName:this.userName});
       this.showPopup();
+      this.timeOn=false;
     },
 
     showPopup: function() {

@@ -86,6 +86,7 @@ methods: {
   runQuestion: function() {
     socket.emit("runQuestion", this.pollId);
     socket.emit("nextQ",this.pollId);
+    socket.emit("startTimer",this.pollId);
   },
 }
 
