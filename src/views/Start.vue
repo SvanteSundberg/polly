@@ -15,7 +15,7 @@
 
     <router-link v-bind:to="'/editID/'+lang">
       <button id="editButton">
-        Edit existing poll
+        {{uiLabels.editPoll}}
         </button>
     </router-link>
 
@@ -100,6 +100,10 @@ transition-duration: 0.5s;
   border: 1px solid #fff;
   box-shadow: 2px 2px 20px #AFE9FF;
 }
+#editButton:hover{
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 20px #AFE9FF;
+}
 
 #startButtons{
 
@@ -123,6 +127,14 @@ transition-duration: 0.5s;
   height: 70px;
   border: 1px solid #00A6FF;
 }
+  #editButton{
+    background-color: #CD5C5C;
+    width: 200px;
+    height: 70px;
+    border: 1px solid #CD5C5C;
+  }
+
+
 #languageButton{
   align-items: center;
   background-color: #fff;
