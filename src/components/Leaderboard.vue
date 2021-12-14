@@ -40,11 +40,13 @@ export default {
 }
 
 body{
+  border: 5px solid snow;
   background:#505050 ;
   color:snow;
   margin-left: 550px;
   margin-right:500px;
   border-radius: 25px;
+
 }
 #UserInLeaderborad{
   border: 5px solid cyan;
