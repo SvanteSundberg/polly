@@ -1,5 +1,6 @@
 <template>
   <div v-bind:class='theme'>
+    {{this.time}}
     <p> {{question.q}}
     </p>
     <div class="allAnswers">
@@ -31,7 +32,8 @@ export default {
       theme:"",
       pollId:"",
       lang:"",
-      uiLabels:{}
+      uiLabels:{},
+      time:0
     }
   },
   created: function () {
@@ -54,6 +56,16 @@ export default {
     socket.on("initial", (theme) => {
       this.theme = theme
     });
+
+
+    socket.emit('getTime',this.pollId);
+
+    socket.on("setTime", (time)=>{
+      this.time=time;
+      console.log('här är tiden'+this.time);
+    })
+
+
 
   },
   methods: {

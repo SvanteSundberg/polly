@@ -53,10 +53,19 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.selectedQuestions=[];
     poll.currentIndex = 0;
     poll.users={};
+    poll.time=0;
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
   return this.polls[pollId];
+}
+
+Data.prototype.setTimer=function(pollId,time){
+  this.polls[pollId].time=time;
+}
+
+Data.prototype.sendTime=function(pollId){
+  return this.polls[pollId].time
 }
 
 Data.prototype.chooseTheme = function (pollId, theme) {
