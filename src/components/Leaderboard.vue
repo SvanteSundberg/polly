@@ -1,7 +1,21 @@
 <template>
-<div v-for="user in this.users" v-bind:key ="user">
-  {{user}}
-</div>
+<body>
+				<h1>Leaderboard</h1>
+
+			<div class="body">
+				<ol v-for= "user in this.users" v-bind:key ="user">
+          <div id="UserInLeaderborad">
+
+						<small>{{user[0]}}: {{user[1]}}</small>
+
+          </div>
+				</ol>
+
+      </div>
+
+
+</body>
+
 </template>
 
 
@@ -17,5 +31,32 @@ export default {
 </script>
 
 <style scoped>
+
+*{
+
+  line-height: 1.5;
+  transition: all .3s ease-in-out;
+  font-family: "Josefin Sans", Arial;
+}
+
+body{
+  background:#505050 ;
+  color:snow;
+  margin-left: 550px;
+  margin-right:500px;
+  border-radius: 25px;
+}
+#UserInLeaderborad{
+  border: 5px solid cyan;
+  box-shadow: 0 0 20px cyan;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  margin-right: 30px;
+  text-align: center;
+
+
+}
+
+
 
 </style>
