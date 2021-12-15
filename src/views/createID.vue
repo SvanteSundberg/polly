@@ -1,14 +1,18 @@
 <template>
   <div class='standard'>
-<label>
-  {{uiLabels.writePollID}}
+    
+    <h1>{{uiLabels.writePollID}}</h1>
   <br>
-  <input type="text" v-model="pollId" :placeholder="uiLabels.typeID">
-</label>
-
-<button class="done" v-on:click="checkID">
+  <div class="gridWrap">
+  <div class="leftColumn">
+  <input class="writeInput" type="text" v-model="pollId" :placeholder="uiLabels.typeID">
+</div>
+<div class="rightColumn">
+<button class="doneBtn" v-on:click="checkID" v-if="this.pollId.length>0">
   {{uiLabels.Done}}
 </button>
+</div>
+</div>
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
@@ -75,22 +79,6 @@ export default {
 
 
 <style>
-.buttonDone{
-  background-color:#2ECC40;
-  border: 1px solid #2ECC40;
-  border-radius: 20px;
-  cursor: pointer;
-  color: #fff;
-  text-align:  center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-left:  10px;
-}
 
-.buttonDone:hover{
-  border: 1px solid #fff;
-}
 
 </style>

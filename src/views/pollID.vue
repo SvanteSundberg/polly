@@ -1,37 +1,61 @@
 <template>
   <div class='standard'>
-  <div class= "write" v-if="done===false">
+  <div  v-if="done===false">
     <h1>
       {{uiLabels.writePollID}}
     </h1>
     <br>
-    <input type="text" v-model="id" maxlength="15" placeholder="Type ID">
-
-  <button class="done" v-on:click="checkPollId" v-if="this.id.length>0">
+    <div class="gridWrap">
+    <div class="leftColumn">
+    <input class="writeInput" type="text" v-model="id" maxlength="15" placeholder="Type ID">
+    </div>
+    <div class="rightColumn">
+  <button class="doneBtn" v-on:click="checkPollId" v-if="this.id.length>0">
     {{uiLabels.Done}}
   </button>
 </div>
+</div>
+<createPopup v-on:stop="showPopup(false)"
+            v-show="this.popupVisable">
+<template v-slot:header> Quizzer </template>
+<span> ID does not exists </span>
+</createPopup>
+</div>
 
-  <div class="write" v-if="done && !ready">
+  <div  v-if="done && !ready">
     <h1>
       Välj namn
     </h1>
-    <input type="text" v-model="userName" maxlength="15">
-    <button class="done" v-on:click="sendUsername" v-if="!ready && this.userName.length>0">
+    <br>
+    <div class="gridWrap">
+    <div class="leftColumn">
+    <input class="writeInput" type="text" v-model="userName" maxlength="15">
+  </div>
+  <div class="rightColumn">
+    <button class="doneBtn" v-on:click="sendUsername" v-if="!ready && this.userName.length>0">
     {{uiLabels.Done}}
 
   </button>
-
+  </div>
+  </div>
+  <createPopup v-on:stop="showPopup(false)"
+              v-show="this.popupVisable">
+  <template v-slot:header> Quizzer </template>
+  <span> Name already exists </span>
+  <!--<template v-slot:button> Quizzer </template>-->
+  </createPopup>
   </div>
   </div>
 </template>
 
 <script>
 // v-bind:to="'/poll/'+id"
+import createPopup from '@/components/createPopup.vue';
 import io from 'socket.io-client';
 const socket = io();
 export default {
   name: 'pollID',
+  components: {createPopup},
   data: function () {
     return {
       uiLabels: {},
@@ -39,7 +63,8 @@ export default {
       lang: "",
       done:false,
       userName:"",
-      ready:false
+      ready:false,
+      popupVisable: false
     }
   },
   created: function () {
@@ -51,13 +76,15 @@ export default {
     socket.on('existingPolls', (existing)=>{
       this.done=existing;
       if(!existing){
-        alert('Id finns ej')
+        this.showPopup(true);
+        /*alert('Id finns ej')*/
       }
     });
 
     socket.on('existingUsers', (existing)=>{
       if(existing){
-        alert('Namn upptaget')
+        this.showPopup(true);
+      /*  alert('Namn upptaget')*/
       }
       else {
         this.$router.replace('/poll/'+this.id+'/'+this.lang+'/'+this.userName);
@@ -71,45 +98,17 @@ export default {
 
     checkPollId:function(){
       socket.emit('checkPollId',this.id);
+    },
+
+    showPopup:function(value){
+      this.popupVisable=value;
     }
   }
 }
 </script>
 
 <style>
-.write input{
-  border-radius: 20px;
-  border: white;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  outline: none;
-  box-shadow: 0px 2px 2px rgba(0,0,0,0.11);
 
-}
 
-.write{
-  margin:auto;
-}
-
-.done{
-  background-color:#2ECC40;
-  border: 1px solid #2ECC40;
-  border-radius: 20px;
-  cursor: pointer;
-  color: #fff;
-  text-align:  center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-left:  10px;
-}
-
-.done:hover{
-  border: 1px solid #fff;
-
-}
 
 </style>
