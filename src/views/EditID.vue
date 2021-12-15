@@ -5,13 +5,7 @@
   <input type="text" v-on:change="checkID" v-model="pollId" placeholder="Type name of the poll">
 </label>
 
-<router-link v-if="!unique" v-bind:to="'/create/'+pollId+'/'+lang">
-<button>
-  {{uiLabels.Done}}
-</button>
-</router-link>
-
-<button v-if="unique" v-on:click="showPopup(true)">
+<button class="done" v-on:click="checkID">
   {{uiLabels.Done}}
 </button>
 
@@ -49,7 +43,12 @@ export default {
       this.uiLabels = labels
     });
     socket.on('existingPolls', (existing)=>{
-      this.unique= !existing;
+      if (existing){
+        this.$router.replace('/create/'+this.pollId+'/'+this.lang);
+      }
+      else{
+        this.showPopup(true);
+      }
     });
     },
     methods: {
@@ -58,7 +57,7 @@ export default {
           socket.emit('checkPollId', this.pollId);
         }
         else{
-          this.unique=true;
+          this.showPopup(true);
         }
       },
       showPopup:function(value){
