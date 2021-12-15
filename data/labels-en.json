@@ -32,5 +32,6 @@
 	"pleaseMakeSureTo":"Please make sure to:",
 	"chooseRight":"Choose right answers to all question!",
 	"typeSomething":"Type something in all your questions!",
-	"editPoll": "Edit existing poll"
+	"editPoll": "Edit existing poll",
+	"fillCorrect": "That the correct answer isn't empty!"
 }
