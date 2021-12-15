@@ -1,6 +1,15 @@
 <template>
   <div v-bind:class='theme'>
+    tiden {{this.time}}
+    timeon {{this.timeOn}}
 
+    <div id="readyGo" v-if="!isStarted">
+      <h1> Get ready!</h1>
+      <h2>Your username is: <span style="text-decoration:underline">{{this.userName}}</span></h2>
+      <p> Wait for the host to start! </p>
+  </div>
+
+  <div v-if="isStarted">
     <Question v-if="!changeView" v-bind:question="question"
               v-on:answer="submitAnswer"/>
     <pollPopup v-show="this.pollPopupVisable"/>
@@ -16,6 +25,7 @@
 
 <div v-if="this.timeOn">Tid: {{this.time}}</div>
   </div>
+</div>
 
 </template>
 
@@ -52,8 +62,9 @@ export default {
       showCreatePopup:false,
       uiLabels:{},
       points:0,
+      timeOn:false,
       time:0,
-      timeOn:false
+      isStarted:false,
     }
   },
   created: function () {
@@ -77,23 +88,30 @@ export default {
     });
 
     socket.on('changeView', () =>{
+      this.pollPopupVisable=false;
       if (this.changeView){
         this.changeView=false;
+        if (this.timeOn){
+          this.startTimer(this.time);
+        }
+
       }
       else{
         this.changeView=true;
       }
-      this.pollPopupVisable=false;
     });
 
     socket.on('timeToStart',()=>{
-      console.log("Waitingroom has spoken");
+      this.isStarted=true;
     });
 
     socket.emit('getTime',this.pollId);
 
     socket.on("setTime", (time)=>{
       this.time=time;
+      if (time>0){
+        this.timeOn=true;
+      }
       console.log('här är tiden'+this.time);
     });
 
@@ -108,21 +126,42 @@ export default {
       socket.emit("submitAnswer", {pollId: this.pollId,
                                   answer: answer,
                                   userName:this.userName});
-      this.showPopup();
-      this.timeOn=false;
+      this.pollPopupVisable = true;
     },
-
-    showPopup: function() {
-        this.pollPopupVisable = true;
-        console.log(this.pollPopupVisable)
-      },
 
       isFinished: function(points){
         this.points=points;
         setTimeout(() => this.showCreatePopup = true, 2800);
 
-      }
-  }
+      },
+
+      startTimer:function(seconds) {
+        let counter = seconds;
+        const timer = this.time;
+        const interval = setInterval(() => {
+          if (counter > 0 ) {
+         counter--;
+         console.log(counter);
+         this.time=counter;
+     }
+     else{
+         clearInterval(interval);
+         this.resetTimer(timer);
+         console.log('klar')
+         }
+   }, 1000);
+ },
+
+resetTimer: function(timer){
+  if (this.time===0){
+    console.log("ändrat popup");
+    this.pollPopupVisable = false;
+    }
+    console.log("ändrar tid")
+    this.time=timer;
+    }
+}
+
 }
 //;showPopup()
 </script>
