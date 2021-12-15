@@ -3,6 +3,7 @@
     changeView {{this.changeView}}
     tiden {{this.time}}
     timeon {{this.timeOn}}
+    points {{this.points}}
 
     <div id="readyGo" v-if="!isStarted">
       <h1> Get ready!</h1>
@@ -121,9 +122,14 @@ export default {
   methods: {
     submitAnswer: function (answer) {
       console.log(answer);
+      let userTime=this.time;
+      if (userTime===0){
+        userTime=10;
+      }
+      console.log(this.userTime);
       socket.emit("submitAnswer", {pollId: this.pollId,
                                   answer: answer,
-                                  time: this.time,
+                                  time: userTime,
                                   userName:this.userName});
       this.pollPopupVisable = true;
       this.hasAnswered = true;
@@ -158,11 +164,9 @@ export default {
 
 resetTimer: function(timer){
   if (this.time===0){
-    console.log("ändrat popup");
     this.pollPopupVisable = !this.pollPopupVisable;
     this.changeTheView();
     }
-    console.log("ändrar tid")
     this.time=timer;
   },
 

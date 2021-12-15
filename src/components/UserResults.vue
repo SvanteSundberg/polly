@@ -51,7 +51,7 @@ export default {
     socket.emit("checkLastQuestion", this.pollId);
     socket.on("isLastQuestion", (isFinished) => {
       if (isFinished){
-        this.$emit("finished",(this.points));
+        this.$emit("finished",(this.userinfo.score));
       }
     });
 
