@@ -1,5 +1,6 @@
 <template>
 <div v-bind:class='theme'>
+  {{this.timerValue}}
   {{this.selectedQuestions}}
 <header>
 <h2> Which questions do you want to include in the quiz? </h2>
@@ -28,6 +29,17 @@ v-bind:key="i">
     </div>
 </div>
 </div>
+</div>
+
+<button v-on:click="setTimer"> timer </button>
+<input type="checkbox" v-model="isTimer" v-on:click="sendTime()">
+<div v-if="isTimer"> välj tid
+  <button v-for="(_, i) in timer"
+          v-bind:key="i"
+          v-on:click="sendTime(i)">
+          {{this.timer[i]}}
+  </button>
+<!-- <button v-on:click="setTimeBooleans"> None </button> -->
 </div>
 
 <div class="myButtons">
@@ -78,6 +90,11 @@ export default {
       dropDownVisable: [],
       theme:"",
       popupVisable:false,
+      time:0,
+      isTimer:false,
+      timerOn:false,
+      timer:[10,30,60],
+      noTimer:false
 
     }
   },
@@ -108,6 +125,7 @@ export default {
                                     selectQ:this.selectedQuestions.sort()
                                   });
       socket.emit("setAnswers", this.id);
+      socket.emit('timer',this.id, this.time);
     },
 
     changeDropdown: function(index){
@@ -131,6 +149,20 @@ export default {
 
   showPopup:function(value){
     this.popupVisable=value;
+  },
+
+  sendTime:function(i=-1){
+    console.log(i);
+    if (i<0 && this.time == 0){
+      this.time=this.timer[0];
+    }
+    else if (i<0 && this.time !== 0){
+      this.time=0;
+    }
+    else{
+      this.time=this.timer[i];
+    }
+    console.log("tiden är", this.time)
   },
 }
 }
