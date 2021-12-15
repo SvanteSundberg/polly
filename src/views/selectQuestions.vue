@@ -92,9 +92,7 @@ export default {
       popupVisable:false,
       time:0,
       isTimer:false,
-      timerOn:false,
       timer:[10,30,60],
-      noTimer:false
 
     }
   },
