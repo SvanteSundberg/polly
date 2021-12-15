@@ -55,6 +55,7 @@ function sockets(io, socket, data) {
     io.to(pollId).emit('newQuestion', data.getQuestion(pollId));
     io.to(pollId).emit('dataUpdate', data.getAnswers(pollId));
     io.to(pollId).emit('changeView');
+    io.to(pollId).emit('timeStarts');
   });
 
   socket.on('toPollResult', function(pollId){
@@ -116,6 +117,15 @@ function sockets(io, socket, data) {
   socket.on('timeToStart',function(pollId){
     io.to(pollId).emit('timeToStart');
   });
+
+  socket.on('timer',function(pollId,time){
+    console.log(pollId+time)
+    data.setTimer(pollId,time);
+  });
+
+  socket.on('getTime',function(pollId){
+    io.to(pollId).emit('setTime',data.sendTime(pollId));
+  })
 
 
 }

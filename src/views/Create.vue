@@ -5,6 +5,17 @@
   <hr>
 </header>
 
+
+<button v-on:click="setTimer"> timer </button>
+<div v-if="timerOn"> välj tid
+  <button v-for="(_, i) in timer"
+          v-bind:key="i"
+          v-on:click="sendTime(i)">
+          {{this.timer[i]}}
+  </button>
+<button v-on:click="setTimeBooleans"> None</button>
+</div>
+
 <div class="split left">
     <p> {{uiLabels.questionNumber}} {{this.currentIndex+1}} <button id="remove"
   v-on:click="removeQuestion">
@@ -127,6 +138,9 @@ export default {
       currentIndex: 0,
       correctQuestion:[],
       popupVisable:false,
+      timerOn:false,
+      timer:[10,30,60],
+      noTimer:false
     }
   },
   created: function() {
@@ -251,7 +265,26 @@ export default {
 
     showAlert:function(){
       alert("You need to select correct answer for all your questions");
+    },
+
+    setTimer:function(){
+      this.timerOn =!this.timerOn;
+      console.log(this.timerOn)
+    },
+
+    sendTime:function(i){
+      if(!this.noTimer){
+      console.log(this.timer[i]);
+      socket.emit('timer',this.pollId, this.timer[i]);}
+      else {
+      socket.emit('timer',this.pollId, 0);}
+    },
+
+    setTimeBooleans:function(){
+      this.timerOn=false;
+      this.noTimer=true;
     }
+
 
   }
 }

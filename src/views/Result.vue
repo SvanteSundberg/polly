@@ -15,6 +15,7 @@
         Back to Start
       </button>
     </router-link>
+
   </div>
 
 </template>
@@ -22,12 +23,14 @@
 <script>
 // @ is an alias to /src
 import Bars from '@/components/Bars.vue';
+import Leaderboard from '@/components/Leaderboard.vue';
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
   name: 'Result',
   components: {
+    Leaderboard,
     Bars
   },
   data: function () {
@@ -83,6 +86,7 @@ methods: {
   runQuestion: function() {
     socket.emit("runQuestion", this.pollId);
     socket.emit("nextQ",this.pollId);
+    socket.emit("startTimer",this.pollId);
   },
 }
 

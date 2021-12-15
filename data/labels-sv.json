@@ -31,6 +31,7 @@
 	 "typeID":"Skriv röstningsID",
 	 "pleaseMakeSureTo":"Vänligen se till att:",
 	 "chooseRight":"Välja korrekta svar till varje fråga!",
-	 "typeSomething":"Skriv något i varje fråga!"
+	 "typeSomething":"Skriv något i varje fråga!",
+	 "editPoll": "Redigera skapad röstning"
 
 }
