@@ -75,6 +75,9 @@ function sockets(io, socket, data) {
   socket.on("recieveQuestions", function(pollId){
     socket.emit('getQuestions',data.getAllQuestions(pollId));
   });
+  socket.on("sendEmpty", function(pollId){
+    data.emptyAwnser(pollId);
+  });
 
   socket.on("pollQuestions", function(d){
     socket.emit('selectedQuestions',data.setQuestions(d.pollId,d.selectQ));

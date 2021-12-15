@@ -72,7 +72,7 @@
 </button>
 
 <router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
-<button>
+<button v-on:click="removeEmptyAwnser">
   {{uiLabels.selectQuestions}}
 </button>
 </router-link>
@@ -88,6 +88,7 @@
 <span> {{uiLabels.pleaseMakeSureTo}}
 <li>{{uiLabels.chooseRight}}</li>
 <li> {{uiLabels.typeSomething}} </li>
+<li> {{uiLabels.fillCorrect}} </li>
 </span>
 </createPopup>
 
@@ -244,12 +245,21 @@ export default {
         correctIndex:this.correctQuestion
       });
     },
+    removeEmptyAwnser: function(){
+      socket.emit("sendEmpty",  this.pollId
+      );
+    },
 
     canContinue: function(){
       let markedCorrect=true;
       let isFilledQuestion=true;
       for (let i=0;i<this.allQuestions.length;i++){
-        if (typeof this.allQuestions[i].c[0]=='undefined'){
+        for(let x=0; x<this.allQuestions[i].c.length;x++){
+          if(this.allQuestions[i].a[this.allQuestions[i].c[x]].length===0){
+              markedCorrect=false;
+          }
+        }
+        if (typeof this.allQuestions[i].c[0]=='undefined' ){
           markedCorrect=false;
         }
         if (this.allQuestions[i].q==''){

@@ -32,6 +32,7 @@
 	 "pleaseMakeSureTo":"Vänligen se till att:",
 	 "chooseRight":"Välja korrekta svar till varje fråga!",
 	 "typeSomething":"Skriv något i varje fråga!",
-	 "editPoll": "Redigera skapad röstning"
+	 "editPoll": "Redigera skapad röstning",
+	 "fillCorrect": "Det korrekta svaret inte är tomt!"
 
 }
