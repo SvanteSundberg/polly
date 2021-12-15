@@ -23,7 +23,7 @@
     </span>
     </createPopup>
 
-<div v-if="this.timeOn">Tid: {{this.time}}</div>
+<div v-if="this.timeOn && !this.changeView">Tid: {{this.time}}</div>
   </div>
 </div>
 
@@ -103,6 +103,9 @@ export default {
 
     socket.on('timeToStart',()=>{
       this.isStarted=true;
+      if (this.timeOn){
+        this.startTimer(this.time);
+      }
     });
 
     socket.emit('getTime',this.pollId);
