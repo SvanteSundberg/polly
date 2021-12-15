@@ -65,6 +65,7 @@ export default {
       timeOn:false,
       time:0,
       isStarted:false,
+      hasAnswered:false,
     }
   },
   created: function () {
@@ -90,11 +91,11 @@ export default {
     socket.on('changeView', () =>{
       this.pollPopupVisable=false;
       if (this.changeView){
-        this.changeView=false;
+        this.hasAnswered=false;
         if (this.timeOn){
           this.startTimer(this.time);
         }
-
+        this.changeView=false;
       }
       else{
         this.changeView=true;
@@ -118,10 +119,6 @@ export default {
       console.log('här är tiden'+this.time);
     });
 
-    socket.on('timeStarts',()=>{
-      this.timeOn=true;
-    })
-
   },
   methods: {
     submitAnswer: function (answer) {
@@ -130,6 +127,7 @@ export default {
                                   answer: answer,
                                   userName:this.userName});
       this.pollPopupVisable = true;
+      this.hasAnswered = true;
     },
 
       isFinished: function(points){
@@ -156,9 +154,9 @@ export default {
  },
 
 resetTimer: function(timer){
-  if (this.time===0){
+  if (this.time===0 && !this.hasAnswered){
     console.log("ändrat popup");
-    this.pollPopupVisable = false;
+    this.pollPopupVisable = !this.pollPopupVisable;
     }
     console.log("ändrar tid")
     this.time=timer;
