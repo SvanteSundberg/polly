@@ -1,5 +1,6 @@
 <template>
 <div v-bind:class='theme'>
+  {{this.selectedQuestions}}
 <header>
 <h2> Which questions do you want to include in the quiz? </h2>
 <hr>
@@ -88,17 +89,16 @@ export default {
       this.uiLabels = labels
     });
     socket.emit("recieveQuestions",this.id);
-    socket.on("getQuestions", (questions) =>
-    this.questions = questions);
+    socket.on("getQuestions", (questions) => {
+      this.questions = questions;
+      this.selectedQuestions=[...Array(questions.length-1).keys()];
+
+    });
 
     socket.emit("loadTheme",this.id);
     socket.on("initial", (theme) => {
       this.theme = theme
     });
-
-    for (let i;i<this.questions.length;i++){
-      this.dropDownVisable[i]=false;
-    }
 
   },
 
