@@ -1,5 +1,6 @@
 <template>
   <div class='standard'>
+    
     <h1>{{uiLabels.writePollID}}</h1>
   <br>
   <div class="gridWrap">

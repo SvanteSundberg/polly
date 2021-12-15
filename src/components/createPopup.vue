@@ -8,8 +8,8 @@
           <slot></slot>
        </section>
       <footer class="popupFooter">
-        <button v-on:click="ok">
-          OK
+        <button class="doneBtn" v-on:click="ok">
+          <slot name="button">OK</slot>
         </button>
       </footer>
       </div>
@@ -46,6 +46,7 @@
     overflow-x: auto;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
   }
 
   .popup section{

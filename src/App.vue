@@ -118,6 +118,7 @@ button:hover {
 
 .doneBtn:hover{
   border: 1px solid #fff;
+  box-shadow: 2px 2px 20px #AFE9FF;
 }
 
 .gridWrap{
