@@ -12,8 +12,6 @@
   </button>
 </div>
 
-
-
   <div class="write" v-if="done && !ready">
     <h1>
       Välj namn
@@ -25,15 +23,6 @@
   </button>
 
   </div>
-
-  <div id="readyGo" v-if="ready">
-    <h1> Get ready!</h1>
-    <h2>Your username is: <span style="text-decoration:underline">{{this.userName}}</span></h2>
-    <br>
-  <router-link  v-bind:to="'/poll/'+id+'/'+lang + '/'+userName" tag="button">
-    <button class="done"> Lets start quizzing</button>
-  </router-link>
-</div>
   </div>
 </template>
 
@@ -50,7 +39,6 @@ export default {
       lang: "",
       done:false,
       userName:"",
-      uniqueName:false,
       ready:false
     }
   },
@@ -68,14 +56,13 @@ export default {
     });
 
     socket.on('existingUsers', (existing)=>{
-      this.uniqueName=existing;
       if(existing){
         alert('Namn upptaget')
       }
       else {
-        this.ready=true;
+        this.$router.replace('/poll/'+this.id+'/'+this.lang+'/'+this.userName);
       }
-    } );
+    });
   },
   methods: {
     sendUsername:function(){

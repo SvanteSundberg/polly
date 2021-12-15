@@ -19,7 +19,14 @@ Data.prototype.getUILabels = function (lang = "en") {
 }
 
 Data.prototype.getTheme=function(pollId) {
-  return this.polls[pollId].theme
+  console.log(pollId);
+  const poll = this.polls[pollId];
+  if (typeof poll !== 'undefined') {
+    console.log("definied");
+    return poll.theme
+  }
+  console.log("ej definied");
+  return 'standard'
 }
 
 Data.prototype.deleteQuestion=function(pollId,currentIndex){
@@ -49,7 +56,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.questions = [];
     poll.answers = [];
     poll.currentQuestion = 0;
-    poll.theme ='standard';
+    poll.theme = 'standard';
     poll.selectedQuestions=[];
     poll.currentIndex = 0;
     poll.users={};

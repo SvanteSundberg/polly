@@ -25,16 +25,22 @@ export default {
   data: function () {
     return {
       uiLabels: {},
-      theme: "standard",
+      theme: "",
       id: "",
       lang: ""
     }
   },
   created: function () {
     this.lang = this.$route.params.lang;
+    this.id=this.$route.params.id;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
+    });
+    socket.emit("loadTheme", this.id);
+    socket.on("initial", (theme) => {
+      console.log(theme);
+      this.theme = theme
     });
   },
 
@@ -45,7 +51,6 @@ export default {
     },
 
     chooseTheme: function(){
-      this.id=this.$route.params.id;
       console.log(this.id);
       socket.emit("chooseTheme", {pollId: this.id, theme: this.theme})
     }
