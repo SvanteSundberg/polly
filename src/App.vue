@@ -86,4 +86,52 @@ h3{
 button:hover {
   cursor: pointer;
 }
+
+.writeInput {
+  border-radius: 20px;
+  border: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  outline: none;
+  margin:auto;
+  box-shadow: 0px 2px 2px rgba(0,0,0,0.11);
+  display:flex;
+}
+
+.doneBtn{
+
+  background-color:#2ECC40;
+  border: 1px solid #2ECC40;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  text-align:  center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left:  10px;
+}
+
+.doneBtn:hover{
+  border: 1px solid #fff;
+}
+
+.gridWrap{
+  display:grid;
+  grid-template-columns: 200px 50px;
+  justify-content: center;
+}
+.leftColumn{
+  float:right;
+  grid-column: 1;
+}
+.rightColumn{
+  grid-column:2;
+}
+
+
 </style>
