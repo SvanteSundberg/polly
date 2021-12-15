@@ -120,17 +120,18 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   return []
 }
 
-Data.prototype.submitAnswer = function(pollId, answer, userName) {
+Data.prototype.submitAnswer = function(pollId, answer, userName, time) {
   const poll = this.polls[pollId];
   console.log("answer submitted for ", pollId, answer);
   console.log(poll);
   if (typeof poll !== 'undefined') {
     poll.users[userName].votings[poll.currentQuestion]=answer;
+    poll.users[userName].time[poll.currentQuestion]=poll.time-time;
     const correctAnswers=poll.questions[poll.currentQuestion].c;
     const answerOptions = poll.questions[poll.currentQuestion].a;
     for (let i=0; i<correctAnswers.length;i++){
       if (answerOptions[correctAnswers[i]]==answer){
-        poll.users[userName].points+=100;
+        poll.users[userName].points+=10*(1.5*time);
       }
     }
     let answers = poll.answers[poll.currentQuestion];
@@ -226,12 +227,13 @@ Data.prototype.addUser=function(pollId,user){
   let thisUser= {};
   thisUser.points=0;
   thisUser.votings=[];
+  thisUser.time=[];
   if(typeof u !== 'undefined'){
-  for (let x in u){
-    console.log(u);
-    if(x===user){
-    return true
-  }
+    for (let x in u){
+      console.log(u);
+      if(x===user){
+        return true
+      }
     }
   }
 
@@ -252,6 +254,12 @@ for (let p in this.polls){
 return false
 }
 
+Data.prototype.getUsers=function(pollId){
+  const poll = this.polls[pollId];
+  console.log(Object.keys(poll.users));
+  return Object.keys(poll.users)
+}
+
 Data.prototype.userInfo=function(pollId,userName){
   const poll = this.polls[pollId];
   const user= poll.users[userName];
@@ -267,7 +275,8 @@ Data.prototype.userInfo=function(pollId,userName){
 
   return {answer: poll.users[userName].votings[poll.currentQuestion],
           correct: isCorrect,
-          score: user.points}
+          score: user.points,
+          time: poll.users[userName].time[poll.currentQuestion]}
 }
 
 

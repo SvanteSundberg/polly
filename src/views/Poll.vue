@@ -1,5 +1,6 @@
 <template>
   <div v-bind:class='theme'>
+    changeView {{this.changeView}}
     tiden {{this.time}}
     timeon {{this.timeOn}}
 
@@ -16,7 +17,7 @@
 
     <UserResults v-on:finished="isFinished" v-bind:userName="this.userName" v-bind:uiLabels="this.uiLabels" v-if="changeView"/>
 
-    <createPopup v-show="this.showCreatePopup">
+    <createPopup v-show="this.showCreatePopup" v-on:ok="goBacktoStart">
     <template v-slot:header> The quiz has come to an end... </template>
     <span>
     You recieved {{this.points}} points
@@ -65,7 +66,6 @@ export default {
       timeOn:false,
       time:0,
       isStarted:false,
-      hasAnswered:false,
     }
   },
   created: function () {
@@ -89,17 +89,15 @@ export default {
     });
 
     socket.on('changeView', () =>{
+      this.changeView=!this.changeView;
+      console.log("nu ändrar jag sida", this.changeView);
       this.pollPopupVisable=false;
-      if (this.changeView){
-        this.hasAnswered=false;
+      if (!this.changeView){
         if (this.timeOn){
           this.startTimer(this.time);
         }
-        this.changeView=false;
       }
-      else{
-        this.changeView=true;
-      }
+      console.log()
     });
 
     socket.on('timeToStart',()=>{
@@ -125,6 +123,7 @@ export default {
       console.log(answer);
       socket.emit("submitAnswer", {pollId: this.pollId,
                                   answer: answer,
+                                  time: this.time,
                                   userName:this.userName});
       this.pollPopupVisable = true;
       this.hasAnswered = true;
@@ -134,6 +133,10 @@ export default {
         this.points=points;
         setTimeout(() => this.showCreatePopup = true, 2800);
 
+      },
+
+      goBacktoStart: function(){
+        this.$router.replace('/');
       },
 
       startTimer:function(seconds) {
@@ -154,13 +157,19 @@ export default {
  },
 
 resetTimer: function(timer){
-  if (this.time===0 && !this.hasAnswered){
+  if (this.time===0){
     console.log("ändrat popup");
     this.pollPopupVisable = !this.pollPopupVisable;
+    this.changeTheView();
     }
     console.log("ändrar tid")
     this.time=timer;
-    }
+  },
+
+  changeTheView: function(){
+    this.changeView=true;
+    this.pollPopupVisable=false;
+  }
 }
 
 }

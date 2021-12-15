@@ -19,13 +19,10 @@ function sockets(io, socket, data) {
   });
 
   socket.on('chooseTheme', function(d) {
-    console.log(d.pollId);
-    console.log(d.theme);
     data.chooseTheme(d.pollId, d.theme);
   });
 
   socket.on('deleteQuestion',function(d){
-   console.log(d.questionNumber);
    data.deleteQuestion(d.pollId,d.questionNumber);
    socket.emit('getQuestions', data.getAllQuestions(d.pollId));
  });
@@ -59,11 +56,12 @@ function sockets(io, socket, data) {
   });
 
   socket.on('toPollResult', function(pollId){
+    console.log(" jag ändra changeview");
     io.to(pollId).emit('changeView');
   });
 
   socket.on('submitAnswer', function(d) {
-    data.submitAnswer(d.pollId, d.answer,d.userName);
+    data.submitAnswer(d.pollId, d.answer,d.userName, d.time);
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
@@ -106,7 +104,7 @@ function sockets(io, socket, data) {
 
   socket.on('user',function(d){
     socket.emit('existingUsers',data.addUser(d.pollId, d.user));
-
+    io.to(d.pollId).emit('allUsers', data.getUsers(d.pollId));
   });
 
   socket.on('checkPollId', function(pollId){
@@ -122,7 +120,6 @@ function sockets(io, socket, data) {
   });
 
   socket.on('timer',function(pollId,time){
-    console.log(pollId+time)
     data.setTimer(pollId,time);
   });
 

@@ -21,13 +21,14 @@
 import io from 'socket.io-client';
 const socket = io();
 export default {
-  name: 'SelectQuestions',
+  name: 'Waitingroom',
   data: function () {
     return {
       uiLabels: {},
       id: "",
       lang: "",
-      theme:""
+      theme:"",
+      users:[]
     }
   },
   created: function () {
@@ -42,7 +43,12 @@ export default {
     socket.on("initial", (theme) => {
       this.theme = theme
     });
-
+    socket.emit('joinPoll', {pollId: this.id,
+                            questionNumber: null});
+    socket.on("allUsers", (users) => {
+      console.log("tar emot users");
+      this.users = users;
+    });
   },
 
   methods: {

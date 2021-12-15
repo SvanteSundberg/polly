@@ -7,29 +7,31 @@
       {{ a }}
     </div>
 
-    <router-link v-bind:to="'/result/'+pollId+'/'+lang">
+    <router-link v-if="!this.timeOn" v-bind:to="'/result/'+pollId+'/'+lang">
     <button v-on:click="toPollResult">
       Se resultat
     </button>
   </router-link>
   </div>
 
-<Timer v-if="this.time>0" v-bind:time="this.time" v-on:start="startTimer(this.time)"/>
-  <div v-if="timesUp===true"> tiden är ute</div>
+  <div v-if="this.timeOn" > Tid: {{this.time}} </div>
+
+<!-- <Timer v-if="this.time>0" v-bind:time="this.time" v-on:start="startTimer(this.time)"/>
+  <div v-if="timesUp"> tiden är ute</div> -->
   </div>
 
 </template>
 
 <script>
 // @ is an alias to /src
-import Timer from '@/components/Timer.vue'
+//import Timer from '@/components/Timer.vue'
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
   name: 'CreatorPoll',
   components: {
-    Timer
+    //Timer
   },
   data: function () {
     return {
@@ -39,9 +41,10 @@ export default {
       lang:"",
       uiLabels:{},
       time:0,
-      timesUp:false
+      timeOn:false
     }
   },
+
   created: function () {
     this.pollId = this.$route.params.id;
     this.lang = this.$route.params.lang;
@@ -53,24 +56,29 @@ export default {
                             questionNumber: null
                             });
 
-    socket.on("newQuestion", q =>
-      this.question = q
-    );
-
     socket.emit("loadTheme",this.pollId);
 
     socket.on("initial", (theme) => {
       this.theme = theme
     });
 
-
     socket.emit('getTime',this.pollId);
 
     socket.on("setTime", (time)=>{
       this.time=time;
+      if (time>0){
+        this.timeOn=true;
+        this.startTimer(this.time);
+      }
       console.log('här är tiden'+this.time);
-    })
+    });
 
+    socket.on("newQuestion", q => {
+      this.question = q;
+      console.log("dags för timer");
+      console.log(this.time);
+
+    });
 
 
   },
@@ -79,19 +87,33 @@ export default {
       socket.emit('toPollResult', this.pollId);
     },
 
-   startTimer:function(seconds) {
-     let counter = seconds;
-     const interval = setInterval(() => {
-       if (counter > 0 ) {
-      console.log(counter);
-      counter--;
-      this.time--;
-  }
-  else{clearInterval(interval);
-      console.log('klar')
-      this.timesUp=true;}
-}, 1000);
+    startTimer:function() {
+      console.log(this.timeOn);
+      if (this.timeOn){
+        let counter = this.time;
+        const timer = this.time;
+        const interval = setInterval(() => {
+          if (counter > 0 ) {
+         counter--;
+         console.log(counter);
+         this.time=counter;
+       }
+   else{
+       clearInterval(interval);
+       this.resetTimer(timer);
+       console.log('klar')
+       }
+ }, 1000);
 }
+ },
+
+ resetTimer: function(timer){
+   if (this.time===0){
+     console.log("ändrat popup");
+     this.time=timer;
+     this.$router.replace('/result/'+this.pollId+'/'+this.lang);
+     }
+     }
 
   }
 
