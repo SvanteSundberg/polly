@@ -91,7 +91,7 @@ export default {
     socket.emit("recieveQuestions",this.id);
     socket.on("getQuestions", (questions) => {
       this.questions = questions;
-      this.selectedQuestions=[...Array(questions.length-1).keys()];
+      this.selectedQuestions=[...Array(questions.length).keys()];
 
     });
 
