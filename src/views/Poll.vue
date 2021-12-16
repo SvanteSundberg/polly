@@ -1,10 +1,5 @@
 <template>
   <div v-bind:class='theme'>
-    changeView {{this.changeView}}
-    tiden {{this.time}}
-    timeon {{this.timeOn}}
-    points {{this.points}}
-
     <div id="readyGo" v-if="!isStarted">
       <h1> Get ready!</h1>
       <h2>Your username is: <span style="text-decoration:underline">{{this.userName}}</span></h2>
@@ -18,7 +13,7 @@
 
     <UserResults v-on:finished="isFinished" v-bind:userName="this.userName" v-bind:uiLabels="this.uiLabels" v-if="changeView"/>
 
-    <createPopup v-show="this.showCreatePopup" v-on:ok="goBacktoStart">
+    <createPopup v-show="this.showCreatePopup" v-on:stop="goBacktoStart">
     <template v-slot:header> The quiz has come to an end... </template>
     <span>
     You recieved {{this.points}} points
@@ -67,6 +62,7 @@ export default {
       timeOn:false,
       time:0,
       isStarted:false,
+      hasAnswered: false
     }
   },
   created: function () {
@@ -89,33 +85,28 @@ export default {
       this.theme = theme
     });
 
-    socket.on('changeView', () =>{
-      this.changeView=!this.changeView;
-      console.log("nu ändrar jag sida", this.changeView);
-      this.pollPopupVisable=false;
-      if (!this.changeView){
-        if (this.timeOn){
-          this.startTimer(this.time);
-        }
-      }
-      console.log()
-    });
-
-    socket.on('timeToStart',()=>{
-      this.isStarted=true;
-      if (this.timeOn){
-        this.startTimer(this.time);
-      }
-    });
-
-    socket.emit('getTime',this.pollId);
-
     socket.on("setTime", (time)=>{
       this.time=time;
       if (time>0){
         this.timeOn=true;
+        this.startTimer(this.time);
       }
-      console.log('här är tiden'+this.time);
+    });
+
+    socket.on("timerStart", (info) => {
+      this.timeOn=true;
+      this.startTimer(info.endTime, info.startTime);
+    });
+
+    socket.on('changeView', (value) =>{
+      console.log("har tagit emot att ändra view");
+      this.changeView=value;
+      this.pollPopupVisable=false;
+      this.hasAnswered=false;
+    });
+
+    socket.on('timeToStart',()=>{
+      this.isStarted=true;
     });
 
   },
@@ -123,10 +114,9 @@ export default {
     submitAnswer: function (answer) {
       console.log(answer);
       let userTime=this.time;
-      if (userTime===0){
+      if (!this.timeOn){
         userTime=10;
       }
-      console.log(this.userTime);
       socket.emit("submitAnswer", {pollId: this.pollId,
                                   answer: answer,
                                   time: userTime,
@@ -145,29 +135,31 @@ export default {
         this.$router.replace('/');
       },
 
-      startTimer:function(seconds) {
-        let counter = seconds;
-        const timer = this.time;
+      startTimer:function(end) {
+        const timer = end;
+        let timePassed = end;
+        let timerGoing = true;
+        this.time=end;
+        this.timeOn=true;
+        const a = new Date();
         const interval = setInterval(() => {
-          if (counter > 0 ) {
-         counter--;
-         console.log(counter);
-         this.time=counter;
-     }
-     else{
-         clearInterval(interval);
-         this.resetTimer(timer);
-         console.log('klar')
-         }
-   }, 1000);
+          if (this.time > 0 && !this.hasAnswered && timerGoing) {
+            timePassed=Math.round((new Date() - a)/1000);
+            this.time=timer-timePassed;
+            console.log(timerGoing);
+          }
+          else if (timerGoing){
+            timerGoing=false;
+            clearInterval(interval);
+            this.resetTimer();
+          }
+        },1000);
  },
 
-resetTimer: function(timer){
-  if (this.time===0){
-    this.pollPopupVisable = !this.pollPopupVisable;
-    this.changeTheView();
+resetTimer: function(){
+  if (this.time===0 && !this.hasAnswered){
+    this.pollPopupVisable = false;
     }
-    this.time=timer;
   },
 
   changeTheView: function(){

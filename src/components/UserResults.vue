@@ -1,6 +1,10 @@
 <template>
   <div v-bind:class='theme'>
-    <div v-if="this.userinfo.correct">
+    <div v-if="checkAnswer()">
+      <h3> Time is up {{userName}}! </h3>
+      <p> We belive in you! Go a bit fastner next time! </p>
+    </div>
+    <div v-else-if="this.userinfo.correct">
     <h3> Keep this going {{userName}}! </h3>
     <p> You answered {{this.userinfo.answer}} which is <span class="bold"> correct </span>
     </p>
@@ -55,8 +59,19 @@ export default {
       }
     });
 
-
   },
+
+  methods: {
+    checkAnswer:function(){
+      if (typeof this.userinfo.answer !== 'undefined'){
+        console.log("hej");
+        return false
+      }
+      else{
+        return true
+      }
+    }
+  }
 
 }
 //;showPopup()

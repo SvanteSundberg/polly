@@ -126,7 +126,6 @@ Data.prototype.submitAnswer = function(pollId, answer, userName, time) {
   console.log(poll);
   if (typeof poll !== 'undefined') {
     poll.users[userName].votings[poll.currentQuestion]=answer;
-    poll.users[userName].time[poll.currentQuestion]=poll.time-time;
     const correctAnswers=poll.questions[poll.currentQuestion].c;
     const answerOptions = poll.questions[poll.currentQuestion].a;
     for (let i=0; i<correctAnswers.length;i++){
@@ -227,7 +226,6 @@ Data.prototype.addUser=function(pollId,user){
   let thisUser= {};
   thisUser.points=0;
   thisUser.votings=[];
-  thisUser.time=[];
   if(typeof u !== 'undefined'){
     for (let x in u){
       console.log(u);
@@ -275,8 +273,7 @@ Data.prototype.userInfo=function(pollId,userName){
 
   return {answer: poll.users[userName].votings[poll.currentQuestion],
           correct: isCorrect,
-          score: user.points,
-          time: poll.users[userName].time[poll.currentQuestion]}
+          score: user.points}
 }
 
 

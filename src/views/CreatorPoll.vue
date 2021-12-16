@@ -16,6 +16,8 @@
 
   <div v-if="this.timeOn" > Tid: {{this.time}} </div>
 
+  Antal svar: {{this.amountAnswers}}
+
 <!-- <Timer v-if="this.time>0" v-bind:time="this.time" v-on:start="startTimer(this.time)"/>
   <div v-if="timesUp"> tiden är ute</div> -->
   </div>
@@ -41,7 +43,9 @@ export default {
       lang:"",
       uiLabels:{},
       time:0,
-      timeOn:false
+      timeOn:false,
+      amountAnswers:0,
+      amountUsers:0
     }
   },
 
@@ -70,14 +74,22 @@ export default {
         this.timeOn=true;
         this.startTimer(this.time);
       }
-      console.log('här är tiden'+this.time);
     });
 
     socket.on("newQuestion", q => {
       this.question = q;
-      console.log("dags för timer");
-      console.log(this.time);
+    });
 
+    socket.on("dataUpdate", (update) => {
+      const values = Object.values(update.a)
+      const reducer = (previousValue, currentValue) => previousValue + currentValue;
+      this.amountAnswers=values.reduce(reducer);
+    });
+
+    socket.emit("getUserAmount", this.pollId);
+
+    socket.on("userAmount",(userAmount) => {
+      this.amountUsers=userAmount;
     });
 
 
@@ -88,31 +100,33 @@ export default {
     },
 
     startTimer:function() {
-      console.log(this.timeOn);
-      if (this.timeOn){
-        let counter = this.time;
         const timer = this.time;
+        let timerGoing = true;
+        let timePassed = this.time;
+        const a = new Date();
+        socket.emit("startTimer", {pollId: this.pollId,
+                                  startTime: a,
+                                  endTime: timer});
         const interval = setInterval(() => {
-          if (counter > 0 ) {
-         counter--;
-         console.log(counter);
-         this.time=counter;
-       }
-   else{
-       clearInterval(interval);
-       this.resetTimer(timer);
-       console.log('klar')
-       }
- }, 1000);
-}
- },
+          if (this.time > 0 && timerGoing && this.amountUsers!==this.amountAnswers) {
+            timePassed=Math.round((new Date() - a)/1000);
+            this.time=timer-timePassed;
+            console.log(timerGoing);
+          }
+          else if (timerGoing){
+            timerGoing = false;
+            clearInterval(interval);
+            this.resetTimer(timer);
+          }
+        },1000);
+
+       },
 
  resetTimer: function(timer){
-   if (this.time===0){
-     console.log("ändrat popup");
+     socket.emit('toPollResult', this.pollId);
      this.time=timer;
+     console.log("har skickat att ändra view", this.time);
      this.$router.replace('/result/'+this.pollId+'/'+this.lang);
-     }
      }
 
   }

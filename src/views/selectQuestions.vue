@@ -1,7 +1,5 @@
 <template>
 <div v-bind:class='theme'>
-  {{this.timerValue}}
-  {{this.selectedQuestions}}
 <header>
 <h2> Which questions do you want to include in the quiz? </h2>
 <hr>
@@ -31,7 +29,7 @@ v-bind:key="i">
 </div>
 </div>
 
-<button v-on:click="setTimer"> timer </button>
+<p> timer </p>
 <input type="checkbox" v-model="isTimer" v-on:click="sendTime()">
 <div v-if="isTimer"> välj tid
   <button v-for="(_, i) in timer"
@@ -92,7 +90,7 @@ export default {
       popupVisable:false,
       time:0,
       isTimer:false,
-      timer:[10,30,60],
+      timer:[10,20,30],
 
     }
   },

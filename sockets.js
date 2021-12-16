@@ -51,13 +51,12 @@ function sockets(io, socket, data) {
     data.setAnswersZero(pollId);
     io.to(pollId).emit('newQuestion', data.getQuestion(pollId));
     io.to(pollId).emit('dataUpdate', data.getAnswers(pollId));
-    io.to(pollId).emit('changeView');
+    io.to(pollId).emit('changeView', false);
     io.to(pollId).emit('timeStarts');
   });
 
   socket.on('toPollResult', function(pollId){
-    console.log(" jag ändra changeview");
-    io.to(pollId).emit('changeView');
+    io.to(pollId).emit('changeView',true);
   });
 
   socket.on('submitAnswer', function(d) {
@@ -125,8 +124,15 @@ function sockets(io, socket, data) {
 
   socket.on('getTime',function(pollId){
     io.to(pollId).emit('setTime',data.sendTime(pollId));
-  })
+  });
 
+  socket.on('startTimer', function(d){
+    io.to(d.pollId).emit('timerStart', d);
+  });
+
+  socket.on('getUserAmount', function(pollId){
+    socket.emit('userAmount', data.getUsers(pollId).length)
+  });
 
 }
 

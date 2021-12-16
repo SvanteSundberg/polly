@@ -3,17 +3,17 @@
     <h3> Time to join! </h3>
     Pollid: {{this.id}}
     <!-- QR-KOD-->
-    <p> Waiting for players to join :D </p>
+    <p> Waiting for players to join! </p>
 
   <div v-for="user in this.users" v-bind:key="user">
     {{user}}
   </div>
 
-  <router-link v-bind:to="'/creatorPoll/'+id+'/'+lang">
-  <button v-on:click="startPoll">
+  <p> Amount users: {{this.users.length}} </p>
+
+  <button v-on:click="startPoll" v-bind:class="['start',{notReady:this.users.length === 0}]">
     Let's go
   </button>
-  </router-link>
   </div>
 </template>
 
@@ -53,9 +53,22 @@ export default {
 
   methods: {
     startPoll: function(){
-      socket.emit("timeToStart", this.id);
+      if (this.users.length>0){
+        socket.emit("timeToStart", this.id);
+        this.$router.replace('/creatorPoll/'+this.id+'/'+this.lang);
+      }
     }
 
   },
 }
 </script>
+
+<style scoped>
+.start{
+  background-color: green;
+}
+
+.notReady {
+  background-color: grey;
+}
+</style>

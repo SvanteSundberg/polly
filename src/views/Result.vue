@@ -42,7 +42,7 @@ export default {
       pollId:"",
       finished: false,
       lang:"",
-      users:""
+      users:[]
     }
   },
   created: function () {
