@@ -10,7 +10,7 @@
 </div>
 
 <router-link v-bind:to="'/create/'+id+'/'+lang">
-<button id="themeDone" v-on:click="chooseTheme()">{{uiLabels.Done}}</button>
+<button class="doneBtn" v-on:click="chooseTheme()">{{uiLabels.Done}}</button>
 </router-link>
 </div>
 
@@ -60,16 +60,17 @@ export default {
 </script>
 
 <style scoped>
-
-#themeDone{
+.doneBtn{
   font-size: 16pt;
   float: right;
   margin-right:12em;
   margin-top:3em;
 }
 
+
 .chosen {
   background-color: grey;
+
 }
 
 .themeButtons button {
@@ -77,15 +78,21 @@ export default {
   margin: 2em;
   height: 5em;
   width:7em;
+  border-radius: 5px;
+  padding: 14px 20px;
+  cursor: pointer;
+  color: black;
+  text-align:  center;
+  box-shadow: 2px 2px 20px gray;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
 }
 
 .themeButtons button:hover{
   background-color: lightgrey;
 }
 
-#themeDone:hover{
-  background-color: green;
-}
 
 h1{
   padding-top: 1.5em;

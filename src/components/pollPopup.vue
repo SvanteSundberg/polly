@@ -17,6 +17,9 @@
 <script>
   export default {
     name: 'pollPopup',
+    props:{
+      uiLabels: Object
+    },
   };
 </script>
 
@@ -39,6 +42,7 @@
     overflow-x: auto;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
   }
 
   .popupHeader {
