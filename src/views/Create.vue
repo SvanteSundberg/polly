@@ -6,7 +6,9 @@
 </header>
 
 <div class="split left">
-    <p> {{uiLabels.questionNumber}} {{this.currentIndex+1}} <button id="remove"
+    <p> {{uiLabels.questionNumber}} {{this.currentIndex+1}}
+
+  <button id="remove"
   v-on:click="removeQuestion">
   {{uiLabels.removeQuestion}}
 </button> </p>
@@ -14,6 +16,7 @@
   <div class="question">
     <p> {{uiLabels.question}}: </p>
     <input type="text"
+          class="writeInput"
           v-model="question"
           v-on:change="saveQuestion"
           :placeholder="uiLabels.typeQuestion">
@@ -57,7 +60,7 @@
 </router-link>
 
 <button v-on:click="addQuestion">
-  {{uiLabels.addQuestion}}
+  + {{uiLabels.addQuestion}}
 </button>
 
 <router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
@@ -66,7 +69,8 @@
 </button>
 </router-link>
 
-<button v-if="!canContinue()"
+<button class="doneBtn"
+        v-if="!canContinue()"
         v-on:click="showPopup(true)">
   {{uiLabels.selectQuestions}}
 </button>
@@ -86,7 +90,7 @@
 <div class="split right">
 <div class="scroll">
   <div id="questionWrap">
-     <h3> {{uiLabels.overview}} </h3>
+     <h3 id="overView"> {{uiLabels.overview}} </h3>
     <router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
     <button class="sideQuestion">
       {{uiLabels.selectTheme}}
@@ -271,7 +275,6 @@ export default {
   top: 0;
   right: 0;
   padding:1.5em;
-  background-color: white;
 }
 
 .scroll{
@@ -281,7 +284,7 @@ export default {
 }
 
 .sideQuestion {
-  background-color: lightgreen;
+  background-color: white;
   margin: 10px;
   border-radius: 20px;
   padding:0.5em;
@@ -289,12 +292,21 @@ export default {
 }
 
 .activeQuestion {
-  background-color: yellow;
+  background-color: #2ECC40;
+    border: 1px solid white;
 }
 
 #remove{
-  background-color: red;
+  background-color: #d11a2a;
   margin-left: 1em;
+  border: 1px solid #d11a2a;
+  border-radius: 5px;
+}
+
+#remove:hover{
+  background-color: #fff;
+  color:red;
+  border: 1px solid red;
 }
 
 
@@ -334,10 +346,11 @@ export default {
 }
 
 .removeAnswerButton {
-  background-color: red;
+  background-color: #d11a2a;
   height: 0.75em;
   width: 1em;
-  margin-left:9.3em;
+  margin-left:9.4em;
+  border: red;
 }
 
 #addButton{
@@ -381,7 +394,8 @@ header{
   right: 0;
   top: 10%;
   position:absolute;
-  background-color:white;
+  border-left: 2px solid white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .markCorrectButton{
@@ -397,6 +411,14 @@ hr{
   margin-bottom:0;
   padding-bottom:0;
   margin-bottom:0;
+  background-color: white;
+  border:1px solid white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
+
+#overView{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
 
 </style>
