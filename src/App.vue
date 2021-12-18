@@ -3,10 +3,12 @@
 </template>
 
 <style>
+@import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
 @import 'https://fonts.googleapis.com/css?family=Average';
 
 #app {
-  font-family: Average, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  /*font-family: Average, Helvetica, Arial, sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

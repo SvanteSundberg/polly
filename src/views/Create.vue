@@ -1,22 +1,22 @@
 <template>
 <div v-bind:class='theme'>
   <header>
-   <h3>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h3>
+   <h2>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h2>
   <hr>
 </header>
 
 <div class="split left">
-    <p> {{uiLabels.questionNumber}} {{this.currentIndex+1}}
+    <h4> {{uiLabels.questionNumber}} {{this.currentIndex+1}}
 
   <button id="remove"
   v-on:click="removeQuestion">
   {{uiLabels.removeQuestion}}
-</button> </p>
+</button> </h4>
 
   <div class="question">
     <p> {{uiLabels.question}}: </p>
     <input type="text"
-          class="writeInput"
+          class="writeQ"
           v-model="question"
           v-on:change="saveQuestion"
           :placeholder="uiLabels.typeQuestion">
@@ -54,12 +54,12 @@
 </div>
 
 <router-link v-bind:to="'/'">
-<button>
+<button class="addBtn">
   {{uiLabels.backToStart}}
 </button>
 </router-link>
 
-<button v-on:click="addQuestion">
+<button class="addBtn" v-on:click="addQuestion">
   + {{uiLabels.addQuestion}}
 </button>
 
@@ -287,8 +287,10 @@ export default {
   background-color: white;
   margin: 10px;
   border-radius: 20px;
+  border-color: white;
   padding:0.5em;
   font-size:13pt;
+
 }
 
 .activeQuestion {
@@ -313,10 +315,13 @@ export default {
 .allAnswers {
   display: grid;
   margin: auto;
+  margin-bottom: 50px;
   padding: auto;
-  width: 300px;
-  grid-template-columns: 10em 10em;
-  grid-template-rows: 5em 5em;
+  width: 460px;
+  height: 220px;
+  grid-template-columns: 220px 220px;
+  grid-template-rows: 100px 100px;
+  grid-gap: 50px;
 }
 
 .answer0 {
@@ -340,35 +345,47 @@ export default {
 }
 
 .allAnswers textarea {
-  height: 5em;
-  width: 10em;
+  height: 100px;
+  width: 210px;
   resize: none;
+  border-radius: 5px;
+  border-color: white;
 }
 
 .removeAnswerButton {
   background-color: #d11a2a;
-  height: 0.75em;
-  width: 1em;
-  margin-left:9.4em;
+  height: 10px;
+  width: 13px;
+  margin-left:203px;
   border: red;
+  border-radius: 2px;
+  justify-content: flex-start;
 }
+.removeAnswerButton::after{
+    content: "\d7";
+    color: black;
+    height: 10px;
+    width: 13px;
+}
+
 
 #addButton{
   background-color:lightgrey;
   border: dotted;
-  height: 5.5em;
-  width: 10.5em;
+  border-radius: 5px;
+  height: 105px;
+  width: 216px;
+  padding: 0px;
   opacity: 0.5;
   margin:0;
 }
 
 .question{
   position:relative;
-  border-style:double;
-  margin-left:15em;
-  margin-right:15em;
-  margin-bottom:1em;
-  padding:1em;
+  /*border-style:double;*/
+  margin:auto;
+  padding:0px;
+  padding-bottom: 10px;
 }
 
 header{
@@ -392,7 +409,7 @@ header{
 .right {
   width: 15%;
   right: 0;
-  top: 10%;
+  top: 15%;
   position:absolute;
   border-left: 2px solid white;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -402,8 +419,8 @@ header{
   background-color: pink;
   height: 1em;
   width: 1em;
-  margin-left:9em;
-  margin-top:1.5em;
+  margin-left:230px;
+  margin-top:40px;
 }
 
 hr{
@@ -418,6 +435,43 @@ hr{
 
 #overView{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin-bottom: 40px;
+}
+
+p{
+  margin:auto;
+  width:460px;
+  text-align: left;
+  padding-bottom: 20px;
+}
+.writeQ{
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border-color: white;
+  outline: none;
+  height: 50px;
+  width: 210px;
+  margin-right: 242px;
+
+}
+
+.addBtn{
+  background-color:#00A6FF;
+  border: 1px solid #00A6FF;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  text-align:  center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left:  10px;
+}
+
+.addBtn:hover{
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 20px #AFE9FF;
 }
 
 
