@@ -1,11 +1,12 @@
 <template>
   <div class='standard'>
 <label>
-  {{uiLabels.writePollID}}
+    <h1>{{uiLabels.writePollID}}</h1>
+      <br>
   <input type="text" v-on:change="checkID" v-model="pollId" placeholder="Type name of the poll">
 </label>
 
-<button class="done" v-on:click="checkID">
+<button class="doneBtn" v-on:click="checkID">
   {{uiLabels.Done}}
 </button>
 

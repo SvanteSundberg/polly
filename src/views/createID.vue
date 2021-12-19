@@ -1,6 +1,5 @@
 <template>
   <div class='standard'>
-    
     <h1>{{uiLabels.writePollID}}</h1>
   <br>
   <div class="gridWrap">
@@ -19,7 +18,6 @@
 <template v-slot:header> Quizzer </template>
 <span> ID already exists </span>
 </createPopup>
-
 </div>
 
 </template>
@@ -79,6 +77,8 @@ export default {
 
 
 <style>
+
+
 
 
 </style>
