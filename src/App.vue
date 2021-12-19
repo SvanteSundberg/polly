@@ -16,16 +16,16 @@
 }
 
 #app button{
-  font-family: Average, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 #app input{
-  font-family: Average, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 12pt;
 }
 
 #app ::placeholder{
-  font-family: Average, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 12pt;
 }
 
@@ -66,8 +66,10 @@
 }
 
 .standard{
-  background-color:#98B4D4;
+  background:url(/img/standard.png);
   height:100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body {
@@ -84,6 +86,7 @@ h3{
   margin-block-start: 0;
   margin-block-end: 0;
 }
+
 
 button:hover {
   cursor: pointer;

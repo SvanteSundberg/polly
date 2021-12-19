@@ -6,7 +6,7 @@
   </header>
 
   <div id="nav">
-    <div id="startButtons">
+    <div class="startButtons" id="startButtons">
     <router-link v-bind:to="'/createID/'+lang">
       <button id="createButton">
         {{uiLabels.createPoll}}
@@ -24,7 +24,7 @@
       {{uiLabels.participatePoll}}
     </button>
     </router-link>
-  </div>
+</div>
   <languageSelect v-on:SV="selectSv"
                   v-on:EN="selectEn"
                   v-bind:uiLabels="uiLabels">
@@ -73,25 +73,33 @@ export default {
 
 <style scoped>
 
-#startButtons button{
-  /*font-size: 18pt;
-  height: 5em;
-  width:7em;
-  box-shadow: 10px 10px 10px 10px black;*/
-border-radius: 5px;
-font-size: 20px;
-padding: 14px 20px;
-cursor: pointer;
-color: #fff;
-text-align:  center;
-font-size: 1.5rem;
-font-family: 'Roboto';
-font-weight: 100;
-box-shadow: 2px 2px 20px gray;
-transition-duration: 0.5s;
--webkit-transition-duration: 0.1s;
--moz-transition-duration: 0.1s;
+.startButtons {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 350px 350px 350px;
+  margin-top:3em;
+  margin-bottom: 3em;
+  justify-content: center;
 }
+
+.startButtons button{
+  border-radius: 5px;
+  padding: 0.5em;
+  color: #fff;
+  text-align:  center;
+  font-size: 1.5rem;
+  font-weight: 100;
+  box-shadow: 2px 2px 20px gray;
+  border: 1px solid black;
+  background: DarkSlateGrey;
+  width: 200px;
+  height: 90px;
+  justify-content: center;
+  /* transition-duration: 0.5s;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;*/
+}
+
 #createButton:hover{
   border: 1px solid #fff;
   box-shadow: 2px 2px 20px #AFE9FF;
@@ -105,35 +113,17 @@ transition-duration: 0.5s;
   box-shadow: 2px 2px 20px #AFE9FF;
 }
 
-#startButtons{
-
-  justify-content: center;
-  display:grid;
-  grid-gap: 150px;
-  grid-template-columns: 200px 200px;
-  align-items: center;
-}
-
 #createButton{
-  background-color:#2ECC40;
-  width: 200px;
-  height: 70px;
-  border: 1px solid #2ECC40;
+  grid-column: 1;
 }
 
 #participateButton{
-  background-color: #00A6FF;
-  width: 200px;
-  height: 70px;
-  border: 1px solid #00A6FF;
+  grid-column:3;
 }
-  #editButton{
-    background-color: #CD5C5C;
-    width: 200px;
-    height: 70px;
-    border: 1px solid #CD5C5C;
-  }
 
+#editButton{
+  grid-column:2;
+}
 
 #languageButton{
   align-items: center;
@@ -143,7 +133,7 @@ transition-duration: 0.5s;
   font-size: 11pt;
   padding: 0.1em 0.2em;
   cursor: pointer;
-  text-align:  center;
+  text-align: center;
   transition-duration: 0.5s;
   -webkit-transition-duration: 0.1s;
   -moz-transition-duration: 0.1s;
@@ -151,7 +141,6 @@ transition-duration: 0.5s;
 
 #languageButton:hover{
   border: 1px solid black;
-
 
 }
 #languageDiv{
@@ -169,5 +158,8 @@ transition-duration: 0.5s;
 
 h1{
   padding-top:1em;
+  text-shadow: 4px 4px 5px white;
+  margin-bottom:0.5em;
 }
+
 </style>
