@@ -2,6 +2,7 @@
 <div v-bind:class='theme'>
 <header>
 <h2> Which questions do you want to include in the quiz? </h2>
+
 <hr>
 </header>
 
@@ -391,6 +392,7 @@ button {
 .editplayButtons:hover {
   box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
   transform: scale(1.05);
+  background-color: lightgreen;
 }
 
 @media (min-width: 768px) {
