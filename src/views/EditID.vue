@@ -1,14 +1,16 @@
 <template>
   <div class='standard'>
+    <div class='position'>
 <label>
     <h1>{{uiLabels.writePollID}}</h1>
       <br>
   <input type="text" v-on:change="checkID" v-model="pollId" placeholder="Type name of the poll">
 </label>
-
 <button class="doneBtn" v-on:click="checkID">
   {{uiLabels.Done}}
 </button>
+</div>
+
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
@@ -67,3 +69,14 @@ export default {
     }
   }
 </script>
+
+<style>
+.position{
+position: absolute;
+left: 50%;
+top: 30%;
+transform: translate(-50%, -50%);
+padding: 10px;
+}
+
+</style>

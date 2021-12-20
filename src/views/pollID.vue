@@ -1,5 +1,6 @@
 <template>
   <div class='standard'>
+    <div class='position'>
   <div  v-if="done===false">
     <h1>
       {{uiLabels.writePollID}}
@@ -13,6 +14,7 @@
   <button class="doneBtn" v-on:click="checkPollId" v-if="this.id.length>0">
     {{uiLabels.Done}}
   </button>
+  </div>
 </div>
 </div>
 <createPopup v-on:stop="showPopup(false)"
@@ -108,7 +110,13 @@ export default {
 </script>
 
 <style>
-
+.position{
+position: absolute;
+left: 50%;
+top: 30%;
+transform: translate(-50%, -50%);
+padding: 10px;
+}
 
 
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div class='standard'>
+    <div class='position'>
     <h1>{{uiLabels.writePollID}}</h1>
   <br>
   <div class="gridWrap">
@@ -10,6 +11,7 @@
 <button class="doneBtn" v-on:click="checkID" v-if="this.pollId.length>0">
   {{uiLabels.Done}}
 </button>
+</div>
 </div>
 </div>
 
@@ -77,6 +79,13 @@ export default {
 
 
 <style>
+.position{
+position: absolute;
+left: 50%;
+top: 30%;
+transform: translate(-50%, -50%);
+padding: 10px;
+}
 
 
 
