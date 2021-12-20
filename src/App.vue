@@ -72,7 +72,7 @@
 
 .standard{
   font-family: 'Roboto', sans-serif;
-  background-image:url(/img/standard.png);
+  background-image:url(/img/opacityStandard.png);
   height:100vh;
   background-size: cover;
 }
@@ -152,6 +152,7 @@ div {
 
 .rightColumn{
   grid-column:2;
+  margin-left:1em;
 }
 
 </style>

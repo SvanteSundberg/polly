@@ -100,20 +100,10 @@ export default {
   -moz-transition-duration: 0.1s;*/
 }
 
-#createButton:hover{
+
+.startButtons button:hover{
   border: 1px solid #fff;
   box-shadow: 2px 2px 20px #AFE9FF;
-  background-color: lightblue;
-}
-#participateButton:hover{
-  border: 1px solid #fff;
-  box-shadow: 2px 2px 20px #AFE9FF;
-  background-color: lightblue;
-}
-#editButton:hover{
-  border: 1px solid #fff;
-  box-shadow: 2px 2px 20px #AFE9FF;
-  background-color: lightblue;
 }
 
 #createButton{

@@ -1,9 +1,12 @@
 <template>
   <div v-bind:class='theme'>
     <div id="readyGo" v-if="!isStarted">
-      <h1> Get ready!</h1>
-      <h2>Your username is: <span style="text-decoration:underline">{{this.userName}}</span></h2>
-      <p> Wait for the host to start! </p>
+      <h1> Get ready {{this.userName}}!</h1>
+      <h3> Waiting for the host to start the quiz... </h3>
+
+      <div class="loading">
+
+      </div>
   </div>
 
   <div v-if="isStarted">
@@ -127,7 +130,7 @@ export default {
 
       isFinished: function(points){
         this.points=points;
-        setTimeout(() => this.showCreatePopup = true, 2800);
+        setTimeout(() => this.showCreatePopup = true, 3000);
 
       },
 
@@ -171,3 +174,11 @@ resetTimer: function(){
 }
 //;showPopup()
 </script>
+
+<style scoped>
+
+h1 {
+  padding:1.5em;
+}
+
+</style>

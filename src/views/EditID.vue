@@ -1,15 +1,23 @@
 <template>
   <div class='standard'>
     <div class='position'>
-<label>
-    <h1>{{uiLabels.writePollID}}</h1>
+    <h1>{{uiLabels.writePollID}}
+    </h1>
       <br>
-  <input type="text" v-on:change="checkID" v-model="pollId" placeholder="Type name of the poll">
-</label>
-<button class="doneBtn" v-on:click="checkID">
-  {{uiLabels.Done}}
-</button>
-</div>
+
+  <div class="gridWrap">
+    <div class="leftColumn">
+      <input class="writeInput" type="text" v-model="pollId" :placeholder="uiLabels.typeID">
+    </div>
+
+    <div class="rightColumn">
+      <button class="doneBtn" v-on:click="checkID" v-if="this.pollId.length>0">
+        {{uiLabels.Done}}
+      </button>
+    </div>
+  </div>
+
+  </div>
 
 
 <createPopup v-on:stop="showPopup(false)"

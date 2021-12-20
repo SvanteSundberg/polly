@@ -1,12 +1,12 @@
 <template>
   <div class='standard'>
     <div class='position'>
-  <div  v-if="done===false">
+  <div  v-if="!done">
     <h1>
       {{uiLabels.writePollID}}
     </h1>
     <br>
-    <div class="gridWrap">
+  <div class="gridWrap">
     <div class="leftColumn">
     <input class="writeInput" type="text" v-model="id" maxlength="15" placeholder="Type ID">
     </div>
@@ -17,6 +17,7 @@
   </div>
 </div>
 </div>
+
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> Quizzer </template>
