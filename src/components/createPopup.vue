@@ -38,6 +38,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color:black;
+    font-family: 'Roboto', sans-serif;
   }
 
   .popup {
@@ -47,6 +49,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    color:black;
   }
 
   .popup section{

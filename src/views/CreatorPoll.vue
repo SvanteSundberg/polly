@@ -1,43 +1,42 @@
 <template>
   <div v-bind:class='theme' >
-    <p> {{question.q}}
-    </p>
-    <div class="allAnswers">
-    <div v-for="(a,i) in question.a" v-bind:key="a" v-bind:class='"answer "+"nr"+i'>
-      {{ a }}
-    </div>
+      <Question v-bind:question="question"/>
 
     <router-link v-if="!this.timeOn" v-bind:to="'/result/'+pollId+'/'+lang">
-    <button v-on:click="toPollResult">
+    <button class="resultButton" v-on:click="toPollResult">
       Se resultat
     </button>
   </router-link>
-  </div>
 
   <div v-if="this.timeOn" > Tid: {{this.time}} </div>
 
-  Antal svar: {{this.amountAnswers}}
+  <div class="amountAnswers"> Antal svar: {{this.amountAnswers}} </div>
+
+  </div>
 
 <!-- <Timer v-if="this.time>0" v-bind:time="this.time" v-on:start="startTimer(this.time)"/>
   <div v-if="timesUp"> tiden är ute</div> -->
-  </div>
 
 </template>
 
 <script>
 // @ is an alias to /src
 //import Timer from '@/components/Timer.vue'
+import Question from '@/components/Question.vue';
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
   name: 'CreatorPoll',
   components: {
-    //Timer
+    Question
   },
   data: function () {
     return {
-      question: "",
+      question: {
+        q: "",
+        a: []
+      },
       theme:"",
       pollId:"",
       lang:"",
@@ -136,42 +135,18 @@ export default {
 
 <style scoped>
 
-.allAnswers {
-  display: grid;
-  margin: auto;
-  padding: auto;
-  width: 300px;
-  grid-template-columns: 10em 10em;
-  grid-template-rows: 5em 5em;
-}
+  .resultButton{
+    margin:2em;
+    font-size:13pt;
+  }
 
-.nr0 {
-  grid-column: 1;
-  grid-row: 1;
-  background-color:lightpink;
-}
-
-.nr1 {
-  grid-column: 2;
-  grid-row: 1;
-  background-color:lightblue;
-}
-
-.nr2 {
-  grid-column: 1;
-  grid-row: 2;
-  background-color:lightgreen;
-}
-
-.nr3 {
-  grid-column: 2;
-  grid-row: 2;
-  background-color:lightyellow;
-}
-
-p{
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
+  .amountAnswers{
+    position:absolute;
+    top:40%;
+    right:0;
+    margin-right:5em;
+    padding:1em;
+    border-radius:1em;
+  }
 
 </style>

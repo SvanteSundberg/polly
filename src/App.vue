@@ -5,14 +5,15 @@
 <style>
 @import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
 @import 'https://fonts.googleapis.com/css?family=Average';
+@import 'https://fonts.googleapis.com/css?family=Pangolin';
 
 #app {
-  font-family: 'Roboto', sans-serif;
   /*font-family: Average, Helvetica, Arial, sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   font-size: 16pt;
+  background-repeat: no-repeat;
 }
 
 #app button{
@@ -21,12 +22,12 @@
 
 #app input{
   font-family: 'Roboto', sans-serif;
-  font-size: 12pt;
+  font-size: 14pt;
 }
 
 #app ::placeholder{
   font-family: 'Roboto', sans-serif;
-  font-size: 12pt;
+  font-size: 14pt;
 }
 
 .cursive{
@@ -36,7 +37,6 @@
 .bold{
   font-weight: bold;
 }
-
 
 #nav {
   padding: 30px;
@@ -54,25 +54,26 @@
 }
 
 .party {
+  font-family: 'Roboto', sans-serif;
   background-image:url(/img/party_ballons.png);
   /*background-image:url("https://i.pinimg.com/736x/e9/67/19/e96719135721c06dbab7f1b34e65da26.jpg");*/
-  background-repeat: no-repeat;
-  background-size: cover;
   height:100vh;
+  background-size: cover;
 }
 
 .school {
-    /*background-image:url("https://png.pngtree.com/thumb_back/fh260/background/20200809/pngtree-doodles-on-green-chalkboard-background-back-to-school-background-image_389839.jpg");*/
-    background-image: url(/img/chalkboard.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height:100vh;
+  background: url(/img/chalkboard.png);
+  /*background-image:url("https://png.pngtree.com/thumb_back/fh260/background/20200809/pngtree-doodles-on-green-chalkboard-background-back-to-school-background-image_389839.jpg");*/
+  height:100vh;
+  background-size: cover;
+  color:white;
+  font-family: 'Pangolin', sans-serif;
 }
 
 .standard{
-  background:url(/img/standard.png);
+  font-family: 'Roboto', sans-serif;
+  background-image:url(/img/standard.png);
   height:100vh;
-  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -91,9 +92,17 @@ h3{
   margin-block-end: 0;
 }
 
+p{
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 
 button:hover {
   cursor: pointer;
+}
+
+div {
+  margin:auto;
 }
 
 .writeInput {
@@ -135,13 +144,14 @@ button:hover {
   grid-template-columns: 200px 50px;
   justify-content: center;
 }
+
 .leftColumn{
   float:right;
   grid-column: 1;
 }
+
 .rightColumn{
   grid-column:2;
 }
-
 
 </style>
