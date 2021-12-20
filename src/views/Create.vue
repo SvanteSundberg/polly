@@ -299,16 +299,22 @@ export default {
 }
 
 #remove{
-  background-color: #d11a2a;
-  margin-left: 1em;
-  border: 1px solid #d11a2a;
-  border-radius: 5px;
+  background-color:red;
+  border: 1px solid #00A6FF;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  text-align:  center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left:  10px;
 }
 
 #remove:hover{
-  background-color: #fff;
-  color:red;
-  border: 1px solid red;
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 20px #AFE9FF;
 }
 
 
