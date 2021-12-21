@@ -159,4 +159,24 @@ div {
   margin-left:1em;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 20px;
+  border:1px solid #fff;
+  opacity:0.8;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: grey;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 </style>

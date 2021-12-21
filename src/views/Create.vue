@@ -283,6 +283,7 @@ export default {
   position:relative;
 }
 
+
 .sideQuestion {
   background-color: white;
   margin: 10px;
