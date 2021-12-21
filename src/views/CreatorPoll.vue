@@ -3,7 +3,7 @@
       <Question v-bind:question="question"/>
 
     <router-link v-if="!this.timeOn" v-bind:to="'/result/'+pollId+'/'+lang">
-    <button class="resultButton" v-on:click="toPollResult">
+    <button class="doneBtn" v-on:click="toPollResult">
       Se resultat
     </button>
   </router-link>
@@ -135,10 +135,7 @@ export default {
 
 <style scoped>
 
-  .resultButton{
-    margin:2em;
-    font-size:13pt;
-  }
+
 
   .amountAnswers{
     position:absolute;

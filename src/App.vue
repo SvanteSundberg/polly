@@ -1,5 +1,6 @@
-<template>
+<template style="max-height: 100%;">
   <router-view/>
+
 </template>
 
 <style>
@@ -76,6 +77,7 @@
   background-image:url(/img/opacityStandard.png);
   height:100vh;
   background-size: cover;
+  min-height: 100%;
 }
 
 body {

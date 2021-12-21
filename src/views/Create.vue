@@ -6,7 +6,7 @@
 </header>
 
 <div class="split left">
-    <h4> {{uiLabels.questionNumber}} {{this.currentIndex+1}}
+    <h4> {{uiLabels.questionNumber}} : {{this.currentIndex+1}}
 
   <button id="remove"
   v-on:click="removeQuestion">
@@ -315,6 +315,7 @@ export default {
 #remove:hover{
   border: 1px solid #fff;
   box-shadow: 2px 2px 20px #AFE9FF;
+  font-weight: bold;
 }
 
 
@@ -412,10 +413,13 @@ header{
   left: 0;
   top:0;
   position:relative;
+  height: auto;
 }
 
 .right {
+
   width: 15%;
+  height: 85%;
   right: 0;
   top: 15%;
   position:absolute;
@@ -458,8 +462,8 @@ p{
   border: 1px solid black;
   outline: none;
   height: 50px;
-  width: 210px;
-  margin-right: 242px;
+  width: 478px;
+  margin-right:-24px;
 
 }
 
