@@ -455,7 +455,7 @@ p{
 .writeQ{
   margin-bottom: 20px;
   border-radius: 5px;
-  border-color: white;
+  border: 1px solid black;
   outline: none;
   height: 50px;
   width: 210px;

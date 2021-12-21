@@ -6,6 +6,7 @@
 @import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
 @import 'https://fonts.googleapis.com/css?family=Average';
 @import 'https://fonts.googleapis.com/css?family=Pangolin';
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
 
 #app {
   /*font-family: Average, Helvetica, Arial, sans-serif;*/
@@ -54,7 +55,7 @@
 }
 
 .party {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Yuji Syuku', serif;
   background-image:url(/img/party_ballons.png);
   /*background-image:url("https://i.pinimg.com/736x/e9/67/19/e96719135721c06dbab7f1b34e65da26.jpg");*/
   height:100vh;
