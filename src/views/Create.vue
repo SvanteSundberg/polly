@@ -64,7 +64,7 @@
 </button>
 
 <router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
-<button v-on:click="removeEmptyAwnser">
+<button class="doneBtn" v-on:click="removeEmptyAwnser">
   {{uiLabels.selectQuestions}}
 </button>
 </router-link>
@@ -300,7 +300,7 @@ export default {
 
 #remove{
   background-color:red;
-  border: 1px solid #00A6FF;
+  border: 1px solid red;
   border-radius: 20px;
   cursor: pointer;
   color: #fff;
@@ -355,7 +355,6 @@ export default {
   width: 210px;
   resize: none;
   border-radius: 5px;
-  border-color: white;
 }
 
 .removeAnswerButton {
@@ -368,10 +367,13 @@ export default {
   justify-content: flex-start;
 }
 .removeAnswerButton::after{
+    position: relative;
     content: "\d7";
-    color: black;
+    color: #fff;
     height: 10px;
     width: 13px;
+    top:-3.8px;
+    right: 2.8px;
 }
 
 

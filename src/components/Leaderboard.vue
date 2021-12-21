@@ -43,12 +43,12 @@ body{
   border: 5px solid snow;
   background:#505050 ;
   color:snow;
-  margin-left: 550px;
-  margin-right:500px;
   border-radius: 25px;
-
+  width:400px;
+  margin:auto;
 }
 #UserInLeaderborad{
+  border-radius: 25px;
   border: 5px solid cyan;
   box-shadow: 0 0 20px cyan;
   margin-top: 30px;

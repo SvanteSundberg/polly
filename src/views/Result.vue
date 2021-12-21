@@ -6,12 +6,13 @@
     <Leaderboard v-bind:users="this.users"/>
 
 <router-link v-if="!finished" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
-    <button v-on:click="runQuestion">
+    <button class="doneBtn" v-on:click="runQuestion">
       Run next question
     </button>
   </router-link>
+  <br>
   <router-link v-if="finished" v-bind:to="'/'">
-      <button>
+      <button class="doneBtn">
         Back to Start
       </button>
     </router-link>

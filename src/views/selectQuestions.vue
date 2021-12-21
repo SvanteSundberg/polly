@@ -31,7 +31,12 @@ v-bind:key="i">
 </div>
 
 <p> Timer </p>
-<input type="checkbox" v-model="isTimer" v-on:click="sendTime()">
+<div class="timerSwitch">
+
+
+<input id="timerSwitch" class="timerInput" type="checkbox" v-model="isTimer" v-on:click="sendTime()">
+<label for="timerSwitch" class="timerLabel">Switch</label>
+</div>
 <div v-if="isTimer"> Välj tid
   <button class="timerButtons"  v-for="(_, i) in timer"
           v-bind:key="i"
@@ -167,18 +172,18 @@ export default {
 
 
 <style scoped>
-input {
+/*input {
     width: 20px;
     position: relative;
     vertical-align: middle;
-}
+}*/
 
-label {
+/*label {
     width: 200px;
     position: relative;
     display: inline-block;
     vertical-align: left;
-}
+}*/
 
 .dropdown {
   position: relative;
@@ -314,7 +319,7 @@ button {
   font-size: 16px;
   font-weight: 600;
   line-height: normal;
-  margin: 0;
+  margin: 3px;
   min-height: 60px;
   min-width: 0;
   outline: none;
@@ -399,6 +404,56 @@ button {
   .editplayButtons {
     padding: 16px 48px;
   }
+}
+
+.timerInput {
+  display: none;
+}
+.timerLabel {
+  display: block;
+  width: 48px;
+  height: 24px;
+  text-indent: -150%;
+  clip: rect(0 0 0 0);
+  color: transparent;
+  user-select: none;
+}
+.timerLabel::before,
+.timerLabel::after {
+  content: "";
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+.timerLabel::before {
+  width: 100%;
+  height: 100%;
+  background-color: #dedede;
+  border-radius: 9999em;
+  -webkit-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease;
+}
+.timerLabel::after {
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+  -webkit-transition: left 0.25s ease;
+  transition: left 0.25s ease;
+}
+.timerInput:checked + .timerLabel::before {
+  background-color: #1A1A1A;
+}
+.timerInput:checked + .timerLabel::after {
+  left: 24px;
+}
+
+.timerSwitch {
+  position: relative;
+  display: inline-block;
 }
 
 

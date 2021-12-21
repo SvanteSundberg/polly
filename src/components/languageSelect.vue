@@ -78,7 +78,6 @@ export default {
 }
 
 .dropdown-content button{
-  background-color: #98B4D4;
   width: 40px;
   height: 20px;
   margin:5px;
@@ -88,7 +87,9 @@ export default {
   border-radius: 10px;
 }
 .dropdown-content button:hover{
-  border:solid 1px white;
+  border:solid 1px #3B3B3B;
+  background-color: #3B3B3B;
+  color: #fff;
 }
 
  .dropdown-content {
@@ -98,11 +99,15 @@ export default {
 }
 
 .selected{
-border:solid 1px white;
+  border:solid 1px #3B3B3B;
+  background-color: #3B3B3B;
+  color: #fff;
 }
 
 .notSelected{
-  border:solid 1px black;
+  background-color: transparent;
+  border:solid 1px #3B3B3B;
+  color:black;
 }
 
 #langLogo{
@@ -121,7 +126,7 @@ border:solid 1px white;
 }
 
 .languageMenu button:hover{
-  border: 1px solid #00A6FF;
+  border: 1px solid #3B3B3B;
 }
 .clicked {
   background-color: lightgray;

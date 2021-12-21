@@ -3,12 +3,12 @@
     <h3> Time to join! </h3>
     Pollid: {{this.id}}
     <!-- QR-KOD-->
-    <p> Waiting for players to join! </p>
-
+    <p> Waiting for players to join! </p><br>
+    <p style="font-weight:bold"> Players: </p>
   <div v-for="user in this.users" v-bind:key="user">
     {{user}}
   </div>
-
+ <br>
   <p> Amount users: {{this.users.length}} </p>
 
   <button  v-on:click="startPoll" v-bind:class="['letsGoButton',{notReady:this.users.length === 0}]">
@@ -114,4 +114,5 @@ background-color:green;
 .notReady {
   background-color: grey;
 }
+
 </style>
