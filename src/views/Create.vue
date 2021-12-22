@@ -78,11 +78,13 @@
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> Quizzer </template>
-<span> {{uiLabels.pleaseMakeSureTo}}
+<div class="warning"> {{uiLabels.pleaseMakeSureTo}} <br>
+  <ol>
 <li>{{uiLabels.chooseRight}}</li>
 <li> {{uiLabels.typeSomething}} </li>
 <li> {{uiLabels.fillCorrect}} </li>
-</span>
+</ol>
+</div>
 </createPopup>
 
 </div>
@@ -104,6 +106,7 @@
     {{uiLabels.sideQuestion}} {{i+1}}
     <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
   </button>
+
 </div>
 </div>
 </div>
@@ -132,6 +135,7 @@ export default {
       currentIndex: 0,
       correctQuestion:[],
       popupVisable:false,
+      notFinished:[]
     }
   },
   created: function() {
@@ -241,23 +245,46 @@ export default {
     },
 
     canContinue: function(){
-      let markedCorrect=true;
-      let isFilledQuestion=true;
+      let finished=true;
       for (let i=0;i<this.allQuestions.length;i++){
-        for(let x=0; x<this.allQuestions[i].c.length;x++){
-          if(this.allQuestions[i].a[this.allQuestions[i].c[x]].length===0){
-              markedCorrect=false;
+        if (!this.isCorrectAnswerFilled(i) || !this.isMarkedCorrect(i) || !this.isQuestionFilled(i)){
+          finished=false;
+          if (!this.notFinished.includes(i)) {
+            this.notFinished.push(i);
           }
         }
-        if (typeof this.allQuestions[i].c[0]=='undefined' ){
-          markedCorrect=false;
-        }
-        if (this.allQuestions[i].q==''){
-          isFilledQuestion=false;
+        else{
+          if (this.notFinished.includes(i)){
+            var index = this.notFinished.indexOf(i);
+            this.notFinished.splice(index,1);
+          }
         }
       }
-      return (markedCorrect && isFilledQuestion);
+      return finished
       },
+
+      isCorrectAnswerFilled: function(i){
+       for(let x=0; x<this.allQuestions[i].c.length;x++){
+         if(this.allQuestions[i].a[this.allQuestions[i].c[x]].length===0){
+          return false
+         }
+       }
+       return true
+     },
+
+     isMarkedCorrect: function(i){
+       if (typeof this.allQuestions[i].c[0]=='undefined' ){
+           return false
+       }
+       return true
+     },
+
+     isQuestionFilled: function(i){
+       if (this.allQuestions[i].q==''){
+        return false
+        }
+        return true
+       },
 
     showPopup:function(value){
       this.popupVisable=value;
@@ -506,5 +533,12 @@ button:hover{
   font-weight:bold;
 }
 
+.warning{
+  text-align:center;
+}
+
+.warning ol{
+  display:inline-block;
+}
 
 </style>

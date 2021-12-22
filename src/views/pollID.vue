@@ -17,13 +17,13 @@
   </div>
 </div>
 </div>
+</div>
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> Quizzer </template>
 <span> ID does not exists </span>
 </createPopup>
-</div>
 
 <div class='position'>
   <div  v-if="done && !ready">
@@ -42,13 +42,13 @@
   </div>
   </div>
   </div>
+  </div>
   <createPopup v-on:stop="showPopup(false)"
               v-show="this.popupVisable">
   <template v-slot:header> Quizzer </template>
   <span> Name already exists </span>
   <!--<template v-slot:button> Quizzer </template>-->
   </createPopup>
-  </div>
   </div>
 </template>
 

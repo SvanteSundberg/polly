@@ -104,8 +104,10 @@ header{
 }
 
 .ID{
-  background-color:LightCyan;
+  background-color:white;
   padding:1em;
+  color:black;
+  box-shadow: 10px 5px 5px black;
 }
 
 .players{
@@ -115,6 +117,7 @@ header{
   margin-right:15em;
   padding:1em;
   background-color:white;
+  color:black;
 }
 
 .playerPicture img{
@@ -133,7 +136,8 @@ header{
 }
 
 .waiting{
-  margin-bottom:1em;
+  margin:2.5em;
+  font-size:20pt;
   font-weight: bold;
 }
 
@@ -185,6 +189,7 @@ header{
 
 .notReady {
   background-color: grey;
+  border: 1px solid grey;
 }
 
 </style>

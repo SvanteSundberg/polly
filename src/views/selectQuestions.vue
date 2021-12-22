@@ -40,7 +40,7 @@ v-bind:key="i">
 <input id="timerSwitch" class="timerInput" type="checkbox" v-model="isTimer" v-on:click="sendTime()">
 <label for="timerSwitch" class="timerLabel">Switch</label>
 </div>
-<div v-if="isTimer"> Välj tid
+<div class="containsTimerButtons" v-if="isTimer"> Välj tid
   <button class="timerButtons"
           v-for="(value, i) in timer"
           v-bind:key="i"
@@ -463,18 +463,22 @@ button{
 }
 
 header h2{
-margin-top:0px;
-padding-top:1em;
+  margin-top:0px;
+  padding-top:1em;
 }
 
 header{
-margin-bottom:1.5em;
+  margin-bottom:1.5em;
 }
 
 .check{
   height: 1em;
   width: 1em;
   position:relative;
+}
+
+.containsTimerButtons{
+  margin-bottom:1em;
 }
 
 
