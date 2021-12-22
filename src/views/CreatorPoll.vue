@@ -88,7 +88,7 @@ export default {
     socket.emit("getUserAmount", this.pollId);
 
     socket.on("userAmount",(userAmount) => {
-      this.amountUsers=userAmount;
+      this.amountUsers=userAmount.length;
     });
 
 

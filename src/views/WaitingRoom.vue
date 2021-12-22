@@ -1,17 +1,28 @@
 <template>
   <div v-bind:class='theme'>
-    <h3> Time to join! </h3>
-    Pollid: {{this.id}}
-    <!-- QR-KOD-->
-    <p> Waiting for players to join! </p><br>
-    <p style="font-weight:bold"> Players: </p>
-  <div v-for="user in this.users" v-bind:key="user">
-    {{user}}
-  </div>
- <br>
-  <p> Amount users: {{this.users.length}} </p>
+    <header>
+    <h1> It's time to play! </h1>
+  </header>
 
-  <button  v-on:click="startPoll" v-bind:class="['letsGoButton',{notReady:this.users.length === 0}]">
+    <div class="container">
+    <span class="ID">Join with PollID: <span class="special">
+    {{this.id}} </span> </span>
+  </div>
+
+  <div v-if="this.users.length>0" class="players">
+    <div class="playerPicture">
+      <p> {{this.users.length}} players are logged in!
+        <span> <img id="figure" src='/img/streckgubbe.png'> </span>
+      </p>
+    </div>
+  <span v-for="user in this.users" v-bind:key="user" class="cursive">
+    {{user}}
+  </span>
+</div>
+    <p v-if="this.users.length===0" class="waiting"> Waiting for players to join... </p>
+ <br>
+
+  <button v-on:click="startPoll" v-bind:class="['letsGoButton',{notReady:this.users.length === 0}]">
     Let's go
   </button>
   </div>
@@ -43,6 +54,13 @@ export default {
     socket.on("initial", (theme) => {
       this.theme = theme
     });
+
+    socket.emit("getUserAmount", this.id);
+
+    socket.on("userAmount",(userAmount) => {
+      this.users=userAmount;
+    });
+
     socket.emit('joinPoll', {pollId: this.id,
                             questionNumber: null});
     socket.on("allUsers", (users) => {
@@ -57,32 +75,87 @@ export default {
         socket.emit("timeToStart", this.id);
         this.$router.replace('/creatorPoll/'+this.id+'/'+this.lang);
       }
-    }
+    },
 
   },
 }
 </script>
 
 <style scoped>
+
+header{
+  padding:1em;
+}
+
+.container{
+  margin:1em;
+}
+
+.players span{
+  padding:1em;
+  padding-top:0;
+  display: inline-block;
+}
+
+.special{
+  font-style: italic;
+  font-weight: bold;
+  font-size:24pt;
+}
+
+.ID{
+  background-color:LightCyan;
+  padding:1em;
+}
+
+.players{
+  border:dotted;
+  margin:3em;
+  margin-left: 15em;
+  margin-right:15em;
+  padding:1em;
+  background-color:white;
+}
+
+.playerPicture img{
+  width:50px;
+  height:50px;
+  position:absolute;
+  top:11.5em;
+  left:26em;
+}
+
+.playerPicture {
+  background-color:white;
+  padding:1em;
+  width:11em;
+  padding-right:0;
+}
+
+.waiting{
+  margin-bottom:1em;
+  font-weight: bold;
+}
+
 .letsGoButton{
-background-color:green;
- border: 0;
- border-radius: 56px;
- color: #fff;
- cursor: pointer;
- display: inline-block;
- font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
- font-size: 18px;
- font-weight: 600;
- outline: 0;
- padding: 16px 21px;
- position: relative;
- text-align: center;
- text-decoration: none;
- transition: all .3s;
- user-select: none;
- -webkit-user-select: none;
- touch-action: manipulation;
+   background-color:#2ECC40;
+   border: 1px solid #2ECC40;
+   border-radius: 56px;
+   color: #fff;
+   cursor: pointer;
+   display: inline-block;
+   /*font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;*/
+   font-size: 18px;
+   font-weight: 600;
+   outline: 0;
+   padding: 16px 21px;
+   position: relative;
+   text-align: center;
+   text-decoration: none;
+   transition: all .3s;
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
 }
 
 .letsGoButton:before {
@@ -109,7 +182,6 @@ background-color:green;
    padding: 16px 48px;
  }
 }
-
 
 .notReady {
   background-color: grey;

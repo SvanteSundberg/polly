@@ -69,7 +69,7 @@ export default {
 
 
 .chosen {
-  background-color: grey;
+  background-color: DarkGrey;
 
 }
 
@@ -82,7 +82,7 @@ export default {
   padding: 14px 20px;
   cursor: pointer;
   color: black;
-  text-align:  center;
+  text-align: center;
   box-shadow: 2px 2px 20px gray;
   transition-duration: 0.5s;
   -webkit-transition-duration: 0.1s;
@@ -90,7 +90,7 @@ export default {
 }
 
 .themeButtons button:hover{
-  background-color: lightgrey;
+  background-color: Silver;
 }
 
 

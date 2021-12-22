@@ -48,7 +48,6 @@ export default {
       uiLabels: {},
       id: "",
       lang: "en",
-      theme: "school"
     }
   },
   created: function () {
@@ -100,12 +99,6 @@ export default {
   -moz-transition-duration: 0.1s;*/
 }
 
-
-.startButtons button:hover{
-  border: 1px solid #fff;
-  box-shadow: 2px 2px 20px #AFE9FF;
-}
-
 #createButton{
   grid-column: 1;
 }
@@ -150,9 +143,9 @@ export default {
 }
 
 h1{
-  padding-top:1em;
+  padding-top:7%;
   text-shadow: 4px 4px 5px white;
-  margin-bottom:0.5em;
+  margin-bottom:0.75em;
 }
 
 </style>

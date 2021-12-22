@@ -25,6 +25,7 @@
 </createPopup>
 </div>
 
+<div class='position'>
   <div  v-if="done && !ready">
     <h1>
       Välj namn
@@ -37,8 +38,8 @@
   <div class="rightColumn">
     <button class="doneBtn" v-on:click="sendUsername" v-if="!ready && this.userName.length>0">
     {{uiLabels.Done}}
-
   </button>
+  </div>
   </div>
   </div>
   <createPopup v-on:stop="showPopup(false)"

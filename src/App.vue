@@ -5,7 +5,6 @@
 
 <style>
 @import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
-@import 'https://fonts.googleapis.com/css?family=Average';
 @import 'https://fonts.googleapis.com/css?family=Pangolin';
 @import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
 
@@ -18,11 +17,12 @@
   background-repeat: no-repeat;
 }
 
-#app button{
+#app input{
   font-family: 'Roboto', sans-serif;
+  font-size: 14pt;
 }
 
-#app input{
+#app textarea{
   font-family: 'Roboto', sans-serif;
   font-size: 14pt;
 }
@@ -63,6 +63,11 @@
   background-size: cover;
 }
 
+#app .party button{
+  font-family: 'Yuji Syuku', serif;
+  font-weight: bold;
+}
+
 .school {
   background: url(/img/chalkboard.png);
   /*background-image:url("https://png.pngtree.com/thumb_back/fh260/background/20200809/pngtree-doodles-on-green-chalkboard-background-back-to-school-background-image_389839.jpg");*/
@@ -72,12 +77,20 @@
   font-family: 'Pangolin', sans-serif;
 }
 
+#app .school button{
+  font-family: 'Pangolin', sans-serif;
+}
+
 .standard{
   font-family: 'Roboto', sans-serif;
   background-image:url(/img/opacityStandard.png);
   height:100vh;
   background-size: cover;
   min-height: 100%;
+}
+
+#app .standard button{
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -100,10 +113,6 @@ p{
   margin-block-end: 0;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
 div {
   margin:auto;
 }
@@ -123,7 +132,6 @@ div {
 }
 
 .doneBtn{
-
   background-color:#2ECC40;
   border: 1px solid #2ECC40;
   border-radius: 20px;
@@ -137,9 +145,14 @@ div {
   margin-left:  10px;
 }
 
-.doneBtn:hover{
+#app button:hover{
   border: 1px solid #fff;
-  box-shadow: 2px 2px 20px #AFE9FF;
+  box-shadow: 2px 2px 20px #fff;
+  cursor: pointer;
+}
+
+#app .party button:hover{
+  box-shadow: 2px 2px 20px grey;
 }
 
 .gridWrap{

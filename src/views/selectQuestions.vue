@@ -12,10 +12,13 @@ v-bind:key="i">
 
   <input type="checkbox"
          v-model="selectedQuestions"
-         v-bind:value="i">
+         v-bind:value="i"
+         class="check">
 
 <div class="dropdown">
-  <button class="questionButton" v-on:click="changeDropdown(i)">
+  <button class="questionButton"
+          v-on:click="changeDropdown(i)"
+          v-bind:class="[{showDrop:this.dropDownVisable[i]}]">
     <label> {{i+1}}. {{value.q}}</label>
     </button>
     <div v-bind:class="['dropdown-content',{dropdownShow:this.dropDownVisable[i]}]">
@@ -38,10 +41,12 @@ v-bind:key="i">
 <label for="timerSwitch" class="timerLabel">Switch</label>
 </div>
 <div v-if="isTimer"> Välj tid
-  <button class="timerButtons"  v-for="(_, i) in timer"
+  <button class="timerButtons"
+          v-for="(value, i) in timer"
           v-bind:key="i"
-          v-on:click="sendTime(i)">
-          {{this.timer[i]}}
+          v-on:click="sendTime(i)"
+          v-bind:class="[{chosen: this.time===value}]">
+          {{value}}
   </button>
 <!-- <button v-on:click="setTimeBooleans"> None </button> -->
 </div>
@@ -192,6 +197,7 @@ export default {
 
 .dropdown-content {
   display: none;
+  color:black;
 }
 
 .dropdown-content p{
@@ -214,7 +220,7 @@ export default {
 }
 
 .questionButton{
-
+  margin:0.5em;
   align-items: center;
   appearance: none;
   background-color: #fff;
@@ -222,12 +228,10 @@ export default {
   border-style: none;
   box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
   box-sizing: border-box;
-  color: #3c4043;
-  cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
-  font-size: 14px;
+  /*font-family: "Google Sans",Roboto,Arial,sans-serif;*/
+  font-size: 14pt;
   font-weight: 500;
   height: 48px;
   justify-content: center;
@@ -245,22 +249,22 @@ export default {
   touch-action: manipulation;
   width: auto;
   will-change: transform,opacity;
-  z-index: 0;
 }
 
 .questionButton:hover {
   background: #F6F9FE;
   color: #174ea6;
+  font-weight:bold;
+}
+
+.showDrop{
+  outline: none;
+  border: 2px solid #4285f4;
 }
 
 .questionButton:active {
   box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
   outline: none;
-}
-
-.questionButton:focus {
-  outline: none;
-  border: 2px solid #4285f4;
 }
 
 .questionButton:not(:disabled) {
@@ -283,20 +287,16 @@ export default {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
-
-
-
-
-button {
-  font-size: 16pt;
-  margin:0.5em;
-}
 .questions{
   margin-bottom:2em;
 }
 
 .myButtons button{
   margin:1em;
+}
+
+button{
+  font-size:14pt;
 }
 
 .pic{
@@ -315,8 +315,7 @@ button {
   color: #3B3B3B;
   cursor: pointer;
   display: inline-block;
-  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 16px;
+  /*font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";*/
   font-weight: 600;
   line-height: normal;
   margin: 3px;
@@ -334,13 +333,19 @@ button {
   will-change: transform;
 }
 
+.school .timerButtons{
+  color: white;
+  border: 2px solid white;
+
+}
+
 .timerButtons:disabled {
   pointer-events: none;
 }
 
 .timerButtons:hover {
   color: #fff;
-  background-color: #1A1A1A;
+  background-color: grey;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
@@ -350,14 +355,12 @@ button {
   transform: translateY(0);
 }
 
-
-.timerButtons:focus {
+.chosen {
   color: #fff;
-  background-color: #1A1A1A;
+  background-color: grey;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
-
 
 .editplayButtons {
   background-color: #0078d0;
@@ -366,8 +369,7 @@ button {
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
-  font-size: 18px;
+  /*font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;*/
   font-weight: 600;
   outline: 0;
   padding: 16px 21px;
@@ -409,6 +411,7 @@ button {
 .timerInput {
   display: none;
 }
+
 .timerLabel {
   display: block;
   width: 48px;
@@ -418,6 +421,7 @@ button {
   color: transparent;
   user-select: none;
 }
+
 .timerLabel::before,
 .timerLabel::after {
   content: "";
@@ -445,7 +449,7 @@ button {
   transition: left 0.25s ease;
 }
 .timerInput:checked + .timerLabel::before {
-  background-color: #1A1A1A;
+  background-color: grey;
 }
 .timerInput:checked + .timerLabel::after {
   left: 24px;
@@ -454,13 +458,24 @@ button {
 .timerSwitch {
   position: relative;
   display: inline-block;
+  margin-bottom:1em;
+  margin-top:0.3em;
 }
 
 header h2{
 margin-top:0px;
-padding-top:10px;
+padding-top:1em;
 }
 
+header{
+margin-bottom:1.5em;
+}
+
+.check{
+  height: 1em;
+  width: 1em;
+  position:relative;
+}
 
 
 </style>

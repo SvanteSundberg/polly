@@ -6,12 +6,12 @@
 </header>
 
 <div class="split left">
-    <h4> {{uiLabels.questionNumber}} : {{this.currentIndex+1}}
+    <h3> {{uiLabels.questionNumber}} : {{this.currentIndex+1}}
 
   <button id="remove"
   v-on:click="removeQuestion">
   {{uiLabels.removeQuestion}}
-</button> </h4>
+</button> </h3>
 
   <div class="question">
     <p> {{uiLabels.question}}: </p>
@@ -295,8 +295,8 @@ export default {
 }
 
 .activeQuestion {
-  background-color: #2ECC40;
-    border: 1px solid white;
+  background-color: Grey;
+  border: 1px solid white;
 }
 
 #remove{
@@ -314,8 +314,6 @@ export default {
 }
 
 #remove:hover{
-  border: 1px solid #fff;
-  box-shadow: 2px 2px 20px #AFE9FF;
   font-weight: bold;
 }
 
@@ -361,9 +359,10 @@ export default {
 
 .removeAnswerButton {
   background-color: #d11a2a;
-  height: 10px;
+  height: 13px;
   width: 13px;
   margin-left:203px;
+  padding:0;
   border: red;
   border-radius: 2px;
   justify-content: flex-start;
@@ -372,12 +371,21 @@ export default {
     position: relative;
     content: "\d7";
     color: #fff;
-    height: 10px;
-    width: 13px;
-    top:-3.8px;
-    right: 2.8px;
+    font-size:12pt;
+}
+.party .removeAnswerButton::after{
+  top:-6px;
 }
 
+.school .removeAnswerButton::after{
+  top:-4px;
+  left:0.5px;
+}
+
+.standard .removeAnswerButton::after{
+  top:-3px;
+  right:0.3px;
+}
 
 #addButton{
   background-color:lightgrey;
@@ -388,6 +396,7 @@ export default {
   padding: 0px;
   opacity: 0.5;
   margin:0;
+  font-size:14pt;
 }
 
 .question{
@@ -418,7 +427,6 @@ header{
 }
 
 .right {
-
   width: 15%;
   height: 85%;
   right: 0;
@@ -429,11 +437,14 @@ header{
 }
 
 .markCorrectButton{
-  background-color: pink;
   height: 1em;
   width: 1em;
-  margin-left:230px;
+  margin-left:11.75em;
   margin-top:40px;
+}
+
+.markCorrectButton:hover{
+  cursor: pointer;
 }
 
 hr{
@@ -448,7 +459,7 @@ hr{
 
 #overView{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    margin-bottom: 40px;
+    margin-bottom: 0.5em;
 }
 
 p{
@@ -457,6 +468,7 @@ p{
   text-align: left;
   padding-bottom: 20px;
 }
+
 .writeQ{
   margin-bottom: 20px;
   border-radius: 5px;
@@ -465,16 +477,15 @@ p{
   height: 50px;
   width: 478px;
   margin-right:-24px;
-
 }
 
 .addBtn{
-  background-color:#00A6FF;
-  border: 1px solid #00A6FF;
+  background-color: #0078d0;
+  border: 1px solid #0078d0;
   border-radius: 20px;
   cursor: pointer;
   color: #fff;
-  text-align:  center;
+  text-align: center;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
@@ -482,9 +493,17 @@ p{
   margin-left:  10px;
 }
 
-.addBtn:hover{
-  border: 1px solid #fff;
-  box-shadow: 2px 2px 20px #AFE9FF;
+h3{
+  margin-top:1.5em;
+  margin-bottom:0.5em;
+}
+
+.doneBtn{
+  margin-bottom:3em;
+}
+
+button:hover{
+  font-weight:bold;
 }
 
 

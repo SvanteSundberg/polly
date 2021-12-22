@@ -254,8 +254,11 @@ return false
 
 Data.prototype.getUsers=function(pollId){
   const poll = this.polls[pollId];
-  console.log(Object.keys(poll.users));
-  return Object.keys(poll.users)
+  const pollUsers = poll.users;
+  if (typeof pollUsers !== 'undefined'){
+    return Object.keys(poll.users)
+  }
+  return []
 }
 
 Data.prototype.userInfo=function(pollId,userName){

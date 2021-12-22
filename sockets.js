@@ -131,7 +131,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getUserAmount', function(pollId){
-    socket.emit('userAmount', data.getUsers(pollId).length)
+    socket.emit('userAmount', data.getUsers(pollId));
   });
 
 }
