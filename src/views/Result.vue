@@ -1,21 +1,29 @@
 <template>
   <div v-bind:class='theme'>
-    {{this.question}}
+
+    <div class="split left">
+      <header>
+      <h1>{{this.question}} </h1>
+    </header>
 
     <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'/>
-    <Leaderboard v-bind:users="this.users"/>
 
-<router-link v-if="!finished" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
-    <button class="doneBtn" v-on:click="runQuestion">
-      {{uiLabels.runNextQ}}
-    </button>
-  </router-link>
-  <br>
-  <router-link v-if="finished" v-bind:to="'/'">
-      <button class="doneBtn">
-        {{uiLabels.backToStart}}
-      </button>
-    </router-link>
+    <router-link v-if="!finished" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
+        <button class="doneBtn" v-on:click="runQuestion">
+          {{uiLabels.runNextQ}}
+        </button>
+      </router-link>
+      <br>
+      <router-link v-if="finished" v-bind:to="'/'">
+          <button class="doneBtn">
+            {{uiLabels.backToStart}}
+          </button>
+        </router-link>
+      </div>
+
+  <div class="split right">
+    <Leaderboard v-bind:users="this.users"/>
+  </div>
 
   </div>
 
@@ -94,3 +102,32 @@ methods: {
 
 }
 </script>
+
+<style scoped>
+
+.split {
+  height: 100%;
+  top: 0;
+  position:fixed;
+}
+
+.left {
+  left: 0;
+  width: 60%;
+  margin-left:1em;
+
+}
+
+.right {
+  padding-top:6em;
+  margin-right:3.5em;
+  right: 0;
+  width: 40%;
+  border-left: 5px solid grey;
+}
+
+header{
+  padding-top:2em;
+}
+
+</style>

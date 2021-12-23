@@ -75,7 +75,7 @@
   background-size: cover;
   color:white;
   font-family: 'Pangolin', sans-serif;
-  font-size:18pt;
+  font-size:16.5pt;
 }
 
 #app .school button{
