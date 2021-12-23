@@ -330,6 +330,10 @@ export default {
   position:relative;
 }
 
+#themeButton{
+  height:4em;
+}
+
 
 .sideQuestion {
   background-color: white;
@@ -338,10 +342,13 @@ export default {
   border-color: white;
   padding:0.5em;
   font-size:13pt;
+  height: 3em;
+  width: 7em;
 }
 
 .party .sideQuestion{
-  font-size:12.5pt;
+  padding:0;
+  font-size:12pt;
 }
 
 .activeQuestion {
@@ -567,14 +574,18 @@ button:hover{
 .helpMessage{
   border-top: 2px solid transparent;
   border-left: 2px solid transparent;
-  font-size:12pt;
+  font-size:13pt;
   width: 15px;
   height: 15px;
   transform: rotate(135deg);
-  margin-right:9em;
+  margin-right:8.6em;
   margin-top: 0;
-  margin-bottom:2.7em;
+  margin-bottom:55px;
   z-index:0;
+}
+
+.party .helpMessage{
+  margin-bottom:50px;
 }
 
 .helpMessage::after{
@@ -596,11 +607,7 @@ button:hover{
 }
 
 .positioningHelp{
-  margin-top:9em;
-}
-
-.party .positioningHelp{
-  margin-top:10em;
+  margin-top:9.3em;
 }
 
 </style>
