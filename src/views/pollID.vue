@@ -28,7 +28,7 @@
 <div class='position'>
   <div  v-if="done && !ready">
     <h1>
-      {{uiLabels.chooseName}}: 
+      {{uiLabels.chooseName}}:
     </h1>
     <br>
     <div class="gridWrap">
@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .position{
     position: absolute;
     left: 50%;

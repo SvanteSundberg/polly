@@ -56,7 +56,7 @@ methods: {
   top: -1.4em;
 }
 .bar:nth-child(1) div:nth-child(1) {
-  background-color:red;
+  background-color:#CC0066;
 }
 .bar:nth-child(2) div:nth-child(1) {
   background-color:blue;
@@ -65,7 +65,7 @@ methods: {
   background-color:teal;
 }
 .bar:nth-child(4) div:nth-child(1) {
-  background-color:purple;
+  background-color:#FFAA33;
 }
 
 .answers{

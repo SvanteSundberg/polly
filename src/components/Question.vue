@@ -2,7 +2,7 @@
 <h3> <span> {{question.q}} </span>
 </h3>
 <div class="allAnswers">
-<button v-for="a in question.a"
+<button v-for="(a,i) in question.a"
         v-on:click="answer(a)"
         v-bind:key="a"
         v-bind:class='"answer "+"nr"+i'>
@@ -10,6 +10,7 @@
 </button>
 </div>
 </template>
+
 <script>
 export default {
   name: 'Bars',
@@ -44,29 +45,31 @@ h3 {
 
 .answer {
   font-size: 18pt;
+  color:white;
+  text-shadow: 2px 2px black;
 }
 
 .nr0 {
   grid-column: 1;
   grid-row: 1;
-  background-color:lightpink;
+  background-color:#CC0066;
 }
 
 .nr1 {
   grid-column: 2;
   grid-row: 1;
-  background-color:lightblue;
+  background-color:blue;
 }
 
 .nr2 {
   grid-column: 1;
   grid-row: 2;
-  background-color:lightgreen;
+  background-color:teal;
 }
 
 .nr3 {
   grid-column: 2;
   grid-row: 2;
-  background-color:lightyellow;
+  background-color: #FFAA33;
 }
 </style>
