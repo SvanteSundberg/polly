@@ -134,6 +134,7 @@ header{
 
 .party .players img{
   top:11.5em;
+  left:24em;
 }
 
 .playerPicture {
