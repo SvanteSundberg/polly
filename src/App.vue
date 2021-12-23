@@ -155,6 +155,10 @@ div {
   box-shadow: 2px 2px 20px grey;
 }
 
+button{
+  font-size:13pt;
+}
+
 .gridWrap{
   display:grid;
   grid-template-columns: 200px 50px;

@@ -65,6 +65,8 @@ export default {
       this.theme = theme
     });
 
+    socket.emit("timeToStart", this.pollId);
+
     socket.emit('getTime',this.pollId);
 
     socket.on("setTime", (time)=>{
