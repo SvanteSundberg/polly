@@ -1,5 +1,6 @@
 <template>
 <div v-bind:class='theme'>
+  {{this.notFinished}}
   <header>
    <h2>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h2>
   <hr>
@@ -91,10 +92,10 @@
 
 <div class="split right">
 <div class="scroll">
-  <div id="questionWrap">
+  <div class="questionWrap" id="importantButtons">
      <h3 id="overView"> {{uiLabels.overview}} </h3>
     <router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
-    <button class="sideQuestion">
+    <button class="sideQuestion" id="themeButton">
       {{uiLabels.selectTheme}}
     </button>
   </router-link>
@@ -104,10 +105,19 @@
           v-bind:class="['sideQuestion',{activeQuestion:this.currentIndex === i}]">
 
     {{uiLabels.sideQuestion}} {{i+1}}
-    <!-- v-bind:class="['sideQuestion',{activeQuestion:i === this.currentIndex}]" -->
   </button>
+  </div>
 
-</div>
+  <div class="questionWrap" v-if="this.showHelp">
+    <div class="positioningHelp">
+    <div v-for="(_, i) in this.allQuestions"
+          v-bind:key="i"
+          v-bind:class="['helpMessage',{notDone:isNotFinished(i)}]">
+          <span v-if="isNotFinished(i)"> </span>
+    </div>
+  </div>
+  </div>
+
 </div>
 </div>
 </div>
@@ -135,7 +145,8 @@ export default {
       currentIndex: 0,
       correctQuestion:[],
       popupVisable:false,
-      notFinished:[]
+      notFinished:[],
+      showHelp:false,
     }
   },
   created: function() {
@@ -288,20 +299,35 @@ export default {
 
     showPopup:function(value){
       this.popupVisable=value;
+      this.showHelp=true;
     },
+
+    isNotFinished: function(index){
+      return this.notFinished.includes(index)
+    }
 
 
   }
 }
 </script>
 <style scoped>
-#questionWrap {
+#importantButtons{
+  z-index:1;
+}
+
+.party{
+  font-weight:bold;
+  font-size:16pt;
+}
+
+.questionWrap {
   display: flex;
   flex-direction: column;
   position:absolute;
   top: 0;
   right: 0;
-  padding:1.5em;
+  padding-right:1.5em;
+  padding-left:1.5em;
 }
 
 .scroll{
@@ -539,6 +565,41 @@ button:hover{
 
 .warning ol{
   display:inline-block;
+}
+
+.helpMessage{
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  font-size:12pt;
+  width: 15px;
+  height: 15px;
+  transform: rotate(135deg);
+  margin-right:9em;
+  margin-top: 0;
+  margin-bottom:2.7em;
+  z-index:0;
+}
+
+.helpMessage::after{
+  content: "";
+  display: block;
+  width: 2px;
+  height: 45px;
+  background-color: transparent;
+  transform: rotate(-45deg) translate(15px, 4px);
+}
+
+.notDone{
+  border-top: 2px solid red;
+  border-left: 2px solid red;
+}
+
+.notDone::after{
+  background-color: red;
+}
+
+.positioningHelp{
+  margin-top:9em;
 }
 
 </style>

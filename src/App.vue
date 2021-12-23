@@ -14,6 +14,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-repeat: no-repeat;
+  font-size:16pt;
 }
 
 #app input{
@@ -60,6 +61,7 @@
   /*background-image:url("https://i.pinimg.com/736x/e9/67/19/e96719135721c06dbab7f1b34e65da26.jpg");*/
   height:100vh;
   background-size: cover;
+  color:black;
   font-size:17pt;
 }
 
@@ -75,7 +77,6 @@
   background-size: cover;
   color:white;
   font-family: 'Pangolin', sans-serif;
-  font-size:16.5pt;
 }
 
 #app .school button{
@@ -88,7 +89,7 @@
   height:100vh;
   background-size: cover;
   min-height: 100%;
-  font-size:16pt;
+  color:black;
 }
 
 #app .standard button{
