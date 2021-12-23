@@ -65,7 +65,8 @@ v-bind:key="i">
 </router-link>
 
 <button v-if="this.selectedQuestions.length===0"
-        v-on:click="showPopup(true)">
+        v-on:click="showPopup(true)"
+        class="doneBtn">
   Play Quiz
 </button>
 

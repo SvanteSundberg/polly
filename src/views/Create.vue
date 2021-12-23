@@ -401,7 +401,7 @@ export default {
     font-size:12pt;
 }
 .party .removeAnswerButton::after{
-  top:-6px;
+  top:-8px;
 }
 
 .school .removeAnswerButton::after{
@@ -410,7 +410,7 @@ export default {
 }
 
 .standard .removeAnswerButton::after{
-  top:-3px;
+  top:-4.5px;
   right:0.3px;
 }
 

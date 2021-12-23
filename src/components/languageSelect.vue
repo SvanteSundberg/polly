@@ -79,7 +79,7 @@ export default {
 
 .dropdown-content button{
   width: 40px;
-  height: 20px;
+  height: 25px;
   margin:5px;
   justify-content: center;
   /*border:solid 1px black;*/

@@ -1,7 +1,7 @@
 <template>
   <div v-bind:class='theme' >
       <Question v-bind:question="question"/>
-
+    <br>
     <router-link v-if="!this.timeOn" v-bind:to="'/result/'+pollId+'/'+lang">
     <button class="doneBtn" v-on:click="toPollResult">
       Se resultat
