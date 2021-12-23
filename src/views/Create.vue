@@ -338,7 +338,10 @@ export default {
   border-color: white;
   padding:0.5em;
   font-size:13pt;
+}
 
+.party .sideQuestion{
+  font-size:12.5pt;
 }
 
 .activeQuestion {
@@ -594,6 +597,10 @@ button:hover{
 
 .positioningHelp{
   margin-top:9em;
+}
+
+.party .positioningHelp{
+  margin-top:10em;
 }
 
 </style>
