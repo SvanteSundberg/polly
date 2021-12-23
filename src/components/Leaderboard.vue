@@ -1,8 +1,8 @@
 <template>
-<body>
+	<div class="leaderboard">
 				<h1>Leaderboard</h1>
 
-			<div class="body">
+				<div>
 				<ol v-for= "user in this.users" v-bind:key ="user">
           <div id="UserInLeaderborad">
 
@@ -10,11 +10,9 @@
 
           </div>
 				</ol>
+			</div>
 
       </div>
-
-
-</body>
 
 </template>
 
@@ -33,20 +31,21 @@ export default {
 <style scoped>
 
 *{
-
   line-height: 1.5;
   transition: all .3s ease-in-out;
-  font-family: "Josefin Sans", Arial;
+  /*font-family: "Josefin Sans", Arial;*/
 }
 
-body{
+.leaderboard{
   border: 5px solid snow;
   background:#505050 ;
   color:snow;
   border-radius: 25px;
   width:400px;
   margin:auto;
+	margin-bottom:2em;
 }
+
 #UserInLeaderborad{
   border-radius: 25px;
   border: 5px solid cyan;
@@ -55,10 +54,6 @@ body{
   margin-bottom: 25px;
   margin-right: 30px;
   text-align: center;
-
-
 }
-
-
 
 </style>

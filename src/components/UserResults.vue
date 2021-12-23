@@ -1,20 +1,29 @@
 <template>
   <div v-bind:class='theme'>
-    <div v-if="checkAnswer()">
+    <div v-if="checkAnswer()" class="infoAnswer">
       <h3> {{uiLabels.timeUp}} {{userName}}! </h3>
       <p> {{uiLabels.goFaster}} </p>
     </div>
-    <div v-else-if="this.userinfo.correct">
-    <h3> {{uiLabels.keepGoing}}{{userName}}! </h3>
-    <p> {{uiLabels.youAnswered}} {{this.userinfo.answer}} {{uiLabels.whichIs}} <span class="bold"> correct </span>
+    <div v-else-if="this.userinfo.correct" class="infoAnswer">
+    <h3> {{uiLabels.keepGoing}} {{userName}}! </h3>
+    <p> {{uiLabels.youAnswered}}
+      <span class="cursive"> {{this.userinfo.answer}} </span>
+        {{uiLabels.whichIs}}
+      <span class="bold"> correct! </span>
     </p>
   </div>
-    <div v-else>
-      <h3> {{uiLabels.canBetter}} </h3>
-      <p> {{uiLabels.youAnswered}} {{this.userinfo.answer}} {{uiLabels.whichIs}} <span class="bold"> wrong </span>
+    <div v-else class="infoAnswer">
+      <h3> {{uiLabels.canBetter}} {{userName}}!</h3>
+      <p> {{uiLabels.youAnswered}}
+        <span class="cursive"> {{this.userinfo.answer}} </span>
+        {{uiLabels.whichIs}} <span class="bold"> wrong! </span>
       </p>
     </div>
-    <p> {{uiLabels.youHave}} {{this.userinfo.score}} {{uiLabels.points}} </p>
+
+    <div> <span class="score"> {{uiLabels.youHave}}
+      {{this.userinfo.score}} {{uiLabels.points}}
+    </span>
+    </div>
     <!-- ha med vilken plats på leaderboard-->
 
   </div>
@@ -76,3 +85,22 @@ export default {
 }
 //;showPopup()
 </script>
+
+<style scoped>
+
+.infoAnswer h3{
+  padding-top:2.8em;
+}
+
+.infoAnswer p{
+  margin:1.5em;
+  margin-bottom:3em;
+}
+
+.score{
+  background-color:white;
+  padding:1em;
+  color:black;
+  box-shadow: 10px 5px 5px black;
+}
+</style>

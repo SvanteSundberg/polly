@@ -13,7 +13,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  font-size: 16pt;
   background-repeat: no-repeat;
 }
 
@@ -61,6 +60,7 @@
   /*background-image:url("https://i.pinimg.com/736x/e9/67/19/e96719135721c06dbab7f1b34e65da26.jpg");*/
   height:100vh;
   background-size: cover;
+  font-size:17pt;
 }
 
 #app .party button{
@@ -75,6 +75,7 @@
   background-size: cover;
   color:white;
   font-family: 'Pangolin', sans-serif;
+  font-size:18pt;
 }
 
 #app .school button{
@@ -87,6 +88,7 @@
   height:100vh;
   background-size: cover;
   min-height: 100%;
+  font-size:16pt;
 }
 
 #app .standard button{

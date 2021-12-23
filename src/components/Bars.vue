@@ -43,7 +43,7 @@ methods: {
 <style scoped>
 .bar {
   display: inline-block;
-  width: 50px;
+  width: 100px;
   vertical-align: bottom;
 }
 
@@ -53,7 +53,7 @@ methods: {
 
 .bar span {
   position: relative;
-  top: -1.2em;
+  top: -1.4em;
 }
 .bar:nth-child(1) div:nth-child(1) {
   background-color:red;
@@ -69,10 +69,11 @@ methods: {
 }
 
 .answers{
-  padding:0.5em;
+  padding:1em;
 }
 
 .wrapper {
-  padding:3em;
+  padding-top:3em;
+  padding-bottom:3em;
 }
 </style>

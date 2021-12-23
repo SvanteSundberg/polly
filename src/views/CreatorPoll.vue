@@ -136,16 +136,15 @@ export default {
 </script>
 
 <style scoped>
-
-
+  .doneBtn{
+    margin-top:3em;
+  }
 
   .amountAnswers{
     position:absolute;
     top:40%;
     right:0;
-    margin-right:5em;
-    padding:1em;
-    border-radius:1em;
+    margin-right:10em;
   }
 
 </style>
