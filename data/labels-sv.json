@@ -54,7 +54,14 @@
 		 "youAnswered":"Du svarade:",
 		 "whichIs":"vilket är",
 		 "canBetter":"Du kan bättre!",
-		 "youHave":"Du har"
+		 "youHave":"Du har",
+		 "WaitingForHost":"Väntar på spelledaren",
+	 	"hostIspreparing":"Spelledaren förbereder nästa fråga...",
+		"seeResult":"Se resultat",
+		"time":"Tid:",
+		"answerNr":"Antal svar:",
+		"runNextQ":"Nästa fråga",
+		"chooseName":"Välj namn"
 
 
 

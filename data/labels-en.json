@@ -49,10 +49,17 @@
 	"recieved":"You recieved",
 	"points":"points",
 	"timeUp":"Time is up",
-	"goFaster": "We belive in you! Go a bit fastner next time!",
+	"goFaster": "We believe in you! Go a bit faster next time!",
 	"keepGoing": "Keep this going",
 	"youAnswered":"You answered:",
 	"whichIs":"which is",
   "canBetter":"You can do better!",
-  "youHave":"You have"
+  "youHave":"You have",
+	"WaitingForHost":"Waiting for host",
+	"hostIspreparing":"The host is preparing next question...",
+	"seeResult":"See result",
+	"time":"Time:",
+	"answerNr":"Number of answers:",
+	"runNextQ":"Run next question",
+	"chooseName":"Pick a name"
 }

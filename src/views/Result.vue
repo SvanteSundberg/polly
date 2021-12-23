@@ -7,13 +7,13 @@
 
 <router-link v-if="!finished" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
     <button class="doneBtn" v-on:click="runQuestion">
-      Run next question
+      {{uiLabels.runNextQ}}
     </button>
   </router-link>
   <br>
   <router-link v-if="finished" v-bind:to="'/'">
       <button class="doneBtn">
-        Back to Start
+        {{uiLabels.backToStart}}
       </button>
     </router-link>
 
@@ -43,7 +43,8 @@ export default {
       pollId:"",
       finished: false,
       lang:"",
-      users:[]
+      users:[],
+      uiLabels:{}
     }
   },
   created: function () {

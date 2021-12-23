@@ -12,7 +12,7 @@
   <div v-if="isStarted">
     <Question v-if="!changeView" v-bind:question="question"
               v-on:answer="submitAnswer"/>
-    <pollPopup v-show="this.pollPopupVisable"/>
+    <pollPopup v-show="this.pollPopupVisable" v-bind:uiLabels="uiLabels"/>
 
     <UserResults v-on:finished="isFinished" v-bind:userName="this.userName" v-bind:uiLabels="this.uiLabels" v-if="changeView"/>
 

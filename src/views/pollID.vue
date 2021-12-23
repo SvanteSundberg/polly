@@ -28,7 +28,7 @@
 <div class='position'>
   <div  v-if="done && !ready">
     <h1>
-      Välj namn
+      {{uiLabels.chooseName}}: 
     </h1>
     <br>
     <div class="gridWrap">

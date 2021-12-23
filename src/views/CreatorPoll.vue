@@ -4,13 +4,13 @@
     <br>
     <router-link v-if="!this.timeOn" v-bind:to="'/result/'+pollId+'/'+lang">
     <button class="doneBtn" v-on:click="toPollResult">
-      Se resultat
+      {{uiLabels.seeResult}}
     </button>
   </router-link>
 
-  <div v-if="this.timeOn" > Tid: {{this.time}} </div>
+  <div v-if="this.timeOn" > {{uiLabels.time}} {{this.time}} </div>
 
-  <div class="amountAnswers"> Antal svar: {{this.amountAnswers}} </div>
+  <div class="amountAnswers"> {{uiLabels.answerNr}} {{this.amountAnswers}} </div>
 
   </div>
 

@@ -2,13 +2,13 @@
   <div class="popupBackground">
       <div class="popup">
         <header class="popupHeader">
-          Waiting for host
+         {{uiLabels.WaitingForHost}}
         </header>
         <section class="popupBody">
           <div class="loading"></div>
        </section>
       <footer class="popupFooter">
-          The host is preparing next question...
+        {{uiLabels.hostIspreparing}}
       </footer>
       </div>
     </div>
