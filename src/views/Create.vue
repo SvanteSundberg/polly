@@ -1,6 +1,5 @@
 <template>
 <div v-bind:class='theme'>
-  {{this.notFinished}}
   <header>
    <h2>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h2>
   <hr>
@@ -188,7 +187,6 @@ export default {
       });
       this.question = "";
       this.answers = ["", "", "", ""];
-      console.log(this.allQuestions.length);
       this.currentIndex=this.allQuestions.length;
       this.correctQuestion=[];
     },
@@ -208,13 +206,11 @@ export default {
 
   },
   removeQuestion: function(){
-      console.log(this.currentIndex)
       if(this.allQuestions.length>1){
       socket.emit("deleteQuestion", {
         pollId: this.pollId,
         questionNumber: this.currentIndex
     })
-    console.log(this.questionNumber);
     if (this.currentIndex>0){
       this.currentIndex--;
       this.goToQuestion(this.currentIndex);
@@ -228,7 +224,6 @@ export default {
       this.question = this.allQuestions[questionIndex].q;
       this.answers = this.allQuestions[questionIndex].a;
       this.currentIndex = questionIndex;
-      console.log(this.allQuestions[questionIndex].c);
       this.correctQuestion=this.allQuestions[questionIndex].c;
     },
 
@@ -243,7 +238,6 @@ export default {
     },
 
     setCorrectAnswer: function(){
-      console.log(this.correctQuestion);
       socket.emit("setCorrectAnswer", {
         pollId: this.pollId,
         questionNumber: this.currentIndex,
