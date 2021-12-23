@@ -1,17 +1,18 @@
 <template>
   <div v-bind:class='theme'>
     <header>
-    <h1> It's time to play! </h1>
+
+    <h1> {{uiLabels.playTime}} </h1>
   </header>
 
     <div class="container">
-    <span class="ID">Join with PollID: <span class="special">
+    <span class="ID">{{uiLabels.joinPollId}} <span class="special">
     {{this.id}} </span> </span>
   </div>
 
   <div v-if="this.users.length>0" class="players">
     <div class="playerPicture">
-      <p> {{this.users.length}} players are logged in!
+      <p> {{this.users.length}} {{uiLabels.loggedIn}}
         <span> <img id="figure" src='/img/streckgubbe.png'> </span>
       </p>
     </div>
@@ -19,13 +20,14 @@
     {{user}}
   </span>
 </div>
-    <p v-if="this.users.length===0" class="waiting"> Waiting for players to join... </p>
+    <p v-if="this.users.length===0" class="waiting"> {{uiLabels.waitingPlayers}} </p>
  <br>
 
   <button v-on:click="startPoll" v-bind:class="['letsGoButton',{notReady:this.users.length === 0}]">
-    Let's go
+    {{uiLabels.letsGo}}
   </button>
-  </div>
+
+</div>
 </template>
 
 <script>

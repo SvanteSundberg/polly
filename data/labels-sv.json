@@ -1,8 +1,8 @@
 {
 	"sales-pitch": "Svar. Helt. Enkelt.",
 	"invite": "Bjud in deltagare med den här länken:",
-	"createPoll": "Skapa röstning",
-	"participatePoll": "Delta i röstning",
+	"createPoll": "Skapa quiz",
+	"participatePoll": "Delta i quiz",
 	"question": "Skriv fråga",
 	"changeLanguage": "Change to English",
 	"welcome": "Välkommen quizzer!",
@@ -10,7 +10,7 @@
 	"writePollID": "Skriv röstningsID:",
 	"Done":"Klar",
 	"theme": "Välj tema",
-	"answers":"Skriv svaren och klicka i det korrekta",
+	"answers":"Skriv svaren och markera det korrekta",
 	"typeAnswer":"Skriv ditt svarsalternativ här",
 	"typeQuestion":"Skriv din fråga här",
 	"addQuestion":"Lägg till en ny fråga",
@@ -32,7 +32,31 @@
 	 "pleaseMakeSureTo":"Vänligen se till att:",
 	 "chooseRight":"Välja korrekta svar till varje fråga!",
 	 "typeSomething":"Skriv något i varje fråga!",
-	 "editPoll": "Redigera skapad röstning",
-	 "fillCorrect": "Det korrekta svaret inte är tomt!"
+	 "editPoll": "Redigera skapat quiz",
+	 "fillCorrect": "Det korrekta svaret inte är tomt!",
+	 	"whichque": "Vilka frågor vill du inkludera i quizzet?",
+		 "setTime": "Välj tid",
+		 "editQuiz": "Redigera Quiz",
+		 "playQuiz":"Spela Quiz",
+		 "playTime": "Det är dags att spela quizet!",
+		 "joinPollId": "Delta med röstningsID:",
+		 "loggedIn":"Spelare är inloggade!",
+		 "waitingPlayers":"Inväntar deltagare...",
+		 "letsGo":"Starta Quiz",
+		 "getReady":"Gör dig redo",
+		 "waitingHost": "Väntar på att spelledaren statar quizet...",
+		 "quizEnded":"Quizet har nått sitt slut...",
+		 "recieved":"Du fick",
+		 "points":"poäng",
+		 "timeUp":"Tiden är slut",
+		 "goFaster": "Vi tror på dig! Snabba på lite nästa gång!",
+		 "keepGoing": "Fortsätt sähär",
+		 "youAnswered":"Du svarade:",
+		 "whichIs":"vilket är",
+		 "canBetter":"Du kan bättre!",
+		 "youHave":"Du har"
+
+
+
 
 }

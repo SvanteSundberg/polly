@@ -1,20 +1,20 @@
 <template>
   <div v-bind:class='theme'>
     <div v-if="checkAnswer()">
-      <h3> Time is up {{userName}}! </h3>
-      <p> We belive in you! Go a bit fastner next time! </p>
+      <h3> {{uiLabels.timeUp}} {{userName}}! </h3>
+      <p> {{uiLabels.goFaster}} </p>
     </div>
     <div v-else-if="this.userinfo.correct">
-    <h3> Keep this going {{userName}}! </h3>
-    <p> You answered {{this.userinfo.answer}} which is <span class="bold"> correct </span>
+    <h3> {{uiLabels.keepGoing}}{{userName}}! </h3>
+    <p> {{uiLabels.youAnswered}} {{this.userinfo.answer}} {{uiLabels.whichIs}} <span class="bold"> correct </span>
     </p>
   </div>
     <div v-else>
-      <h3> You can do better! </h3>
-      <p> You answered {{this.userinfo.answer}} which is <span class="bold"> wrong </span>
+      <h3> {{uiLabels.canBetter}} </h3>
+      <p> {{uiLabels.youAnswered}} {{this.userinfo.answer}} {{uiLabels.whichIs}} <span class="bold"> wrong </span>
       </p>
     </div>
-    <p> You have {{this.userinfo.score}} points </p>
+    <p> {{uiLabels.youHave}} {{this.userinfo.score}} {{uiLabels.points}} </p>
     <!-- ha med vilken plats på leaderboard-->
 
   </div>

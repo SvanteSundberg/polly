@@ -1,8 +1,8 @@
 <template>
   <div v-bind:class='theme'>
     <div id="readyGo" v-if="!isStarted">
-      <h1> Get ready {{this.userName}}!</h1>
-      <h3> Waiting for the host to start the quiz... </h3>
+      <h1> {{uiLabels.getReady}} {{this.userName}}!</h1>
+      <h3> {{uiLabels.waitingHost}} </h3>
 
       <div class="loading">
 
@@ -17,9 +17,9 @@
     <UserResults v-on:finished="isFinished" v-bind:userName="this.userName" v-bind:uiLabels="this.uiLabels" v-if="changeView"/>
 
     <createPopup v-show="this.showCreatePopup" v-on:stop="goBacktoStart">
-    <template v-slot:header> The quiz has come to an end... </template>
+    <template v-slot:header> {{uiLabels.quizEnded}} </template>
     <span>
-    You recieved {{this.points}} points
+    {{uiLabels.recieved}} {{this.points}} {{uiLabels.points}}
     </span>
     </createPopup>
 

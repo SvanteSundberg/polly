@@ -1,7 +1,7 @@
 <template>
 <div v-bind:class='theme'>
 <header>
-<h2> Which questions do you want to include in the quiz? </h2>
+<h2> {{uiLabels.whichque}} </h2>
 
 <hr>
 </header>
@@ -40,7 +40,7 @@ v-bind:key="i">
 <input id="timerSwitch" class="timerInput" type="checkbox" v-model="isTimer" v-on:click="sendTime()">
 <label for="timerSwitch" class="timerLabel">Switch</label>
 </div>
-<div v-if="isTimer"> Välj tid
+<div v-if="isTimer"> {{uiLabels.setTime}}
   <button class="timerButtons"
           v-for="(value, i) in timer"
           v-bind:key="i"
@@ -54,13 +54,13 @@ v-bind:key="i">
 <div class="myButtons">
 <router-link v-bind:to="'/create/'+id+'/'+lang">
 <button class="editplayButtons" role="button">
-  Edit Quiz
+  {{uiLabels.editQuiz}}
 </button>
 </router-link>
 
 <router-link v-if="this.selectedQuestions.length>0" v-bind:to="'/waitingRoom/'+id+'/'+lang">
 <button class="editplayButtons" v-on:click="sendQuestions">
-  Play Quiz
+  {{uiLabels.playQuiz}}
 </button>
 </router-link>
 
