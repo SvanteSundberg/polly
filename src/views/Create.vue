@@ -352,8 +352,10 @@ export default {
 }
 
 .activeQuestion {
-  background-color: Grey;
-  border: 1px solid white;
+  /*background-color: Grey;
+  border: 1px solid white;*/
+  background-color: black;
+  color:white;
 }
 
 #remove{
@@ -465,8 +467,7 @@ export default {
 }
 
 header{
-  padding:1em;
-  padding-bottom:0;
+  padding-top:1em;
   height:10%;
 }
 

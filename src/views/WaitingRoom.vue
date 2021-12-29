@@ -24,21 +24,33 @@
     {{uiLabels.letsGo}}
   </button>
 
+  <createPopup v-on:stop="showPopup(false)"
+              v-show="this.popupVisable">
+  <template v-slot:header> Quizzer </template>
+  <span> At least one player must join before continuing!
+  </span>
+  </createPopup>
+
 </div>
 </template>
 
 <script>
+import createPopup from '@/components/createPopup.vue'
 import io from 'socket.io-client';
 const socket = io();
 export default {
   name: 'Waitingroom',
+  components: {
+    createPopup
+  },
   data: function () {
     return {
       uiLabels: {},
       id: "",
       lang: "",
       theme:"",
-      users:[]
+      users:[],
+      popupVisable:false,
     }
   },
   created: function () {
@@ -74,6 +86,13 @@ export default {
         socket.emit("timeToStart", this.id);
         this.$router.replace('/creatorPoll/'+this.id+'/'+this.lang);
       }
+      else{
+        this.popupVisable=true;
+      }
+    },
+
+    showPopup:function(value){
+      this.popupVisable=value;
     },
 
   },

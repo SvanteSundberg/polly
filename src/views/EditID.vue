@@ -7,11 +7,17 @@
 
   <div class="gridWrap">
     <div class="leftColumn">
-      <input class="writeInput" type="text" v-model="pollId" :placeholder="uiLabels.typeID">
+      <input class="writeInput"
+             type="text"
+             v-model="pollId"
+             :placeholder="uiLabels.typeID"
+             v-on:keyup.enter="checkID">
     </div>
 
     <div class="rightColumn">
-      <button class="doneBtn" v-on:click="checkID" v-if="this.pollId.length>0">
+      <button class="doneBtn"
+              v-on:click="checkID"
+              v-if="this.pollId.length>0">
         {{uiLabels.Done}}
       </button>
     </div>

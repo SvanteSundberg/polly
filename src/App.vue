@@ -101,17 +101,7 @@ body {
   padding: 0;
 }
 
-h1{
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-
-h3{
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-
-p{
+h1,h2,h3,p{
   margin-block-start: 0;
   margin-block-end: 0;
 }

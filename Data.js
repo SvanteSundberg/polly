@@ -35,11 +35,13 @@ Data.prototype.deleteQuestion=function(pollId,currentIndex){
   this.polls[pollId].currentQuestion=currentIndex--;
 }
 
-Data.prototype.setQuestions=function(pollId,questions){
+Data.prototype.setQuestions=function(pollId, questions=-1){
   const poll = this.polls[pollId];
+  if (questions !== -1){
+    poll.selectedQuestions=questions;
+  }
   poll.currentIndex=0;
   poll.users={};
-  poll.selectedQuestions=questions;
   poll.currentQuestion=poll.selectedQuestions[poll.currentIndex];
   poll.answers=[];
 }

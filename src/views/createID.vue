@@ -4,22 +4,29 @@
     <h1>{{uiLabels.writePollID}}</h1>
   <br>
   <div class="gridWrap">
-  <div class="leftColumn">
-  <input class="writeInput" type="text" v-model="pollId" :placeholder="uiLabels.typeID">
-</div>
-<div class="rightColumn">
-<button class="doneBtn" v-on:click="checkID" v-if="this.pollId.length>0">
-  {{uiLabels.Done}}
-</button>
-</div>
-</div>
-</div>
+    <div class="leftColumn">
+      <input class="writeInput"
+             type="text"
+             v-model="pollId"
+             :placeholder="uiLabels.typeID"
+             v-on:keyup.enter="checkID">
+    </div>
+    <div class="rightColumn">
+      <button class="doneBtn"
+              v-on:click="checkID"
+              v-if="this.pollId.length>0">
+        {{uiLabels.Done}}
+      </button>
+    </div>
+  </div>
+  </div>
 
-<createPopup v-on:stop="showPopup(false)"
-            v-show="this.popupVisable">
-<template v-slot:header> Quizzer </template>
-<span> ID already exists </span>
-</createPopup>
+  <createPopup v-on:stop="showPopup(false)"
+              v-show="this.popupVisable">
+  <template v-slot:header> Quizzer </template>
+  <span> ID already exists </span>
+  </createPopup>
+
 </div>
 
 </template>

@@ -1,14 +1,19 @@
 <template>
   <div class='standard'>
+    <div  v-if="!done">
     <div class='position'>
-  <div  v-if="!done">
     <h1>
       {{uiLabels.writePollID}}
     </h1>
     <br>
   <div class="gridWrap">
     <div class="leftColumn">
-    <input class="writeInput" type="text" v-model="id" maxlength="15" placeholder="Type ID">
+    <input class="writeInput"
+            type="text"
+            v-model="id"
+            maxlength="15"
+            placeholder="Type ID"
+            v-on:keyup.enter="checkPollId">
     </div>
     <div class="rightColumn">
   <button class="doneBtn" v-on:click="checkPollId" v-if="this.id.length>0">
@@ -17,24 +22,29 @@
   </div>
 </div>
 </div>
-</div>
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> Quizzer </template>
-<span> ID does not exists </span>
+<span> Poll does not exists </span>
 </createPopup>
+</div>
 
+<div  v-if="done && !ready">
 <div class='position'>
-  <div  v-if="done && !ready">
     <h1>
       {{uiLabels.chooseName}}:
     </h1>
     <br>
     <div class="gridWrap">
     <div class="leftColumn">
-    <input class="writeInput" type="text" v-model="userName" maxlength="15">
+    <input class="writeInput"
+           type="text"
+           v-model="userName"
+           maxlength="15"
+           v-on:keyup.enter="sendUsername">
   </div>
+
   <div class="rightColumn">
     <button class="doneBtn" v-on:click="sendUsername" v-if="!ready && this.userName.length>0">
     {{uiLabels.Done}}
@@ -42,13 +52,12 @@
   </div>
   </div>
   </div>
-  </div>
   <createPopup v-on:stop="showPopup(false)"
               v-show="this.popupVisable">
   <template v-slot:header> Quizzer </template>
   <span> Name already exists </span>
-  <!--<template v-slot:button> Quizzer </template>-->
   </createPopup>
+  </div>
   </div>
 </template>
 

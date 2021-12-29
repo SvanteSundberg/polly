@@ -69,8 +69,8 @@ export default {
 
 
 .chosen {
-  background-color: DarkGrey;
-
+  background-color: black;
+  color:white;
 }
 
 .themeButtons button {
@@ -81,7 +81,6 @@ export default {
   border-radius: 5px;
   padding: 14px 20px;
   cursor: pointer;
-  color: black;
   text-align: center;
   box-shadow: 2px 2px 20px gray;
   transition-duration: 0.5s;
@@ -90,7 +89,7 @@ export default {
 }
 
 .themeButtons button:hover{
-  background-color: Silver;
+  font-weight:bold;
 }
 
 

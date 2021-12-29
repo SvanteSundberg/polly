@@ -134,6 +134,10 @@ function sockets(io, socket, data) {
     socket.emit('userAmount', data.getUsers(pollId));
   });
 
+  socket.on('restart',function(pollId){
+    data.setQuestions(pollId);
+  });
+
 }
 
 module.exports = sockets;

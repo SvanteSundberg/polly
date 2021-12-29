@@ -144,7 +144,10 @@ export default {
     position:absolute;
     top:40%;
     right:0;
-    margin-right:10em;
+    margin-right:9em;
+    background:white;
+    padding:0.5em;
+    border-radius:25px;
   }
 
 </style>

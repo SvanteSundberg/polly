@@ -8,24 +8,26 @@
 
     <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'/>
 
-    <router-link v-if="!finished" v-bind:to="'/creatorPoll/'+pollId+'/'+lang">
-        <button class="doneBtn" v-on:click="runQuestion">
-          {{uiLabels.runNextQ}}
+    <button v-if="!finished" class="doneBtn" v-on:click="runQuestion">
+      {{uiLabels.runNextQ}}
+    </button>
+
+    <router-link v-if="finished" v-bind:to="'/'">
+        <button class="doneBtn">
+          {{uiLabels.backToStart}}
         </button>
-      </router-link>
-      <br>
-      <router-link v-if="finished" v-bind:to="'/'">
-          <button class="doneBtn">
-            {{uiLabels.backToStart}}
-          </button>
-        </router-link>
-      </div>
+    </router-link>
+
+    <button class="doneBtn" v-on:click="restart">
+        Restart
+    </button>
 
   <div class="split right">
     <Leaderboard v-bind:users="this.users"/>
   </div>
 
   </div>
+</div>
 
 </template>
 
@@ -97,7 +99,13 @@ methods: {
     socket.emit("runQuestion", this.pollId);
     socket.emit("nextQ",this.pollId);
     socket.emit("startTimer",this.pollId);
+    this.$router.replace('/creatorPoll/'+this.pollId+'/'+this.lang);
   },
+
+  restart:function(){
+    socket.emit("restart", this.pollId);
+    this.$router.replace('/waitingRoom/'+this.pollId+'/'+this.lang);
+  }
 }
 
 }
@@ -123,7 +131,7 @@ methods: {
   margin-right:3.5em;
   right: 0;
   width: 40%;
-  border-left: 5px solid grey;
+  border-left: 4px solid white;
 }
 
 header{

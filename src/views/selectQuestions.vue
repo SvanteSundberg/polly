@@ -6,6 +6,8 @@
 <hr>
 </header>
 
+<div class="split left">
+<div class="scroll">
 <div class="questions">
 <div v-for="(value,i) in this.questions"
 v-bind:key="i">
@@ -13,14 +15,18 @@ v-bind:key="i">
   <input type="checkbox"
          v-model="selectedQuestions"
          v-bind:value="i"
-         class="check">
+         class="check"
+         name="checkbox-i">
 
 <div class="dropdown">
+  <label for="checkbox-i">
   <button class="questionButton"
           v-on:click="changeDropdown(i)"
           v-bind:class="[{showDrop:this.dropDownVisable[i]}]">
-    <label> {{i+1}}. {{value.q}}</label>
+    {{i+1}}. {{value.q}}
     </button>
+  </label>
+
     <div v-bind:class="['dropdown-content',{dropdownShow:this.dropDownVisable[i]}]">
     <p v-for="(value,index) in this.questions[i].a"
         v-bind:key="value">
@@ -32,23 +38,6 @@ v-bind:key="i">
 </div>
 </div>
 </div>
-
-<p> Timer </p>
-<div class="timerSwitch">
-
-
-<input id="timerSwitch" class="timerInput" type="checkbox" v-model="isTimer" v-on:click="sendTime()">
-<label for="timerSwitch" class="timerLabel">Switch</label>
-</div>
-<div v-if="isTimer"> {{uiLabels.setTime}}
-  <button class="timerButtons"
-          v-for="(value, i) in timer"
-          v-bind:key="i"
-          v-on:click="sendTime(i)"
-          v-bind:class="[{chosen: this.time===value}]">
-          {{value}}
-  </button>
-<!-- <button v-on:click="setTimeBooleans"> None </button> -->
 </div>
 
 <div class="myButtons">
@@ -66,9 +55,32 @@ v-bind:key="i">
 
 <button v-if="this.selectedQuestions.length===0"
         v-on:click="showPopup(true)"
-        class="doneBtn">
+        class="editplayButtons">
   Play Quiz
 </button>
+</div>
+
+<div class="split right">
+
+<p> Timer </p>
+<div class="timerSwitch">
+
+
+<input id="timerSwitch" class="timerInput" type="checkbox" v-model="isTimer" v-on:click="sendTime()">
+<label for="timerSwitch" class="timerLabel">Switch</label>
+</div>
+<div v-if="isTimer"> {{uiLabels.setTime}}
+  <br>
+  <button class="timerButtons"
+          v-for="(value, i) in timer"
+          v-bind:key="i"
+          v-on:click="sendTime(i)"
+          v-bind:class="[{chosen: this.time===value}]">
+          {{value}}
+  </button>
+<!-- <button v-on:click="setTimeBooleans"> None </button> -->
+</div>
+</div>
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
@@ -178,18 +190,6 @@ export default {
 
 
 <style scoped>
-/*input {
-    width: 20px;
-    position: relative;
-    vertical-align: middle;
-}*/
-
-/*label {
-    width: 200px;
-    position: relative;
-    display: inline-block;
-    vertical-align: left;
-}*/
 
 .dropdown {
   position: relative;
@@ -207,12 +207,17 @@ export default {
 
 .dropdownShow {
   background-color:white;
-  border:1px solid black;
+  /*border:1px solid black;*/
   display:block;
   position:relative;
   min-width: 200px;
   border-radius:0;
-  padding:0;
+  padding:0.1em;
+  padding-bottom:0.25em;
+  font-size: 14pt;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  margin-top:0.3em;
+  margin-left:1em;
 }
 
 .dropdown hr{
@@ -221,7 +226,8 @@ export default {
 }
 
 .questionButton{
-  margin:0.5em;
+  margin-left:1em;
+  margin-top:1em;
   align-items: center;
   appearance: none;
   background-color: #fff;
@@ -232,15 +238,14 @@ export default {
   display: inline-flex;
   fill: currentcolor;
   /*font-family: "Google Sans",Roboto,Arial,sans-serif;*/
-  font-size: 14pt;
   font-weight: 500;
-  height: 48px;
   justify-content: center;
   letter-spacing: .25px;
   line-height: normal;
-  max-width: 100%;
+  /*max-width: 100%;*/
+  min-width: 200px;
+  max-width:200px;
   overflow: visible;
-  padding: 2px 24px;
   position: relative;
   text-align: center;
   text-transform: none;
@@ -250,6 +255,8 @@ export default {
   touch-action: manipulation;
   width: auto;
   will-change: transform,opacity;
+  padding:0.5em;
+  font-size:15pt;
 }
 
 .questionButton:hover {
@@ -260,7 +267,8 @@ export default {
 
 .showDrop{
   outline: none;
-  border: 2px solid #4285f4;
+  /*border: 2px solid #4285f4;*/
+  border: 2px solid black;
 }
 
 .questionButton:active {
@@ -293,11 +301,13 @@ export default {
 }
 
 .myButtons button{
-  margin:1em;
+  margin:1.5em;
 }
 
-button{
-  font-size:14pt;
+.myButtons{
+  margin-left:40%;
+  margin-top:2em;
+  z-index:2;
 }
 
 .pic{
@@ -320,10 +330,12 @@ button{
   font-weight: 600;
   line-height: normal;
   margin: 3px;
-  min-height: 60px;
-  min-width: 0;
+  height: 60px;
+  min-width:60px;
+  /*min-width:0;*/
   outline: none;
-  padding: 16px 24px;
+  /*padding: 16px 24px;*/
+  margin-top:1em;
   text-align: center;
   text-decoration: none;
   transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
@@ -346,7 +358,7 @@ button{
 
 .timerButtons:hover {
   color: #fff;
-  background-color: grey;
+  background-color: black;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
@@ -358,7 +370,7 @@ button{
 
 .chosen {
   color: #fff;
-  background-color: grey;
+  background-color: black;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
@@ -450,7 +462,7 @@ button{
   transition: left 0.25s ease;
 }
 .timerInput:checked + .timerLabel::before {
-  background-color: grey;
+  background-color: #0078d0;
 }
 .timerInput:checked + .timerLabel::after {
   left: 24px;
@@ -463,19 +475,50 @@ button{
   margin-top:0.3em;
 }
 
-header h2{
-margin-top:0px;
+header{
+height:20%;
 padding-top:1em;
 }
 
-header{
-margin-bottom:1.5em;
+header hr{
+  margin-top:1em;
+  margin-bottom:0;
+  padding-bottom:0;
+  margin-bottom:0;
+  background-color: white;
+  border:1px solid white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .check{
   height: 1em;
   width: 1em;
   position:relative;
+}
+
+.scroll{
+  height:65%;
+  width:50%;
+  overflow-y:scroll;
+  position:relative;
+}
+
+.split {
+  height: 80%;
+  top: 20%;
+  position:fixed;
+}
+
+.left {
+  left: 0;
+  width: 80%;
+  margin-left:1em;
+}
+
+.right {
+  right: 5em;
+  width: 20%;
+  margin-top:1em;
 }
 
 
