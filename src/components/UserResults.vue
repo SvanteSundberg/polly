@@ -45,12 +45,12 @@ export default {
     return {
       userinfo:{score:0,
                 answer:"",
-                correct:false}
+                correct:false},
+      pollId:"",
     }
   },
   mounted: function () {
     this.pollId = this.$route.params.id;
-    this.lang = this.$route.params.lang;
     socket.emit("getUserInfo", {pollId:this.pollId,
                                userName:this.userName});
 

@@ -1,5 +1,5 @@
 <template>
-<div v-bind:class='theme'>
+<div v-bind:class='theme' v-on:mouseup="endSwitch">
   <header>
    <h2>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h2>
   <hr>
@@ -12,6 +12,10 @@
   v-on:click="removeQuestion">
   {{uiLabels.removeQuestion}}
 </button> </h3>
+
+<div v-if="collide()>-1" class="help">
+  Drop the question to switch places on them!
+</div>
 
   <div class="question">
     <p> {{uiLabels.question}}: </p>
@@ -98,13 +102,17 @@
       {{uiLabels.selectTheme}}
     </button>
   </router-link>
+  <div v-on:mousemove="executeSwitch">
   <button v-for="(_, i) in this.allQuestions"
           v-bind:key="i"
           v-on:click="goToQuestion(i)"
-          v-bind:class="['sideQuestion',{activeQuestion:this.currentIndex === i}]">
-
-    {{uiLabels.sideQuestion}} {{i+1}}
+          v-bind:class="['sideQuestion', 'nr'+i, {activeQuestion:this.currentIndex === i || this.collide()===i},
+          {switchingQuestion:this.switching.index===i}]"
+          v-on:mousedown="startSwitch(event, i)"
+          v-bind:style= "[this.switching.index===i ? {top: this.y_koord+ 'px'} : {top:0}]">
+      {{uiLabels.sideQuestion}} {{i+1}}
   </button>
+  </div>
   </div>
 
   <div class="questionWrap" v-if="this.showHelp">
@@ -146,6 +154,10 @@ export default {
       popupVisable:false,
       notFinished:[],
       showHelp:false,
+      switching: {isSwitching:false,
+              index:-1},
+      y_koord:0,
+
     }
   },
   created: function() {
@@ -218,7 +230,8 @@ export default {
     else{
       this.goToQuestion(this.currentIndex);
     }
-}},
+  }
+  },
 
     goToQuestion: function(questionIndex) {
       this.question = this.allQuestions[questionIndex].q;
@@ -226,7 +239,6 @@ export default {
       this.currentIndex = questionIndex;
       this.correctQuestion=this.allQuestions[questionIndex].c;
     },
-
 
     saveQuestion: function() {
       socket.emit("changeQuestion", {
@@ -298,20 +310,68 @@ export default {
 
     isNotFinished: function(index){
       return this.notFinished.includes(index)
-    }
+    },
 
+    startSwitch: function(event, index){
+      this.goToQuestion(index);
+      if (!this.switching.isSwitching){
+        this.switching.index=index;
+        this.switching.isSwitching=true;
+      }
+    },
 
-  }
+    endSwitch: function(){
+      let index=this.collide();
+      if (index>-1){
+        let tempQuestion = this.allQuestions[this.switching.index];
+        this.allQuestions[this.switching.index]= this.allQuestions[index];
+        this.allQuestions[index]=tempQuestion;
+      }
+      this.switching.isSwitching=false;
+      this.switching.index=-1;
+    },
+
+    executeSwitch:function(){
+      if (this.switching.isSwitching){
+        var offset = event.currentTarget.getBoundingClientRect().top + 75*this.switching.index;
+        this.y_koord = event.clientY - offset - 45;
+      }
+      else{
+        this.y_koord = 0;
+      }
+    },
+
+/* Parts of collide have been taken from https://gist.github.com/yckart/7177551*/
+    collide: function(){
+      if (this.switching.index>-1){
+        const element1=document.getElementsByClassName('nr'+this.switching.index);
+        let rect1 = element1[0].getBoundingClientRect();
+        for (let i=0; i<this.allQuestions.length;i++){
+          if (i!==this.switching.index){
+            let element2=document.getElementsByClassName('nr'+i);
+            let rect2 = element2[0].getBoundingClientRect();
+            let isCollide = !(rect1.top > rect2.bottom ||
+            rect1.right < rect2.left ||
+            rect1.bottom < rect2.top ||
+            rect1.left > rect2.right
+            );
+
+            if (isCollide){
+              return (i)
+            }
+          }
+          }
+      }
+      return -1
+    },
+
 }
+}
+
 </script>
 <style scoped>
 #importantButtons{
   z-index:1;
-}
-
-.party{
-  font-weight:bold;
-  font-size:16pt;
 }
 
 .questionWrap {
@@ -346,10 +406,6 @@ export default {
   width: 7em;
 }
 
-.party .sideQuestion{
-  padding:0;
-  font-size:12pt;
-}
 
 .activeQuestion {
   /*background-color: Grey;
@@ -431,19 +487,22 @@ export default {
     content: "\d7";
     color: #fff;
     font-size:12pt;
+    font-weight:bold;
 }
+
+
 .party .removeAnswerButton::after{
-  top:-8px;
+  top:-5px;
 }
 
 .school .removeAnswerButton::after{
-  top:-4px;
+  top:-5px;
   left:0.5px;
 }
 
+
 .standard .removeAnswerButton::after{
   top:-4.5px;
-  right:0.3px;
 }
 
 #addButton{
@@ -572,6 +631,8 @@ button:hover{
   display:inline-block;
 }
 
+/* Arrow in helpMessage from https://codepen.io/MaryG/pen/WbvRrz*/
+
 .helpMessage{
   border-top: 2px solid transparent;
   border-left: 2px solid transparent;
@@ -579,14 +640,10 @@ button:hover{
   width: 15px;
   height: 15px;
   transform: rotate(135deg);
-  margin-right:8.6em;
+  margin-right:8em;
   margin-top: 0;
   margin-bottom:55px;
   z-index:0;
-}
-
-.party .helpMessage{
-  margin-bottom:50px;
 }
 
 .helpMessage::after{
@@ -609,6 +666,20 @@ button:hover{
 
 .positioningHelp{
   margin-top:9.3em;
+}
+
+.switchingQuestion{
+  position:relative;
+}
+
+.help{
+  width:10em;
+  height:3.5em;
+  padding:0.5em;
+  background-color:white;
+  position:absolute;
+  top:0;
+  right:6em;
 }
 
 </style>

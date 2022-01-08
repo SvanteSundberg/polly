@@ -7,6 +7,7 @@
 @import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
 @import 'https://fonts.googleapis.com/css?family=Pangolin';
 @import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
+@import 'https://fonts.googleapis.com/css?family=Average';
 
 #app {
   /*font-family: Average, Helvetica, Arial, sans-serif;*/
@@ -56,7 +57,8 @@
 }
 
 .party {
-  font-family: 'Yuji Syuku', serif;
+  /*font-family: 'Yuji Syuku', serif;*/
+  font-family: 'Average', serif;
   background-image:url(/img/party_ballons.png);
   /*background-image:url("https://i.pinimg.com/736x/e9/67/19/e96719135721c06dbab7f1b34e65da26.jpg");*/
   height:100vh;
@@ -66,8 +68,7 @@
 }
 
 #app .party button{
-  font-family: 'Yuji Syuku', serif;
-  font-weight: bold;
+  font-family: 'Average', serif;
 }
 
 .school {
@@ -162,11 +163,13 @@ button{
 .leftColumn{
   float:right;
   grid-column: 1;
+  grid-row:1;
 }
 
 .rightColumn{
   grid-column:2;
   margin-left:1em;
+  grid-row:1;
 }
 
 ::-webkit-scrollbar {

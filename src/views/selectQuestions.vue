@@ -302,6 +302,7 @@ export default {
 
 .myButtons button{
   margin:1.5em;
+  z-index:2;
 }
 
 .myButtons{
@@ -499,7 +500,7 @@ header hr{
 .scroll{
   height:65%;
   width:50%;
-  overflow-y:scroll;
+  overflow-y:auto;
   position:relative;
 }
 
@@ -511,13 +512,13 @@ header hr{
 
 .left {
   left: 0;
-  width: 80%;
+  width: 70%;
   margin-left:1em;
 }
 
 .right {
-  right: 5em;
-  width: 20%;
+  right: 8em;
+  width: 30%;
   margin-top:1em;
 }
 

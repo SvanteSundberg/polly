@@ -9,16 +9,28 @@
              type="text"
              v-model="pollId"
              :placeholder="uiLabels.typeID"
-             v-on:keyup.enter="checkID">
+             v-on:keyup="checkID"
+             v-on:keyup.enter="createPoll">
     </div>
+
     <div class="rightColumn">
-      <button class="doneBtn"
-              v-on:click="checkID"
+      <button v-bind:class="['doneBtn', {notReady:this.isExisting}]"
+              v-on:click="createPoll"
               v-if="this.pollId.length>0">
         {{uiLabels.Done}}
       </button>
     </div>
+
+    <div class="unique">
+      <p v-if="this.isExisting && this.pollId.length>0">
+          The ID is not unique
+      </p>
+      <p v-else-if="this.pollId.length>0">
+        The id is unique
+      </p>
+    </div>
   </div>
+
   </div>
 
   <createPopup v-on:stop="showPopup(false)"
@@ -40,14 +52,17 @@ export default {
   components: {
     createPopup
   },
+
   data: function () {
     return {
       lang: "",
       pollId: "",
       uiLabels: {},
-      popupVisable: false
+      popupVisable: false,
+      isExisting: true
     }
   },
+
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang),
@@ -56,26 +71,27 @@ export default {
     });
 
     socket.on('existingPolls', (existing)=>{
-      if (existing){
-        this.showPopup(true);
-      }
-      else{
-        socket.emit("createPoll", {pollId: this.pollId, lang: this.lang });
-        this.$router.replace('/selectTheme/'+this.pollId+'/'+this.lang);
-      }
+      this.isExisting=existing;
     });
     },
 
     methods: {
-      checkID: function(){
-        console.log("checking");
-        if (this.pollId.length>0){
-          socket.emit('checkPollId', this.pollId);
+      createPoll: function(){
+        if (!this.isExisting && this.pollId.length>0){
+          socket.emit("createPoll", {pollId: this.pollId, lang: this.lang });
+          this.$router.replace('/selectTheme/'+this.pollId+'/'+this.lang);
         }
         else{
           this.showPopup(true);
         }
       },
+
+      checkID(){
+        if (this.pollId.length>0){
+          socket.emit('checkPollId', this.pollId);
+        }
+      },
+
       showPopup:function(value){
         this.popupVisable=value;
       },
@@ -92,5 +108,16 @@ export default {
     transform: translate(-50%, -50%);
     padding: 10px;
   }
+
+  .notReady{
+    background-color: grey;
+    border: 1px solid grey;
+  }
+
+  .unique{
+    grid-column:1;
+    grid-row: 2;
+  }
+
 
 </style>

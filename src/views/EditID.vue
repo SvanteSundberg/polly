@@ -7,12 +7,31 @@
 
   <div class="gridWrap">
     <div class="leftColumn">
-      <input class="writeInput"
-             type="text"
+      <div class="tryPosition">
+      <input type="text"
              v-model="pollId"
              :placeholder="uiLabels.typeID"
-             v-on:keyup.enter="checkID">
+             v-on:keyup.enter="checkID"
+             v-on:keyup="searchName"
+             v-bind:class="['writeInput',{resultShow:this.pollId.length>0}]">
+
+
+       <div class="results"
+            v-bind:class="[{allResults:this.pollId.length>0}]">
+       <div v-if="this.pollId.length>0 && this.included.length>0">
+         <button v-for="(poll,i) in included"
+              v-bind:key="i"
+              v-on:click="goToPoll(i)">
+           {{poll}} <br>
+         </button>
+       </div>
+
+       <p v-else-if="this.pollId.length>0 && this.included<1">
+         No results found
+       </p>
     </div>
+  </div>
+  </div>
 
     <div class="rightColumn">
       <button class="doneBtn"
@@ -42,7 +61,7 @@ const socket = io();
 export default {
   name: 'EditID',
   components:{
-    createPopup
+    createPopup,
   },
   data: function () {
     return {
@@ -50,7 +69,9 @@ export default {
       pollId: "",
       uiLabels: {},
       unique: true,
-      popupVisable:false
+      popupVisable:false,
+      polls:[],
+      included:[]
     }
   },
   created: function () {
@@ -67,6 +88,13 @@ export default {
         this.showPopup(true);
       }
     });
+    socket.emit("getPolls");
+
+    socket.on("allPolls", (polls) => {
+      this.polls=polls;
+      this.included=[];
+    });
+
     },
     methods: {
       checkID: function(){
@@ -80,6 +108,32 @@ export default {
       showPopup:function(value){
         this.popupVisable=value;
       },
+
+      searchName: function(){
+        if (this.pollId.length>0 && this.polls.length>0){
+          for (let i=0; i<this.polls.length;i++){
+            let specificPoll = this.polls[i];
+            let lowerPoll = specificPoll.toLowerCase();
+            let lowerName = this.pollId.toLowerCase();
+              if (lowerPoll.includes(lowerName) &&
+                  !this.included.includes(specificPoll)){
+                this.included.push(specificPoll);
+              }
+              else if (!lowerPoll.includes(lowerName) &&
+                  this.included.includes(specificPoll)){
+                this.included.splice(this.polls.indexOf(specificPoll))
+              }
+          }
+      }
+      else{
+        this.included=[];
+      }
+      },
+
+      goToPoll:function(index){
+        const poll=this.included[index];
+        this.$router.replace('/create/'+ poll +'/'+this.lang);
+      }
     }
   }
 </script>
@@ -91,6 +145,51 @@ export default {
     top: 30%;
     transform: translate(-50%, -50%);
     padding: 10px;
+  }
+
+  .search{
+    margin-top:2em;
+  }
+
+  .results button{
+    display:flex;
+    flex-direction: column;
+    background-color:white;
+    border:white;
+    width: 12.3em;
+    height:2em;
+    padding:0.5em;
+    grid-row:2;
+  }
+
+  .results button:hover{
+    background-color:black;
+    color:white;
+  }
+
+  .results p{
+    background-color:white;
+    border:white;
+    width: 9.6em;
+    height:1.2em;
+    padding:0.2em;
+    grid-row:2;
+  }
+
+  .allResults{
+    box-shadow: 2px 2px 10px grey;
+    grid-row:2;
+  }
+
+  .resultShow{
+    border-radius: 0;
+    border-bottom: 1px solid black;
+  }
+
+  .tryPosition{
+    position:absolute;
+    left:1em;
+    top:4em;
   }
 
 </style>

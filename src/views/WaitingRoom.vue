@@ -72,8 +72,7 @@ export default {
       this.users=userAmount;
     });
 
-    socket.emit('joinPoll', {pollId: this.id,
-                            questionNumber: null});
+    socket.emit('joinPoll', this.id);
     socket.on("allUsers", (users) => {
       console.log("tar emot users");
       this.users = users;
@@ -148,12 +147,12 @@ header{
   height:50px;
   position:absolute;
   top:10.8em;
-  left:26em;
+  left:24em;
 }
 
 .party .players img{
-  top:11.5em;
-  left:24em;
+  top:10.7em;
+  left:22em;
 }
 
 .playerPicture {

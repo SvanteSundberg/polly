@@ -40,10 +40,10 @@ function sockets(io, socket, data) {
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
-  socket.on('joinPoll', function(d) {
-    socket.join(d.pollId);
-    socket.emit('newQuestion', data.getQuestion(d.pollId));
-    socket.emit('dataUpdate', data.getAnswers(d.pollId));
+  socket.on('joinPoll', function(pollId) {
+    socket.join(pollId);
+    socket.emit('newQuestion', data.getQuestion(pollId));
+    socket.emit('dataUpdate', data.getAnswers(pollId));
   });
 
   socket.on('runQuestion', function(pollId) {
@@ -137,6 +137,10 @@ function sockets(io, socket, data) {
   socket.on('restart',function(pollId){
     data.setQuestions(pollId);
   });
+
+  socket.on('getPolls',function(){
+    socket.emit('allPolls', data.getPolls());
+  })
 
 }
 

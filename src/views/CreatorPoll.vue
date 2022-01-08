@@ -55,9 +55,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
-    socket.emit('joinPoll', {pollId:this.pollId,
-                            questionNumber: null
-                            });
+    socket.emit('joinPoll', this.pollId);
 
     socket.emit("loadTheme",this.pollId);
 

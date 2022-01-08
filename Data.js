@@ -281,5 +281,9 @@ Data.prototype.userInfo=function(pollId,userName){
           score: user.points}
 }
 
+Data.prototype.getPolls=function(){
+  return Object.keys(this.polls)
+}
+
 
 module.exports = Data;
