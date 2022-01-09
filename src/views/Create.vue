@@ -1,5 +1,6 @@
 <template>
 <div v-bind:class='theme' v-on:mouseup="endSwitch">
+  {{allQuestions}}
   <header>
    <h2>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h2>
   <hr>
@@ -171,10 +172,18 @@ export default {
     socket.emit("loadTheme", this.pollId);
 
     socket.on("initial", (theme) => {
-      this.theme = theme
+      this.theme = theme;
     });
 
-    socket.emit("Questions", this.pollId);
+    socket.emit("getFirstQuestion", this.pollId);
+
+    socket.on("firstQuestion", (question) => {
+      if (typeof question.q !== 'undefined'){
+        this.question=question.q;
+        this.answers=question.a;
+        this.correctQuestion=question.c;
+      }
+    });
 
     socket.on("dataUpdate", (data) =>
       this.data = data
