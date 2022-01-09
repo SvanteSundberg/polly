@@ -3,14 +3,14 @@
 
 <h1> {{uiLabels.theme}} </h1>
 
-<div class="themeButtons">
-<button v-on:click="setTheme('party')" v-bind:class="[{chosen:this.theme === 'party'}]">{{uiLabels.party}}</button>
-<button v-on:click="setTheme('school')" v-bind:class="[{chosen:this.theme === 'school'}]">{{uiLabels.school}}</button>
-<button v-on:click="setTheme('standard')" v-bind:class="[{chosen:this.theme === 'standard'}]">{{uiLabels.standard}}</button>
+<div class="myButtons">
+<button v-on:click="setTheme('party')" v-bind:class="['themeButton',{chosen:this.theme === 'party'}]">{{uiLabels.party}}</button>
+<button v-on:click="setTheme('school')" v-bind:class="['themeButton',{chosen:this.theme === 'school'}]">{{uiLabels.school}}</button>
+<button v-on:click="setTheme('standard')" v-bind:class="['themeButton',{chosen:this.theme === 'standard'}]">{{uiLabels.standard}}</button>
 </div>
 
 <router-link v-bind:to="'/create/'+id+'/'+lang">
-<button class="doneBtn" v-on:click="chooseTheme()">{{uiLabels.Done}}</button>
+<button class="standBtn doneBtn" v-on:click="chooseTheme()">{{uiLabels.Done}}</button>
 </router-link>
 </div>
 
@@ -63,39 +63,41 @@ export default {
 .doneBtn{
   font-size: 16pt;
   float: right;
-  margin-right:10%;
+  margin-right:17%;
   margin-top:3em;
 }
 
 
-.chosen {
-  background-color: black;
-  color:white;
-}
-
-.themeButtons button {
+.themeButton {
+  background:transparent;
+  color:black;
+  border:2.5px solid black;
   font-size: 18pt;
   margin: 3%;
   height: 5em;
   width:7em;
   border-radius: 5px;
   padding: 14px 20px;
-  cursor: pointer;
-  text-align: center;
-  box-shadow: 2px 2px 20px gray;
-  transition-duration: 0.5s;
-  -webkit-transition-duration: 0.1s;
-  -moz-transition-duration: 0.1s;
 }
 
-.themeButtons button:hover{
+.chosen {
+  background-color: black;
+  color:white;
+}
+
+.school .themeButton{
+  color:white;
+}
+
+.themeButton:hover{
   font-weight:bold;
 }
 
-.themeButtons{
+.myButtons{
   width: 100%;
   height: auto;
 }
+
 
 
 h1{

@@ -127,9 +127,7 @@ div {
   display:flex;
 }
 
-.doneBtn{
-  background-color:#2ECC40;
-  border: 1px solid #2ECC40;
+.standBtn{
   border-radius: 20px;
   cursor: pointer;
   color: #fff;
@@ -141,10 +139,24 @@ div {
   margin-left:  10px;
 }
 
+.doneBtn{
+  background-color:#2ECC40;
+  border: 1px solid #2ECC40;
+  box-shadow: 1px 1px 20px grey;
+}
+
+.addBtn{
+  background-color: #7EBDE5;
+  border: 1px solid #7EBDE5;
+  box-shadow: 1px 1px 20px grey;
+}
+
+
 #app button:hover{
   border: 1px solid #fff;
   box-shadow: 2px 2px 20px #fff;
   cursor: pointer;
+  font-weight:bold;
 }
 
 #app .party button:hover{
@@ -153,6 +165,7 @@ div {
 
 button{
   font-size:13pt;
+  cursor: pointer;
 }
 
 .gridWrap{

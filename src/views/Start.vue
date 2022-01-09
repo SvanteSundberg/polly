@@ -89,12 +89,13 @@ export default {
   text-align:  center;
   font-size: 1.5rem;
   font-weight: 100;
-  box-shadow: 2px 2px 20px gray;
+  box-shadow: 2px 2px 20px black;
   border: 1px solid black;
-  background: DarkSlateGrey;
+  background-color: #7EBDE5;
   width: 200px;
   height: 90px;
   justify-content: center;
+  margin:4vh;
   /* transition-duration: 0.5s;
   -webkit-transition-duration: 0.1s;
   -moz-transition-duration: 0.1s;*/

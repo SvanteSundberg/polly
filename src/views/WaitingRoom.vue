@@ -20,7 +20,7 @@
     <p v-if="this.users.length===0" class="waiting"> {{uiLabels.waitingPlayers}} </p>
  <br>
 
-  <button v-on:click="startPoll" v-bind:class="['letsGoButton',{notReady:this.users.length === 0}]">
+  <button v-on:click="startPoll" v-bind:class="['standBtn doneBtn',{notReady:this.users.length === 0}]">
     {{uiLabels.letsGo}}
   </button>
 
@@ -104,6 +104,14 @@ header{
   padding:1em;
 }
 
+.doneBtn{
+    font-size:16pt;
+    padding:2vh;
+    padding-right:3vh;
+    padding-left:3vh;
+    border-radius: 50px;
+}
+
 .container{
   margin:1em;
 }
@@ -133,7 +141,8 @@ header{
 
 .players{
   border:dotted;
-  margin:3em;
+  margin-top:3em;
+  margin-bottom:3vh;
   margin-left: 30%;
   margin-right:30%;
   padding:1%;
@@ -156,6 +165,7 @@ header{
 .party .players img{
   top:10.7em;
   left:22em;
+  margin:0;
 }
 
 .playerPicture {
@@ -169,52 +179,6 @@ header{
   margin:2.5em;
   font-size:20pt;
   font-weight: bold;
-}
-
-.letsGoButton{
-   background-color:#2ECC40;
-   border: 1px solid #2ECC40;
-   border-radius: 56px;
-   color: #fff;
-   cursor: pointer;
-   display: inline-block;
-   /*font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;*/
-   font-size: 18px;
-   font-weight: 600;
-   outline: 0;
-   padding: 16px 21px;
-   position: relative;
-   text-align: center;
-   text-decoration: none;
-   transition: all .3s;
-   user-select: none;
-   -webkit-user-select: none;
-   touch-action: manipulation;
-}
-
-.letsGoButton:before {
- background-color: initial;
- background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
- border-radius: 125px;
- content: "";
- height: 50%;
- left: 4%;
- opacity: 1;
- position: absolute;
- top: 0;
- transition: all .3s;
- width: 92%;
-}
-
-.letsGoButton:hover {
- box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
- transform: scale(1.05);
-}
-
-@media (min-width: 768px) {
- .letsGoButton {
-   padding: 16px 48px;
- }
 }
 
 .notReady {

@@ -42,21 +42,21 @@ v-bind:key="i">
 
 <div class="myButtons">
 <router-link v-bind:to="'/create/'+id+'/'+lang">
-<button class="editplayButtons" role="button">
+<button class="standBtn addBtn" role="button">
   {{uiLabels.editQuiz}}
 </button>
 </router-link>
 
 <router-link v-if="this.selectedQuestions.length>0" v-bind:to="'/waitingRoom/'+id+'/'+lang">
-<button class="editplayButtons" v-on:click="sendQuestions">
+<button class="standBtn doneBtn" v-on:click="sendQuestions">
   {{uiLabels.playQuiz}}
 </button>
 </router-link>
 
 <button v-if="this.selectedQuestions.length===0"
         v-on:click="showPopup(true)"
-        class="editplayButtons">
-  Play Quiz
+        class="standBtn doneBtn">
+  {{uiLabels.playQuiz}}
 </button>
 </div>
 
@@ -69,14 +69,13 @@ v-bind:key="i">
 <input id="timerSwitch" class="timerInput" type="checkbox" v-model="isTimer" v-on:click="sendTime()">
 <label for="timerSwitch" class="timerLabel">Switch</label>
 </div>
-<div v-if="isTimer"> {{uiLabels.setTime}}
-  <br>
+<div v-if="isTimer"> <p class="setTimer"> {{uiLabels.setTime}} </p>
   <button class="timerButtons"
           v-for="(value, i) in timer"
           v-bind:key="i"
           v-on:click="sendTime(i)"
           v-bind:class="[{chosen: this.time===value}]">
-          {{value}}
+          {{value}} s
   </button>
 <!-- <button v-on:click="setTimeBooleans"> None </button> -->
 </div>
@@ -300,14 +299,18 @@ export default {
 }
 
 .myButtons button{
-  margin:5%;
-  z-index:2;
+  margin:7%;
+  font-size:16pt;
+  padding:2vh;
+  padding-right:3vh;
+  padding-left:3vh;
+  border-radius: 50px;
 }
 
 .myButtons{
   margin-left:40%;
   margin-top:0;
-  z-index:2;
+  margin-right:10%;
 }
 
 .pic{
@@ -318,32 +321,15 @@ export default {
 }
 
 .timerButtons {
-  appearance: none;
   background-color: transparent;
   border: 2px solid #1A1A1A;
   border-radius: 15px;
-  box-sizing: border-box;
-  color: #3B3B3B;
-  cursor: pointer;
+  color: black;
   display: inline-block;
-  /*font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";*/
-  font-weight: 600;
-  line-height: normal;
-  margin: 5%;
+  margin: 2%;
   height: 60px;
   min-width:60px;
-  /*min-width:0;*/
-  outline: none;
-  /*padding: 16px 24px;*/
   margin-top:1%;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: 7%;
-  will-change: transform;
 }
 
 .school .timerButtons{
@@ -352,73 +338,16 @@ export default {
 
 }
 
-.timerButtons:disabled {
-  pointer-events: none;
-}
-
 .timerButtons:hover {
-  color: #fff;
+  color: white;
   background-color: black;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
-}
-
-.timerButtons:active {
-  box-shadow: none;
-  transform: translateY(0);
 }
 
 .chosen {
-  color: #fff;
+  color: white;
   background-color: black;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
-}
-
-.editplayButtons {
-  background-color: #0078d0;
-  border: 0;
-  border-radius: 56px;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  /*font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;*/
-  font-weight: 600;
-  outline: 0;
-  padding: 16px 21px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: all .3s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.editplayButtons:before {
-  background-color: initial;
-  background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
-  border-radius: 125px;
-  content: "";
-  height: 50%;
-  left: 4%;
-  opacity: .5;
-  position: absolute;
-  top: 0;
-  transition: all .3s;
-  width: 92%;
-}
-
-.editplayButtons:hover {
-  box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
-  transform: scale(1.05);
-  background-color: lightgreen;
-}
-
-@media (min-width: 768px) {
-  .editplayButtons {
-    padding: 16px 48px;
-  }
 }
 
 .timerInput {
@@ -521,5 +450,8 @@ header hr{
   margin-top:1em;
 }
 
+.setTimer{
+  margin-bottom:2vh;
+}
 
 </style>

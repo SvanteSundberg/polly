@@ -58,22 +58,22 @@
 </div>
 
 <router-link v-bind:to="'/'">
-<button class="addBtn">
+<button class="standBtn addBtn">
   {{uiLabels.backToStart}}
 </button>
 </router-link>
 
-<button class="addBtn" v-on:click="addQuestion">
+<button class="standBtn addBtn" v-on:click="addQuestion">
   + {{uiLabels.addQuestion}}
 </button>
 
 <router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
-<button class="doneBtn" v-on:click="removeEmptyAwnser">
+<button class="standBtn doneBtn" v-on:click="removeEmptyAwnser">
   {{uiLabels.Done}}
 </button>
 </router-link>
 
-<button class="doneBtn"
+<button class="standBtn doneBtn"
         v-if="!canContinue()"
         v-on:click="showPopup(true)">
   {{uiLabels.Done}}
@@ -390,8 +390,7 @@ export default {
   position:absolute;
   top: 0;
   right: 0;
-  padding-right:1.5em;
-  padding-left:1.5em;
+  padding-right:12%
 }
 
 .scroll{
@@ -436,10 +435,6 @@ export default {
   padding-top: 5px;
   padding-bottom: 5px;
   margin-left:  10px;
-}
-
-#remove:hover{
-  font-weight: bold;
 }
 
 
@@ -555,9 +550,9 @@ header{
 
 .right {
   width: 15%;
-  height: 85%;
+  height: 88%;
   right: 0;
-  top: 15%;
+  top: 12%;
   position:absolute;
   border-left: 2px solid white;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -613,10 +608,6 @@ h3{
 
 .doneBtn{
   margin-bottom:3em;
-}
-
-button:hover{
-  font-weight:bold;
 }
 
 .warning{

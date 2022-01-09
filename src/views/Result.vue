@@ -8,17 +8,17 @@
 
     <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'/>
 
-    <button v-if="!finished" class="doneBtn" v-on:click="runQuestion">
+    <button v-if="!finished" class="standBtn doneBtn" v-on:click="runQuestion">
       {{uiLabels.runNextQ}}
     </button>
 
     <router-link v-if="finished" v-bind:to="'/'">
-        <button class="doneBtn">
+        <button class="standBtn addBtn">
           {{uiLabels.backToStart}}
         </button>
     </router-link>
 
-    <button class="doneBtn" v-on:click="restart">
+    <button class="standBtn addBtn" v-on:click="restart">
         Restart
     </button>
 

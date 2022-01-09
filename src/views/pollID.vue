@@ -16,7 +16,7 @@
             v-on:keyup.enter="checkPollId">
     </div>
     <div class="rightColumn">
-  <button class="doneBtn" v-on:click="checkPollId" v-if="this.id.length>0">
+  <button class="standBtn doneBtn" v-on:click="checkPollId" v-if="this.id.length>0">
     {{uiLabels.Done}}
   </button>
   </div>
@@ -46,7 +46,7 @@
   </div>
 
   <div class="rightColumn">
-    <button class="doneBtn" v-on:click="sendUsername" v-if="!ready && this.userName.length>0">
+    <button class="standBtn doneBtn" v-on:click="sendUsername" v-if="!ready && this.userName.length>0">
     {{uiLabels.Done}}
   </button>
   </div>

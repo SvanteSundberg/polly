@@ -5,14 +5,10 @@
     <div v-if="this.timeOn" > {{uiLabels.time}} {{this.time}} </div>
     <br>
     <router-link v-if="!this.timeOn" v-bind:to="'/result/'+pollId+'/'+lang">
-    <button class="doneBtn" v-on:click="toPollResult">
+    <button class="standBtn doneBtn" v-on:click="toPollResult">
       {{uiLabels.seeResult}}
     </button>
   </router-link>
-
-
-
-
 
   </div>
 

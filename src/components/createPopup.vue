@@ -8,7 +8,7 @@
           <slot></slot>
        </section>
       <footer class="popupFooter">
-        <button class="doneBtn" v-on:click="ok">
+        <button class="standBtn doneBtn" v-on:click="ok">
           <slot name="button">OK</slot>
         </button>
       </footer>

@@ -34,7 +34,7 @@
   </div>
 
     <div class="rightColumn">
-      <button class="doneBtn"
+      <button class="standBtn doneBtn"
               v-on:click="checkID"
               v-if="this.pollId.length>0">
         {{uiLabels.Done}}

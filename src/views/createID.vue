@@ -14,7 +14,7 @@
     </div>
 
     <div class="rightColumn">
-      <button v-bind:class="['doneBtn', {notReady:this.isExisting}]"
+      <button v-bind:class="['standBtn doneBtn', {notReady:this.isExisting}]"
               v-on:click="createPoll"
               v-if="this.pollId.length>0">
         {{uiLabels.Done}}
@@ -58,7 +58,7 @@ export default {
       pollId: "",
       uiLabels: {},
       popupVisable: false,
-      isExisting: true
+      isExisting: false
     }
   },
 
