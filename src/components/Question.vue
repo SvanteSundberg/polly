@@ -35,12 +35,14 @@ h3 {
 
 .allAnswers {
   display: grid;
-  margin: auto;
+  margin-left: 30%;
+  margin-bottom: 10%;
   padding: auto;
-  width: 30%;
-  grid-template-columns: 10em 10em;
-  grid-template-rows: 5em 5em;
-  grid-gap: 2em;
+  width: 20%;
+  height: 15%;
+  grid-template-columns: 100% 100%;
+  grid-template-rows: 100% 100%;
+  grid-gap: 20%;
 }
 
 .answer {

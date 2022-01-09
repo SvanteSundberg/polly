@@ -120,16 +120,16 @@ methods: {
 
 .left {
   left: 0;
-  width: 60%;
-  margin-left:1em;
+  width: 55%;
+  margin-left:5%;
 
 }
 
 .right {
   padding-top:6em;
-  margin-right:3.5em;
+  margin-right:1%;
   right: 0;
-  width: 40%;
+  width: 39%;
   border-left: 4px solid white;
 }
 

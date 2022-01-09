@@ -1,6 +1,8 @@
 <template>
   <div v-bind:class='theme' >
       <Question v-bind:question="question"/>
+    <div class="amountAnswers"> {{uiLabels.answerNr}} {{this.amountAnswers}} </div>
+    <div v-if="this.timeOn" > {{uiLabels.time}} {{this.time}} </div>
     <br>
     <router-link v-if="!this.timeOn" v-bind:to="'/result/'+pollId+'/'+lang">
     <button class="doneBtn" v-on:click="toPollResult">
@@ -8,9 +10,9 @@
     </button>
   </router-link>
 
-  <div v-if="this.timeOn" > {{uiLabels.time}} {{this.time}} </div>
 
-  <div class="amountAnswers"> {{uiLabels.answerNr}} {{this.amountAnswers}} </div>
+
+
 
   </div>
 
@@ -135,17 +137,21 @@ export default {
 
 <style scoped>
   .doneBtn{
-    margin-top:3em;
+    margin-top:10%;
   }
 
   .amountAnswers{
     position:absolute;
-    top:40%;
+    margin-top:10%;
     right:0;
-    margin-right:9em;
+    margin-right:5%;
     background:white;
-    padding:0.5em;
+    padding:1%;
     border-radius:25px;
+    color:black;
+    width: 15%;
+    font-size: 80%;
+    height:auto;
   }
 
 </style>

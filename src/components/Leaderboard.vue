@@ -41,9 +41,12 @@ export default {
   background:#505050 ;
   color:snow;
   border-radius: 25px;
-  width:400px;
-  margin:auto;
+  width:90%;
+	margin-left: 5%;
 	margin-bottom:2em;
+}
+.leaderboard h1{
+	font-size: 100%;
 }
 
 #UserInLeaderborad{
@@ -52,7 +55,8 @@ export default {
   box-shadow: 0 0 20px cyan;
   margin-top: 30px;
   margin-bottom: 25px;
-  margin-right: 30px;
+  margin-right: 10%;
+	margin-left: auto;
   text-align: center;
 }
 
