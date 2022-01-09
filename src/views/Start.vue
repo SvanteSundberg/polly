@@ -73,9 +73,10 @@ export default {
 <style scoped>
 
 .startButtons {
-  display: grid;
+  display: flex;
   grid-gap: 10px;
-  grid-template-columns: 350px 350px 350px;
+  flex-wrap:wrap;
+  /*grid-template-columns: 350px 350px 350px;*/
   margin-top:3em;
   margin-bottom: 3em;
   justify-content: center;
