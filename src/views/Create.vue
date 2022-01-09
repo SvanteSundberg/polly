@@ -171,7 +171,7 @@ export default {
     socket.emit("loadTheme", this.pollId);
 
     socket.on("initial", (theme) => {
-      this.theme = theme
+      this.theme = theme;
     });
 
     socket.on("dataUpdate", (data) =>
@@ -181,7 +181,7 @@ export default {
       this.data = data);
 
     socket.on("getQuestions", (questions) => {
-      this.allQuestions = questions
+      this.allQuestions = questions;
       this.goToQuestion(this.currentIndex);
     });
 
@@ -227,7 +227,7 @@ export default {
       socket.emit("deleteQuestion", {
         pollId: this.pollId,
         questionNumber: this.currentIndex
-    })
+      });
     if (this.currentIndex>0){
       this.currentIndex--;
       this.goToQuestion(this.currentIndex);
@@ -239,10 +239,12 @@ export default {
   },
 
     goToQuestion: function(questionIndex) {
-      this.question = this.allQuestions[questionIndex].q;
-      this.answers = this.allQuestions[questionIndex].a;
-      this.currentIndex = questionIndex;
-      this.correctQuestion=this.allQuestions[questionIndex].c;
+      if (typeof this.allQuestions[questionIndex] !== 'undefined'){
+        this.question = this.allQuestions[questionIndex].q;
+        this.answers = this.allQuestions[questionIndex].a;
+        this.currentIndex = questionIndex;
+        this.correctQuestion=this.allQuestions[questionIndex].c;
+    }
     },
 
     saveQuestion: function() {
@@ -332,7 +334,8 @@ export default {
         this.allQuestions[this.switching.index]= this.allQuestions[index];
         this.allQuestions[index]=tempQuestion;
         socket.emit("saveTheQuestions", {pollId:this.pollId,
-                                          })
+                                        questions: this.allQuestions
+        });
       }
       this.switching.isSwitching=false;
       this.switching.index=-1;

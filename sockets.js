@@ -146,6 +146,10 @@ function sockets(io, socket, data) {
     data.addAnswers(d.pollId,d.questionNumber,d.answers);
   });
 
+  socket.on('saveTheQuestions', function(d){
+    data.saveQuestions(d.pollId,d.questions);
+  });
+
 }
 
 module.exports = sockets;

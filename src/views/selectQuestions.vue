@@ -210,7 +210,7 @@ export default {
   /*border:1px solid black;*/
   display:block;
   position:relative;
-  min-width: 200px;
+  width: 100%;
   border-radius:0;
   padding:0.1em;
   padding-bottom:0.25em;
@@ -226,7 +226,7 @@ export default {
 }
 
 .questionButton{
-  margin-left:1em;
+  margin-left:10%;
   margin-top:1em;
   align-items: center;
   appearance: none;
@@ -243,8 +243,7 @@ export default {
   letter-spacing: .25px;
   line-height: normal;
   /*max-width: 100%;*/
-  min-width: 200px;
-  max-width:200px;
+  min-width: 100%;
   overflow: visible;
   position: relative;
   text-align: center;
@@ -253,7 +252,7 @@ export default {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: auto;
+
   will-change: transform,opacity;
   padding:0.5em;
   font-size:15pt;
@@ -297,17 +296,17 @@ export default {
 }
 
 .questions{
-  margin-bottom:2em;
+  margin-bottom:10%;
 }
 
 .myButtons button{
-  margin:1.5em;
+  margin:5%;
   z-index:2;
 }
 
 .myButtons{
   margin-left:40%;
-  margin-top:2em;
+  margin-top:0;
   z-index:2;
 }
 
@@ -330,13 +329,13 @@ export default {
   /*font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";*/
   font-weight: 600;
   line-height: normal;
-  margin: 3px;
+  margin: 5%;
   height: 60px;
   min-width:60px;
   /*min-width:0;*/
   outline: none;
   /*padding: 16px 24px;*/
-  margin-top:1em;
+  margin-top:1%;
   text-align: center;
   text-decoration: none;
   transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
@@ -517,7 +516,7 @@ header hr{
 }
 
 .right {
-  right: 8em;
+  right: 10%;
   width: 30%;
   margin-top:1em;
 }

@@ -63,7 +63,7 @@ export default {
 .doneBtn{
   font-size: 16pt;
   float: right;
-  margin-right:12em;
+  margin-right:10%;
   margin-top:3em;
 }
 
@@ -75,7 +75,7 @@ export default {
 
 .themeButtons button {
   font-size: 18pt;
-  margin: 2em;
+  margin: 3%;
   height: 5em;
   width:7em;
   border-radius: 5px;
@@ -90,6 +90,11 @@ export default {
 
 .themeButtons button:hover{
   font-weight:bold;
+}
+
+.themeButtons{
+  width: 100%;
+  height: auto;
 }
 
 

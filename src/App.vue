@@ -42,7 +42,7 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 0px;
 }
 
 #nav a {
@@ -97,9 +97,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
-body {
+body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 h1,h2,h3,p{
