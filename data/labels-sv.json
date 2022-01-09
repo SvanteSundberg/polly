@@ -61,7 +61,14 @@
 		"time":"Tid:",
 		"answerNr":"Antal svar:",
 		"runNextQ":"Nästa fråga",
-		"chooseName":"Välj namn"
+		"chooseName":"Välj namn",
+		"chooseName":"Välj namn",
+		"idExists":"ID existerrar redan, välj ett nytt!",
+		"idnotExist":"ID existerar inte, testa igen!",
+		"correct":"rätt!",
+		"leaderboard":"Topplista",
+		"nameExist":"Smeknamnet existerar redan, välj ett annat!"
+
 
 
 

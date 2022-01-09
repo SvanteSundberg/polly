@@ -23,10 +23,9 @@
 
     <div class="unique">
       <p v-if="this.isExisting && this.pollId.length>0">
-          The ID is not unique
+          {{uiLabels.idExists}}
       </p>
       <p v-else-if="this.pollId.length>0">
-        The id is unique
       </p>
     </div>
   </div>

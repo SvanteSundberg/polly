@@ -9,7 +9,7 @@
     <p> {{uiLabels.youAnswered}}
       <span class="cursive"> {{this.userinfo.answer}} </span>
         {{uiLabels.whichIs}}
-      <span class="bold"> correct! </span>
+    <span class="bold"> {{uiLabels.correct}}</span>
     </p>
   </div>
     <div v-else class="infoAnswer">
