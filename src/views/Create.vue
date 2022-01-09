@@ -69,14 +69,14 @@
 
 <router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
 <button class="doneBtn" v-on:click="removeEmptyAwnser">
-  {{uiLabels.selectQuestions}}
+  {{uiLabels.Done}}
 </button>
 </router-link>
 
 <button class="doneBtn"
         v-if="!canContinue()"
         v-on:click="showPopup(true)">
-  {{uiLabels.selectQuestions}}
+  {{uiLabels.Done}}
 </button>
 
 <createPopup v-on:stop="showPopup(false)"
@@ -601,20 +601,6 @@ p{
   height: 50px;
   width: 478px;
   margin-right:-24px;
-}
-
-.addBtn{
-  background-color: #0078d0;
-  border: 1px solid #0078d0;
-  border-radius: 20px;
-  cursor: pointer;
-  color: #fff;
-  text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-left:  10px;
 }
 
 h3{

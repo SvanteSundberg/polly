@@ -61,5 +61,11 @@
 	"time":"Time:",
 	"answerNr":"Number of answers:",
 	"runNextQ":"Run next question",
-	"chooseName":"Pick a name"
+	"chooseName":"Pick a name",
+	"idExists":"ID already exists, please choose another one!",
+	"idnotExist" :"Poll does not exists",
+	"correct":"correct",
+	"leaderboard":"Leaderboard",
+	"nameExist":"Name already exists, please choose another one!"
+
 }

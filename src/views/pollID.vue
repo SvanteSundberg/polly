@@ -12,7 +12,7 @@
             type="text"
             v-model="id"
             maxlength="15"
-            placeholder="Type ID"
+             :placeholder="uiLabels.typeID"
             v-on:keyup.enter="checkPollId">
     </div>
     <div class="rightColumn">
@@ -26,7 +26,7 @@
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> Quizzer </template>
-<span> Poll does not exists </span>
+<span>{{uiLabels.idnotExist}}</span>
 </createPopup>
 </div>
 
