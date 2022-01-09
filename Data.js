@@ -291,5 +291,10 @@ Data.prototype.addAnswers=function(pollId,questionNumber,answers){
   poll.questions[poll.currentQuestion].a=answers;
 }
 
+Data.prototype.saveQuestions=function(pollId, questions){
+  const poll = this.polls[pollId];
+  poll.questions=questions;
+}
+
 
 module.exports = Data;

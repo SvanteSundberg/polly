@@ -227,7 +227,7 @@ export default {
       socket.emit("deleteQuestion", {
         pollId: this.pollId,
         questionNumber: this.currentIndex
-    })
+      });
     if (this.currentIndex>0){
       this.currentIndex--;
       this.goToQuestion(this.currentIndex);
@@ -332,7 +332,8 @@ export default {
         this.allQuestions[this.switching.index]= this.allQuestions[index];
         this.allQuestions[index]=tempQuestion;
         socket.emit("saveTheQuestions", {pollId:this.pollId,
-                                          })
+                                        questions: this.allQuestions
+        });
       }
       this.switching.isSwitching=false;
       this.switching.index=-1;
