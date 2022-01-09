@@ -27,7 +27,7 @@
        </div>
 
        <p v-else-if="this.pollId.length>0 && this.included<1">
-         No results found
+         {{uiLabels.noPolls}}
        </p>
     </div>
   </div>
@@ -47,8 +47,8 @@
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
-<template v-slot:header> Quizzer </template>
-<span> ID does not exist </span>
+<template v-slot:header> {{uiLabels.quizzer}} </template>
+<span> {{uiLabels.idnotExist}} </span>
 </createPopup>
 </div>
 

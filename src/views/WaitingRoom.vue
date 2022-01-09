@@ -26,8 +26,8 @@
 
   <createPopup v-on:stop="showPopup(false)"
               v-show="this.popupVisable">
-  <template v-slot:header> Quizzer </template>
-  <span> At least one player must join before continuing!
+  <template v-slot:header> {{uiLabels.quizzer}} </template>
+  <span> {{uiLabels.onePlayer}}
   </span>
   </createPopup>
 
@@ -159,7 +159,7 @@ header{
   /*position:absolute;*/
   top:20%;
   right:1%;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 .party .players img{

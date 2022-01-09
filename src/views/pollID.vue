@@ -25,7 +25,7 @@
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
-<template v-slot:header> Quizzer </template>
+<template v-slot:header> {{uiLabels.quizzer}} </template>
 <span>{{uiLabels.idnotExist}}</span>
 </createPopup>
 </div>
@@ -54,8 +54,8 @@
   </div>
   <createPopup v-on:stop="showPopup(false)"
               v-show="this.popupVisable">
-  <template v-slot:header> Quizzer </template>
-  <span> Name already exists </span>
+  <template v-slot:header> {{uiLabels.quizzer}} </template>
+  <span> {{uiLabels.nameExist}}</span>
   </createPopup>
   </div>
   </div>

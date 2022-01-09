@@ -19,7 +19,7 @@
     </router-link>
 
     <button class="standBtn addBtn" v-on:click="restart">
-        Restart
+        {{uiLabels.restart}}
     </button>
 
   <div class="split right">

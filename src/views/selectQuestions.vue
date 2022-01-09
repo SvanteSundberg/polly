@@ -62,7 +62,7 @@ v-bind:key="i">
 
 <div class="split right">
 
-<p> Timer </p>
+<p> {{uiLabels.timer}} </p>
 <div class="timerSwitch">
 
 
@@ -83,8 +83,8 @@ v-bind:key="i">
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
-<template v-slot:header> Quizzer </template>
-<span> Please choose at least one question before continuing!
+<template v-slot:header> {{uiLabels.quizzer}} </template>
+<span> {{uiLabels.oneQuestion}}
 </span>
 </createPopup>
 

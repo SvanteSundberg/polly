@@ -14,7 +14,7 @@
 </button> </h3>
 
 <div v-if="collide()>-1" class="help">
-  Drop the question to switch places on them!
+  {{uiLabels.drop}}
 </div>
 
   <div class="question">
@@ -81,7 +81,7 @@
 
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
-<template v-slot:header> Quizzer </template>
+<template v-slot:header> {{uiLabels.quizzer}} </template>
 <div class="warning"> {{uiLabels.pleaseMakeSureTo}} <br>
   <ol>
 <li>{{uiLabels.chooseRight}}</li>
@@ -388,9 +388,9 @@ export default {
   display: flex;
   flex-direction: column;
   position:absolute;
-  top: 0;
-  right: 0;
-  padding-right:12%
+  top:0;
+  padding-right:12.5%;
+  padding-left:12.5%;
 }
 
 .scroll{
@@ -413,6 +413,7 @@ export default {
   font-size:13pt;
   height: 3em;
   width: 7em;
+  margin-left:3.5vh;
 }
 
 
