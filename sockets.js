@@ -150,10 +150,6 @@ function sockets(io, socket, data) {
     data.saveQuestions(d.pollId,d.questions);
   });
 
-  socket.on('Questions', function(pollId){
-    socket.emit('getQuestions', data.getAllQuestions(pollId));
-  });
-
 }
 
 module.exports = sockets;

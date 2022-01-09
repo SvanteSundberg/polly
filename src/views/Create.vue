@@ -171,10 +171,8 @@ export default {
     socket.emit("loadTheme", this.pollId);
 
     socket.on("initial", (theme) => {
-      this.theme = theme
+      this.theme = theme;
     });
-
-    socket.emit("Questions", this.pollId);
 
     socket.on("dataUpdate", (data) =>
       this.data = data
@@ -184,7 +182,7 @@ export default {
 
     socket.on("getQuestions", (questions) => {
       this.allQuestions = questions;
-      /*this.goToQuestion(this.currentIndex);*/
+      this.goToQuestion(this.currentIndex);
     });
 
     socket.emit("addQuestion", {
@@ -241,10 +239,12 @@ export default {
   },
 
     goToQuestion: function(questionIndex) {
-      this.question = this.allQuestions[questionIndex].q;
-      this.answers = this.allQuestions[questionIndex].a;
-      this.currentIndex = questionIndex;
-      this.correctQuestion=this.allQuestions[questionIndex].c;
+      if (typeof this.allQuestions[questionIndex] !== 'undefined'){
+        this.question = this.allQuestions[questionIndex].q;
+        this.answers = this.allQuestions[questionIndex].a;
+        this.currentIndex = questionIndex;
+        this.correctQuestion=this.allQuestions[questionIndex].c;
+    }
     },
 
     saveQuestion: function() {
