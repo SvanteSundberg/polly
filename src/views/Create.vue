@@ -1,6 +1,5 @@
 <template>
 <div v-bind:class='theme' v-on:mouseup="endSwitch">
-  {{allQuestions}}
   <header>
    <h2>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h2>
   <hr>
@@ -175,16 +174,6 @@ export default {
       this.theme = theme;
     });
 
-    socket.emit("getFirstQuestion", this.pollId);
-
-    socket.on("firstQuestion", (question) => {
-      if (typeof question.q !== 'undefined'){
-        this.question=question.q;
-        this.answers=question.a;
-        this.correctQuestion=question.c;
-      }
-    });
-
     socket.on("dataUpdate", (data) =>
       this.data = data
     );
@@ -193,7 +182,7 @@ export default {
 
     socket.on("getQuestions", (questions) => {
       this.allQuestions = questions;
-      /*this.goToQuestion(this.currentIndex);*/
+      this.goToQuestion(this.currentIndex);
     });
 
     socket.emit("addQuestion", {
@@ -250,10 +239,12 @@ export default {
   },
 
     goToQuestion: function(questionIndex) {
-      this.question = this.allQuestions[questionIndex].q;
-      this.answers = this.allQuestions[questionIndex].a;
-      this.currentIndex = questionIndex;
-      this.correctQuestion=this.allQuestions[questionIndex].c;
+      if (typeof this.allQuestions[questionIndex] !== 'undefined'){
+        this.question = this.allQuestions[questionIndex].q;
+        this.answers = this.allQuestions[questionIndex].a;
+        this.currentIndex = questionIndex;
+        this.correctQuestion=this.allQuestions[questionIndex].c;
+    }
     },
 
     saveQuestion: function() {

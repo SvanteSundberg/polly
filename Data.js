@@ -296,10 +296,5 @@ Data.prototype.saveQuestions=function(pollId, questions){
   poll.questions=questions;
 }
 
-Data.prototype.getFirstQuestion=function(pollId){
-  const poll = this.polls[pollId];
-  return poll.questions[0]
-}
-
 
 module.exports = Data;
