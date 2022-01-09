@@ -140,7 +140,11 @@ function sockets(io, socket, data) {
 
   socket.on('getPolls',function(){
     socket.emit('allPolls', data.getPolls());
-  })
+  });
+
+  socket.on('addAnswers', function(d){
+    data.addAnswers(d.pollId,d.questionNumber,d.answers);
+  });
 
 }
 

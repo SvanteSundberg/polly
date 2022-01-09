@@ -22,7 +22,7 @@
     <input type="text"
           class="writeQ"
           v-model="question"
-          v-on:change="saveQuestion"
+          v-on:keyup="saveQuestion"
           :placeholder="uiLabels.typeQuestion">
     <br>
     <p> {{uiLabels.answers}}:</p>
@@ -31,7 +31,7 @@
       <textarea v-for="(_, i) in answers"
                 v-model="answers[i]"
                 v-bind:key="'answer'+i"
-                v-on:change="saveQuestion"
+                v-on:keyup="saveQuestion"
                 v-bind:class="'answer'+i"
                 :placeholder="uiLabels.typeAnswer"
                 maxlength="50">
@@ -205,6 +205,11 @@ export default {
     addAnswer: function() {
       if (this.answers.length < 4) {
         this.answers.push("");
+        socket.emit("addAnswers", {
+          pollId: this.pollId,
+          questionNumber: this.currentIndex,
+          answers: this.answers
+        });
       }
     },
 
@@ -321,11 +326,13 @@ export default {
     },
 
     endSwitch: function(){
-      let index=this.collide();
+      const index=this.collide();
       if (index>-1){
         let tempQuestion = this.allQuestions[this.switching.index];
         this.allQuestions[this.switching.index]= this.allQuestions[index];
         this.allQuestions[index]=tempQuestion;
+        socket.emit("saveTheQuestions", {pollId:this.pollId,
+                                          })
       }
       this.switching.isSwitching=false;
       this.switching.index=-1;

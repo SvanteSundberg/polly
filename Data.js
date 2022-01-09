@@ -285,5 +285,11 @@ Data.prototype.getPolls=function(){
   return Object.keys(this.polls)
 }
 
+Data.prototype.addAnswers=function(pollId,questionNumber,answers){
+  const poll = this.polls[pollId];
+  poll.currentQuestion=questionNumber;
+  poll.questions[poll.currentQuestion].a=answers;
+}
+
 
 module.exports = Data;
