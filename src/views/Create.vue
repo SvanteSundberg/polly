@@ -389,8 +389,8 @@ export default {
   flex-direction: column;
   position:absolute;
   top:0;
-  padding-right:12.5%;
-  padding-left:12.5%;
+  padding-right:8%;
+  padding-left:8%;
 }
 
 .scroll{
