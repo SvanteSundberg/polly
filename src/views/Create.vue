@@ -1,7 +1,5 @@
 <template>
-  {{currentIndex}}
 <div v-bind:class='theme' v-on:mouseup="endSwitch">
-  {{this.allQuestions}}
   <header>
    <h2>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h2>
   <hr>
