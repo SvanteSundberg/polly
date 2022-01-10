@@ -680,6 +680,7 @@ h3{
   position:absolute;
   top:0;
   right:6em;
+  color:black;
 }
 
 @media (max-width: 550px) {
