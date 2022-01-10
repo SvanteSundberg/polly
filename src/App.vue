@@ -183,7 +183,7 @@ button{
 
 .rightColumn{
   grid-column:2;
-  margin-left:10%;
+  margin-left:15%;
   grid-row:1;
 }
 
