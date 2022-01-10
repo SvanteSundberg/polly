@@ -257,9 +257,6 @@ export default {
   margin:7%;
   font-size:15pt;
   padding:2vh;
-  padding-right:3vh;
-  padding-left:3vh;
-  padding-top:3vh;
   border-radius: 50px;
   width:7em;
 }
