@@ -113,23 +113,8 @@ div {
   margin:auto;
 }
 
-.writeInput {
-  border-radius: 20px;
-  border: white;
-  outline: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-top: 10px;
-  margin:auto;
-  box-shadow: 0px 2px 2px rgba(0,0,0,0.11);
-  display:flex;
-}
-
 .standBtn{
   border-radius: 20px;
-  cursor: pointer;
   color: #fff;
   text-align:  center;
   padding-left: 10px;
@@ -166,25 +151,6 @@ div {
 button{
   font-size:13pt;
   cursor: pointer;
-}
-
-.gridWrap{
-  display:grid;
-  grid-template-columns: 200px 50px;
-  justify-content: center;
-  grid-gap: 10px;
-}
-
-.leftColumn{
-  float:right;
-  grid-column: 1;
-  grid-row:1;
-}
-
-.rightColumn{
-  grid-column:2;
-  margin-left:1em;
-  grid-row:1;
 }
 
 ::-webkit-scrollbar {

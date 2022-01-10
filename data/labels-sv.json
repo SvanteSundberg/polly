@@ -22,7 +22,7 @@
 	"pollID":"RöstningsID",
   "addAnswer":"Lägg till svar",
 	"removeQuestion":"Radera fråga",
-	"Language":"Language",
+	"Language":"Språk",
 	"questionNumber":"Fråga nummer",
 	"nowEdit":"Du redigerar nu röstningen:",
 	"overview":"Översikt",
@@ -73,7 +73,10 @@
 		"idnotExist":"ID existerar inte, testa igen!",
 		"correct":"rätt!",
 		"leaderboard":"Topplista",
-		"nameExist":"Smeknamnet existerar redan, välj ett annat!"
+		"nameExist":"Smeknamnet existerar redan, välj ett annat!",
+		"whichque": "Dags att spela! Vilka frågor vill du inkludera i quizzet?",
+    "startQuiz":"Starta Quiz"
+
 
 
 

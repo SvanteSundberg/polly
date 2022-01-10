@@ -64,7 +64,7 @@ export default {
   font-size: 16pt;
   float: right;
   margin-right:17%;
-  margin-top:3em;
+  margin-top:8%;
 }
 
 
@@ -101,8 +101,8 @@ export default {
 
 
 h1{
-  padding-top: 1.5em;
-  padding-bottom:1em;
+  padding-top: 8vw;
+  padding-bottom:5%;
 }
 
 </style>

@@ -74,7 +74,6 @@ export default {
 
 .startButtons {
   display: flex;
-  grid-gap: 10px;
   flex-wrap:wrap;
   margin-top:7%;
   justify-content: center;

@@ -133,19 +133,20 @@ export default {
 
 <style scoped>
   .doneBtn{
-    margin-top:10%;
+    margin-top:5%;
+    margin-left:4.5%;
   }
 
   .amountAnswers{
     position:absolute;
-    margin-top:10%;
+    margin-top:7%;
+    top:0;
     right:0;
     margin-right:5%;
     background:white;
     padding:1%;
     border-radius:25px;
     color:black;
-    width: 15%;
     font-size: 80%;
     height:auto;
   }

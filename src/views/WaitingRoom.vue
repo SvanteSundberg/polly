@@ -12,7 +12,6 @@
 
   <div v-if="this.users.length>0" class="players">
       <p> {{this.users.length}} {{uiLabels.loggedIn}} </p>
-        <div> <img id="figure" src='/img/streckgubbe.png'> </div>
   <span v-for="user in this.users" v-bind:key="user" class="cursive">
     {{user}}
   </span>
@@ -117,7 +116,7 @@ header{
 }
 
 .players p{
-  margin-bottom:5%;
+  margin-bottom:2%;
 }
 .players span{
   display: inline-block;
@@ -140,43 +139,27 @@ header{
 }
 
 .players{
-  border:dotted;
+  border:1px solid;
   margin-top:3em;
   margin-bottom:3vh;
-  margin-left: 30%;
-  margin-right:30%;
+  margin-left: 20%;
+  margin-right:20%;
   padding:1%;
   background-color:white;
   color:black;
-  width: auto;
+  min-height: 20vh;
   height: auto;
   justify-content: center;
+  border-radius:20px;
 }
 
-.players img{
-  width:50px;
-  height:50px;
-  /*position:absolute;*/
-  top:20%;
-  right:1%;
-  margin-bottom: 1%;
-}
-
-.party .players img{
-  top:10.7em;
-  left:22em;
-  margin:0;
-}
-
-.playerPicture {
-  background-color:white;
-  padding:1em;
-  width:11em;
-  padding-right:0;
+.players p{
+  margin:2vh;
 }
 
 .waiting{
-  margin:2.5em;
+  margin-bottom:10%;
+  margin-top:5%;
   font-size:20pt;
   font-weight: bold;
 }
