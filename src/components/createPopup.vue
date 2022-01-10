@@ -50,17 +50,19 @@
     flex-direction: column;
     border-radius: 10px;
     color:black;
+    width:450px;
+    height: 350px;
   }
 
   .popup section{
-    padding:15px;
-    padding-left: 30px;
-    padding-right:30px;
+    padding:5%;
+    padding-left: 3%;
+    padding-right:3%;
     align-items: left;
   }
 
   .popupHeader {
-    padding: 15px;
+    padding: 5%;
     position: relative;
     color: black;
     justify-content: space-between;
@@ -69,8 +71,14 @@
 
   .popupFooter {
     position: relative;
-    padding: 20px 10px;
+    padding: 2% 1%;
     font-size: 10pt;
+  }
+
+  @media (max-width: 550px) {
+    .popup { font-size: 15px;
+              width:200px;
+              height: 300px;}
   }
 
 </style>
