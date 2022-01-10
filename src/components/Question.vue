@@ -28,27 +28,35 @@ export default {
 <style scoped>
 
 h3 {
-  padding:1em;
+  padding:0.5em;
   padding-top:2.5em;
   font-size: 26pt;
 }
 
 .allAnswers {
   display: grid;
-  margin-left: 30%;
-  margin-bottom: 10%;
-  padding: auto;
-  width: 20%;
-  height: 15%;
-  grid-template-columns: 100% 100%;
-  grid-template-rows: 100% 100%;
-  grid-gap: 20%;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  margin-left:25%;
+  margin-right:25%;
+  grid-gap:10%;
+}
+
+@media (max-width:551px){
+  .allAnswers {
+    display: flex;
+    flex-wrap:wrap;
+    margin-left:32%;
+  }
 }
 
 .answer {
-  font-size: 18pt;
+  font-size:2.5vw;
   color:white;
-  text-shadow: 2px 2px black;
+  text-shadow: 1.5px 1.5px black;
+  width:90%;
+  height:14vw;
+  margin-top:10%;
 }
 
 .nr0 {
