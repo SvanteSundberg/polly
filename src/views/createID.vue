@@ -20,14 +20,14 @@
         {{uiLabels.Done}}
       </button>
     </div>
+  </div>
 
-    <div class="unique">
-      <p v-if="this.isExisting && this.pollId.length>0">
-          {{uiLabels.idExists}}
-      </p>
-      <p v-else-if="this.pollId.length>0">
-      </p>
-    </div>
+  <div class="unique">
+    <p v-if="this.isExisting && this.pollId.length>0">
+        {{uiLabels.idExists}}
+    </p>
+    <p v-else-if="this.pollId.length>0">
+    </p>
   </div>
 
   </div>
@@ -35,7 +35,7 @@
   <createPopup v-on:stop="showPopup(false)"
               v-show="this.popupVisable">
   <template v-slot:header> {{uiLabels.quizzer}} </template>
-  <span> {{uiLabels.idExist}}</span>
+  <span> {{uiLabels.idExists}}</span>
   </createPopup>
 
 </div>
@@ -100,22 +100,18 @@ export default {
 </script>
 
 <style scoped>
-  .position{
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-  }
+
+@import url("/styleID.css"); 
 
   .notReady{
     background-color: grey;
     border: 1px solid grey;
   }
 
+
   .unique{
-    grid-column:1;
-    grid-row: 2;
+    margin-top:5%;
+    grid-row:2;
   }
 
 

@@ -38,7 +38,7 @@ h3 {
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
   margin-left:25%;
-  margin-right:25%;
+  margin-right:27.5%;
   grid-gap:10%;
 }
 

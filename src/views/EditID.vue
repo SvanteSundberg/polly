@@ -139,13 +139,7 @@ export default {
 </script>
 
 <style scoped>
-  .position{
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-  }
+@import url("/styleID.css"); 
 
   .search{
     margin-top:2em;
