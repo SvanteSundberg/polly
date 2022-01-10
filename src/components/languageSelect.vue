@@ -56,11 +56,10 @@ export default {
 </script>
 <style scoped>
 
-.languageMenu{
-  font-size: 10pt;
-  padding:5px;
-  border-radius: 5px;
-
+.languageMenu button{
+  font-size: 11pt;
+  padding:8px;
+  border-radius: 20px;
 }
 
 .dropdown {
