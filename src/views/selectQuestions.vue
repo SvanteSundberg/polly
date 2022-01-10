@@ -49,7 +49,7 @@ v-bind:key="i">
 
 <router-link v-if="this.selectedQuestions.length>0" v-bind:to="'/waitingRoom/'+id+'/'+lang">
 <button class="standBtn doneBtn" v-on:click="sendQuestions">
-  {{uiLabels.playQuiz}}
+  {{uiLabels.startQuiz}}
 </button>
 </router-link>
 
@@ -206,92 +206,47 @@ export default {
 
 .dropdownShow {
   background-color:white;
-  /*border:1px solid black;*/
   display:block;
   position:relative;
   width: 100%;
-  border-radius:0;
   padding:0.1em;
   padding-bottom:0.25em;
   font-size: 14pt;
-  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: none;
   margin-top:0.3em;
-  margin-left:1em;
+  margin-left:10%;
+
 }
 
 .dropdown hr{
-  border-top:1px dotted;
+  border-top:1px;
   margin:0.2em;
 }
 
 .questionButton{
   margin-left:10%;
-  margin-top:1em;
+  margin-top:10%;
   align-items: center;
-  appearance: none;
+  border-radius: 23px;
   background-color: #fff;
-  border-radius: 24px;
-  border-style: none;
-  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
-  box-sizing: border-box;
-  display: inline-flex;
-  fill: currentcolor;
-  /*font-family: "Google Sans",Roboto,Arial,sans-serif;*/
-  font-weight: 500;
-  justify-content: center;
-  letter-spacing: .25px;
-  line-height: normal;
-  /*max-width: 100%;*/
-  min-width: 100%;
-  overflow: visible;
+  width:20vw;
   position: relative;
   text-align: center;
-  text-transform: none;
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-
   will-change: transform,opacity;
   padding:0.5em;
   font-size:15pt;
+  border-style: none;
 }
 
 .questionButton:hover {
-  background: #F6F9FE;
+  background:#fff;
   color: #174ea6;
-  font-weight:bold;
 }
 
 .showDrop{
   outline: none;
-  /*border: 2px solid #4285f4;*/
-  border: 2px solid black;
-}
+  border: 1px solid black;
 
-.questionButton:active {
-  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
-  outline: none;
-}
-
-.questionButton:not(:disabled) {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-.questionButton:not(:disabled):hover {
-  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
-}
-
-.questionButton:not(:disabled):focus {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-.questionButton:not(:disabled):active {
-  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
-}
-
-.questionButton:disabled {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
 .questions{
@@ -300,13 +255,14 @@ export default {
 
 .myButtons button{
   margin:7%;
-  font-size:16pt;
+  font-size:15pt;
   padding:2vh;
   padding-right:3vh;
   padding-left:3vh;
+  padding-top:3vh;
   border-radius: 50px;
+  width:7em;
 }
-
 .myButtons{
   margin-left:40%;
   margin-top:0;
@@ -317,6 +273,7 @@ export default {
   float:right;
   width: 15px;
   padding-right:1em;
+  padding-left: 0.5em;
   padding-top:0.3em;
 }
 
@@ -405,13 +362,13 @@ export default {
 }
 
 header{
-height:20%;
+height:25vh;
 padding-top:1em;
 }
 
 header hr{
   margin-top:1em;
-  margin-bottom:0;
+  margin-bottom:1em;
   padding-bottom:0;
   margin-bottom:0;
   background-color: white;
@@ -427,27 +384,27 @@ header hr{
 
 .scroll{
   height:65%;
-  width:50%;
+  width:60%;
   overflow-y:auto;
   position:relative;
 }
 
 .split {
-  height: 80%;
-  top: 20%;
+  height: 75vh;
+  top: 24vh;
   position:fixed;
 }
 
 .left {
   left: 0;
   width: 70%;
-  margin-left:1em;
+  margin-left:0.7em;
 }
 
 .right {
   right: 10%;
   width: 30%;
-  margin-top:1em;
+  margin-top:1.3em;
 }
 
 .setTimer{

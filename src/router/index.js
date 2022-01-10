@@ -66,7 +66,13 @@ const routes = [
   path: '/editID/:lang/',
   name: 'EditID',
   component: () => import(/* webpackChunkName: "about" */ '../views/EditID.vue')
-  }
+  },
+
+  {
+  path: '/chooseName/:id/:lang/',
+  name: 'ChooseName',
+  component: () => import(/* webpackChunkName: "about" */ '../views/ChooseName.vue')
+  },
 
 ]
 

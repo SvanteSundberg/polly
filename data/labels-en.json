@@ -73,6 +73,9 @@
 	"idnotExist" :"Poll does not exists",
 	"correct":"correct",
 	"leaderboard":"Leaderboard",
-	"nameExist":"Name already exists, please choose another one!"
+	"nameExist":"Name already exists, please choose another one!",
+	"whichque": "Time to play! Which questions do you want to include in the quiz?",
+  "startQuiz":"Start Quiz"
+
 
 }

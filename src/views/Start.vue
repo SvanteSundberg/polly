@@ -74,31 +74,27 @@ export default {
 
 .startButtons {
   display: flex;
-  grid-gap: 10px;
   flex-wrap:wrap;
-  /*grid-template-columns: 350px 350px 350px;*/
-  margin-top:3em;
-  margin-bottom: 3em;
+  margin-top:7%;
   justify-content: center;
 }
 
 .startButtons button{
-  border-radius: 5px;
-  padding: 0.5em;
+  border-radius: 10px;
+  padding: 5%;
   color: #fff;
   text-align:  center;
-  font-size: 1.5rem;
+  font-size: 1.3em;
   font-weight: 100;
   box-shadow: 2px 2px 20px black;
   border: 1px solid black;
   background-color: #7EBDE5;
-  width: 200px;
-  height: 90px;
+  width: 7em;
+  height: 3.5em;
   justify-content: center;
-  margin:4vh;
-  /* transition-duration: 0.5s;
-  -webkit-transition-duration: 0.1s;
-  -moz-transition-duration: 0.1s;*/
+  margin-left:2.5vw;
+  margin-right:2.5vw;
+  margin-bottom:4vw;
 }
 
 #createButton{
@@ -147,7 +143,7 @@ export default {
 h1{
   padding-top:7%;
   text-shadow: 4px 4px 5px white;
-  margin-bottom:0.75em;
+  margin-bottom:2vh;
 }
 
 </style>
