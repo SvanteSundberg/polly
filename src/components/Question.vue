@@ -51,18 +51,6 @@ h3 {
   margin-top:10%;
 }
 
-@media (max-width:551px){
-  .allAnswers {
-    display: flex;
-    flex-wrap:wrap;
-    margin-left:32%;
-  }
-
-  .answer{
-    font-size:2vh;
-  }
-}
-
 .nr0 {
   grid-column: 1;
   grid-row: 1;
@@ -85,5 +73,18 @@ h3 {
   grid-column: 2;
   grid-row: 2;
   background-color: #FFAA33;
+}
+
+/*Annan layout för mobil */
+@media (max-width:551px){
+  .allAnswers {
+    display: flex;
+    flex-wrap:wrap;
+    margin-left:32%;
+  }
+
+  .answer{
+    font-size:2vh;
+  }
 }
 </style>
