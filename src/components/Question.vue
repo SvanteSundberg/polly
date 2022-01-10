@@ -42,21 +42,25 @@ h3 {
   grid-gap:10%;
 }
 
+.answer {
+  font-size:2vw;
+  color:white;
+  text-shadow: 1.5px 1.5px black;
+  width:90%;
+  height:14vw;
+  margin-top:10%;
+}
+
 @media (max-width:551px){
   .allAnswers {
     display: flex;
     flex-wrap:wrap;
     margin-left:32%;
   }
-}
 
-.answer {
-  font-size:2.5vw;
-  color:white;
-  text-shadow: 1.5px 1.5px black;
-  width:90%;
-  height:14vw;
-  margin-top:10%;
+  .answer{
+    font-size:2vh;
+  }
 }
 
 .nr0 {
