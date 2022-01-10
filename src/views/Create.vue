@@ -56,7 +56,7 @@
 
     </div>
 </div>
-
+<div class="allCreateBtn">
 <router-link v-bind:to="'/'">
 <button class="standBtn addBtn">
   {{uiLabels.backToStart}}
@@ -78,7 +78,7 @@
         v-on:click="showPopup(true)">
   {{uiLabels.Done}}
 </button>
-
+</div>
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> {{uiLabels.quizzer}} </template>
@@ -389,31 +389,33 @@ export default {
   flex-direction: column;
   position:absolute;
   top:0;
-  padding-right:8%;
-  padding-left:8%;
+  padding-right:10%;
+  padding-left:15%;
+  width: 70%;
 }
 
 .scroll{
   height:100%;
-  overflow-y:scroll;
+  overflow-y:auto;
   position:relative;
 }
 
 #themeButton{
-  height:4em;
+  height:3vw;
 }
 
 
 .sideQuestion {
   background-color: white;
-  margin: 10px;
+  margin: 5%;
   border-radius: 20px;
   border-color: white;
-  padding:0.5em;
-  font-size:13pt;
-  height: 3em;
-  width: 7em;
-  margin-left:3.5vh;
+  padding-right:8%;
+  padding-left:8%;
+  height: 3vw;
+  width: 150px;
+  font-size: 16px;
+
 }
 
 
@@ -523,12 +525,18 @@ export default {
   font-size:14pt;
 }
 
+.allCreateBtn{
+  margin-right:22%;
+}
+
 .question{
   position:relative;
   /*border-style:double;*/
-  margin:auto;
+  margin:0;
   padding:0px;
   padding-bottom: 10px;
+  width:75%;
+  overflow-x: auto;
 }
 
 header{
@@ -542,18 +550,18 @@ header{
 }
 
 .left {
-  width: 85%;
+  width: 75%;
   left: 0;
   top:0;
   position:relative;
-  height: auto;
+  height: 85%;
 }
 
 .right {
-  width: 15%;
+  width: 25%;
   height: 88%;
   right: 0;
-  top: 12%;
+  top: 11%;
   position:absolute;
   border-left: 2px solid white;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -602,6 +610,9 @@ p{
   margin-right:-24px;
 }
 
+.left h3{
+  margin-right: 22%;
+}
 h3{
   margin-top:1.5em;
   margin-bottom:0.5em;
@@ -630,7 +641,7 @@ h3{
   transform: rotate(135deg);
   margin-right:8em;
   margin-top: 0;
-  margin-bottom:55px;
+  margin-bottom:35%;
   z-index:0;
 }
 
@@ -653,7 +664,8 @@ h3{
 }
 
 .positioningHelp{
-  margin-top:9.3em;
+  margin-top:67%;
+  margin-right: 100%;
 }
 
 .switchingQuestion{
@@ -668,6 +680,194 @@ h3{
   position:absolute;
   top:0;
   right:6em;
+}
+
+@media (max-width: 550px) {
+  .sideQuestion { font-size: 10px;height: 10%; width:100%; }
+  #themeButton{height:10%;}
+  #overView{font-size: 11px;}
+  .questionWrap {
+    display: flex;
+    position:absolute;
+  }
+
+  .left {
+    width: 80%;
+    height: 80%;
+    left: 0;
+    top:19%;
+    position:absolute;
+    margin:0;
+  }
+
+  .right {
+    width: 20%;
+    height: 67%;
+    top:19%;
+    position:absolute;
+    border-left: 2px solid white;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+
+  .allAnswers {
+    display: grid;
+    margin: auto;
+    margin-bottom: 15%;
+    padding: 0;
+    width: 80%;
+    height: 80%;
+    grid-template-columns: 90%;
+    grid-template-rows: 20% 20% 20% 20%;
+    grid-gap: 10%;
+  }
+
+  .question{
+    position:relative;
+    /*border-style:double;*/
+    margin:0;
+    padding:0px;
+    padding-bottom: 10px;
+    width:100%;
+    height: 60%;}
+
+    .allAnswers textarea {
+      height: 90%;
+      width: 90%;
+      resize: none;
+      border-radius: 5px;
+    }
+
+    .removeAnswerButton {
+      background-color: #d11a2a;
+      height: 13px;
+      width: 13px;
+      margin-left:86%;
+      padding:0;
+      border: red;
+      border-radius: 2px;
+      justify-content: flex-start;
+    }
+
+    .markCorrectButton{
+      height: 1em;
+      width: 1em;
+      margin-left:95%;
+      margin-top:8%;
+    }
+
+    .writeQ{
+      margin-bottom: 5%;
+      border-radius: 5px;
+      border: 1px solid black;
+      outline: none;
+      height: 10%;
+      width: 80%;
+      margin-right:0;
+    }
+
+    p{
+      margin:auto;
+      width:80%;
+      text-align: left;
+      padding-bottom: 20px;
+    }
+    .answer0 {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .answer1 {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .answer2 {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .answer3 {
+      grid-column: 1;
+      grid-row: 4;
+    }
+
+    #addButton{
+      height: 90%;
+      width: 90%;
+    }
+
+    .doneBtn{
+      margin-bottom: 0;
+      margin-top: 5%;
+}
+.standBtn{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.allCreateBtn button{
+  height: 3em;
+  width:30%;
+  padding:0;
+  margin-left: 10px;
+  margin-top: 1em;
+  font-size: 10pt;
+}
+h3{
+  margin-top: 2%;
+  margin-left: 2%;
+  font-size: 20px;
+}
+h2{
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 30px;
+}
+
+.helpMessage{
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  font-size:5pt;
+  width: 2px;
+  height: 2px;
+  transform: rotate(135deg);
+  margin-right:8em;
+  margin-top: 5em;
+  margin-bottom:63%;
+  z-index:0;
+}
+
+.helpMessage::after{
+  content: "";
+  display: none;
+  width: 2px;
+  height: 10px;
+  background-color: transparent;
+  transform: rotate(-45deg) translate(15px, 4px);
+}
+
+.notDone{
+  border-top: 2px solid red;
+  border-left: 2px solid red;
+}
+
+.notDone::after{
+  background-color: red;
+}
+
+.positioningHelp{
+  margin-top:70%;
+  margin-right: 100%;
+}
+
+#remove{
+  font-size: 14px;
+}
+
+}
+
+@media (min-width: 551px) {
+  .sideQuestion { font-size: 16px;
+                  margin:10px;}
 }
 
 </style>
