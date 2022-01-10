@@ -5,10 +5,15 @@
     <h1> {{uiLabels.playTime}} </h1>
   </header>
 
-    <div class="container">
+  <div class="container">
     <span class="ID">{{uiLabels.joinPollId}} <span class="special">
-    {{this.id}} </span> </span>
+    {{this.id}} </span>
+     or scan QR-code:</span>
+
+    <div class="qrCode">
+    <qrcode-vue :value="value" :size="size" level="H" />
   </div>
+    </div>
 
   <div v-if="this.users.length>0" class="players">
       <p> {{this.users.length}} {{uiLabels.loggedIn}} </p>
@@ -34,13 +39,15 @@
 </template>
 
 <script>
+import QrcodeVue from 'qrcode.vue'
 import createPopup from '@/components/createPopup.vue'
 import io from 'socket.io-client';
 const socket = io();
 export default {
   name: 'Waitingroom',
   components: {
-    createPopup
+    createPopup,
+    QrcodeVue,
   },
   data: function () {
     return {
@@ -50,6 +57,8 @@ export default {
       theme:"",
       users:[],
       popupVisable:false,
+      value: 'https://example.com',
+      size: 100,
     }
   },
   created: function () {
@@ -111,10 +120,6 @@ header{
     border-radius: 50px;
 }
 
-.container{
-  margin:1em;
-}
-
 .players p{
   margin-bottom:2%;
 }
@@ -132,15 +137,15 @@ header{
 .ID{
   background-color:white;
   padding:1%;
-  width: 100%;
-  height: auto;
+  width: 20%;
+  height: 20%;;
   color:black;
   box-shadow: 10px 5px 5px black;
 }
 
 .players{
   border:1px solid;
-  margin-top:3em;
+  margin-top:1em;
   margin-bottom:3vh;
   margin-left: 20%;
   margin-right:20%;
@@ -157,6 +162,13 @@ header{
   margin:2vh;
 }
 
+
+.qrCode{
+  position:relative;
+  top:0.5em;
+  margin:1em;
+}
+
 .waiting{
   margin-bottom:10%;
   margin-top:5%;
@@ -167,6 +179,10 @@ header{
 .notReady {
   background-color: grey;
   border: 1px solid grey;
+}
+
+.container{
+  margin-top:2%;
 }
 
 </style>

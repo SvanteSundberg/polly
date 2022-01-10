@@ -11,7 +11,7 @@
           <input class="writeInput"
                  type="text"
                  v-model="userName"
-                 maxlength="15"
+                 maxlength="10"
                  v-on:keyup.enter="sendUsername">
         </div>
 

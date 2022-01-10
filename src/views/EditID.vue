@@ -11,6 +11,7 @@
       <input type="text"
              v-model="pollId"
              :placeholder="uiLabels.typeID"
+             maxlength="15"
              v-on:keyup.enter="checkID"
              v-on:keyup="searchName"
              v-bind:class="['writeInput',{resultShow:this.pollId.length>0}]">
@@ -139,7 +140,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("/styleID.css"); 
+@import url("/styleID.css");
 
   .search{
     margin-top:2em;

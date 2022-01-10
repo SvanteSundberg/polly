@@ -9,6 +9,7 @@
              type="text"
              v-model="pollId"
              :placeholder="uiLabels.typeID"
+             maxlength="15"
              v-on:keyup="checkID"
              v-on:keyup.enter="createPoll">
     </div>
@@ -101,7 +102,7 @@ export default {
 
 <style scoped>
 
-@import url("/styleID.css"); 
+@import url("/styleID.css");
 
   .notReady{
     background-color: grey;
