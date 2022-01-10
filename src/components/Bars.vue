@@ -12,7 +12,7 @@
     </div>
     </div>
 
-<p>Correct answer is
+<p id="correctcss">Correct answer is
 <span class="cursive" v-for="correct in correctAnswer" v-bind:key="correct">
    {{correct+' '}}</span>
    </p>
@@ -75,5 +75,9 @@ methods: {
 .wrapper {
   padding-top:3em;
   padding-bottom:3em;
+}
+#correctcss{
+  
+  margin-right: 10%;
 }
 </style>

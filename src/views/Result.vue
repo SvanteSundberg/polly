@@ -120,7 +120,7 @@ methods: {
 
 .left {
   left: 0;
-  width: 55%;
+  width: 50%;
   margin-left:5%;
 
 }
@@ -129,8 +129,18 @@ methods: {
   padding-top:6em;
   margin-right:1%;
   right: 0;
-  width: 39%;
+  width: 44%;
   border-left: 4px solid white;
+}
+
+.standBtn{
+  margin-top: 4%;
+}
+.addBtn{
+  margin-top: 4%;
+}
+.doneBtn{
+  margin-top: 4%;
 }
 
 header{
