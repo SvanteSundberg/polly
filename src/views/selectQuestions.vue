@@ -1,7 +1,7 @@
 <template>
 <div v-bind:class='theme'>
 <header>
-<h2> {{uiLabels.whichque}} </h2>
+<h2 id ="header"> {{uiLabels.whichque}} </h2>
 
 <hr>
 </header>
@@ -288,8 +288,8 @@ export default {
   color: black;
   display: inline-block;
   margin: 2%;
-  height: 60px;
-  min-width:60px;
+  height: 4em;
+  min-width:4em;
   margin-top:1%;
 }
 
@@ -414,5 +414,45 @@ header hr{
 .setTimer{
   margin-bottom:2vh;
 }
+@media (max-width:550px) {
+  #header{
+    font-size:75%;
+  }
+  header{
+  height:15vh;
+  padding-top:1.5em;
+  }
+  .scroll{
+    margin:0em;
+    width: 90%;
+  }
 
+  .split{
+    font-size: 80%;
+  }
+  .left{
+    width: 15em;
+    margin:0em;
+  }
+  .right{
+    margin-top: 0em;
+    width: 20%;
+  }
+  .questionButton{
+    margin-top:10%;
+    font-size: 90%;
+    width:30vw;
+    left:0px;
+    text-align: center;
+    will-change: transform,opacity;
+    padding:0.5em;
+  }
+  .timerButtons{
+    font-size: 75%;
+    padding:0.5em;
+  }
+
+
+
+  }
 </style>

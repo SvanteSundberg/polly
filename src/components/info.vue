@@ -41,7 +41,7 @@
   opacity: 70%;
   position: absolute;
   top: 0;
-  right: 50%;
+  right:0;
   background: snow;
   color:black;
   border: 2px solid black;
