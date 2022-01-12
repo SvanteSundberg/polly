@@ -46,7 +46,7 @@ h3 {
   font-size:2vw;
   color:white;
   text-shadow: 1.5px 1.5px black;
-  width:90%;
+  width:40vh;
   height:6em;
   margin-top:10%;
   border-radius: 5px;

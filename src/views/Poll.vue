@@ -18,6 +18,7 @@
 
     <createPopup v-show="this.showCreatePopup" v-on:stop="goBacktoStart">
     <template v-slot:header> {{uiLabels.quizEnded}} </template>
+    <template v-slot:button> {{uiLabels.backToStart}}  </template>
     <span>
     {{uiLabels.recieved}} {{this.points}} {{uiLabels.points}}
     </span>
