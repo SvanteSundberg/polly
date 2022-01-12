@@ -87,13 +87,14 @@
 </button>
 </div>
 
+<div>
 <router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
 <button class="standBtn doneBtn" v-on:click="removeEmptyAwnser">
   {{uiLabels.Done}}
 </button>
 </router-link>
 
-<div>
+
 <button class="standBtn doneBtn"
         v-if="!canContinue()"
         v-on:click="showPopup(true)">
@@ -611,6 +612,7 @@ header{
   border-top: 2px solid white;
   display: grid;
   grid-template-columns: 30% 40% 30%;
+  grid-template-rows: 100%;
   place-items: auto center;
 }
 
