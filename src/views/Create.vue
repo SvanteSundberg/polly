@@ -151,7 +151,7 @@
 </div>
 </div>
 <info class="info">
-  <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+  <template v-slot:helpinfo>{{uiLabels.infoCreate}} </template>
 </info>
 </template>
 

@@ -1,8 +1,5 @@
 <template>
   <div class='standard'>
-    <info>
-      <template v-slot:helpinfo> här sätter du in hjälplabel </template>
-    </info>
     <div class='position'>
     <h1>
       {{uiLabels.joinQuizname}}
@@ -30,11 +27,13 @@
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> {{uiLabels.quizzer}} </template>
-<span>{{uiLabels.idnotExist}}{{uiLabels.canjoin}}</span>
+<span>{{uiLabels.idnotExist}} {{uiLabels.canjoin}}</span>
 </createPopup>
 
   </div>
-
+  <info>
+    <template v-slot:helpinfo> {{uiLabels.infoPollID}} </template>
+  </info>
 </template>
 
 <script>

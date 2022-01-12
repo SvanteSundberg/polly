@@ -16,7 +16,7 @@
       <h3> {{uiLabels.canBetter}} {{userName}}!</h3>
       <p> {{uiLabels.youAnswered}}
         <span class="cursive"> {{this.userinfo.answer}} </span>
-        {{uiLabels.whichIs}} <span class="bold"> wrong! </span>
+        {{uiLabels.whichIs}} <span class="bold"> {{uiLabels.wrong}} </span>
       </p>
     </div>
 

@@ -8,7 +8,7 @@
   <div class="container">
     <span class="ID">{{uiLabels.joinPollId}} <span class="special">
     {{this.id}} </span>
-     or scan QR code:</span>
+     {{uiLabels.scanQR}}:</span>
 
     <div class="qrCode">
     <qrcode-vue :value="'https://quizmadness.herokuapp.com/#/chooseName/'+this.id+'/'+this.lang" :size="size" level="H" />
@@ -34,12 +34,15 @@
   <span> {{uiLabels.onePlayer}}
   </span>
   </createPopup>
-
 </div>
+<info>
+  <template v-slot:helpinfo>{{uiLabels.infoWaitingRoom}}</template>
+</info>
 </template>
 
 <script>
 import QrcodeVue from 'qrcode.vue'
+import info from '@/components/info.vue';
 import createPopup from '@/components/createPopup.vue'
 import io from 'socket.io-client';
 const socket = io();
@@ -48,6 +51,7 @@ export default {
   components: {
     createPopup,
     QrcodeVue,
+      info,
   },
   data: function () {
     return {

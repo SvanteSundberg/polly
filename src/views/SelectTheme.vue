@@ -1,6 +1,6 @@
 <template>
   <info>
-    <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+    <template v-slot:helpinfo>{{uiLabels.infoTheme}}</template>
   </info>
 <div v-bind:class="theme">
 
