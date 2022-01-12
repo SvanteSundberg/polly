@@ -88,6 +88,10 @@ export default {
 
 <style scoped>
 
+.infoAnswer{
+  border-radius: 20px;
+}
+
 .infoAnswer h3{
   padding-top:2.8em;
 }

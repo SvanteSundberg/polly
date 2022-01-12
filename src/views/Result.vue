@@ -1,32 +1,36 @@
 <template>
   <div v-bind:class='theme'>
 
+    <div class="wrapper">
     <div class="split left">
       <header>
       <h1>{{this.question}} </h1>
     </header>
 
     <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'/>
+  </div>
 
-    <button v-if="!finished" class="standBtn doneBtn" v-on:click="runQuestion">
-      {{uiLabels.runNextQ}}
-    </button>
+  <div class="myButtons">
+  <button v-if="!finished" class="standBtn doneBtn" v-on:click="runQuestion">
+    {{uiLabels.runNextQ}}
+  </button>
 
-    <router-link v-if="finished" v-bind:to="'/'">
-        <button class="standBtn addBtn">
-          {{uiLabels.backToStart}}
-        </button>
-    </router-link>
+  <router-link v-if="finished" v-bind:to="'/'">
+      <button class="standBtn addBtn">
+        {{uiLabels.backToStart}}
+      </button>
+  </router-link>
 
-    <button class="standBtn addBtn" v-on:click="restart">
-        {{uiLabels.restart}}
-    </button>
+  <button class="standBtn addBtn" v-on:click="restart">
+      {{uiLabels.restart}}
+  </button>
+  </div>
 
   <div class="split right">
     <Leaderboard v-bind:users="this.users"/>
   </div>
 
-  </div>
+</div>
 </div>
 
 </template>
@@ -121,16 +125,26 @@ methods: {
 .left {
   left: 0;
   width: 50%;
-  margin-left:5%;
-
+  margin-left:3vw;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .right {
-  padding-top:6em;
+  padding-top:10%;
   margin-right:1%;
   right: 0;
   width: 44%;
+  height: 90%;
   border-left: 4px solid white;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.myButtons{
+  grid-column: span 2;
+  grid-row:2;
+  margin-left:20%;
 }
 
 .standBtn{
@@ -145,6 +159,46 @@ methods: {
 
 header{
   padding-top:2em;
+}
+
+.wrapper{
+  display:grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 80% 20%;
+  height:100%;
+}
+
+/*Annan layout för mobil */
+@media (max-width:551px){
+  .split {
+    height: 100%;
+    width:95%;
+    position:relative;
+  }
+
+  .left {
+    font-size:10pt;
+    grid-column:1;
+    grid-row:1;
+  }
+
+  .right {
+    height:0;
+    padding:0;
+    margin:0;
+    grid-column:1;
+    grid-row:2;
+  }
+
+  .wrapper{
+    grid-template-columns: 100%;
+    grid-template-rows: 45% 20% 20%;
+  }
+
+  .myButtons{
+    grid-row:3;
+  }
+
 }
 
 </style>
