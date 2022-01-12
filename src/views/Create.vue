@@ -183,7 +183,8 @@ export default {
       notFinished:[],
       showHelp:false,
       switching: {isSwitching:false,
-              index:-1},
+              index:-1,
+              bounding_top:0},
       y_koord:0,
 
     }
@@ -366,6 +367,8 @@ export default {
       if (!this.switching.isSwitching){
         this.switching.index=index;
         this.switching.isSwitching=true;
+        const element = document.getElementsByClassName('nr'+this.switching.index)[0];
+        this.switching.bounding_top = element.getBoundingClientRect().top;
       }
     },
 
@@ -381,12 +384,13 @@ export default {
       }
       this.switching.isSwitching=false;
       this.switching.index=-1;
+      this.switching.bounding_top=0;
     },
 
     executeSwitch:function(){
       if (this.switching.isSwitching && !this.reachedBorder(event.clientY)){
-        var offset = event.currentTarget.getBoundingClientRect().top + 60*this.switching.index;
-        this.y_koord = event.clientY - offset - 35;
+        var offset = this.switching.bounding_top;
+        this.y_koord = event.clientY - offset - 20;
       }
     },
 
