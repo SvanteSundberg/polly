@@ -90,16 +90,22 @@ v-bind:key="i">
 
 </div>
 </div>
+<info>
+  <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+</info>
 </template>
 <script>
 
 import createPopup from '@/components/createPopup.vue'
 import io from 'socket.io-client';
+import info from '@/components/info.vue';
+
 const socket = io();
 export default {
   name: 'SelectQuestions',
   components: {
-    createPopup
+    createPopup,
+    info,
   },
   data: function () {
     return {
@@ -114,6 +120,7 @@ export default {
       time:0,
       isTimer:false,
       timer:[10,20,30],
+
 
     }
   },

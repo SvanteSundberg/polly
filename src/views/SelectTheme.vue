@@ -1,4 +1,7 @@
 <template>
+  <info>
+    <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+  </info>
 <div v-bind:class="theme">
 
 <h1> {{uiLabels.theme}} </h1>
@@ -12,6 +15,7 @@
 <router-link v-bind:to="'/create/'+id+'/'+lang">
 <button class="standBtn doneBtn" v-on:click="chooseTheme()">{{uiLabels.Done}}</button>
 </router-link>
+
 </div>
 
 </template>
@@ -19,6 +23,7 @@
 <script>
 // v-bind:to="'/poll/'+id"
 import io from 'socket.io-client';
+import info from '@/components/info.vue';
 const socket = io();
 export default {
   name: 'selectTheme',
@@ -27,7 +32,8 @@ export default {
       uiLabels: {},
       theme: "",
       id: "",
-      lang: ""
+      lang: "",
+      info,
     }
   },
   created: function () {
