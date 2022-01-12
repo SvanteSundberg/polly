@@ -47,20 +47,20 @@ h3 {
   color:white;
   text-shadow: 1.5px 1.5px black;
   width:90%;
-  height:14vw;
+  height:6em;
   margin-top:10%;
 }
 
 .nr0 {
   grid-column: 1;
   grid-row: 1;
-  background-color:#CC0066;
+  background-color:blue;
 }
 
 .nr1 {
   grid-column: 2;
   grid-row: 1;
-  background-color:blue;
+  background-color:#CC0066;
 }
 
 .nr2 {

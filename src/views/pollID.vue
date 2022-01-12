@@ -2,7 +2,7 @@
   <div class='standard'>
     <div class='position'>
     <h1>
-      {{uiLabels.writePollID}}
+      {{uiLabels.joinQuizname}}
     </h1>
     <br>
       <div class="gridWrap">

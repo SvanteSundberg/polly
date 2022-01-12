@@ -23,7 +23,7 @@
     <input type="text"
           class="writeQ"
           v-model="question"
-          v-on:keyup="saveQuestion"
+          v-on:change="saveQuestion"
           :placeholder="uiLabels.typeQuestion">
     <br>
     <p> {{uiLabels.answers}}:</p>
@@ -32,7 +32,7 @@
       <textarea v-for="(_, i) in answers"
                 v-model="answers[i]"
                 v-bind:key="'answer'+i"
-                v-on:keyup="saveQuestion"
+                v-on:change="saveQuestion"
                 v-bind:class="'answer'+i"
                 :placeholder="uiLabels.typeAnswer"
                 maxlength="50">
@@ -111,6 +111,7 @@
       {{uiLabels.selectTheme}}
     </button>
   </router-link>
+
   <div v-on:mousemove="executeSwitch">
   <button v-for="(_, i) in this.allQuestions"
           v-bind:key="i"
@@ -331,6 +332,7 @@ export default {
 
     startSwitch: function(event, index){
       this.goToQuestion(index);
+      this.y_koord=0;
       if (!this.switching.isSwitching){
         this.switching.index=index;
         this.switching.isSwitching=true;
@@ -352,36 +354,44 @@ export default {
     },
 
     executeSwitch:function(){
-      if (this.switching.isSwitching){
-        var offset = event.currentTarget.getBoundingClientRect().top + 75*this.switching.index;
-        this.y_koord = event.clientY - offset - 45;
-      }
-      else{
-        this.y_koord = 0;
+      if (this.switching.isSwitching && !this.reachedBorder(event.clientY)){
+        var offset = event.currentTarget.getBoundingClientRect().top + 60*this.switching.index;
+        this.y_koord = event.clientY - offset - 35;
       }
     },
 
-/* Parts of collide have been taken from https://gist.github.com/yckart/7177551*/
-    collide: function(){
-      if (this.switching.index>-1){
-        const element1=document.getElementsByClassName('nr'+this.switching.index);
-        let rect1 = element1[0].getBoundingClientRect();
-        for (let i=0; i<this.allQuestions.length;i++){
-          if (i!==this.switching.index){
-            let element2=document.getElementsByClassName('nr'+i);
-            let rect2 = element2[0].getBoundingClientRect();
-            let isCollide = !(rect1.top > rect2.bottom ||
-            rect1.right < rect2.left ||
-            rect1.bottom < rect2.top ||
-            rect1.left > rect2.right
-            );
-
-            if (isCollide){
-              return (i)
-            }
-          }
-          }
+    reachedBorder:function(mouse){
+      const themeButton = document.getElementById('themeButton');
+      const top = themeButton.getBoundingClientRect().top;
+      if (mouse<top){
+        return true
       }
+      return false
+
+    },
+/* Parts of collide have been taken from https://gist.github.com/yckart/7177551*/
+    collide: function(theme=false){
+      if (this.switching.index>-1){
+        if (!theme){
+          const element1=document.getElementsByClassName('nr'+this.switching.index);
+          let rect1 = element1[0].getBoundingClientRect();
+          for (let i=0; i<this.allQuestions.length;i++){
+            if (i!==this.switching.index){
+              let element2=document.getElementsByClassName('nr'+i);
+              let rect2 = element2[0].getBoundingClientRect();
+              let isCollide = !(rect1.top > rect2.bottom ||
+              rect1.right < rect2.left ||
+              rect1.bottom < rect2.top ||
+              rect1.left > rect2.right
+              );
+
+              if (isCollide){
+                return (i)
+              }
+            }
+      }
+    }
+    }
       return -1
     },
 
@@ -660,8 +670,8 @@ h3{
   height: 15px;
   transform: rotate(135deg);
   margin-right:8em;
-  margin-top: 0;
-  margin-bottom:35%;
+  margin-top: 0.5em;
+  margin-bottom:2.5em;
   z-index:0;
 }
 

@@ -65,6 +65,7 @@
   background-size: cover;
   color:black;
   font-size:17pt;
+  overflow:auto;
 }
 
 #app .party button{
@@ -78,6 +79,7 @@
   background-size: cover;
   color:white;
   font-family: 'Pangolin', sans-serif;
+  overflow:auto;
 }
 
 #app .school button{
@@ -91,6 +93,7 @@
   background-size: cover;
   min-height: 100%;
   color:black;
+  overflow:auto;
 }
 
 #app .standard button{

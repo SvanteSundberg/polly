@@ -8,7 +8,7 @@
           <slot></slot>
        </section>
       <footer class="popupFooter">
-        <button class="standBtn doneBtn" v-on:click="ok">
+        <button class="standBtn addBtn" v-on:click="ok">
           <slot name="button">OK</slot>
         </button>
       </footer>
@@ -28,6 +28,7 @@
 </script>
 
 <style scoped>
+
 .popupBackground {
     position: fixed;
     top: 0;
@@ -36,33 +37,27 @@
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     color:black;
-    font-family: 'Roboto', sans-serif;
+    padding:2em;
+    z-index:10;
   }
 
   .popup {
     background: #FFFFFF;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
-    display: flex;
-    flex-direction: column;
     border-radius: 10px;
     color:black;
-    width:450px;
-    height: 350px;
+    padding:0.5em;
   }
 
-  .popup section{
-    padding:5%;
-    padding-left: 3%;
-    padding-right:3%;
-    align-items: left;
+  .popupBody{
+    padding: 3%;
   }
 
   .popupHeader {
-    padding: 5%;
+    padding: 3%;
     position: relative;
     color: black;
     justify-content: space-between;
@@ -71,14 +66,7 @@
 
   .popupFooter {
     position: relative;
-    padding: 2% 1%;
     font-size: 10pt;
-  }
-
-  @media (max-width: 550px) {
-    .popup { font-size: 15px;
-              width:200px;
-              height: 300px;}
   }
 
 </style>

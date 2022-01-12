@@ -8,10 +8,10 @@
   <div class="container">
     <span class="ID">{{uiLabels.joinPollId}} <span class="special">
     {{this.id}} </span>
-     or scan QR-code:</span>
+     or scan QR code:</span>
 
     <div class="qrCode">
-    <qrcode-vue :value="value" :size="size" level="H" />
+    <qrcode-vue :value="'https://quizmadness.herokuapp.com/#/chooseName/'+this.id+'/'+this.lang" :size="size" level="H" />
   </div>
     </div>
 
@@ -57,8 +57,8 @@ export default {
       theme:"",
       users:[],
       popupVisable:false,
-      value: 'https://example.com',
-      size: 100,
+      value: 'https://quizmadness.herokuapp.com/#/chooseName/'+this.id+'/'+this.lang,
+      size: 110,
     }
   },
   created: function () {
@@ -141,12 +141,13 @@ header{
   height: 20%;;
   color:black;
   box-shadow: 10px 5px 5px black;
+  border-radius: 20px;
 }
 
 .players{
   border:1px solid;
   margin-top:1em;
-  margin-bottom:3vh;
+  margin-bottom:1vh;
   margin-left: 20%;
   margin-right:20%;
   padding:1%;
@@ -170,7 +171,7 @@ header{
 }
 
 .waiting{
-  margin-bottom:10%;
+  margin-bottom:8vh;
   margin-top:5%;
   font-size:20pt;
   font-weight: bold;

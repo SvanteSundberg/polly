@@ -1,22 +1,29 @@
 <template>
 <div class="wrapper">
-  <div class="bar"
-        v-for="(item, key) in data"
-        v-bind:key="key"
-        v-bind:class="['answers',{falseAnswer:!isCorrect(key)}]">
-    <div v-bind:style="{height: 4+item*6 + 'px'}">
-         <span class> {{item}} </span>
-    </div>
-    <div>
-      {{key}}
-    </div>
+    <div class="bar"
+          v-for="(item, key) in data"
+          v-bind:key="key"
+          v-bind:class="['answers',{falseAnswer:!isCorrect(key)}]">
+      <div v-bind:style="{height: 4+item*6 + 'px'}">
+           <span> {{item}} </span>
+      </div>
     </div>
 
-<p id="correctcss">Correct answer is
-<span class="cursive" v-for="correct in correctAnswer" v-bind:key="correct">
-   {{correct+' '}}</span>
+      <div v-for="(item, key) in data"
+            v-bind:key="key"
+            v-bind:class="[{right:isCorrect(key)}]">
+        {{key}}
+      </div>
+  </div>
+
+<p id="correctcss">Correct answer <span v-if="this.correctAnswer.length>1"> are </span>
+  <span v-else> is </span>
+<span class="cursive" v-for="(correct,i) in correctAnswer" v-bind:key="i">
+   {{correct+' '}}
+<span v-if="i+2==this.correctAnswer.length"> och </span>
+<span v-else-if="i+1<this.correctAnswer.length"> , </span>
+ </span>
    </p>
-</div>
 </template>
 
 <script>
@@ -42,9 +49,7 @@ methods: {
 
 <style scoped>
 .bar {
-  display: inline-block;
-  width: 100px;
-  vertical-align: bottom;
+  width: 100%;
 }
 
 .falseAnswer{
@@ -56,10 +61,10 @@ methods: {
   top: -1.4em;
 }
 .bar:nth-child(1) div:nth-child(1) {
-  background-color:#CC0066;
+  background-color:blue;
 }
 .bar:nth-child(2) div:nth-child(1) {
-  background-color:blue;
+  background-color:#CC0066;
 }
 .bar:nth-child(3) div:nth-child(1) {
   background-color:teal;
@@ -68,16 +73,26 @@ methods: {
   background-color:#FFAA33;
 }
 
-.answers{
-  padding:1em;
+.right{
+  font-weight:bold;
 }
 
 .wrapper {
-  padding-top:3em;
+  padding-top:5em;
   padding-bottom:3em;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  grid-gap:5%;
 }
+
 #correctcss{
-  
   margin-right: 10%;
+  text-align:left;
 }
+
+@media (max-width:551px){
+
+}
+
+
 </style>
