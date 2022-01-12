@@ -35,7 +35,7 @@
   position: absolute;
   top: 0px;
   right: 0px;
-  background: snow;
+  background: white;
   color:black;
   border: 2px solid black;
 }
@@ -47,7 +47,7 @@
   font-style:italic;
   top: 0px;
   right: 0px;
-  background-color:snow;
+  background-color:white;
   color:black;
   border: 2px solid black;
 }
