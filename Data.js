@@ -175,6 +175,7 @@ Data.prototype.getAnswers = function(pollId) {
 
 Data.prototype.setAnswersZero=function(pollId){
   const poll = this.polls[pollId];
+  poll.canjoin=true;
   if (typeof poll !== 'undefined') {
     let answers = poll.answers[poll.currentQuestion];
     let pollAnswers = poll.questions[poll.currentQuestion].a;
@@ -211,7 +212,7 @@ Data.prototype.checkIfFinished=function(pollId){
   console.log((poll.currentIndex));
   if (poll.selectedQuestions.length===(poll.currentIndex+1)){
     console.log("nu är jag sann");
-    poll.canjoin = true;
+
     return true
   }
   return false
