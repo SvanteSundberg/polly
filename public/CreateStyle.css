@@ -179,8 +179,8 @@
   background-color:lightgrey;
   border: dotted;
   border-radius: 5px;
-  height: 105px;
-  width: 216px;
+  height: 100%;
+  width: 100%;
   padding: 0px;
   opacity: 0.5;
   margin:0;
