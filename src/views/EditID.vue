@@ -1,7 +1,7 @@
 <template>
   <div class='standard'>
     <div class='position'>
-    <h1>{{uiLabels.writePollID}}
+    <h1>{{uiLabels.editQuizname}}
     </h1>
       <br>
 
@@ -174,17 +174,19 @@ export default {
   .allResults{
     box-shadow: 2px 2px 10px grey;
     grid-row:2;
+    background-color:white;
   }
 
   .resultShow{
     border-radius: 0;
     border-bottom: 1px solid black;
+    background-color:white;
   }
 
   .tryPosition{
-    position:absolute;
     left:1em;
     top:4em;
   }
+
 
 </style>

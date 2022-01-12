@@ -1,4 +1,13 @@
 <template>
+  <head>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
   <div class='standard'>
   <header>
   <h1> {{uiLabels.welcome}}</h1>
@@ -30,18 +39,23 @@
                   v-bind:uiLabels="uiLabels">
   </languageSelect>
   </div>
+  <info>
+    <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+  </info>
 </div>
 </template>
 
 <script>
 import io from 'socket.io-client';
-import languageSelect from '@/components/languageSelect.vue'
+import languageSelect from '@/components/languageSelect.vue';
+import info from '@/components/info.vue';
 const socket = io();
 
 export default {
   name: 'Start',
   components: {
-    languageSelect
+    languageSelect,
+    info,
   },
   data: function () {
     return {
