@@ -103,6 +103,7 @@
 </div>
 </div>
 
+
 <div class="split right">
 <div class="scroll">
   <div class="questionWrap" id="importantButtons">
@@ -140,7 +141,7 @@
 </div>
 </div>
 </div>
-<info>
+<info class="info">
   <template v-slot:helpinfo> här sätter du in hjälplabel </template>
 </info>
 </template>
@@ -484,11 +485,11 @@ export default {
   display: grid;
   margin: auto;
   padding: auto;
-  width: 40vw;
+  width: 60%;
   height: 40%;
-  grid-template-columns: 40% 40%;
+  grid-template-columns: 45% 45%;
   grid-template-rows: 45% 45%;
-  grid-column-gap: 20%;
+  grid-column-gap: 10%;
   grid-row-gap: 10%;
 }
 
@@ -608,13 +609,15 @@ header{
   grid-column: span 2;
   grid-row: 2;
   height: 100%;
-  width: 100%;
+  width: 75%;
   border-top: 2px solid white;
   display: grid;
-  grid-template-columns: 30% 40% 30%;
+  grid-template-columns: 15% 20% 15%;
   grid-template-rows: 100%;
   place-items: auto center;
+  padding-left: 25%;
 }
+
 
 
 .splitgrid{
@@ -647,9 +650,10 @@ header{
 
 p{
   margin:auto;
-  width:70%;
+  width:60%;
   text-align: left;
-  padding-bottom: 3%;
+  padding-bottom: 1%;
+  padding-top: 3%;
 }
 
 .writeQ{
@@ -658,13 +662,13 @@ p{
   border: 1px solid black;
   outline: none;
   height: 10%;
-  width: 62%;
+  width: 59%;
   margin-left:;
 }
 
 .left h3{
   margin:auto;
-  width:70%;
+  width:60%;
   padding-top: 3%;
 }
 h3{
@@ -865,20 +869,22 @@ h3{
 }
 
 h3{
-  margin-top: 2%;
-  margin-left: 2%;
-  font-size: 20px;
+  width: 100%;
+  font-size: 18px;
 }
 h2{
   margin-left: 5%;
   margin-right: 5%;
-  margin-bottom: 2%;
+
   font-size: 25px;
   height: 93%;
 }
 
 header{
-  padding:0;
+  padding-left:1em;
+  padding-right: 1em;
+  padding-bottom: 0.2em;
+  padding-top: 0.2em;
 }
 
 .helpMessage{
@@ -919,6 +925,18 @@ header{
 
 #remove{
   font-size: 14px;
+}
+
+.doneBtn{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.allCreateBtn{
+  grid-template-columns: 30% 40% 30%;
+  grid-template-rows: 100%;
+  place-items: auto center;
+  padding-left: 0;
+  width:100%;
 }
 
 }
