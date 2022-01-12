@@ -1,5 +1,7 @@
 <template>
-<div v-on:mouseover="show(true)" v-on:mouseleave="show(false)" id="infobutton">
+<div v-on:mouseover="show(true)"
+      v-on:mouseleave="show(false)"
+      id="infobutton">
   <h2> i </h2>
 </div>
 <div v-show="showinfo" id="showhelp">
@@ -39,11 +41,12 @@
   border-radius: 20%;
   opacity: 70%;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 50%;
   background: snow;
   color:black;
   border: 2px solid black;
+  z-index:1000000000;
 }
 #showhelp{
   position:absolute;
