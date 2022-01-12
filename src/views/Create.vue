@@ -24,7 +24,7 @@
     <input type="text"
           class="writeQ"
           v-model="question"
-          v-on:change="saveQuestion"
+          v-on:keyup="saveQuestion"
           :placeholder="uiLabels.typeQuestion">
     <br>
     <p> {{uiLabels.answers}}:</p>
@@ -33,7 +33,7 @@
       <textarea v-for="(_, i) in answers"
                 v-model="answers[i]"
                 v-bind:key="'answer'+i"
-                v-on:change="saveQuestion"
+                v-on:keyup="saveQuestion"
                 v-bind:class="'answer'+i"
                 :placeholder="uiLabels.typeAnswer"
                 maxlength="50">
@@ -50,7 +50,7 @@
               v-bind:value="i"
               v-bind:id="i"
               v-bind:class="['answer'+i, 'markCorrectButton']"
-              v-on:change="setCorrectAnswer">
+              v-on:keyup="setCorrectAnswer">
 
       <button v-if="this.answers.length<4" v-on:click="addAnswer" id="addButton">
         {{uiLabels.addAnswer}}
