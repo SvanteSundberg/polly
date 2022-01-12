@@ -1,6 +1,6 @@
 <template>
   <div class='standard'>
-    <div class='position'>
+    <div class='position edit'>
     <h1>{{uiLabels.editQuizname}}
     </h1>
       <br>
@@ -17,9 +17,8 @@
              v-bind:class="['writeInput',{resultShow:this.pollId.length>0}]">
 
 
-       <div class="results"
-            v-bind:class="[{allResults:this.pollId.length>0}]">
-       <div v-if="this.pollId.length>0 && this.included.length>0">
+       <div class="results">
+       <div class="showResults" v-if="this.pollId.length>0 && this.included.length>0">
          <button v-for="(poll,i) in included"
               v-bind:key="i"
               v-on:click="goToPoll(i)">
@@ -31,6 +30,7 @@
          {{uiLabels.noPolls}}
        </p>
     </div>
+
   </div>
   </div>
 
@@ -146,11 +146,8 @@ export default {
 <style scoped>
 @import url("/styleID.css");
 
-  .search{
-    margin-top:2em;
-  }
-
   .results button{
+    position:relative;
     display:flex;
     flex-direction: column;
     background-color:white;
@@ -158,7 +155,6 @@ export default {
     width: 12.3em;
     height:2em;
     padding:0.5em;
-    grid-row:2;
   }
 
   .results button:hover{
@@ -175,10 +171,11 @@ export default {
     grid-row:2;
   }
 
-  .allResults{
-    box-shadow: 2px 2px 10px grey;
+  .results{
     grid-row:2;
-    background-color:white;
+    background-color:transparent;
+    height:15em;
+    overflow-y:auto;
   }
 
   .resultShow{
@@ -187,9 +184,27 @@ export default {
     background-color:white;
   }
 
-  .tryPosition{
-    left:1em;
-    top:4em;
+  .showResults{
+    box-shadow: 2px 2px 10px grey;
+  }
+
+  .gridWrap{
+    grid-template-columns: 50% 30%;
+  }
+  .rightColumn{
+    margin:0;
+  }
+
+  .position{
+    left: 50%;
+    top: 50%;
+  }
+
+  /*Annan layout för mobil */
+  @media (max-width:551px){
+    .rightColumn{
+      margin-left:60%;
+    }
   }
 
 

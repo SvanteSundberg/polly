@@ -11,7 +11,7 @@
 
       <div v-for="(item, key) in data"
             v-bind:key="key"
-            v-bind:class="[{right:isCorrect(key)}]">
+            v-bind:class="['options',{right:isCorrect(key)}]">
         {{key}}
       </div>
   </div>
@@ -50,6 +50,7 @@ methods: {
 <style scoped>
 .bar {
   width: 100%;
+  grid-row:1;
 }
 
 .falseAnswer{
@@ -62,15 +63,19 @@ methods: {
 }
 .bar:nth-child(1) div:nth-child(1) {
   background-color:blue;
+  column:1;
 }
 .bar:nth-child(2) div:nth-child(1) {
   background-color:#CC0066;
+  column:2;
 }
 .bar:nth-child(3) div:nth-child(1) {
   background-color:teal;
+  column:3;
 }
 .bar:nth-child(4) div:nth-child(1) {
   background-color:#FFAA33;
+  column:4;
 }
 
 .right{
@@ -82,6 +87,7 @@ methods: {
   padding-bottom:3em;
   display: grid;
   grid-template-columns: 20% 20% 20% 20%;
+  grid-template-rows: 100% 100%;
   grid-gap:5%;
 }
 
@@ -89,6 +95,11 @@ methods: {
   margin-right: 10%;
   text-align:left;
 }
+
+.options{
+  grid-row:2;
+}
+
 
 @media (max-width:551px){
 

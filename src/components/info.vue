@@ -1,5 +1,7 @@
 <template>
-<div @mouseover = "showinfo = true" @mouseleave = "showinfo = false" id="infobutton">
+<div v-on:mouseover="show(true)"
+      v-on:mouseleave="show(false)"
+      id="infobutton">
   <h2> i </h2>
 </div>
 <div v-show="showinfo" id="showhelp">
@@ -15,10 +17,21 @@
     return {
       showinfo:false,
     }
-  }};
+  },
+
+  methods: {
+    show: function(value){
+      this.showinfo=value;
+    }
+  }
+
+}
+
+
 </script>
 
 <style scoped>
+
 #infobutton{
   margin-right: 0.5em;
   margin-top: 0.5em;
@@ -27,11 +40,12 @@
   border-radius: 20%;
   opacity: 70%;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right:0;
   background: snow;
   color:black;
   border: 2px solid black;
+  z-index:1000000000;
 }
 #showhelp{
   position:absolute;
@@ -41,7 +55,7 @@
   font-style:italic;
   top: 0px;
   right: 0px;
-  background-color:snow;
+  background-color:white;
   color:black;
   border: 2px solid black;
 }
