@@ -30,18 +30,23 @@
                   v-bind:uiLabels="uiLabels">
   </languageSelect>
   </div>
+  <info>
+    <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+  </info>
 </div>
 </template>
 
 <script>
 import io from 'socket.io-client';
-import languageSelect from '@/components/languageSelect.vue'
+import languageSelect from '@/components/languageSelect.vue';
+import info from '@/components/info.vue';
 const socket = io();
 
 export default {
   name: 'Start',
   components: {
-    languageSelect
+    languageSelect,
+    info,
   },
   data: function () {
     return {
