@@ -152,10 +152,13 @@ function sockets(io, socket, data) {
   });
 
   socket.on('removeAnswerOption', function(d){
-  
     data.removeOption(d.pollId,
                             d.questionNumber,
                             d.correctAnswer);
+  });
+
+  socket.on('isJoin', function(pollId){
+    socket.emit('join', data.checkJoin(pollId));
   });
 
 }

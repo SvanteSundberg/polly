@@ -16,7 +16,9 @@
         </div>
 
       <div class="rightColumn">
-          <button class="standBtn doneBtn" v-on:click="sendUsername" v-if="this.userName.length>0">
+          <button class="standBtn doneBtn"
+                  v-on:click="sendUsername"
+                  v-if="this.userName.length>0">
           {{uiLabels.Done}}
         </button>
       </div>
