@@ -1,10 +1,12 @@
 <template>
+  <div class="info">
 <div @mouseover = "showinfo = true" @mouseleave = "showinfo = false" id="infobutton">
   <h2> i </h2>
 </div>
 <div v-show="showinfo" id="showhelp">
   <slot name= "helpinfo">  info </slot>
 </div>
+<div>
 </template>
 
 <script>
@@ -19,6 +21,10 @@
 </script>
 
 <style scoped>
+.info{
+  z-index:20;
+}
+
 #infobutton{
   margin-right: 0.5em;
   margin-top: 0.5em;
