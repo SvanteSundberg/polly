@@ -62,6 +62,8 @@
   position:absolute;
   margin-right: 2.5em;
   margin-top:1.2em;
+  margin-left: 40em;
+  z-index: 10000;
   padding:0.5em;
   top: 0px;
   right: 0px;
@@ -81,6 +83,7 @@
   #showhelp{
     margin-right: 1.8em;
     margin-top:1.2em;
+    margin-left: 0em;
     font-size: 70%;
   }
 
