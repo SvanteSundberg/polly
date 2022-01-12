@@ -150,6 +150,13 @@ function sockets(io, socket, data) {
     data.saveQuestions(d.pollId,d.questions);
   });
 
+  socket.on('removeAnswerOption', function(d){
+    console.log(d);
+    data.removeOption(d.pollId,
+                            d.questionNumber,
+                            d.correctAnswer);
+  });
+
 }
 
 module.exports = sockets;

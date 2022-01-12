@@ -226,6 +226,7 @@ export default {
 
     removeAnswer: function(i) {
       this.answers.splice(i, 1);
+      this.removeAnswerOption(i);
       socket.emit("removeAnswer", {
         pollId: this.pollId,
         questionNumber: this.currentIndex,
@@ -233,6 +234,18 @@ export default {
       });
 
   },
+
+  removeAnswerOption(i){
+    if (this.allQuestions[this.currentIndex].c.length>0){
+      if (this.allQuestions[this.currentIndex].c.includes(i)){
+        const index = this.allQuestions[this.currentIndex].c.indexOf(i);
+        socket.emit('removeAnswerOption', {pollId: this.pollId,
+                                          questionNumber: this.currentIndex,
+                                          correctIndex:index});
+      }
+    }
+  },
+
   removeQuestion: function(){
       if(this.allQuestions.length>1){
       socket.emit("deleteQuestion", {

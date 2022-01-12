@@ -215,10 +215,7 @@ Data.prototype.checkIfFinished=function(pollId){
 Data.prototype.markCorrect=function(pollId, qId,correct){
   const poll = this.polls[pollId];
   poll.currentQuestion=qId;
-  console.log(poll.currentQuestion);
-  console.log(poll.questions[poll.currentQuestion].q);
   poll.questions[poll.currentQuestion].c=correct;
-  console.log("correct index is", poll.questions[poll.currentQuestion].c);
 }
 
 Data.prototype.addUser=function(pollId,user){
@@ -294,6 +291,12 @@ Data.prototype.addAnswers=function(pollId,questionNumber,answers){
 Data.prototype.saveQuestions=function(pollId, questions){
   const poll = this.polls[pollId];
   poll.questions=questions;
+}
+
+Data.prototype.removeOption=function(pollId, currentQuestion, index){
+  const poll = this.polls[pollId];
+  poll.currentQuestion=currentQuestion;
+  poll.questions[poll.currentQuestion].c.splice(index);
 }
 
 
