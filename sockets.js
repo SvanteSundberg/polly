@@ -14,7 +14,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('createPoll', function(d) {
-    console.log('pollid:'+d.pollId);
+
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
 
@@ -152,10 +152,13 @@ function sockets(io, socket, data) {
   });
 
   socket.on('removeAnswerOption', function(d){
-    console.log(d);
     data.removeOption(d.pollId,
                             d.questionNumber,
                             d.correctAnswer);
+  });
+
+  socket.on('isJoin', function(pollId){
+    socket.emit('join', data.checkJoin(pollId));
   });
 
 }

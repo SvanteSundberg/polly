@@ -1,7 +1,18 @@
 <template>
 <div v-on:mouseover="show(true)"
       v-on:mouseleave="show(false)"
-      id="infobutton">
+      style = "margin-right: 0.5em;
+      margin-top: 0.5em;
+      padding-right:0.5em;
+      padding-left: 0.5em;
+      border-radius: 20%;
+      opacity: 70%;
+      position: absolute;
+      top: 0;
+      right:0;
+      background: snow;
+      color:black;
+      border: 2px solid black;">
   <h2> i </h2>
 </div>
 <div v-show="showinfo" id="showhelp">
@@ -32,7 +43,7 @@
 
 <style scoped>
 
-#infobutton{
+.infobutton{
   margin-right: 0.5em;
   margin-top: 0.5em;
   padding-right:0.5em;
@@ -45,7 +56,6 @@
   background: snow;
   color:black;
   border: 2px solid black;
-  z-index:1000000000;
 }
 #showhelp{
   position:absolute;
@@ -60,7 +70,7 @@
   border: 2px solid black;
 }
 @media (max-width:550px) {
-  #infobutton{
+  .infobutton{
     margin-top:0em;
     margin-right: 0em;
     padding-right:0.5em;
