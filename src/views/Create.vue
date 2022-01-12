@@ -396,8 +396,8 @@ export default {
 
     reachedBorder:function(mouse){
       const themeButton = document.getElementById('themeButton');
-      const top = themeButton.getBoundingClientRect().top;
-      if (mouse<top){
+      const bottom = themeButton.getBoundingClientRect().bottom;
+      if (mouse-18<bottom){
         return true
       }
       return false
