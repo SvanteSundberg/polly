@@ -28,7 +28,7 @@
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> {{uiLabels.quizzer}} </template>
-<span>{{uiLabels.idnotExist}}</span>
+<span>{{uiLabels.idnotExist}}{{uiLabels.canjoin}}</span>
 </createPopup>
 
   </div>
