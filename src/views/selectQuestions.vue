@@ -311,6 +311,7 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 }
 
+/*the following is inspired from https://www.w3schools.com/howto/howto_css_switch.asp*/
 .timerInput {
   display: none;
 }
@@ -364,6 +365,7 @@ export default {
   margin-bottom:1em;
   margin-top:0.3em;
 }
+/*-------------------------------------------*/
 
 header{
 height:25vh;
