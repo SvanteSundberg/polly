@@ -1,7 +1,7 @@
 <template>
 <div v-on:mouseover="show(true)"
       v-on:mouseleave="show(false)"
-      id="infobutton">
+      class="infobutton">
   <h2> i </h2>
 </div>
 <div v-show="showinfo" id="showhelp">
@@ -32,7 +32,7 @@
 
 <style scoped>
 
-#infobutton{
+.infobutton{
   margin-right: 0.5em;
   margin-top: 0.5em;
   padding-right:0.5em;
@@ -60,7 +60,7 @@
   border: 2px solid black;
 }
 @media (max-width:550px) {
-  #infobutton{
+  .infobutton{
     margin-top:0em;
     margin-right: 0em;
     padding-right:0.5em;

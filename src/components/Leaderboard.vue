@@ -3,7 +3,7 @@
 				<h1>Leaderboard</h1>
 
 				<div>
-				<div v-for= "user in this.users" v-bind:key ="user">
+				<div v-for= "user in this.users.slice(0, 5)" v-bind:key ="user">
           <div id="UserInLeaderborad">
 
 						<div v-if = "user[0].length<7">{{user[0]}}: {{user[1]}}</div>
@@ -49,6 +49,7 @@ export default {
 	margin-left: 5%;
 	margin-right: 5%;
 	margin-bottom:2em;
+	margin-top:8%;
 }
 .leaderboard h1{
 	font-size: 100%;
