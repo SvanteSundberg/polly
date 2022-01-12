@@ -116,6 +116,7 @@ function sockets(io, socket, data) {
 
   socket.on('timeToStart',function(pollId){
     io.to(pollId).emit('timeToStart');
+    data.possibletojoin(pollId);
   });
 
   socket.on('timer',function(pollId,time){

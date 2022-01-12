@@ -76,6 +76,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.currentIndex = 0;
     poll.users={};
     poll.time=0;
+    poll.canjoin = true;
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -84,6 +85,9 @@ Data.prototype.createPoll = function(pollId, lang="en") {
 
 Data.prototype.setTimer=function(pollId,time){
   this.polls[pollId].time=time;
+}
+Data.prototype.possibletojoin=function(pollId){
+  this.polls[pollId].canjoin=false;
 }
 
 Data.prototype.sendTime=function(pollId){
@@ -244,7 +248,7 @@ Data.prototype.addUser=function(pollId,user){
 Data.prototype.allIDs=function(pollId){
   let exist=false;
 for (let p in this.polls){
-  if(p===pollId){
+  if(p===pollId && this.polls[pollId].canjoin){
   return true
   }
 }
