@@ -20,7 +20,7 @@
   <span v-else> {{uiLabels.is}} </span>
 <span class="cursive" v-for="(correct,i) in correctAnswer" v-bind:key="i">
    {{correct+' '}}
-<span v-if="i+2==this.correctAnswer.length"> och </span>
+<span v-if="i+2==this.correctAnswer.length"> {{uiLabels.and}} </span>
 <span v-else-if="i+1<this.correctAnswer.length"> , </span>
  </span>
    </p>
