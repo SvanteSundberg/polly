@@ -91,7 +91,7 @@
 <div>
 <router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
 <button class="standBtn doneBtn" v-on:click="removeEmptyAwnser">
-  {{uiLabels.Done}}
+  {{uiLabels.playQuiz}}
 </button>
 </router-link>
 
@@ -99,7 +99,7 @@
 <button class="standBtn doneBtn"
         v-if="!canContinue()"
         v-on:click="showPopup(true)">
-  {{uiLabels.Done}}
+  {{uiLabels.playQuiz}}
 </button>
 </div>
 </div>
