@@ -6,6 +6,9 @@
 </header>
 <div class="splitgrid">
 <div class="split left">
+  <div v-if="collide()>-1" class="help">
+    {{uiLabels.drop}}
+  </div>
 <div class="question">
     <h3> {{uiLabels.questionNumber}} : {{this.currentIndex+1}}
 
@@ -14,9 +17,7 @@
   {{uiLabels.removeQuestion}}
 </button> </h3>
 
-<div v-if="collide()>-1" class="help">
-  {{uiLabels.drop}}
-</div>
+
 
 
     <p> {{uiLabels.question}}: </p>
@@ -107,14 +108,20 @@
 <div class="split right">
 <div class="scroll">
   <div class="questionWrap" id="importantButtons">
+
+    <div class="upperWrap">
+      <div class="upperLeft">
      <h3 id="overView"> {{uiLabels.overview}} </h3>
     <router-link v-bind:to="'/selectTheme/'+pollId+'/'+lang">
     <button class="sideQuestion" id="themeButton">
       {{uiLabels.selectTheme}}
     </button>
   </router-link>
+</div>
+</div>
 
-  <div v-on:mousemove="executeSwitch">
+  <div class="questionList" v-on:mousemove="executeSwitch">
+  <div class="qlistLeft">
   <button v-for="(_, i) in this.allQuestions"
           v-bind:key="i"
           v-on:click="goToQuestion(i)"
@@ -124,16 +131,18 @@
           v-bind:style= "[this.switching.index===i ? {top: this.y_koord+ 'px'} : {top:0}]">
       {{uiLabels.sideQuestion}} {{i+1}}
   </button>
-  </div>
-  </div>
+</div>
+<div class="qlistRight" v-if="this.showHelp">
+  <div v-for="(_, i) in this.allQuestions"
+        v-bind:key="i"
+        v-bind:class="['helpMessage',{notDone:isNotFinished(i)}]">
+        <span v-if="isNotFinished(i)">
+          <div class="arrow"> <i class="arrow rightA"></i></div>
+        </span>
+      </div>
 
-  <div class="questionWrap" v-if="this.showHelp">
-    <div class="positioningHelp">
-    <div v-for="(_, i) in this.allQuestions"
-          v-bind:key="i"
-          v-bind:class="['helpMessage',{notDone:isNotFinished(i)}]">
-          <span v-if="isNotFinished(i)"> </span>
-    </div>
+
+</div>
   </div>
   </div>
 
@@ -421,6 +430,10 @@ export default {
 
 </script>
 <style scoped>
+ @media(max-width: 550px){
+   @import url("/createMobile.css");
+ };
+
 #importantButtons{
   z-index:1;
 }
@@ -430,8 +443,55 @@ export default {
   flex-direction: column;
   position:absolute;
   top:0;
-
   width: 100%;
+}
+
+.upperWrap{
+  display: grid;
+  grid-template-columns: 10% 90%;
+  margin-left:10%;
+  margin-right: auto;
+}
+
+.upperLeft{
+  grid-column: 2;
+  margin: 5px;
+}
+.questionList{
+  display: grid;
+  flex-direction: column;
+  flex:1;
+  grid-template-columns: 10% 90%;
+  flex-wrap: wrap;
+  margin-left:10%;
+  margin-right: auto;
+}
+
+.qlistLeft{
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  top:0;
+  margin: 5px;
+  padding-right:0%;
+  padding-left:0%;
+  height: 100%;
+  width: 150px;
+}
+.qlistRight{
+  display: flex;
+  flex-direction: column;
+  grid-column: 1;
+  grid-row: 1;
+  width:100%;
+  height: 100%;
+  top:0;
+  margin: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-right:8%;
+  padding-left:8%;
+  align-content: center;
 }
 
 .scroll{
@@ -447,7 +507,7 @@ export default {
 
 .sideQuestion {
   background-color: white;
-  margin: 5%;
+  margin: 5px;
   border-radius: 20px;
   border-color: white;
   padding-right:8%;
@@ -455,13 +515,9 @@ export default {
   height: 3vw;
   width: 150px;
   font-size: 16px;
-
 }
 
-
 .activeQuestion {
-  /*background-color: Grey;
-  border: 1px solid white;*/
   background-color: black;
   color:white;
 }
@@ -565,8 +621,6 @@ export default {
   font-size:14pt;
 }
 
-
-
 .question{
   position:relative;
   /*border-style:double;*/
@@ -618,8 +672,6 @@ header{
   padding-left: 25%;
 }
 
-
-
 .splitgrid{
   display: grid;
   grid-template-columns: 79vw 18vw;
@@ -639,12 +691,10 @@ header{
   cursor: pointer;
 }
 
-
-
 #overView{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 5px;
-    width:80%;
+    width:90%;
     margin:10%;
 }
 
@@ -676,7 +726,6 @@ h3{
   margin-bottom:0.5em;
 }
 
-
 .warning{
   text-align:center;
 }
@@ -688,34 +737,16 @@ h3{
 /* Arrow in helpMessage from https://codepen.io/MaryG/pen/WbvRrz*/
 
 .helpMessage{
-  border-top: 2px solid transparent;
-  border-left: 2px solid transparent;
-  font-size:13pt;
-  width: 15px;
-  height: 15px;
-  transform: rotate(135deg);
-  margin-right:8em;
-  margin-top: 0.5em;
-  margin-bottom:2.5em;
+  font-size:16pt;
+  width: 10px;
+  height: 3vw;
+  border-radius: 20px;
+  margin:5px;
+  margin-left:0;
+  padding-right:8%;
+  padding-left:8%;
   z-index:0;
-}
-
-.helpMessage::after{
-  content: "";
-  display: block;
-  width: 2px;
-  height: 45px;
-  background-color: transparent;
-  transform: rotate(-45deg) translate(15px, 4px);
-}
-
-.notDone{
-  border-top: 2px solid red;
-  border-left: 2px solid red;
-}
-
-.notDone::after{
-  background-color: red;
+  justify-content: center;
 }
 
 .positioningHelp{
@@ -728,223 +759,31 @@ h3{
 }
 
 .help{
-  width:10em;
-  height:3.5em;
-  padding:0.5em;
+  width:20%;
+  height:10%;
+  font-size: 70%;
+  padding:1%;
   background-color:white;
   position:absolute;
-  top:0;
-  right:6em;
+  top:3%;
+  right:5%;
   color:black;
+  border: 2px dotted black;
+  border-radius: 5px;
+  z-index: 100;
 }
 
-@media (max-width: 550px) {
-  .sideQuestion { font-size: 10px;height: 10%; width:80%; margin-bottom: 20%;}
-  #themeButton{height:10%;}
-  #overView{font-size: 11px;}
-  .questionWrap {
-    display: flex;
-    position:relative;
-    top:2%;
-  }
 
-  .left {
-    width: 100%;
-    height: 100%;
-    left: 0;
-
-    position:relative;
-    margin:0;
-
-  }
-
-  .right {
-    width: 80%;
-    position:relative;
-    /*border-left: 2px solid white;*/
-    /*box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;*/
-
-  }
-
-  .splitgrid{
-    display: grid;
-    grid-template-columns: 72vw 25vw;
-    width: 97vw;
-  }
-
-  .allAnswers {
-    display: grid;
-    margin: auto;
-    margin-bottom: 15%;
-    padding: 0;
-    width: 80%;
-    height: 80%;
-    grid-template-columns: 90%;
-    grid-template-rows: 20% 20% 20% 20%;
-    grid-gap: 10%;
-  }
-
-  .question{
-    position:relative;
-    /*border-style:double;*/
-    margin:0;
-    padding:0px;
-    padding-bottom: 10px;
-    width:100%;
-    height: 95%;}
-
-    .allAnswers textarea {
-      height: 90%;
-      width: 90%;
-      resize: none;
-      border-radius: 5px;
-    }
-
-    .removeAnswerButton {
-      background-color: #d11a2a;
-      height: 13px;
-      width: 13px;
-      margin-left:86%;
-      padding:0;
-      border: red;
-      border-radius: 2px;
-      justify-content: flex-start;
-    }
-
-    .markCorrectButton{
-      height: 1em;
-      width: 1em;
-      margin-left:95%;
-      margin-top:8%;
-    }
-
-    .writeQ{
-      margin-bottom: 5%;
-      border-radius: 5px;
-      border: 1px solid black;
-      outline: none;
-      height: 10%;
-      width: 80%;
-      margin-right:0;
-    }
-
-    p{
-      margin:auto;
-      width:80%;
-      text-align: left;
-      padding-bottom: 20px;
-    }
-    .answer0 {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .answer1 {
-      grid-column: 1;
-      grid-row: 2;
-    }
-
-    .answer2 {
-      grid-column: 1;
-      grid-row: 3;
-    }
-
-    .answer3 {
-      grid-column: 1;
-      grid-row: 4;
-    }
-
-    #addButton{
-      height: 90%;
-      width: 90%;
-    }
-
-    .doneBtn{
-      margin-bottom: 0;
-      margin-top: 5%;
-}
-.standBtn{
-  margin-top: 0;
-  margin-bottom: 0;
+.arrow {
+  display: inline-block;
+  padding: 3px;
 }
 
-h3{
-  width: 100%;
-  font-size: 18px;
-}
-h2{
-  margin-left: 5%;
-  margin-right: 5%;
-
-  font-size: 25px;
-  height: 93%;
-}
-
-header{
-  padding-left:1em;
-  padding-right: 1em;
-  padding-bottom: 0.2em;
-  padding-top: 0.2em;
-}
-
-.helpMessage{
-  border-top: 2px solid transparent;
-  border-left: 2px solid transparent;
-  font-size:5pt;
-  width: 2px;
-  height: 2px;
-  transform: rotate(135deg);
-  margin-right:8em;
-  margin-top: 5em;
-  margin-bottom:63%;
-  z-index:0;
-}
-
-.helpMessage::after{
-  content: "";
-  display: none;
-  width: 2px;
-  height: 10px;
-  background-color: transparent;
-  transform: rotate(-45deg) translate(15px, 4px);
-}
-
-.notDone{
-  border-top: 2px solid red;
-  border-left: 2px solid red;
-}
-
-.notDone::after{
-  background-color: red;
-}
-
-.positioningHelp{
-  margin-top:70%;
-  margin-right: 100%;
-}
-
-#remove{
-  font-size: 14px;
-}
-
-.doneBtn{
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-.allCreateBtn{
-  grid-template-columns: 30% 40% 30%;
-  grid-template-rows: 100%;
-  place-items: auto center;
-  padding-left: 0;
-  width:100%;
-}
-
-}
-
-@media (min-width: 551px) {
-  .sideQuestion { font-size: 16px;
-                  margin:10px;
-                 }
+.rightA {
+  border: solid red;
+  border-width: 0 3px 3px 0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 
 </style>

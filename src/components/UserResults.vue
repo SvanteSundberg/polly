@@ -106,5 +106,6 @@ export default {
   padding:1em;
   color:black;
   box-shadow: 10px 5px 5px black;
+  border-radius:30px;
 }
 </style>
