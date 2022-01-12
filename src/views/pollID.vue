@@ -1,5 +1,8 @@
 <template>
   <div class='standard'>
+    <info>
+      <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+    </info>
     <div class='position'>
     <h1>
       {{uiLabels.joinQuizname}}
@@ -29,16 +32,22 @@
 </createPopup>
 
   </div>
+
 </template>
 
 <script>
 // v-bind:to="'/poll/'+id"
 import createPopup from '@/components/createPopup.vue';
 import io from 'socket.io-client';
+import info from '@/components/info.vue';
 const socket = io();
 export default {
   name: 'pollID',
-  components: {createPopup},
+
+  components: {createPopup,
+  info,
+},
+
   data: function () {
     return {
       uiLabels: {},

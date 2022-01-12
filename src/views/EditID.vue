@@ -52,17 +52,21 @@
 <span> {{uiLabels.idnotExist}} </span>
 </createPopup>
 </div>
-
+<info>
+  <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+</info>
 </template>
 
 <script>
 import createPopup from '@/components/createPopup.vue';
 import io from 'socket.io-client';
+import info from '@/components/info.vue';
 const socket = io();
 export default {
   name: 'EditID',
   components:{
     createPopup,
+    info,
   },
   data: function () {
     return {

@@ -22,18 +22,20 @@
 
 <script>
 // v-bind:to="'/poll/'+id"
-import io from 'socket.io-client';
 import info from '@/components/info.vue';
+import io from 'socket.io-client';
+
 const socket = io();
 export default {
   name: 'selectTheme',
+  components: {info,},
   data: function () {
     return {
       uiLabels: {},
       theme: "",
       id: "",
       lang: "",
-      info,
+
     }
   },
   created: function () {
