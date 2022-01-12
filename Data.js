@@ -19,13 +19,13 @@ Data.prototype.getUILabels = function (lang = "en") {
 }
 
 Data.prototype.getTheme=function(pollId) {
-  console.log(pollId);
+
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
-    console.log("definied");
+
     return poll.theme
   }
-  console.log("ej definied");
+
   return 'standard'
 }
 
@@ -78,7 +78,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.time=0;
     poll.canjoin = true;
     this.polls[pollId] = poll;
-    console.log("poll created", pollId, poll);
+
   }
   return this.polls[pollId];
 }
@@ -96,7 +96,7 @@ Data.prototype.sendTime=function(pollId){
 
 Data.prototype.chooseTheme = function (pollId, theme) {
   this.polls[pollId].theme=theme;
-  console.log(this.polls[pollId].theme);
+
 }
 
 Data.prototype.addQuestion = function(pollId, first) {
@@ -105,14 +105,14 @@ Data.prototype.addQuestion = function(pollId, first) {
   if (typeof poll !== 'undefined') {
     if ((first && poll.questions.length<1) || (!first)){
       poll.questions.push(q);
-      console.log("question added to", pollId, q);
+
     }
   }
 }
 
 Data.prototype.getQuestion = function(pollId, qId=null) {
   const poll = this.polls[pollId];
-  console.log("question requested for ", pollId, qId);
+
   if (typeof poll !== 'undefined') {
     if (qId !== null) {
         poll.currentIndex = qId;
@@ -128,8 +128,7 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
 
 Data.prototype.submitAnswer = function(pollId, answer, userName, time) {
   const poll = this.polls[pollId];
-  console.log("answer submitted for ", pollId, answer);
-  console.log(poll);
+
   if (typeof poll !== 'undefined') {
     poll.users[userName].votings[poll.currentQuestion]=answer;
     const correctAnswers=poll.questions[poll.currentQuestion].c;
@@ -149,9 +148,7 @@ Data.prototype.submitAnswer = function(pollId, answer, userName, time) {
       answers[answer] = 1;
     else
       answers[answer] += 1
-    console.log("answers looks like ", answers, typeof answers);
-    console.log(poll.users);
-    console.log(poll.users[userName].points);
+
   }
 }
 
@@ -209,9 +206,9 @@ Data.prototype.returnUsers=function(pollId){
 
 Data.prototype.checkIfFinished=function(pollId){
   const poll = this.polls[pollId];
-  console.log((poll.currentIndex));
+
   if (poll.selectedQuestions.length===(poll.currentIndex+1)){
-    console.log("nu är jag sann");
+
 
     return true
   }
@@ -233,7 +230,7 @@ Data.prototype.addUser=function(pollId,user){
   thisUser.votings=[];
   if(typeof u !== 'undefined'){
     for (let x in u){
-      console.log(u);
+
       if(x===user){
         return true
       }
@@ -241,7 +238,7 @@ Data.prototype.addUser=function(pollId,user){
   }
 
   u[user]=thisUser;
-  console.log(u);
+  
 
   return false
   }
