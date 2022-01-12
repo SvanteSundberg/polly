@@ -32,7 +32,7 @@
   </createPopup>
   </div>
   <info>
-    <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+    <template v-slot:helpinfo>{{uiLabels.infoChooseName}}</template>
   </info>
 </template>
 

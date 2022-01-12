@@ -91,7 +91,7 @@ v-bind:key="i">
 </div>
 </div>
 <info>
-  <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+  <template v-slot:helpinfo>{{uiLabels.infoselectquestions}}</template>
 </info>
 </template>
 <script>

@@ -16,7 +16,7 @@
       </div>
   </div>
 
-<p id="correctcss">Correct answer <span v-if="this.correctAnswer.length>1"> are </span>
+<p id="correctcss">{{uiLabels.correctAnswer}} <span v-if="this.correctAnswer.length>1"> are </span>
   <span v-else> is </span>
 <span class="cursive" v-for="(correct,i) in correctAnswer" v-bind:key="i">
    {{correct+' '}}

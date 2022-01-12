@@ -151,7 +151,7 @@
 </div>
 </div>
 <info class="info">
-  <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+  <template v-slot:helpinfo>{{uiLabels.infoCreate}} </template>
 </info>
 </template>
 
@@ -396,8 +396,8 @@ export default {
 
     reachedBorder:function(mouse){
       const themeButton = document.getElementById('themeButton');
-      const top = themeButton.getBoundingClientRect().top;
-      if (mouse<top){
+      const bottom = themeButton.getBoundingClientRect().bottom;
+      if (mouse-18<bottom){
         return true
       }
       return false
