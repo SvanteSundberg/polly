@@ -21,8 +21,8 @@
     {{user}}
   </span>
 </div>
+
     <p v-if="this.users.length===0" class="waiting"> {{uiLabels.waitingPlayers}} </p>
- <br>
 
   <button v-on:click="startPoll" v-bind:class="['standBtn doneBtn',{notReady:this.users.length === 0}]">
     {{uiLabels.letsGo}}
