@@ -39,10 +39,10 @@
                   v-bind:uiLabels="uiLabels">
   </languageSelect>
   </div>
-  <info>
-    <template v-slot:helpinfo> här sätter du in hjälplabel </template>
-  </info>
 </div>
+<info>
+  <template v-slot:helpinfo> här sätter du in hjälplabel </template>
+</info>
 </template>
 
 <script>
