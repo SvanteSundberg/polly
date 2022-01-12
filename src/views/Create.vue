@@ -50,7 +50,7 @@
               v-bind:value="i"
               v-bind:id="i"
               v-bind:class="['answer'+i, 'markCorrectButton']"
-              v-on:keyup="setCorrectAnswer">
+              v-on:change="setCorrectAnswer">
 
       <button v-if="this.answers.length<4" v-on:click="addAnswer" id="addButton">
         {{uiLabels.addAnswer}}
