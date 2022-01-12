@@ -1,5 +1,5 @@
 <template>
-<div @mouseover = "showinfo = true" @mouseleave = "showinfo = false" id="infobutton">
+<div v-on:mouseover="show(true)" v-on:mouseleave="show(false)" id="infobutton">
   <h2> i </h2>
 </div>
 <div v-show="showinfo" id="showhelp">
@@ -15,10 +15,22 @@
     return {
       showinfo:false,
     }
-  }};
+  },
+
+  methods: {
+    show: function(value){
+      this.showinfo=value;
+    }
+  }
+
+}
+
+
 </script>
 
 <style scoped>
+/*@mouseover = "showinfo = true" @mouseleave = "showinfo = false"*/
+
 #infobutton{
   margin-right: 0.5em;
   margin-top: 0.5em;
