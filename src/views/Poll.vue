@@ -23,7 +23,7 @@
     </span>
     </createPopup>
 
-<div v-if="this.timeOn && !this.changeView">Tid: {{this.time}}</div>
+<div class="timer" v-if="this.timeOn && !this.changeView">Tid: {{this.time}}</div>
   </div>
 </div>
 
@@ -178,6 +178,22 @@ resetTimer: function(){
 
 h1 {
   padding:1.5em;
+}
+
+.timer{
+  position:absolute;
+  top:0;
+  right:0;
+  margin-top:50vh;
+  margin-right:7vw;
+  background-color:white;
+  border-radius:2em;
+  color:black;
+  width:2.2em;
+  height:2.2em;
+  padding:0.7em;
+  border: 5px solid black;
+  font-size:13pt;
 }
 
 </style>
