@@ -7,7 +7,7 @@
 	"changeLanguage": "Change to English",
 	"welcome": "Välkommen quizzer!",
 	"welcomequestion": "Vad kul att just du är här! Vad vill du göra idag?",
-	"writePollID": "Skriv röstningsID:",
+	"writePollID": "Skapa ett QuizID till ditt Quiz",
 	"Done":"Klar",
 	"theme": "Välj tema",
 	"answers":"Skriv svaren och markera det korrekta",
@@ -19,16 +19,16 @@
 	"school":"Skola",
 	"standard":"Standard",
 	"sideQuestion":"Fråga",
-	"pollID":"RöstningsID",
+	"pollID":"QuizID",
   "addAnswer":"Lägg till svar",
 	"removeQuestion":"Radera fråga",
 	"Language":"Språk",
 	"questionNumber":"Fråga nummer",
-	"nowEdit":"Du redigerar nu röstningen:",
+	"nowEdit":"Du redigerar nu Quizet:",
 	"overview":"Översikt",
 	"backToStart":"Tillbaka till start",
 	 "selectTheme":"Välj tema",
-	 "typeID":"Skriv röstningsID",
+	 "typeID":"Skriv QuizID",
 	 "pleaseMakeSureTo":"Vänligen se till att:",
 	 "chooseRight":"Välja korrekta svar till varje fråga!",
 	 "typeSomething":"Skriv något i varje fråga!",
@@ -38,8 +38,8 @@
 		 "setTime": "Välj tid",
 		 "editQuiz": "Redigera Quiz",
 		 "playQuiz":"Spela Quiz",
-		 "playTime": "Det är dags att spela quizet!",
-		 "joinPollId": "Delta med röstningsID:",
+		 "playTime": "Det är dags att spela Quizet!",
+		 "joinPollId": "Delta med QuizID:",
 		 "loggedIn":"Spelare är inloggade!",
 		 "waitingPlayers":"Inväntar deltagare...",
 		 "letsGo":"Starta Quiz",
@@ -76,10 +76,4 @@
 		"nameExist":"Smeknamnet existerar redan, välj ett annat!",
 		"whichque": "Dags att spela! Vilka frågor vill du inkludera i quizzet?",
     "startQuiz":"Starta Quiz"
-
-
-
-
-
-
 }
