@@ -123,18 +123,19 @@ methods: {
 
 .left {
   left: 0;
-  width: 50%;
-  margin-left:3vw;
+  width: 60%;
+  height: 80%;
+  margin-left:5%;
   grid-column: 1;
   grid-row: 1;
 }
 
 .right {
-  padding-top:10%;
+  padding-top:0;
   margin-right:1%;
   right: 0;
-  width: 44%;
-  height: 90%;
+  width: 29%;
+  height: 80%;
   border-left: 4px solid white;
   grid-column: 2;
   grid-row: 1;
@@ -145,6 +146,7 @@ methods: {
   grid-row:2;
   height:100%;
   width:100%;
+  border-top: 4px solid white;
 }
 
 .standBtn{
@@ -163,7 +165,7 @@ header{
 
 .wrapper{
   display:grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 70% 30%;
   grid-template-rows: 80% 20%;
   height:100%;
 }

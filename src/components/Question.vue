@@ -49,6 +49,7 @@ h3 {
   width:90%;
   height:6em;
   margin-top:10%;
+  border-radius: 5px;
 }
 
 .nr0 {
