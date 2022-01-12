@@ -7,7 +7,6 @@
 <div v-show="showinfo" id="showhelp">
   <slot name= "helpinfo">  info </slot>
 </div>
-<div>
 </template>
 
 <script>
