@@ -6,6 +6,7 @@
 <hr>
 </header>
 
+<div class="wrapper">
 <div class="split left">
 <div class="scroll">
 <div class="questions">
@@ -64,8 +65,6 @@ v-bind:key="i">
 
 <p> {{uiLabels.timer}} </p>
 <div class="timerSwitch">
-
-
 <input id="timerSwitch" class="timerInput" type="checkbox" v-model="isTimer" v-on:click="sendTime()">
 <label for="timerSwitch" class="timerLabel">Switch</label>
 </div>
@@ -78,6 +77,7 @@ v-bind:key="i">
           {{value}} s
   </button>
 <!-- <button v-on:click="setTimeBooleans"> None </button> -->
+</div>
 </div>
 </div>
 
@@ -403,12 +403,19 @@ header hr{
   left: 0;
   width: 70%;
   margin-left:0.7em;
+  grid-column: 1;
 }
 
 .right {
   right: 10%;
   width: 30%;
   margin-top:1.3em;
+  grid-column: 2;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: 70% 30%;
 }
 
 .setTimer{
