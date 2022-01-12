@@ -7,6 +7,7 @@
 <div v-show="showinfo" id="showhelp">
   <slot name= "helpinfo">  info </slot>
 </div>
+<div>
 </template>
 
 <script>
@@ -31,7 +32,6 @@
 </script>
 
 <style scoped>
-/*@mouseover = "showinfo = true" @mouseleave = "showinfo = false"*/
 
 #infobutton{
   margin-right: 0.5em;
@@ -56,7 +56,7 @@
   font-style:italic;
   top: 0px;
   right: 0px;
-  background-color:snow;
+  background-color:white;
   color:black;
   border: 2px solid black;
 }
