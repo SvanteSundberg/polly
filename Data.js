@@ -249,13 +249,23 @@ Data.prototype.addUser=function(pollId,user){
 
 Data.prototype.allIDs=function(pollId){
   let exist=false;
-for (let p in this.polls){
-  if(p===pollId && this.polls[pollId].canjoin){
-  return true
+  for (let p in this.polls){
+    if(p===pollId){
+      return true
+      }
+    }
+  return false
   }
-}
-return false
-}
+
+  Data.prototype.checkJoin=function(pollId){
+    let exist=false;
+    for (let p in this.polls){
+      if(p===pollId && this.polls[pollId].canjoin){
+        return true
+        }
+      }
+    return false
+    }
 
 Data.prototype.getUsers=function(pollId){
   const poll = this.polls[pollId];

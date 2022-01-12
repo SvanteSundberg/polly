@@ -15,10 +15,12 @@
                 v-model="id"
                 maxlength="15"
                  :placeholder="uiLabels.typeID"
-                v-on:keyup.enter="checkPollId">
+                v-on:keyup.enter="checkJoinable">
         </div>
         <div class="rightColumn">
-      <button class="standBtn doneBtn" v-on:click="checkPollId" v-if="this.id.length>0">
+      <button class="standBtn doneBtn"
+              v-on:click="checkJoinable"
+              v-if="this.id.length>0">
         {{uiLabels.Done}}
       </button>
         </div>
@@ -53,7 +55,8 @@ export default {
       uiLabels: {},
       id: "",
       lang: "",
-      popupVisable: false
+      popupVisable: false,
+      canJoin: false,
     }
   },
   created: function () {
@@ -63,8 +66,8 @@ export default {
       this.uiLabels = labels
     });
 
-    socket.on('existingPolls', (existing)=>{
-      if(existing){
+    socket.on('join', (canJoin)=>{
+      if(canJoin){
         this.$router.replace('/chooseName/'+this.id+'/'+this.lang);
       }
       else{
@@ -74,8 +77,8 @@ export default {
 
   },
   methods: {
-    checkPollId:function(){
-      socket.emit('checkPollId',this.id);
+    checkJoinable:function(){
+      socket.emit('isJoin', this.id);
     },
 
     showPopup:function(value){
