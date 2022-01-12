@@ -159,7 +159,7 @@ header{
   color:black;
   min-height: 20vh;
   height: auto;
-  justify-content: center;
+  text-align:center;
   border-radius:20px;
 }
 
@@ -179,6 +179,7 @@ header{
   margin-top:5%;
   font-size:20pt;
   font-weight: bold;
+  text-align:center;
 }
 
 .notReady {
