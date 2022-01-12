@@ -117,7 +117,6 @@ methods: {
 <style scoped>
 
 .split {
-  height: 100%;
   top: 0;
   position:fixed;
 }
@@ -144,7 +143,8 @@ methods: {
 .myButtons{
   grid-column: span 2;
   grid-row:2;
-  margin-left:20%;
+  height:100%;
+  width:100%;
 }
 
 .standBtn{
