@@ -8,6 +8,7 @@
       border-radius: 20%;
       opacity: 70%;
       position: absolute;
+      font-style:italic;
       top: 0;
       right:0;
       background: snow;
@@ -62,12 +63,12 @@
   margin-right: 2.5em;
   margin-top:1.2em;
   padding:0.5em;
-  font-style:italic;
   top: 0px;
   right: 0px;
   background-color:white;
   color:black;
   border: 2px solid black;
+  border-radius: 5px;
 }
 @media (max-width:550px) {
   .infobutton{
