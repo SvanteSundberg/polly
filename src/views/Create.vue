@@ -150,9 +150,11 @@
 </div>
 </div>
 </div>
+<div class="infodiv">
 <info class="info">
   <template v-slot:helpinfo>{{uiLabels.infoCreate}} </template>
 </info>
+</div>
 </template>
 
 <script>
