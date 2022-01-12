@@ -11,7 +11,7 @@
      or scan QR-code:</span>
 
     <div class="qrCode">
-    <qrcode-vue :value="value" :size="size" level="H" />
+    <qrcode-vue :value="'https://quizmadness.herokuapp.com/#/chooseName/'+this.id+'/'+this.lang" :size="size" level="H" />
   </div>
     </div>
 
@@ -57,8 +57,8 @@ export default {
       theme:"",
       users:[],
       popupVisable:false,
-      value: 'https://example.com',
-      size: 100,
+      value: 'https://quizmadness.herokuapp.com/#/chooseName/'+this.id+'/'+this.lang,
+      size: 110,
     }
   },
   created: function () {
