@@ -2,10 +2,11 @@
 <div v-bind:class='theme' v-on:mouseup="endSwitch">
   <header>
    <h2>{{uiLabels.nowEdit}} <span class="cursive">{{this.pollId}} </span></h2>
-  <hr>
-</header>
 
+</header>
+<div class="splitgrid">
 <div class="split left">
+<div class="question">
     <h3> {{uiLabels.questionNumber}} : {{this.currentIndex+1}}
 
   <button id="remove"
@@ -17,7 +18,7 @@
   {{uiLabels.drop}}
 </div>
 
-  <div class="question">
+
     <p> {{uiLabels.question}}: </p>
     <input type="text"
           class="writeQ"
@@ -56,29 +57,7 @@
 
     </div>
 </div>
-<div class="allCreateBtn">
-<router-link v-bind:to="'/'">
-<button class="standBtn addBtn">
-  {{uiLabels.backToStart}}
-</button>
-</router-link>
 
-<button class="standBtn addBtn" v-on:click="addQuestion">
-  + {{uiLabels.addQuestion}}
-</button>
-
-<router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
-<button class="standBtn doneBtn" v-on:click="removeEmptyAwnser">
-  {{uiLabels.Done}}
-</button>
-</router-link>
-
-<button class="standBtn doneBtn"
-        v-if="!canContinue()"
-        v-on:click="showPopup(true)">
-  {{uiLabels.Done}}
-</button>
-</div>
 <createPopup v-on:stop="showPopup(false)"
             v-show="this.popupVisable">
 <template v-slot:header> {{uiLabels.quizzer}} </template>
@@ -91,6 +70,36 @@
 </div>
 </createPopup>
 
+</div>
+
+<div class="allCreateBtn">
+
+<div>
+<router-link v-bind:to="'/'">
+<button class="standBtn addBtn">
+  {{uiLabels.backToStart}}
+</button>
+</router-link>
+</div>
+<div>
+<button class="standBtn addBtn" v-on:click="addQuestion">
+  + {{uiLabels.addQuestion}}
+</button>
+</div>
+
+<router-link v-if="canContinue()" v-bind:to="'/selectQuestions/'+pollId+'/'+lang">
+<button class="standBtn doneBtn" v-on:click="removeEmptyAwnser">
+  {{uiLabels.Done}}
+</button>
+</router-link>
+
+<div>
+<button class="standBtn doneBtn"
+        v-if="!canContinue()"
+        v-on:click="showPopup(true)">
+  {{uiLabels.Done}}
+</button>
+</div>
 </div>
 
 <div class="split right">
@@ -125,6 +134,7 @@
   </div>
   </div>
 
+</div>
 </div>
 </div>
 </div>
@@ -389,9 +399,8 @@ export default {
   flex-direction: column;
   position:absolute;
   top:0;
-  padding-right:10%;
-  padding-left:15%;
-  width: 70%;
+
+  width: 100%;
 }
 
 .scroll{
@@ -444,13 +453,13 @@ export default {
 .allAnswers {
   display: grid;
   margin: auto;
-  margin-bottom: 50px;
   padding: auto;
-  width: 460px;
-  height: 220px;
-  grid-template-columns: 220px 220px;
-  grid-template-rows: 100px 100px;
-  grid-gap: 50px;
+  width: 40vw;
+  height: 40%;
+  grid-template-columns: 40% 40%;
+  grid-template-rows: 45% 45%;
+  grid-column-gap: 20%;
+  grid-row-gap: 10%;
 }
 
 .answer0 {
@@ -474,8 +483,8 @@ export default {
 }
 
 .allAnswers textarea {
-  height: 100px;
-  width: 210px;
+  height: 95%;
+  width: 95%;
   resize: none;
   border-radius: 5px;
 }
@@ -484,7 +493,7 @@ export default {
   background-color: #d11a2a;
   height: 13px;
   width: 13px;
-  margin-left:203px;
+  margin-left:92%;
   padding:0;
   border: red;
   border-radius: 2px;
@@ -525,17 +534,15 @@ export default {
   font-size:14pt;
 }
 
-.allCreateBtn{
-  margin-right:22%;
-}
+
 
 .question{
   position:relative;
   /*border-style:double;*/
   margin:0;
   padding:0px;
-  padding-bottom: 10px;
-  width:75%;
+  width:100%;
+  height: 100%;
   overflow-x: auto;
 }
 
@@ -545,82 +552,95 @@ header{
 }
 
 .split {
-  height: 90%;
+  height: 100%;
   overflow-x: hidden;
 }
 
 .left {
-  width: 75%;
+  width: 80%;
   left: 0;
   top:0;
   position:relative;
-  height: 85%;
+  justify-content:center;
+  margin-right: 10%;
+  margin-left: 10%;
+  right:0;
+  left:0;
 }
 
 .right {
-  width: 25%;
-  height: 88%;
-  right: 0;
-  top: 11%;
-  position:absolute;
-  border-left: 2px solid white;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  width: 100%;
+  position:relative;
+  border-left: 3px solid white;
+}
+
+.allCreateBtn{
+  grid-column: span 2;
+  grid-row: 2;
+  height: 100%;
+  width: 100%;
+  border-top: 2px solid white;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  place-items: auto center;
+}
+
+
+.splitgrid{
+  display: grid;
+  grid-template-columns: 79vw 18vw;
+  grid-template-rows: 70vh 15vh;
+  width: 97vw;
+  border-top: 3px solid white;
 }
 
 .markCorrectButton{
-  height: 1em;
-  width: 1em;
-  margin-left:11.75em;
-  margin-top:40px;
+  height: 20%;
+  width: 20%;
+  margin-left:95%;
+  margin-top:15%;
 }
 
 .markCorrectButton:hover{
   cursor: pointer;
 }
 
-hr{
-  margin-top:1em;
-  margin-bottom:0;
-  padding-bottom:0;
-  margin-bottom:0;
-  background-color: white;
-  border:1px solid white;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
+
 
 #overView{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    margin-bottom: 0.5em;
+    border-radius: 5px;
+    width:80%;
+    margin:10%;
 }
 
 p{
   margin:auto;
-  width:460px;
+  width:70%;
   text-align: left;
-  padding-bottom: 20px;
+  padding-bottom: 3%;
 }
 
 .writeQ{
-  margin-bottom: 20px;
+  margin-bottom: 2%;
   border-radius: 5px;
   border: 1px solid black;
   outline: none;
-  height: 50px;
-  width: 478px;
-  margin-right:-24px;
+  height: 10%;
+  width: 62%;
+  margin-left:;
 }
 
 .left h3{
-  margin-right: 22%;
+  margin:auto;
+  width:70%;
+  padding-top: 3%;
 }
 h3{
-  margin-top:1.5em;
+  margin-top:2%;
   margin-bottom:0.5em;
 }
 
-.doneBtn{
-  margin-bottom:3em;
-}
 
 .warning{
   text-align:center;
@@ -684,30 +704,37 @@ h3{
 }
 
 @media (max-width: 550px) {
-  .sideQuestion { font-size: 10px;height: 10%; width:100%; }
+  .sideQuestion { font-size: 10px;height: 10%; width:80%; margin-bottom: 20%;}
   #themeButton{height:10%;}
   #overView{font-size: 11px;}
   .questionWrap {
     display: flex;
-    position:absolute;
+    position:relative;
+    top:2%;
   }
 
   .left {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     left: 0;
-    top:19%;
-    position:absolute;
+
+    position:relative;
     margin:0;
+
   }
 
   .right {
-    width: 20%;
-    height: 67%;
-    top:19%;
-    position:absolute;
-    border-left: 2px solid white;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    width: 80%;
+    position:relative;
+    /*border-left: 2px solid white;*/
+    /*box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;*/
+
+  }
+
+  .splitgrid{
+    display: grid;
+    grid-template-columns: 72vw 25vw;
+    width: 97vw;
   }
 
   .allAnswers {
@@ -729,7 +756,7 @@ h3{
     padding:0px;
     padding-bottom: 10px;
     width:100%;
-    height: 60%;}
+    height: 95%;}
 
     .allAnswers textarea {
       height: 90%;
@@ -805,14 +832,7 @@ h3{
   margin-top: 0;
   margin-bottom: 0;
 }
-.allCreateBtn button{
-  height: 3em;
-  width:30%;
-  padding:0;
-  margin-left: 10px;
-  margin-top: 1em;
-  font-size: 10pt;
-}
+
 h3{
   margin-top: 2%;
   margin-left: 2%;
@@ -821,7 +841,13 @@ h3{
 h2{
   margin-left: 5%;
   margin-right: 5%;
-  font-size: 30px;
+  margin-bottom: 2%;
+  font-size: 25px;
+  height: 93%;
+}
+
+header{
+  padding:0;
 }
 
 .helpMessage{
@@ -868,7 +894,8 @@ h2{
 
 @media (min-width: 551px) {
   .sideQuestion { font-size: 16px;
-                  margin:10px;}
+                  margin:10px;
+                 }
 }
 
 </style>
