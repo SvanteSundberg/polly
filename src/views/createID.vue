@@ -23,12 +23,10 @@
     </div>
   </div>
 
-  <div class="unique">
-    <p v-if="this.isExisting && this.pollId.length>0">
+  <div
+     v-bind:class="['unique',{notUnique:this.isExisting && this.pollId.length>0}]">
         {{uiLabels.idExists}}
-    </p>
-    <p v-else-if="this.pollId.length>0">
-    </p>
+
   </div>
 
   </div>
@@ -114,10 +112,13 @@ export default {
     border: 1px solid grey;
   }
 
-
   .unique{
+    color:transparent;
     margin-top:5%;
-    grid-row:2;
+  }
+
+  .notUnique{
+    color:black;
   }
 
 
