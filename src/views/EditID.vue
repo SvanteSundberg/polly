@@ -1,7 +1,7 @@
 <template>
   <div class='standard'>
     <div class='position edit'>
-    <h1>{{uiLabels.editQuizname}}
+    <h1>{{uiLabels.joinQuizname}}
     </h1>
       <br>
 
@@ -53,7 +53,7 @@
 </createPopup>
 </div>
 <info>
-  <template v-slot:helpinfo> {{uiLabels.joinQuizname}} </template>
+  <template v-slot:helpinfo> {{uiLabels.infoEditID}} </template>
 </info>
 </template>
 
