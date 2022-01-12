@@ -211,6 +211,7 @@ Data.prototype.checkIfFinished=function(pollId){
   console.log((poll.currentIndex));
   if (poll.selectedQuestions.length===(poll.currentIndex+1)){
     console.log("nu är jag sann");
+    poll.canjoin = true;
     return true
   }
   return false
