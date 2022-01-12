@@ -7,7 +7,8 @@
       <h1>{{this.question}} </h1>
     </header>
 
-    <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'/>
+    <Bars v-bind:data="data" v-bind:correctAnswer='this.correctAnswer'
+          v-bind:uiLabels="this.uiLabels"/>
   </div>
 
   <div class="myButtons">
@@ -27,7 +28,7 @@
   </div>
 
   <div class="split right">
-    <Leaderboard v-bind:users="this.users"/>
+    <Leaderboard v-bind:users="this.users" v-bind:uiLabels="this.uiLabels"/>
   </div>
 
 </div>

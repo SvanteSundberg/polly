@@ -1,6 +1,6 @@
 <template>
 	<div class="leaderboard">
-				<h1>Leaderboard</h1>
+				<h1>{{uiLabels.leaderboard}}</h1>
 
 				<div>
 				<div v-for= "user in this.users.slice(0, 5)" v-bind:key ="user">
@@ -26,7 +26,8 @@
 export default {
   name: 'Leaderboard',
   props: {
-    users: Object
+    users: Object,
+		uiLabels: Object,
   },
 }
 

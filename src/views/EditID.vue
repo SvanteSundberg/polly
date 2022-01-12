@@ -53,7 +53,7 @@
 </createPopup>
 </div>
 <info>
-  <template v-slot:helpinfo> {{uiLabels.infoEditID}} </template>
+  <template v-slot:helpinfo> {{uiLabels.joinQuizname}} </template>
 </info>
 </template>
 

@@ -16,8 +16,8 @@
       </div>
   </div>
 
-<p id="correctcss">{{uiLabels.correctAnswer}} <span v-if="this.correctAnswer.length>1"> are </span>
-  <span v-else> is </span>
+<p id="correctcss">{{uiLabels.correctAnswer}} <span v-if="this.correctAnswer.length>1"> {{uiLabels.are}} </span>
+  <span v-else> {{uiLabels.is}} </span>
 <span class="cursive" v-for="(correct,i) in correctAnswer" v-bind:key="i">
    {{correct+' '}}
 <span v-if="i+2==this.correctAnswer.length"> och </span>
@@ -31,7 +31,8 @@ export default {
   name: 'Bars',
   props: {
     data: Object,
-    correctAnswer:Array
+    correctAnswer:Array,
+    uiLabels: Object
 },
 
 methods: {
