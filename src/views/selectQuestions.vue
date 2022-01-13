@@ -6,7 +6,7 @@
 <hr>
 </header>
 
-<div class="wrapper">
+<div class="wrapperSQ">
 <div class="split left">
 <div class="scroll">
 <div class="questions">
@@ -415,7 +415,7 @@ header hr{
   grid-column: 2;
 }
 
-.wrapper{
+.wrapperSQ{
   display: grid;
   grid-template-columns: 70% 30%;
 }

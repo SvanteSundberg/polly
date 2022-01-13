@@ -14,7 +14,7 @@
              maxlength="15"
              v-on:keyup.enter="checkID"
              v-on:keyup="searchName"
-             v-bind:class="['writeInput',{resultShow:this.pollId.length>0}]">
+             class="writeInput">
 
 
        <div class="results">
