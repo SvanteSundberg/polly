@@ -24,7 +24,7 @@
     <input type="text"
           class="writeQ"
           v-model="question"
-          v-on:keyup="saveQuestion"
+          v-on:change="saveQuestion"
           :placeholder="uiLabels.typeQuestion">
     <br>
     <p> {{uiLabels.answers}}:</p>
@@ -33,7 +33,7 @@
       <textarea v-for="(_, i) in answers"
                 v-model="answers[i]"
                 v-bind:key="'answer'+i"
-                v-on:keyup="saveQuestion"
+                v-on:change="saveQuestion"
                 v-bind:class="'answer'+i"
                 :placeholder="uiLabels.typeAnswer"
                 maxlength="50">
@@ -124,7 +124,7 @@
   <div class="qlistLeft">
   <button v-for="(_, i) in this.allQuestions"
           v-bind:key="i"
-          v-on:click="goToQuestion(i)"
+          v-on:click="goToQuestion(i, true)"
           v-bind:class="['sideQuestion', 'nr'+i, {activeQuestion:this.currentIndex === i || this.collide()===i},
           {switchingQuestion:this.switching.index===i}]"
           v-on:mousedown="startSwitch(event, i)"
@@ -150,11 +150,9 @@
 </div>
 </div>
 </div>
-<div class="infodiv">
-<info class="info">
+<info>
   <template v-slot:helpinfo>{{uiLabels.infoCreate}} </template>
 </info>
-</div>
 </template>
 
 <script>
@@ -223,6 +221,7 @@ export default {
 
   },
   methods: {
+
     addQuestion: function() {
       socket.emit("addQuestion", {
         pollId: this.pollId,
@@ -364,7 +363,6 @@ export default {
     },
 
     startSwitch: function(event, index){
-      this.goToQuestion(index);
       this.y_koord=0;
       if (!this.switching.isSwitching){
         this.switching.index=index;

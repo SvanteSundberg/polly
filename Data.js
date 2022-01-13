@@ -37,6 +37,7 @@ Data.prototype.deleteQuestion=function(pollId,currentIndex){
 
 Data.prototype.setQuestions=function(pollId, questions=-1){
   const poll = this.polls[pollId];
+  poll.canjoin=true;
   if (questions !== -1){
     poll.selectedQuestions=questions;
   }
@@ -238,7 +239,7 @@ Data.prototype.addUser=function(pollId,user){
   }
 
   u[user]=thisUser;
-  
+
 
   return false
   }

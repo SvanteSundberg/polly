@@ -38,9 +38,12 @@
   </createPopup>
 
 </div>
-<info>
-  <template v-slot:helpinfo> {{uiLabels.infoCreateID}} </template>
-</info>
+
+<div class="infodiv">
+  <info>
+    <template v-slot:helpinfo> {{uiLabels.infoCreateID}} </template>
+  </info>
+</div>
 
 </template>
 
