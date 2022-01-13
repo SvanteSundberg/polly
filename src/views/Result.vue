@@ -186,16 +186,18 @@ header{
   }
 
   .right {
-    height:0;
+    height:100%;
     padding:0;
     margin:0;
     grid-column:1;
     grid-row:2;
+    overflow-y: auto;
+    border-left: 0;;
   }
 
   .wrapper{
     grid-template-columns: 100%;
-    grid-template-rows: 45% 20% 20%;
+    grid-template-rows: 40% 50% 9%;
   }
 
   .myButtons{
