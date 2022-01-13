@@ -44,6 +44,7 @@ Data.prototype.setQuestions=function(pollId, questions=-1){
   poll.currentIndex=0;
   poll.users={};
   poll.currentQuestion=poll.selectedQuestions[poll.currentIndex];
+  poll.answers=[];
 }
 
 

@@ -135,8 +135,8 @@ function sockets(io, socket, data) {
   });
 
   socket.on('restart',function(pollId){
-    data.setAnswersZero(pollId);
     data.setQuestions(pollId);
+    data.setAnswersZero(pollId);
   });
 
   socket.on('getPolls',function(){
