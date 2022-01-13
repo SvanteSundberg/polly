@@ -55,7 +55,6 @@ Data.prototype.emptyAwnser=function(pollId){
   const poll = this.polls[pollId];
     for (let i = 0; i < poll.questions.length; i++){
       for (let x = 0; x < poll.questions[i].a.length; x++){
-          console.log(poll.questions[i].a[x].length===0);
           if( poll.questions[i].a[x].length===0){
             poll.questions[i].a.splice(x,1);
             console.log(poll.questions[i].a);
