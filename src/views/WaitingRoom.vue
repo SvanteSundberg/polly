@@ -126,9 +126,9 @@ header{
 
 .players p{
   margin-bottom:2%;
+  text-align:center;
 }
 .players span{
-  display: inline-block;
   margin-left:5%;
 }
 
@@ -151,7 +151,7 @@ header{
 .players{
   border:1px solid;
   margin-top:1em;
-  margin-bottom:1vh;
+  margin-bottom:2vh;
   margin-left: 20%;
   margin-right:20%;
   padding:1%;
@@ -159,12 +159,7 @@ header{
   color:black;
   min-height: 20vh;
   height: auto;
-  text-align:center;
   border-radius:20px;
-}
-
-.players p{
-  margin:2vh;
 }
 
 
