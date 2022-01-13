@@ -114,6 +114,7 @@ export default {
 
 header{
   padding:1em;
+  padding-bottom: 0.1em;
 }
 
 .doneBtn{
@@ -135,17 +136,18 @@ header{
 .special{
   font-style: italic;
   font-weight: bold;
-  font-size:24pt;
+  font-size:20pt;
 }
 
 .ID{
   background-color:white;
   padding:1%;
   width: 20%;
-  height: 20%;;
+  height: 40%;;
   color:black;
   box-shadow: 10px 5px 5px black;
   border-radius: 20px;
+  font-size: 80%;
 }
 
 .players{
