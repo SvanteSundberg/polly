@@ -7,7 +7,7 @@
 </header>
 
 <div class="wrapperSQ">
-<div class="split left">
+<div class="Split Left">
 <div class="scroll">
 <div class="questions">
 <div v-for="(value,i) in this.questions"
@@ -61,7 +61,7 @@ v-bind:key="i">
 </button>
 </div>
 
-<div class="split right">
+<div class="Split Right">
 
 <p> {{uiLabels.timer}} </p>
 <div class="timerSwitch">
@@ -395,20 +395,20 @@ header hr{
   position:relative;
 }
 
-.split {
+.Split {
   height: 75vh;
   top: 24vh;
   position:fixed;
 }
 
-.left {
+.Left {
   left: 0;
   width: 70%;
   margin-left:0.7em;
   grid-column: 1;
 }
 
-.right {
+.Right {
   right: 10%;
   width: 30%;
   margin-top:1.3em;

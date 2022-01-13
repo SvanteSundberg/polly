@@ -26,7 +26,7 @@
          </button>
        </div>
 
-       <p v-else-if="this.pollId.length>0 && this.included<1">
+       <p v-else-if="this.pollId.length>0 && this.included<1" style="width:10.7em;">
          {{uiLabels.noPolls}}
        </p>
     </div>
