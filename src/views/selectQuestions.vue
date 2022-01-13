@@ -457,7 +457,7 @@ header hr{
     padding:0.5em;
   }
   .timerButtons{
-    font-size: 75%;
+    font-size: 60%;
     padding:0.5em;
   }
 
