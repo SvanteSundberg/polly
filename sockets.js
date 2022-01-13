@@ -14,7 +14,6 @@ function sockets(io, socket, data) {
   });
 
   socket.on('createPoll', function(d) {
-
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
 
@@ -136,6 +135,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('restart',function(pollId){
+    data.setAnswersZero(pollId);
     data.setQuestions(pollId);
   });
 
