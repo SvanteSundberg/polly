@@ -63,7 +63,7 @@
 	"drop": "Släpp frågan för att byta plats på dem!",
 	"are":"are ",
 	"is":"is ",
-	"and": "and",
+	"and": "and ",
 	"infoStart":"You have three options here. 1.Create a new quiz for others to participate in. 2. Edit an already existing quiz. 3.Participate in a quiz",
 	"infoCreateID": "Here you choose a namne for your quiz, that other players will use to play your quiz. The quiz name must be unique",
 	"infoEditID": "Type the name of the quiz you want to edit",
